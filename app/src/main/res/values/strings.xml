@@ -41,6 +41,22 @@
     <string name="label_change_due">Vuelto a entregar</string>
     <string name="btn_confirm_payment">Confirmar pago</string>
 
+    <!-- Recibo Screen -->
+    <string name="title_receipt_success">Venta registrada</string>
+    <string name="receipt_biz_name">Pollos El Fogón</string>
+    <string name="receipt_label_order">Pedido</string>
+    <string name="receipt_label_type">Tipo</string>
+    <string name="receipt_label_cashier">Cajero</string>
+    <string name="receipt_type_takeaway">Para llevar</string>
+    <string name="receipt_label_subtotal">Subtotal</string>
+    <string name="receipt_label_discount">Descuento</string>
+    <string name="receipt_label_total">Total</string>
+    <string name="receipt_label_received">Recibido</string>
+    <string name="receipt_label_change">Vuelto</string>
+    <string name="btn_print">Imprimir</string>
+    <string name="btn_whatsapp">Enviar WhatsApp</string>
+    <string name="btn_new_sale">Nueva venta</string>
+
     <!-- Nav Items -->
     <string name="nav_sale">Venta</string>
     <string name="nav_orders">Pedidos</string>

@@ -1,5 +1,6 @@
 package com.example.pollogithub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,7 +68,24 @@ public class PagoActivity extends AppCompatActivity {
             String methodStr = selectedMethodIndex == 0 ? "Efectivo" :
                                selectedMethodIndex == 1 ? "Tarjeta" :
                                selectedMethodIndex == 2 ? "QR" : "Mixto";
-            Toast.makeText(this, "¡Pago con " + methodStr + " confirmado!", Toast.LENGTH_LONG).show();
+
+            String inputStr = etAmountReceived.getText().toString().trim();
+            double received = 0.0;
+            try {
+                if (!inputStr.isEmpty()) {
+                    received = Double.parseDouble(inputStr);
+                }
+            } catch (NumberFormatException ignored) {}
+
+            double change = received - totalAmount;
+            if (change < 0) change = 0.0;
+
+            Intent intent = new Intent(PagoActivity.this, ReciboActivity.class);
+            intent.putExtra("PAYMENT_METHOD", methodStr);
+            intent.putExtra("TOTAL_AMOUNT", totalAmount);
+            intent.putExtra("RECEIVED_AMOUNT", selectedMethodIndex == 0 ? received : totalAmount);
+            intent.putExtra("CHANGE_DUE", selectedMethodIndex == 0 ? change : 0.0);
+            startActivity(intent);
             finish();
         });
     }
@@ -120,17 +137,11 @@ public class PagoActivity extends AppCompatActivity {
             etAmountReceived.setText(String.format(Locale.getDefault(), "%.2f", totalAmount));
         });
 
-        findViewById(R.id.btnQuick45).setOnClickListener(v -> {
-            etAmountReceived.setText("45.00");
-        });
+        findViewById(R.id.btnQuick45).setOnClickListener(v -> etAmountReceived.setText("45.00"));
 
-        findViewById(R.id.btnQuick50).setOnClickListener(v -> {
-            etAmountReceived.setText("50.00");
-        });
+        findViewById(R.id.btnQuick50).setOnClickListener(v -> etAmountReceived.setText("50.00"));
 
-        findViewById(R.id.btnQuick100).setOnClickListener(v -> {
-            etAmountReceived.setText("100.00");
-        });
+        findViewById(R.id.btnQuick100).setOnClickListener(v -> etAmountReceived.setText("100.00"));
 
         calculateChange();
     }
