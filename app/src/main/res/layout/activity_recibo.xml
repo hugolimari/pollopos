@@ -215,7 +215,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-bold"
-                            android:text="S/ 14.00"
+                            android:text="Bs. 14.00"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -238,7 +238,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-bold"
-                            android:text="S/ 24.00"
+                            android:text="Bs. 24.00"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -260,7 +260,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-bold"
-                            android:text="S/ 8.00"
+                            android:text="Bs. 8.00"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -297,7 +297,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif"
-                            android:text="S/ 46.00"
+                            android:text="Bs. 46.00"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -321,7 +321,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif"
-                            android:text="− S/ 4.60"
+                            android:text="− Bs. 4.60"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -352,7 +352,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-black"
-                            android:text="S/ 41.40"
+                            android:text="Bs. 41.40"
                             android:textColor="@color/char_900"
                             android:textSize="17sp" />
                     </RelativeLayout>
@@ -376,7 +376,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif"
-                            android:text="S/ 50.00"
+                            android:text="Bs. 50.00"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -399,7 +399,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif"
-                            android:text="S/ 8.60"
+                            android:text="Bs. 8.60"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>

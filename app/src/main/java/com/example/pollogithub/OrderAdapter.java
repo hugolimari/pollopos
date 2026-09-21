@@ -52,7 +52,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.tvOrderTime.setText(order.getTime());
         holder.tvOrderItems.setText(order.getItems());
         holder.tvOrderType.setText(order.getType());
-        holder.tvOrderTotal.setText(String.format(Locale.getDefault(), "S/ %.2f", order.getTotal()));
+        holder.tvOrderTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", order.getTotal()));
         holder.btnPrimaryAction.setText(order.getPrimaryActionText());
 
         // Type icon

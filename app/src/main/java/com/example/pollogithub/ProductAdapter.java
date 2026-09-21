@@ -47,7 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.tvName.setText(product.getName());
         holder.tvDesc.setText(product.getDescription());
-        holder.tvPrice.setText(String.format(Locale.getDefault(), "S/ %.2f", product.getPrice()));
+        holder.tvPrice.setText(String.format(Locale.getDefault(), "Bs. %.2f", product.getPrice()));
         holder.tvEmoji.setText(product.getEmoji());
         holder.frameThumb.setBackgroundResource(product.getThumbDrawableRes());
 

@@ -51,11 +51,11 @@ public class ReciboActivity extends AppCompatActivity {
         TextView tvReceiptChange = findViewById(R.id.tvReceiptChange);
 
         double subtotal = totalAmount + 4.60;
-        tvReceiptSubtotal.setText(String.format(Locale.getDefault(), "S/ %.2f", subtotal));
-        tvReceiptDiscount.setText("− S/ 4.60");
-        tvReceiptGrandTotal.setText(String.format(Locale.getDefault(), "S/ %.2f", totalAmount));
-        tvReceiptAmountReceived.setText(String.format(Locale.getDefault(), "S/ %.2f", receivedAmount));
-        tvReceiptChange.setText(String.format(Locale.getDefault(), "S/ %.2f", changeDue));
+        tvReceiptSubtotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", subtotal));
+        tvReceiptDiscount.setText("− Bs. 4.60");
+        tvReceiptGrandTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", totalAmount));
+        tvReceiptAmountReceived.setText(String.format(Locale.getDefault(), "Bs. %.2f", receivedAmount));
+        tvReceiptChange.setText(String.format(Locale.getDefault(), "Bs. %.2f", changeDue));
 
         findViewById(R.id.btnPrintReceipt).setOnClickListener(v ->
             Toast.makeText(this, "Enviando ticket a la impresora...", Toast.LENGTH_SHORT).show()

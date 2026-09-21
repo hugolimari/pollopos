@@ -327,7 +327,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-black"
-                    android:text="S/ 68.50"
+                    android:text="Bs. 68.50"
                     android:textColor="@color/white"
                     android:textSize="15.5sp" />
             </LinearLayout>

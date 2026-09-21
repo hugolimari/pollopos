@@ -257,7 +257,7 @@
                 android:id="@+id/btnStartShift"
                 android:layout_width="0dp"
                 android:layout_height="54dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/bg_button_primary"
                 android:elevation="4dp"
                 android:fontFamily="sans-serif-medium"
@@ -269,144 +269,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvForgotPin" />
 
-            <!-- Quick Access Divider -->
-            <LinearLayout
-                android:id="@+id/dividerLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnStartShift">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/line_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/quick_access"
-                    android:textColor="@color/icon_muted"
-                    android:textSize="11.5sp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/line_color" />
-            </LinearLayout>
-
-            <!-- Quick Access PIN Row -->
-            <LinearLayout
-                android:id="@+id/pinRow"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dividerLayout">
-
-                <!-- Avatar C -->
-                <FrameLayout
-                    android:id="@+id/btnQuickUserC"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/bg_quick_access_btn"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <TextView
-                        android:layout_width="34dp"
-                        android:layout_height="34dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/bg_avatar_circle"
-                        android:fontFamily="sans-serif-black"
-                        android:gravity="center"
-                        android:text="C"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-                </FrameLayout>
-
-                <!-- Avatar M -->
-                <FrameLayout
-                    android:id="@+id/btnQuickUserM"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/bg_quick_access_btn"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <TextView
-                        android:layout_width="34dp"
-                        android:layout_height="34dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/bg_avatar_circle"
-                        android:fontFamily="sans-serif-black"
-                        android:gravity="center"
-                        android:text="M"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-                </FrameLayout>
-
-                <!-- Avatar J -->
-                <FrameLayout
-                    android:id="@+id/btnQuickUserJ"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/bg_quick_access_btn"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <TextView
-                        android:layout_width="34dp"
-                        android:layout_height="34dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/bg_avatar_circle"
-                        android:fontFamily="sans-serif-black"
-                        android:gravity="center"
-                        android:text="J"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-                </FrameLayout>
-
-                <!-- Add Button -->
-                <FrameLayout
-                    android:id="@+id/btnQuickAdd"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/bg_quick_access_btn"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="+"
-                        android:textColor="@color/ember_600"
-                        android:textSize="22sp" />
-                </FrameLayout>
-            </LinearLayout>
-
             <!-- Footer Note -->
             <TextView
                 android:id="@+id/tvFooterNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="sans-serif"
                 android:text="@string/footer_note"
                 android:textColor="@color/placeholder_text"
@@ -414,7 +282,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pinRow" />
+                app:layout_constraintTop_toBottomOf="@id/btnStartShift" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

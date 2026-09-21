@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">BrasaPOS</string>
-    <string name="brand_title_brasa">Brasa</string>
+    <string name="app_name">PolloPOS</string>
+    <string name="brand_title_brasa">Pollo</string>
     <string name="brand_title_pos">POS</string>
-    <string name="brand_subtitle">Punto de venta · Pollos El Fogón</string>
+    <string name="brand_subtitle">Punto de venta · El Pollo que hace Pollo</string>
 
     <string name="welcome_title">Bienvenido de nuevo</string>
     <string name="welcome_subtitle">Ingresa con tu usuario de cajero para abrir turno.</string>

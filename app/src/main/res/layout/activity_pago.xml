@@ -100,7 +100,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="4dp"
                         android:fontFamily="sans-serif-bold"
-                        android:text="S/"
+                        android:text="Bs."
                         android:textColor="@color/ember_600"
                         android:textSize="20sp" />
 
@@ -322,7 +322,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
-                        android:text="S/"
+                        android:text="Bs."
                         android:textColor="@color/char_400"
                         android:textSize="16sp" />
 
@@ -369,7 +369,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_quick_cash_btn"
                         android:fontFamily="sans-serif-bold"
-                        android:text="S/ 45"
+                        android:text="Bs. 45"
                         android:textAllCaps="false"
                         android:textColor="@color/char_700"
                         android:textSize="12sp" />
@@ -382,7 +382,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_quick_cash_btn"
                         android:fontFamily="sans-serif-bold"
-                        android:text="S/ 50"
+                        android:text="Bs. 50"
                         android:textAllCaps="false"
                         android:textColor="@color/char_700"
                         android:textSize="12sp" />
@@ -394,7 +394,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_quick_cash_btn"
                         android:fontFamily="sans-serif-bold"
-                        android:text="S/ 100"
+                        android:text="Bs. 100"
                         android:textAllCaps="false"
                         android:textColor="@color/char_700"
                         android:textSize="12sp" />
@@ -425,7 +425,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="S/ 8.60"
+                        android:text="Bs. 8.60"
                         android:textColor="@color/ok_600"
                         android:textSize="17sp" />
                 </LinearLayout>

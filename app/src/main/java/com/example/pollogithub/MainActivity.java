@@ -62,20 +62,5 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("USER_NAME", user);
             startActivity(intent);
         });
-
-        findViewById(R.id.btnQuickUserC).setOnClickListener(v -> {
-            etUser.setText("carlos.caja1");
-            etPassword.requestFocus();
-        });
-
-        findViewById(R.id.btnQuickUserM).setOnClickListener(v -> {
-            etUser.setText("maria.caja2");
-            etPassword.requestFocus();
-        });
-
-        findViewById(R.id.btnQuickUserJ).setOnClickListener(v -> {
-            etUser.setText("juan.caja3");
-            etPassword.requestFocus();
-        });
     }
 }

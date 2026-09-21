@@ -160,6 +160,6 @@ public class PagoActivity extends AppCompatActivity {
             change = 0.0;
         }
 
-        tvChangeDue.setText(String.format(Locale.getDefault(), "S/ %.2f", change));
+        tvChangeDue.setText(String.format(Locale.getDefault(), "Bs. %.2f", change));
     }
 }

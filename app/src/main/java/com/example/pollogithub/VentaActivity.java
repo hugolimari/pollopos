@@ -180,12 +180,17 @@ public class VentaActivity extends AppCompatActivity {
 
         double totalPrice = calculateCartTotal();
         tvCartCount.setText(String.valueOf(totalCount));
-        tvCartTotal.setText(String.format(Locale.getDefault(), "S/ %.2f", totalPrice));
+        tvCartTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", totalPrice));
     }
 
     private void setupBottomNav() {
+        findViewById(R.id.navItemVenta).setOnClickListener(v -> {
+            // Already on VentaActivity
+        });
+
         findViewById(R.id.navItemPedidos).setOnClickListener(v -> {
             Intent intent = new Intent(VentaActivity.this, PedidosActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
         });
 

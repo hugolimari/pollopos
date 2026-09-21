@@ -107,7 +107,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:fontFamily="sans-serif-bold"
-            android:text="S/ 41.40"
+            android:text="Bs. 41.40"
             android:textColor="@color/ember_700"
             android:textSize="14sp" />
     </RelativeLayout>
