@@ -14,8 +14,16 @@
     <color name="line_color">#F0DDC9</color>
     <color name="icon_muted">#B99C86</color>
     <color name="placeholder_text">#C2A892</color>
+
     <color name="ok_600">#4A7C3F</color>
     <color name="ok_100">#E3F0DF</color>
+
+    <color name="wait_600">#B8860B</color>
+    <color name="wait_100">#FBF0D4</color>
+
+    <color name="info_600">#3B6EA5</color>
+    <color name="info_100">#E2EDF7</color>
+
     <color name="cart_label">#D8C6BB</color>
 
     <!-- Thumb Gradients -->

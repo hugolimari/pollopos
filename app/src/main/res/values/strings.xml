@@ -57,6 +57,19 @@
     <string name="btn_whatsapp">Enviar WhatsApp</string>
     <string name="btn_new_sale">Nueva venta</string>
 
+    <!-- Pedidos Screen -->
+    <string name="title_orders">Pedidos</string>
+    <string name="subtitle_orders">Sucursal Centro · hoy, 14 sep</string>
+    <string name="tab_cocina">En cocina</string>
+    <string name="tab_listos">Listos</string>
+    <string name="tab_camino">En camino</string>
+    <string name="btn_view_detail">Ver detalle</string>
+    <string name="btn_mark_ready">Marcar listo</string>
+    <string name="btn_send_driver">Enviar repartidor</string>
+    <string name="status_cocina">En cocina</string>
+    <string name="status_listo">Listo</string>
+    <string name="status_camino">En camino</string>
+
     <!-- Nav Items -->
     <string name="nav_sale">Venta</string>
     <string name="nav_orders">Pedidos</string>

@@ -70,6 +70,7 @@ public class VentaActivity extends AppCompatActivity {
 
         setupCategoryChips();
         setupSearch();
+        setupBottomNav();
         updateCartSummary();
 
         View.OnClickListener openPagoListener = v -> {
@@ -180,5 +181,20 @@ public class VentaActivity extends AppCompatActivity {
         double totalPrice = calculateCartTotal();
         tvCartCount.setText(String.valueOf(totalCount));
         tvCartTotal.setText(String.format(Locale.getDefault(), "S/ %.2f", totalPrice));
+    }
+
+    private void setupBottomNav() {
+        findViewById(R.id.navItemPedidos).setOnClickListener(v -> {
+            Intent intent = new Intent(VentaActivity.this, PedidosActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.navItemReportes).setOnClickListener(v ->
+            Toast.makeText(this, "Sección Reportes", Toast.LENGTH_SHORT).show()
+        );
+
+        findViewById(R.id.navItemPerfil).setOnClickListener(v ->
+            Toast.makeText(this, "Sección Perfil", Toast.LENGTH_SHORT).show()
+        );
     }
 }

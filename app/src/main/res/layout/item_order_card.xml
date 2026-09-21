@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="6dp"
+    android:background="@drawable/bg_order_card"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <!-- Top Row: Order ID, Time & Status Badge -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvOrderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-bold"
+                android:text="Pedido #0231"
+                android:textColor="@color/char_900"
+                android:textSize="14.5sp" />
+
+            <TextView
+                android:id="@+id/tvOrderTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif"
+                android:text="Hace 3 min · Mesa 4"
+                android:textColor="@color/char_400"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvStatusBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_status_cocina"
+            android:fontFamily="sans-serif-bold"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:text="@string/status_cocina"
+            android:textColor="@color/wait_600"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <!-- Items Summary -->
+    <TextView
+        android:id="@+id/tvOrderItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="2dp"
+        android:text="1/4 pollo frito, 1/2 pollo a la brasa, 2× gaseosa"
+        android:textColor="@color/char_700"
+        android:textSize="12.5sp" />
+
+    <!-- Type and Total Row -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgTypeIcon"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:contentDescription="Tipo"
+                android:src="@drawable/ic_type_table" />
+
+            <TextView
+                android:id="@+id/tvOrderType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="sans-serif-bold"
+                android:text="Para mesa"
+                android:textColor="@color/char_400"
+                android:textSize="11.5sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvOrderTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="sans-serif-bold"
+            android:text="S/ 41.40"
+            android:textColor="@color/ember_700"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <!-- Action Buttons Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnViewDetail"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_outline"
+            android:fontFamily="sans-serif-bold"
+            android:text="@string/btn_view_detail"
+            android:textAllCaps="false"
+            android:textColor="@color/char_700"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPrimaryAction"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_primary"
+            android:fontFamily="sans-serif-bold"
+            android:text="@string/btn_mark_ready"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
