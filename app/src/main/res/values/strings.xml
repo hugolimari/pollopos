@@ -28,6 +28,19 @@
     <string name="cart_total_label">Total del pedido</string>
     <string name="cart_view_order">Ver pedido</string>
 
+    <!-- Pago Screen -->
+    <string name="title_pay">Cobrar pedido</string>
+    <string name="subtitle_pay">Pedido #0231 · Para llevar</string>
+    <string name="label_total_to_pay">TOTAL A COBRAR</string>
+    <string name="section_payment_method">Método de pago</string>
+    <string name="method_cash">Efectivo</string>
+    <string name="method_card">Tarjeta</string>
+    <string name="method_qr">QR</string>
+    <string name="method_mixed">Mixto</string>
+    <string name="label_amount_received">Monto recibido</string>
+    <string name="label_change_due">Vuelto a entregar</string>
+    <string name="btn_confirm_payment">Confirmar pago</string>
+
     <!-- Nav Items -->
     <string name="nav_sale">Venta</string>
     <string name="nav_orders">Pedidos</string>

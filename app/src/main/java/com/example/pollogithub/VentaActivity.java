@@ -1,8 +1,10 @@
 package com.example.pollogithub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,9 +72,15 @@ public class VentaActivity extends AppCompatActivity {
         setupSearch();
         updateCartSummary();
 
-        findViewById(R.id.btnViewOrder).setOnClickListener(v ->
-            Toast.makeText(this, "Ver pedido actual", Toast.LENGTH_SHORT).show()
-        );
+        View.OnClickListener openPagoListener = v -> {
+            double currentTotal = calculateCartTotal();
+            Intent intent = new Intent(VentaActivity.this, PagoActivity.class);
+            intent.putExtra("TOTAL_AMOUNT", currentTotal > 0 ? currentTotal : 41.40);
+            startActivity(intent);
+        };
+
+        findViewById(R.id.btnViewOrder).setOnClickListener(openPagoListener);
+        findViewById(R.id.cartBar).setOnClickListener(openPagoListener);
 
         findViewById(R.id.btnNotification).setOnClickListener(v ->
             Toast.makeText(this, "Sin notificaciones pendientes", Toast.LENGTH_SHORT).show()
@@ -150,17 +158,26 @@ public class VentaActivity extends AppCompatActivity {
         }
     }
 
+    private double calculateCartTotal() {
+        double total = 0.0;
+        for (Product p : allProducts) {
+            if (p.getQuantityInCart() > 0) {
+                total += p.getQuantityInCart() * p.getPrice();
+            }
+        }
+        return total;
+    }
+
     private void updateCartSummary() {
         int totalCount = 0;
-        double totalPrice = 0.0;
 
         for (Product p : allProducts) {
             if (p.getQuantityInCart() > 0) {
                 totalCount += p.getQuantityInCart();
-                totalPrice += p.getQuantityInCart() * p.getPrice();
             }
         }
 
+        double totalPrice = calculateCartTotal();
         tvCartCount.setText(String.valueOf(totalCount));
         tvCartTotal.setText(String.format(Locale.getDefault(), "S/ %.2f", totalPrice));
     }
