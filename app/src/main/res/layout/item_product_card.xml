@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardProduct"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:background="@drawable/bg_product_card"
+    android:padding="12dp">
+
+    <!-- Thumbnail Background & Emoji -->
+    <FrameLayout
+        android:id="@+id/frameThumb"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/bg_thumb_fried"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvEmoji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="🍗"
+            android:textSize="30sp" />
+    </FrameLayout>
+
+    <!-- Agotado Badge Tag -->
+    <TextView
+        android:id="@+id/tvAgotadoTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_badge_agotado"
+        android:fontFamily="sans-serif-black"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="3dp"
+        android:text="@string/tag_agotado"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="9.5sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/frameThumb"
+        app:layout_constraintTop_toTopOf="@id/frameThumb"
+        tools:visibility="visible" />
+
+    <!-- Quantity Badge -->
+    <TextView
+        android:id="@+id/tvBadgeQty"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/bg_badge_qty"
+        android:fontFamily="sans-serif-bold"
+        android:gravity="center"
+        android:text="2"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:translationX="6dp"
+        android:translationY="-6dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <!-- Product Name -->
+    <TextView
+        android:id="@+id/tvProductName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-bold"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Presa individual"
+        android:textColor="@color/char_900"
+        android:textSize="13.5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frameThumb" />
+
+    <!-- Product Description -->
+    <TextView
+        android:id="@+id/tvProductDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="sans-serif"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Pierna o pechuga"
+        android:textColor="@color/char_400"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvProductName" />
+
+    <!-- Price and Add Button Row -->
+    <TextView
+        android:id="@+id/tvProductPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-black"
+        android:text="S/ 8.50"
+        android:textColor="@color/ember_700"
+        android:textSize="14.5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvProductDesc" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdd"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@drawable/bg_add_btn"
+        android:fontFamily="sans-serif-bold"
+        android:includeFontPadding="false"
+        android:padding="0dp"
+        android:text="+"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvProductPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvProductPrice" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

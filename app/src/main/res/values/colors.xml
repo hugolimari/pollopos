@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ember_700">#9C2F0E</color>
+    <color name="ember_600">#C1440E</color>
+    <color name="ember_500">#E8590C</color>
+    <color name="ember_100">#FFE4D1</color>
+    <color name="char_900">#241410</color>
+    <color name="char_700">#4A352E</color>
+    <color name="char_400">#8A7266</color>
+    <color name="paper_50">#FFFBF5</color>
+    <color name="paper_100">#FFF4E8</color>
+    <color name="line_color">#F0DDC9</color>
+    <color name="icon_muted">#B99C86</color>
+    <color name="placeholder_text">#C2A892</color>
+    <color name="ok_600">#4A7C3F</color>
+    <color name="ok_100">#E3F0DF</color>
+    <color name="cart_label">#D8C6BB</color>
+
+    <!-- Thumb Gradients -->
+    <color name="thumb_fried_start">#FFE4D1</color>
+    <color name="thumb_fried_end">#FFD0A8</color>
+    <color name="thumb_asado_start">#FFE0CF</color>
+    <color name="thumb_asado_end">#F8C19B</color>
+    <color name="thumb_combo_start">#FFE9D6</color>
+    <color name="thumb_combo_end">#FFD8B0</color>
+    <color name="thumb_bebida_start">#E3F0DF</color>
+    <color name="thumb_bebida_end">#CFE8C6</color>
+</resources>

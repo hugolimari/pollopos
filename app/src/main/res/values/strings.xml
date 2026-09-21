@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">BrasaPOS</string>
+    <string name="brand_title_brasa">Brasa</string>
+    <string name="brand_title_pos">POS</string>
+    <string name="brand_subtitle">Punto de venta · Pollos El Fogón</string>
+
+    <string name="welcome_title">Bienvenido de nuevo</string>
+    <string name="welcome_subtitle">Ingresa con tu usuario de cajero para abrir turno.</string>
+
+    <string name="label_user">Usuario</string>
+    <string name="hint_user">ej. carlos.caja1</string>
+
+    <string name="label_password">Contraseña / PIN</string>
+    <string name="hint_password">••••••</string>
+
+    <string name="forgot_pin">¿Olvidaste tu PIN?</string>
+    <string name="btn_start_shift">Iniciar turno</string>
+    <string name="quick_access">ACCESO RÁPIDO</string>
+
+    <string name="footer_note">Sucursal Centro · v1.0</string>
+
+    <!-- Venta Screen -->
+    <string name="title_sale">Nueva venta</string>
+    <string name="shift_info">Caja 1 · Turno abierto 8:02am</string>
+    <string name="search_hint">Buscar producto o código...</string>
+    <string name="section_title_fried">Pollo frito</string>
+    <string name="tag_agotado">Agotado</string>
+    <string name="cart_total_label">Total del pedido</string>
+    <string name="cart_view_order">Ver pedido</string>
+
+    <!-- Nav Items -->
+    <string name="nav_sale">Venta</string>
+    <string name="nav_orders">Pedidos</string>
+    <string name="nav_reports">Reportes</string>
+    <string name="nav_profile">Perfil</string>
+
+    <!-- Quick User Letters -->
+    <string name="user_initial_c">C</string>
+    <string name="user_initial_m">M</string>
+    <string name="user_initial_j">J</string>
+    <string name="plus_sign">+</string>
+</resources>
