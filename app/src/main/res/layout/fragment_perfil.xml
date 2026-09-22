@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/paper_50">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Perfil de Usuario"
+            android:textColor="@color/char_900"
+            android:textSize="19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:text="Información de caja y turno activo"
+            android:textColor="@color/char_400"
+            android:textSize="12.5sp" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerPerfil">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Profile Info Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_order_card"
+                android:elevation="2dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Avatar Badge -->
+                <TextView
+                    android:id="@+id/tvProfileAvatar"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:background="@drawable/bg_avatar_circle"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="C"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+                <!-- Cashier Name -->
+                <TextView
+                    android:id="@+id/tvProfileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Carlos Mendoza"
+                    android:textColor="@color/char_900"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Cajero Principal · Caja 1"
+                    android:textColor="@color/ember_600"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Sucursal Centro · Turno abierto 8:02 AM"
+                    android:textColor="@color/char_400"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Stats Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <!-- Card Total Ventas -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_order_card"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="Ventas de hoy"
+                        android:textColor="@color/char_400"
+                        android:textSize="11.5sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="Bs. 842.50"
+                        android:textColor="@color/char_900"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <!-- Card Total Pedidos -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_order_card"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="Pedidos cobrados"
+                        android:textColor="@color/char_400"
+                        android:textSize="11.5sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="18 pedidos"
+                        android:textColor="@color/ember_700"
+                        android:textSize="17sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Actions List -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_order_card"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/btnPrinterStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="12dp"
+                    android:text="🖨️  Impresora de tickets (Conectada)"
+                    android:textColor="@color/char_700"
+                    android:textSize="13.5sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/line_color" />
+
+                <TextView
+                    android:id="@+id/btnShiftDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="12dp"
+                    android:text="📊  Detalle del turno de caja"
+                    android:textColor="@color/char_700"
+                    android:textSize="13.5sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/line_color" />
+
+                <TextView
+                    android:id="@+id/btnAppVersion"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="12dp"
+                    android:text="ℹ️  PolloPOS v1.0 (Sucursal Centro)"
+                    android:textColor="@color/char_700"
+                    android:textSize="13.5sp" />
+            </LinearLayout>
+
+            <!-- Logout / Close Shift Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCloseShift"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_btn_outline"
+                android:fontFamily="sans-serif-bold"
+                android:text="Cerrar turno y salir"
+                android:textAllCaps="false"
+                android:textColor="@color/ember_700"
+                android:textSize="14.5sp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

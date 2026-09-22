@@ -4,7 +4,6 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,14 +46,8 @@ public class HomeActivity extends AppCompatActivity {
 
         findViewById(R.id.navItemVenta).setOnClickListener(v -> selectTab(0));
         findViewById(R.id.navItemPedidos).setOnClickListener(v -> selectTab(1));
-        findViewById(R.id.navItemReportes).setOnClickListener(v -> {
-            selectTab(2);
-            Toast.makeText(this, "Sección Reportes", Toast.LENGTH_SHORT).show();
-        });
-        findViewById(R.id.navItemPerfil).setOnClickListener(v -> {
-            selectTab(3);
-            Toast.makeText(this, "Sección Perfil", Toast.LENGTH_SHORT).show();
-        });
+        findViewById(R.id.navItemReportes).setOnClickListener(v -> selectTab(2));
+        findViewById(R.id.navItemPerfil).setOnClickListener(v -> selectTab(3));
 
         if (savedInstanceState == null) {
             selectTab(0);
@@ -82,6 +75,10 @@ public class HomeActivity extends AppCompatActivity {
             selectedFragment = VentaFragment.newInstance(userName);
         } else if (index == 1) {
             selectedFragment = new PedidosFragment();
+        } else if (index == 2) {
+            selectedFragment = new ReportesFragment();
+        } else if (index == 3) {
+            selectedFragment = PerfilFragment.newInstance(userName);
         }
 
         if (selectedFragment != null) {
