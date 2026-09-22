@@ -23,6 +23,11 @@
         </activity>
 
         <activity
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".VentaActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
@@ -39,11 +44,6 @@
 
         <activity
             android:name=".ReciboActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name=".PerfilActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

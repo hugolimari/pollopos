@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/paper_50">
+
+    <!-- Header Area -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvAvatarHeader"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/bg_avatar_circle"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="@string/user_initial_c"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvCashierName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-bold"
+                        android:text="Carlos Mendoza"
+                        android:textColor="@color/char_900"
+                        android:textSize="14.5sp" />
+
+                    <TextView
+                        android:id="@+id/tvShiftInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/shift_info"
+                        android:textColor="@color/char_400"
+                        android:textSize="11.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/btnNotification"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_icon_btn"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="Notificaciones"
+                    android:src="@drawable/ic_bell" />
+
+                <View
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="7dp"
+                    android:background="@drawable/bg_notification_dot" />
+            </FrameLayout>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_search">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="14dp"
+                android:contentDescription="@string/search_hint"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:fontFamily="sans-serif"
+                android:hint="@string/search_hint"
+                android:imeOptions="actionSearch"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingStart="42dp"
+                android:paddingEnd="14dp"
+                android:textColor="@color/char_900"
+                android:textColorHint="@color/char_400"
+                android:textSize="14sp" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/scrollCategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:clipToPadding="false"
+        android:elevation="1dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="12dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout">
+
+        <LinearLayout
+            android:id="@+id/layoutChipsContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/chipTodos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chip_selected"
+                android:fontFamily="sans-serif-bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="9dp"
+                android:text="Todos"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/chipPolloFrito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chip_unselected"
+                android:fontFamily="sans-serif-bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="9dp"
+                android:text="Pollo frito"
+                android:textColor="@color/char_700"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/chipBrasa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chip_unselected"
+                android:fontFamily="sans-serif-bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="9dp"
+                android:text="A la brasa"
+                android:textColor="@color/char_700"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/chipCombos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chip_unselected"
+                android:fontFamily="sans-serif-bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="9dp"
+                android:text="Combos"
+                android:textColor="@color/char_700"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/chipAcompanamientos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chip_unselected"
+                android:fontFamily="sans-serif-bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="9dp"
+                android:text="Acompañamientos"
+                android:textColor="@color/char_700"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/chipBebidas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_chip_unselected"
+                android:fontFamily="sans-serif-bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="9dp"
+                android:text="Bebidas"
+                android:textColor="@color/char_700"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scrollCategories">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="14dp"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:id="@+id/tvSectionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/section_title_fried"
+                android:textColor="@color/char_900"
+                android:textSize="15sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProducts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:itemCount="6"
+                tools:listitem="@layout/item_product_card" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Floating Cart Bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cartBar"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_cart_bar"
+        android:elevation="8dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvCartCount"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_cart_count"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/cart_total_label"
+                    android:textColor="@color/cart_label"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tvCartTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Bs. 68.50"
+                    android:textColor="@color/white"
+                    android:textSize="15.5sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnViewOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:background="@drawable/bg_cart_cta"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-bold"
+                android:text="@string/cart_view_order"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="6dp"
+                android:contentDescription="@string/cart_view_order"
+                android:src="@drawable/ic_chevron_right" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(MainActivity.this, VentaActivity.class);
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             intent.putExtra("USER_NAME", user);
             startActivity(intent);
         });
