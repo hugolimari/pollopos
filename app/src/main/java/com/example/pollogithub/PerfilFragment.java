@@ -58,11 +58,8 @@ public class PerfilFragment extends Fragment {
         );
 
         view.findViewById(R.id.btnCloseShift).setOnClickListener(v -> {
-            Toast.makeText(requireContext(), "Turno cerrado exitosamente", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(requireContext(), MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent intent = new Intent(requireContext(), CierreCajaActivity.class);
             startActivity(intent);
-            requireActivity().finish();
         });
 
         return view;

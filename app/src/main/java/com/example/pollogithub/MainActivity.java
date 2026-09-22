@@ -45,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
             etPassword.setSelection(etPassword.getText().length());
         });
 
+        findViewById(R.id.tvForgotPin).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RecuperarPasswordActivity.class);
+            startActivity(intent);
+        });
+
         findViewById(R.id.btnStartShift).setOnClickListener(v -> {
             String user = etUser.getText().toString().trim();
             String pass = etPassword.getText().toString().trim();
