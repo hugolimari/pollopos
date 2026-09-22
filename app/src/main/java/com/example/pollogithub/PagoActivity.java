@@ -71,11 +71,22 @@ public class PagoActivity extends AppCompatActivity {
 
             String inputStr = etAmountReceived.getText().toString().trim();
             double received = 0.0;
-            try {
-                if (!inputStr.isEmpty()) {
-                    received = Double.parseDouble(inputStr);
+            if (selectedMethodIndex == 0) {
+                if (inputStr.isEmpty()) {
+                    etAmountReceived.setError("Ingresa el monto recibido");
+                    return;
                 }
-            } catch (NumberFormatException ignored) {}
+                try {
+                    received = Double.parseDouble(inputStr);
+                } catch (NumberFormatException e) {
+                    etAmountReceived.setError("Monto inválido");
+                    return;
+                }
+                if (received < totalAmount) {
+                    etAmountReceived.setError(String.format(Locale.getDefault(), "El monto debe ser mínimo Bs. %.2f", totalAmount));
+                    return;
+                }
+            }
 
             double change = received - totalAmount;
             if (change < 0) change = 0.0;

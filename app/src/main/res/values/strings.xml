@@ -81,4 +81,28 @@
     <string name="user_initial_m">M</string>
     <string name="user_initial_j">J</string>
     <string name="plus_sign">+</string>
+
+    <!-- Perfil Screen -->
+    <string name="title_profile">Perfil de Cajero</string>
+    <string name="subtitle_profile">Turno activo · Terminal #01</string>
+    <string name="profile_role_default">Cajero de Turno</string>
+    <string name="profile_branch_default">Sucursal Centro · Caja 1</string>
+    <string name="status_shift_active">Turno Abierto</string>
+    <string name="section_shift_stats">Resumen de Turno</string>
+    <string name="label_stat_sales">Ventas</string>
+    <string name="value_stat_sales">24 pedidos</string>
+    <string name="label_stat_total">Recaudado</string>
+    <string name="value_stat_total">Bs. 1,420.50</string>
+    <string name="label_stat_start">Apertura</string>
+    <string name="value_stat_start">08:02 AM</string>
+    <string name="section_terminal_settings">Ajustes del Terminal</string>
+    <string name="item_printer_title">Impresora Térmica</string>
+    <string name="item_printer_subtitle">Epson TM-T20III (Conectada)</string>
+    <string name="item_cash_cut_title">Arqueo y Cierre de Caja</string>
+    <string name="item_cash_cut_subtitle">Corte parcial X / Corte final Z</string>
+    <string name="item_sync_title">Sincronización en la Nube</string>
+    <string name="item_sync_subtitle">14 pedidos sincronizados · Al día</string>
+    <string name="item_lock_title">Bloquear Terminal / Cambiar PIN</string>
+    <string name="item_lock_subtitle">Protege el punto de venta</string>
+    <string name="btn_end_shift">Cerrar Turno / Salir</string>
 </resources>

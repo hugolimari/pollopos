@@ -31,6 +31,7 @@ public class VentaActivity extends AppCompatActivity {
     private TextView tvCartTotal;
     private String selectedCategory = "Todos";
     private String searchQuery = "";
+    private String cashierName = "Carlos Méndez";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class VentaActivity extends AppCompatActivity {
 
         String userExtra = getIntent().getStringExtra("USER_NAME");
         if (userExtra != null && !userExtra.isEmpty()) {
+            cashierName = userExtra;
             tvCashierName.setText(userExtra);
             String initial = userExtra.substring(0, 1).toUpperCase(Locale.getDefault());
             tvAvatarHeader.setText(initial);
@@ -198,8 +200,11 @@ public class VentaActivity extends AppCompatActivity {
             Toast.makeText(this, "Sección Reportes", Toast.LENGTH_SHORT).show()
         );
 
-        findViewById(R.id.navItemPerfil).setOnClickListener(v ->
-            Toast.makeText(this, "Sección Perfil", Toast.LENGTH_SHORT).show()
-        );
+        findViewById(R.id.navItemPerfil).setOnClickListener(v -> {
+            Intent intent = new Intent(VentaActivity.this, PerfilActivity.class);
+            intent.putExtra("USER_NAME", cashierName);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+        });
     }
 }

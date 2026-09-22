@@ -164,8 +164,10 @@ public class PedidosActivity extends AppCompatActivity {
             Toast.makeText(this, "Sección Reportes", Toast.LENGTH_SHORT).show()
         );
 
-        findViewById(R.id.navItemPerfil).setOnClickListener(v ->
-            Toast.makeText(this, "Sección Perfil", Toast.LENGTH_SHORT).show()
-        );
+        findViewById(R.id.navItemPerfil).setOnClickListener(v -> {
+            Intent intent = new Intent(PedidosActivity.this, PerfilActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+        });
     }
 }

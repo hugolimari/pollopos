@@ -89,7 +89,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         holder.btnPrimaryAction.setOnClickListener(v -> {
             if (listener != null) {
-                listener.onPrimaryAction(order, holder.getAdapterPosition());
+                listener.onPrimaryAction(order, holder.getBindingAdapterPosition());
             }
         });
     }
