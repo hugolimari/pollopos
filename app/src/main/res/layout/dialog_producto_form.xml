@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_top_rounded"
+    android:padding="22dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title & Subtitle -->
+        <TextView
+            android:id="@+id/tvFormTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Añadir comida al menú"
+            android:textColor="@color/char_900"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvFormSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:text="Ingresa los datos para registrar el producto en el catálogo"
+            android:textColor="@color/char_400"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="14dp"
+            android:background="@color/line_color" />
+
+        <!-- Nombre del Producto -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Nombre del plato o producto *"
+            android:textColor="@color/char_700"
+            android:textSize="12.5sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input_field">
+
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:fontFamily="sans-serif"
+                android:hint="ej. 1/4 Pollo Broaster"
+                android:inputType="textCapSentences"
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/char_900"
+                android:textColorHint="@color/placeholder_text"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+        <!-- Categoría -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Categoría *"
+            android:textColor="@color/char_700"
+            android:textSize="12.5sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input_field">
+
+            <Spinner
+                android:id="@+id/spCategoria"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:paddingHorizontal="12dp" />
+        </FrameLayout>
+
+        <!-- Precio -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Precio (Bs.) *"
+            android:textColor="@color/char_700"
+            android:textSize="12.5sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input_field">
+
+            <EditText
+                android:id="@+id/etPrecio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:fontFamily="sans-serif-bold"
+                android:hint="0.00"
+                android:inputType="numberDecimal"
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/char_900"
+                android:textColorHint="@color/placeholder_text"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+        <!-- Descripción -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Descripción o guarniciones"
+            android:textColor="@color/char_700"
+            android:textSize="12.5sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_input_field">
+
+            <EditText
+                android:id="@+id/etDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:fontFamily="sans-serif"
+                android:hint="ej. Con papas fritas y ensalada"
+                android:inputType="textCapSentences"
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/char_900"
+                android:textColorHint="@color/placeholder_text"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+        <!-- Emoji Selector -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Ícono / Emoji"
+            android:textColor="@color/char_700"
+            android:textSize="12.5sp" />
+
+        <LinearLayout
+            android:id="@+id/layoutEmojiSelector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/optEmojiChicken"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chip_selected"
+                android:gravity="center"
+                android:text="🍗"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/optEmojiFire"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chip_unselected"
+                android:gravity="center"
+                android:text="🔥"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/optEmojiDrink"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chip_unselected"
+                android:gravity="center"
+                android:text="🥤"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/optEmojiFries"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chip_unselected"
+                android:gravity="center"
+                android:text="🍟"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/optEmojiSalad"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_chip_unselected"
+                android:gravity="center"
+                android:text="🥗"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/optEmojiBurger"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_chip_unselected"
+                android:gravity="center"
+                android:text="🍖"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <!-- Switch Disponible -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="Habilitado para la venta"
+                    android:textColor="@color/char_900"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Disponible inmediatamente en la pantalla de pedidos"
+                    android:textColor="@color/char_400"
+                    android:textSize="11.5sp" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchDisponibleForm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                app:thumbTint="@color/ember_600"
+                app:trackTint="@color/ember_100" />
+        </LinearLayout>
+
+        <!-- Integrity Notice -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_order_card"
+            android:fontFamily="sans-serif"
+            android:padding="10dp"
+            android:text="ℹ️ Para mantener la integridad de los reportes y recibos históricos, los productos no se eliminan físicamente; puedes marcarlos como 'Agotado/Deshabilitado'."
+            android:textColor="@color/char_400"
+            android:textSize="11sp" />
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCancelarForm"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:background="@drawable/bg_btn_outline"
+                android:fontFamily="sans-serif-bold"
+                android:paddingHorizontal="18dp"
+                android:text="Cancelar"
+                android:textAllCaps="false"
+                android:textColor="@color/char_700"
+                android:textSize="13.5sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGuardarForm"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/bg_button_primary"
+                android:fontFamily="sans-serif-bold"
+                android:paddingHorizontal="24dp"
+                android:text="Guardar"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="13.5sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -18,8 +18,10 @@ import java.util.Locale;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
 
+    @FunctionalInterface
     public interface OnOrderActionListener {
         void onPrimaryAction(Order order, int position);
+        default void onViewDetail(Order order, int position) {}
     }
 
     private Context context;
@@ -83,9 +85,17 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                 break;
         }
 
-        holder.btnViewDetail.setOnClickListener(v ->
-            Toast.makeText(context, "Detalle de " + order.getId(), Toast.LENGTH_SHORT).show()
-        );
+        holder.btnViewDetail.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onViewDetail(order, holder.getBindingAdapterPosition());
+            }
+        });
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onViewDetail(order, holder.getBindingAdapterPosition());
+            }
+        });
 
         holder.btnPrimaryAction.setOnClickListener(v -> {
             if (listener != null) {

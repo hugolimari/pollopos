@@ -64,6 +64,19 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
 
+        loginViewModel.getNeedsTurnoApertura().observe(this, needs -> {
+            if (Boolean.TRUE.equals(needs)) {
+                Intent intent = new Intent(MainActivity.this, AperturaCajaActivity.class);
+                if (loginViewModel.getLastUsuario() != null) {
+                    intent.putExtra("USER_NAME", loginViewModel.getLastUsuario().getNombreCompleto());
+                    intent.putExtra("USER_ID", loginViewModel.getLastUsuario().getId());
+                    intent.putExtra("SUCURSAL_ID", loginViewModel.getLastUsuario().getSucursalId());
+                }
+                startActivity(intent);
+                finish();
+            }
+        });
+
         loginViewModel.getLoginError().observe(this, error -> {
             if (error != null) {
                 Toast.makeText(MainActivity.this, error, Toast.LENGTH_SHORT).show();

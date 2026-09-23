@@ -181,10 +181,11 @@
                     </FrameLayout>
 
                     <TextView
+                        android:id="@+id/tvStatPedidosHoy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="47"
+                        android:text="0"
                         android:textColor="@color/char_900"
                         android:textSize="19sp" />
 
@@ -224,10 +225,11 @@
                     </FrameLayout>
 
                     <TextView
+                        android:id="@+id/tvStatTicketPromedio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="Bs 27.30"
+                        android:text="Bs 0.00"
                         android:textColor="@color/char_900"
                         android:textSize="19sp" />
 
@@ -267,10 +269,11 @@
                     </FrameLayout>
 
                     <TextView
+                        android:id="@+id/tvStatParaMesa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="36"
+                        android:text="0"
                         android:textColor="@color/char_900"
                         android:textSize="19sp" />
 
@@ -310,10 +313,11 @@
                     </FrameLayout>
 
                     <TextView
+                        android:id="@+id/tvStatHoraPico"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="1-2pm"
+                        android:text="12-2pm"
                         android:textColor="@color/char_900"
                         android:textSize="19sp" />
 

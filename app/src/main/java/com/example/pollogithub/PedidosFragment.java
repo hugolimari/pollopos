@@ -20,6 +20,7 @@ import com.example.pollogithub.ui.viewmodel.PedidosViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PedidosFragment extends Fragment {
 
@@ -58,22 +59,30 @@ public class PedidosFragment extends Fragment {
         RecyclerView rvOrders = view.findViewById(R.id.rvOrders);
         rvOrders.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        adapter = new OrderAdapter(requireContext(), displayedOrders, (order, position) -> {
-            pedidosViewModel.avanzarEstadoPedido(order, new PosRepository.Callback<Void>() {
-                @Override
-                public void onSuccess(Void result) {
-                    if ("cocina".equalsIgnoreCase(order.getStatus())) {
-                        Toast.makeText(requireContext(), order.getId() + " marcado como listo", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(requireContext(), order.getId() + " entregado al cliente", Toast.LENGTH_SHORT).show();
+        adapter = new OrderAdapter(requireContext(), displayedOrders, new OrderAdapter.OnOrderActionListener() {
+            @Override
+            public void onPrimaryAction(Order order, int position) {
+                pedidosViewModel.avanzarEstadoPedido(order, new PosRepository.Callback<Void>() {
+                    @Override
+                    public void onSuccess(Void result) {
+                        if ("cocina".equalsIgnoreCase(order.getStatus())) {
+                            Toast.makeText(requireContext(), order.getId() + " marcado como listo", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(requireContext(), order.getId() + " entregado al cliente", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
 
-                @Override
-                public void onError(String error) {
-                    Toast.makeText(requireContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @Override
+                    public void onError(String error) {
+                        Toast.makeText(requireContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onViewDetail(Order order, int position) {
+                showDetallePedidoDialog(order);
+            }
         });
         rvOrders.setAdapter(adapter);
 
@@ -134,5 +143,127 @@ public class PedidosFragment extends Fragment {
         if (adapter != null) {
             adapter.updateList(displayedOrders);
         }
+    }
+
+    private void showDetallePedidoDialog(Order order) {
+        if (getContext() == null) return;
+
+        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_detalle_pedido, null);
+
+        TextView tvOrderId = dialogView.findViewById(R.id.tvDetalleOrderId);
+        TextView tvOrderMeta = dialogView.findViewById(R.id.tvDetalleOrderMeta);
+        TextView tvStatusBadge = dialogView.findViewById(R.id.tvDetalleStatusBadge);
+        TextView tvTotal = dialogView.findViewById(R.id.tvDetalleTotal);
+        LinearLayout container = dialogView.findViewById(R.id.layoutItemsContainer);
+
+        tvOrderId.setText(order.getId());
+        tvOrderMeta.setText(String.format("%s · %s", order.getTime(), order.getType()));
+        tvTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", order.getTotal()));
+
+        if ("cocina".equalsIgnoreCase(order.getStatus())) {
+            tvStatusBadge.setText("En cocina");
+            tvStatusBadge.setTextColor(requireContext().getColor(R.color.wait_600));
+            tvStatusBadge.setBackgroundResource(R.drawable.bg_status_cocina);
+        } else {
+            tvStatusBadge.setText("Listo");
+            tvStatusBadge.setTextColor(requireContext().getColor(R.color.ok_600));
+            tvStatusBadge.setBackgroundResource(R.drawable.bg_status_listo);
+        }
+
+        androidx.appcompat.app.AlertDialog dialog = new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setView(dialogView)
+                .setCancelable(true)
+                .create();
+
+        PosRepository.getInstance(requireContext()).getPedidoDetalles(order.getPedidoId(), new PosRepository.Callback<List<com.example.pollogithub.data.entity.PedidoDetalleEntity>>() {
+            @Override
+            public void onSuccess(List<com.example.pollogithub.data.entity.PedidoDetalleEntity> detalles) {
+                container.removeAllViews();
+                if (detalles != null && !detalles.isEmpty()) {
+                    for (com.example.pollogithub.data.entity.PedidoDetalleEntity d : detalles) {
+                        LinearLayout row = new LinearLayout(requireContext());
+                        row.setOrientation(LinearLayout.VERTICAL);
+                        row.setPadding(0, 6, 0, 6);
+
+                        LinearLayout topRow = new LinearLayout(requireContext());
+                        topRow.setOrientation(LinearLayout.HORIZONTAL);
+
+                        TextView tvItemName = new TextView(requireContext());
+                        tvItemName.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
+                        tvItemName.setText(String.format(Locale.getDefault(), "%d× %s", d.getCantidad(), d.getNombreProducto()));
+                        tvItemName.setTextColor(requireContext().getColor(R.color.char_900));
+                        tvItemName.setTextSize(13.5f);
+                        tvItemName.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);
+
+                        TextView tvItemSubtotal = new TextView(requireContext());
+                        tvItemSubtotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", d.getSubtotal()));
+                        tvItemSubtotal.setTextColor(requireContext().getColor(R.color.char_700));
+                        tvItemSubtotal.setTextSize(13.5f);
+                        tvItemSubtotal.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);
+
+                        topRow.addView(tvItemName);
+                        topRow.addView(tvItemSubtotal);
+                        row.addView(topRow);
+
+                        if (d.getNotas() != null && !d.getNotas().trim().isEmpty()) {
+                            TextView tvNote = new TextView(requireContext());
+                            tvNote.setText(String.format("↳ Nota: \"%s\"", d.getNotas().trim()));
+                            tvNote.setTextColor(requireContext().getColor(R.color.ember_600));
+                            tvNote.setTextSize(11.5f);
+                            tvNote.setPadding(12, 2, 0, 0);
+                            row.addView(tvNote);
+                        }
+
+                        container.addView(row);
+                    }
+                } else {
+                    TextView tvEmpty = new TextView(requireContext());
+                    tvEmpty.setText("No hay ítems registrados");
+                    tvEmpty.setTextColor(requireContext().getColor(R.color.char_400));
+                    container.addView(tvEmpty);
+                }
+            }
+
+            @Override
+            public void onError(String error) {}
+        });
+
+        dialogView.findViewById(R.id.btnCerrarDetalleDialog).setOnClickListener(v -> dialog.dismiss());
+
+        dialogView.findViewById(R.id.btnCancelarPedidoDialog).setOnClickListener(v -> {
+            dialog.dismiss();
+            mostrarDialogoMotivoCancelacion(order);
+        });
+
+        dialog.show();
+    }
+
+    private void mostrarDialogoMotivoCancelacion(Order order) {
+        String[] motivos = {
+                "Cliente desistió de la compra",
+                "Error en la toma del pedido",
+                "Falta de insumos / producto agotado",
+                "Demora excesiva en preparación",
+                "Otro motivo"
+        };
+
+        new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setTitle("Motivo de cancelación (" + order.getId() + ")")
+                .setItems(motivos, (d, which) -> {
+                    String motivoSeleccionado = motivos[which];
+                    PosRepository.getInstance(requireContext()).cancelarPedido(order.getPedidoId(), motivoSeleccionado, new PosRepository.Callback<Void>() {
+                        @Override
+                        public void onSuccess(Void result) {
+                            Toast.makeText(requireContext(), order.getId() + " cancelado: " + motivoSeleccionado, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onError(String error) {
+                            Toast.makeText(requireContext(), "Error al cancelar: " + error, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                })
+                .setNegativeButton("Regresar", null)
+                .show();
     }
 }

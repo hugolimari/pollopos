@@ -136,6 +136,48 @@ public class PosRepository {
         return db.categoriaDao().getAllLiveData();
     }
 
+    public void insertProducto(ProductoEntity producto, Callback<Long> callback) {
+        executor.execute(() -> {
+            long id = db.productoDao().insert(producto);
+            producto.setId((int) id);
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(id);
+            });
+        });
+    }
+
+    public void updateProducto(ProductoEntity producto, Callback<Void> callback) {
+        executor.execute(() -> {
+            db.productoDao().update(producto);
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(null);
+            });
+        });
+    }
+
+    public void setProductoDisponible(int id, boolean disponible, Callback<Void> callback) {
+        executor.execute(() -> {
+            db.productoDao().setDisponible(id, disponible);
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(null);
+            });
+        });
+    }
+
+    // --- TURNOS HISTÓRICOS ---
+    public LiveData<List<TurnoEntity>> getAllTurnosLiveData() {
+        return db.turnoDao().getAllLiveData();
+    }
+
+    public void getHistorialTurnos(Callback<List<TurnoEntity>> callback) {
+        executor.execute(() -> {
+            List<TurnoEntity> turnos = db.turnoDao().getAllLiveData().getValue();
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(turnos);
+            });
+        });
+    }
+
     // --- PEDIDOS ---
     public void crearPedido(String tipoEntrega, Integer mesaId, List<Product> cartProducts, Callback<PedidoEntity> callback) {
         executor.execute(() -> {
@@ -208,6 +250,15 @@ public class PosRepository {
         });
     }
 
+    public void cancelarPedido(int pedidoId, String motivo, Callback<Void> callback) {
+        executor.execute(() -> {
+            db.pedidoDao().cancelarPedido(pedidoId, motivo);
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(null);
+            });
+        });
+    }
+
     // --- PAGOS ---
     public void registrarPago(int pedidoId, String metodoPago, double total, double recibido, double vuelto, Callback<PagoEntity> callback) {
         executor.execute(() -> {
@@ -226,6 +277,8 @@ public class PosRepository {
     public static class ResumenTurno {
         public double totalVentas;
         public double totalEfectivo;
+        public double totalTarjeta;
+        public double totalQr;
         public int totalPedidos;
         public double fondoInicial;
         public double esperado;
@@ -242,13 +295,75 @@ public class PosRepository {
             Double totalEfectivo = db.pagoDao().getTotalEfectivoByTurno(turnoId);
             if (totalEfectivo == null) totalEfectivo = 0.0;
 
+            Double totalTarjeta = db.pagoDao().getTotalTarjetaByTurno(turnoId);
+            if (totalTarjeta == null) totalTarjeta = 0.0;
+
+            Double totalQr = db.pagoDao().getTotalQrByTurno(turnoId);
+            if (totalQr == null) totalQr = 0.0;
+
+            List<PagoEntity> pagos = db.pagoDao().getByTurnoId(turnoId);
+            int countPedidos = pagos != null ? pagos.size() : 0;
+
             ResumenTurno resumen = new ResumenTurno();
             resumen.fondoInicial = fondo;
             resumen.totalVentas = totalVentas;
             resumen.totalEfectivo = totalEfectivo;
+            resumen.totalTarjeta = totalTarjeta;
+            resumen.totalQr = totalQr;
+            resumen.totalPedidos = countPedidos;
             resumen.esperado = fondo + totalEfectivo;
 
             mainHandler.post(() -> callback.onSuccess(resumen));
+        });
+    }
+
+    public static class EstadisticasReporte {
+        public double totalVentas;
+        public int totalPedidos;
+        public double ticketPromedio;
+        public int pedidosMesa;
+        public int pedidosLlevar;
+        public String horaPico = "12:00 PM - 2:00 PM";
+        public double totalEfectivo;
+        public double totalTarjeta;
+        public double totalQr;
+        public String productoMasVendido = "1/4 de pollo frito";
+        public int productoMasVendidoCantidad = 0;
+    }
+
+    public void getEstadisticasReporte(Callback<EstadisticasReporte> callback) {
+        executor.execute(() -> {
+            EstadisticasReporte stats = new EstadisticasReporte();
+            List<PagoEntity> todosLosPagos = db.pagoDao().getAll();
+            double suma = 0.0;
+            double ef = 0.0, tj = 0.0, qr = 0.0;
+            if (todosLosPagos != null) {
+                for (PagoEntity p : todosLosPagos) {
+                    suma += p.getMonto();
+                    if ("efectivo".equalsIgnoreCase(p.getMetodoPago())) ef += p.getMonto();
+                    else if ("tarjeta".equalsIgnoreCase(p.getMetodoPago())) tj += p.getMonto();
+                    else if ("qr".equalsIgnoreCase(p.getMetodoPago())) qr += p.getMonto();
+                }
+                stats.totalPedidos = todosLosPagos.size();
+            }
+            stats.totalVentas = suma;
+            stats.totalEfectivo = ef;
+            stats.totalTarjeta = tj;
+            stats.totalQr = qr;
+            stats.ticketPromedio = stats.totalPedidos > 0 ? (stats.totalVentas / stats.totalPedidos) : 0.0;
+
+            List<PedidoEntity> todosPedidos = db.pedidoDao().getAll();
+            int mesa = 0, llevar = 0;
+            if (todosPedidos != null) {
+                for (PedidoEntity pe : todosPedidos) {
+                    if ("mesa".equalsIgnoreCase(pe.getTipoEntrega())) mesa++;
+                    else llevar++;
+                }
+            }
+            stats.pedidosMesa = mesa;
+            stats.pedidosLlevar = llevar;
+
+            mainHandler.post(() -> callback.onSuccess(stats));
         });
     }
 }

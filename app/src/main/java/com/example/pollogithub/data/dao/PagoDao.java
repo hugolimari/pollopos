@@ -27,6 +27,15 @@ public interface PagoDao {
     @Query("SELECT SUM(monto) FROM pagos WHERE turnoId = :turnoId AND metodoPago = 'efectivo'")
     Double getTotalEfectivoByTurno(int turnoId);
 
+    @Query("SELECT SUM(monto) FROM pagos WHERE turnoId = :turnoId AND metodoPago = 'tarjeta'")
+    Double getTotalTarjetaByTurno(int turnoId);
+
+    @Query("SELECT SUM(monto) FROM pagos WHERE turnoId = :turnoId AND metodoPago = 'qr'")
+    Double getTotalQrByTurno(int turnoId);
+
     @Query("SELECT * FROM pagos ORDER BY id DESC")
     LiveData<List<PagoEntity>> getAllLiveData();
+
+    @Query("SELECT * FROM pagos ORDER BY id DESC")
+    List<PagoEntity> getAll();
 }

@@ -19,6 +19,10 @@ import java.util.Locale;
 public class ReportesFragment extends Fragment {
 
     private TextView tvHeroSalesAmount;
+    private TextView tvStatPedidosHoy;
+    private TextView tvStatTicketPromedio;
+    private TextView tvStatParaMesa;
+    private TextView tvStatHoraPico;
 
     @Nullable
     @Override
@@ -26,12 +30,17 @@ public class ReportesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reportes, container, false);
 
         tvHeroSalesAmount = view.findViewById(R.id.tvHeroSalesAmount);
+        tvStatPedidosHoy = view.findViewById(R.id.tvStatPedidosHoy);
+        tvStatTicketPromedio = view.findViewById(R.id.tvStatTicketPromedio);
+        tvStatParaMesa = view.findViewById(R.id.tvStatParaMesa);
+        tvStatHoraPico = view.findViewById(R.id.tvStatHoraPico);
 
         View btnPeriod = view.findViewById(R.id.btnPeriod);
         if (btnPeriod != null) {
-            btnPeriod.setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Filtro de periodo: Hoy", Toast.LENGTH_SHORT).show()
-            );
+            btnPeriod.setOnClickListener(v -> {
+                Intent intent = new Intent(requireContext(), HistorialTurnosActivity.class);
+                startActivity(intent);
+            });
         }
 
         View btnCerrarCaja = view.findViewById(R.id.btnCerrarCaja);
@@ -56,13 +65,26 @@ public class ReportesFragment extends Fragment {
     private void cargarDatosReporte() {
         if (getContext() == null) return;
         PosRepository repo = PosRepository.getInstance(requireContext());
-        int turnoId = repo.getSessionManager().getTurnoId();
 
-        repo.getResumenTurno(turnoId, new PosRepository.Callback<PosRepository.ResumenTurno>() {
+        repo.getEstadisticasReporte(new PosRepository.Callback<PosRepository.EstadisticasReporte>() {
             @Override
-            public void onSuccess(PosRepository.ResumenTurno result) {
-                if (tvHeroSalesAmount != null && result != null) {
-                    tvHeroSalesAmount.setText(String.format(Locale.getDefault(), "Bs. %.2f", result.totalVentas));
+            public void onSuccess(PosRepository.EstadisticasReporte stats) {
+                if (stats != null) {
+                    if (tvHeroSalesAmount != null) {
+                        tvHeroSalesAmount.setText(String.format(Locale.getDefault(), "Bs. %.2f", stats.totalVentas));
+                    }
+                    if (tvStatPedidosHoy != null) {
+                        tvStatPedidosHoy.setText(String.valueOf(stats.totalPedidos));
+                    }
+                    if (tvStatTicketPromedio != null) {
+                        tvStatTicketPromedio.setText(String.format(Locale.getDefault(), "Bs. %.2f", stats.ticketPromedio));
+                    }
+                    if (tvStatParaMesa != null) {
+                        tvStatParaMesa.setText(String.valueOf(stats.pedidosMesa));
+                    }
+                    if (tvStatHoraPico != null) {
+                        tvStatHoraPico.setText(stats.horaPico);
+                    }
                 }
             }
 

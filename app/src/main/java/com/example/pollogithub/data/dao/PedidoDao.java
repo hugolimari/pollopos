@@ -46,6 +46,9 @@ public interface PedidoDao {
     @Query("SELECT COUNT(*) FROM pedidos WHERE estado = :estado")
     int countByEstado(String estado);
 
+    @Query("UPDATE pedidos SET estado = 'cancelado', estadoPago = 'cancelado', motivoCancelacion = :motivo WHERE id = :id")
+    void cancelarPedido(int id, String motivo);
+
     @Query("SELECT COUNT(*) FROM pedidos")
     int count();
 }

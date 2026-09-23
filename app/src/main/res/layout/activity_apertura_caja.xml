@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainApertura"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/paper_50">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp">
+
+        <!-- Top Glow Effect -->
+        <View
+            android:id="@+id/glowView"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:background="@drawable/bg_glow_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:translationY="-140dp" />
+
+        <!-- Brand / Header Section -->
+        <LinearLayout
+            android:id="@+id/headerApertura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="48dp"
+            android:paddingBottom="24dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_brand_logo"
+                android:elevation="6dp">
+
+                <ImageView
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="Apertura de turno"
+                    android:src="@drawable/ic_cash_register"
+                    app:tint="@color/white" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Apertura de Turno"
+                android:textColor="@color/char_900"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvAperturaWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Bienvenido, Cajero Principal"
+                android:textColor="@color/ember_600"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Main Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardApertura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="3dp"
+            app:strokeColor="@color/line_color"
+            app:strokeWidth="1dp"
+            app:layout_constraintTop_toBottomOf="@id/headerApertura">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="Fondo Inicial de Caja"
+                    android:textColor="@color/char_900"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Ingresa el monto de efectivo con el que inicias operaciones en tu gaveta."
+                    android:textColor="@color/char_400"
+                    android:textSize="12.5sp" />
+
+                <!-- Amount Box -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_input_field"
+                    android:backgroundTint="@color/paper_100"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="Bs."
+                        android:textColor="@color/ember_600"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/etFondoInicial"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center_vertical"
+                        android:hint="100.00"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:text="100.00"
+                        android:textColor="@color/char_900"
+                        android:textColorHint="@color/placeholder_text"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <!-- Quick Buttons Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnQuickFondo50"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_quick_cash_btn"
+                        android:fontFamily="sans-serif-bold"
+                        android:gravity="center"
+                        android:text="Bs. 50"
+                        android:textColor="@color/char_700"
+                        android:textSize="12.5sp" />
+
+                    <TextView
+                        android:id="@+id/btnQuickFondo100"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_quick_cash_btn"
+                        android:fontFamily="sans-serif-bold"
+                        android:gravity="center"
+                        android:text="Bs. 100"
+                        android:textColor="@color/char_700"
+                        android:textSize="12.5sp" />
+
+                    <TextView
+                        android:id="@+id/btnQuickFondo200"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_quick_cash_btn"
+                        android:fontFamily="sans-serif-bold"
+                        android:gravity="center"
+                        android:text="Bs. 200"
+                        android:textColor="@color/char_700"
+                        android:textSize="12.5sp" />
+
+                    <TextView
+                        android:id="@+id/btnQuickFondo300"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_quick_cash_btn"
+                        android:fontFamily="sans-serif-bold"
+                        android:gravity="center"
+                        android:text="Bs. 300"
+                        android:textColor="@color/char_700"
+                        android:textSize="12.5sp" />
+                </LinearLayout>
+
+                <!-- Help Notice -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_order_card"
+                    android:fontFamily="sans-serif"
+                    android:padding="12dp"
+                    android:text="ℹ️ Este fondo se sumará a tus ventas en efectivo para calcular el arqueo final al cierre de turno."
+                    android:textColor="@color/char_400"
+                    android:textSize="11.5sp" />
+
+                <!-- Confirm Shift Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAbrirTurno"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:elevation="3dp"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="Abrir Turno y Comenzar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Footer -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif"
+            android:text="PolloPOS · Sucursal Centro"
+            android:textColor="@color/placeholder_text"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardApertura" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
