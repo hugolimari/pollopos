@@ -17,7 +17,7 @@
     <string name="btn_start_shift">Iniciar turno</string>
     <string name="quick_access">ACCESO RÁPIDO</string>
 
-    <string name="footer_note">Sucursal Centro · v1.0</string>
+    <string name="footer_note">Sucursal Centro · v2.0.0</string>
 
     <!-- Venta Screen -->
     <string name="title_sale">Nueva venta</string>

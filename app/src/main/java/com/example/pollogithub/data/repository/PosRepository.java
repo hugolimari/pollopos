@@ -101,6 +101,7 @@ public class PosRepository {
         db = AppDatabase.getInstance(context);
         executor = AppDatabase.getDatabaseWriteExecutor();
         sessionManager = new SessionManager(context);
+        executor.execute(() -> AppDatabase.checkAndPrepopulate(db));
     }
 
     /**
@@ -143,6 +144,7 @@ public class PosRepository {
      */
     public void login(String userOrPin, String password, Callback<UsuarioEntity> callback) {
         executor.execute(() -> {
+            AppDatabase.checkAndPrepopulate(db);
             UsuarioEntity usuario = null;
             if (password == null || password.isEmpty()) {
                 // Estrategia de autenticación acelerada por PIN

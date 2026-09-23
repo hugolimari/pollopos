@@ -261,7 +261,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center_vertical"
                     android:paddingHorizontal="12dp"
-                    android:text="ℹ️  PolloPOS v1.0 (Sucursal Centro)"
+                    android:text="ℹ️  PolloPOS v2.0.0 (Sucursal Centro)"
                     android:textColor="@color/char_700"
                     android:textSize="13.5sp" />
             </LinearLayout>
