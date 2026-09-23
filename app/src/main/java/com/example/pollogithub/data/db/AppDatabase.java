@@ -41,7 +41,7 @@ import java.util.concurrent.Executors;
         PedidoEntity.class,
         PedidoDetalleEntity.class,
         PagoEntity.class
-}, version = 1, exportSchema = false)
+}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
@@ -66,6 +66,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     AppDatabase.class, "brasa_pos_database")
+                            .fallbackToDestructiveMigration()
                             .addCallback(new Callback() {
                                 @Override
                                 public void onCreate(@NonNull SupportSQLiteDatabase db) {

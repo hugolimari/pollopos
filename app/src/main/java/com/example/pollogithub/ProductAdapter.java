@@ -5,10 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pollogithub.util.ImageUtils;
 
 import java.util.List;
 import java.util.Locale;
@@ -48,7 +51,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.tvName.setText(product.getName());
         holder.tvDesc.setText(product.getDescription());
         holder.tvPrice.setText(String.format(Locale.getDefault(), "Bs. %.2f", product.getPrice()));
-        holder.tvEmoji.setText(product.getEmoji());
+        
+        if (product.getEmoji() != null && !product.getEmoji().isEmpty()) {
+            holder.tvEmoji.setText(product.getEmoji());
+        } else {
+            holder.tvEmoji.setText("");
+        }
+
+        if (holder.ivProductImage != null) {
+            ImageUtils.displayProductImage(holder.ivProductImage, product.getImagenLocalPath(), holder.tvEmoji);
+        }
+
         holder.frameThumb.setBackgroundResource(product.getThumbDrawableRes());
 
         if (product.isAgotado()) {
@@ -88,12 +101,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
         FrameLayout frameThumb;
+        ImageView ivProductImage;
         TextView tvEmoji, tvAgotadoTag, tvBadgeQty, tvName, tvDesc, tvPrice;
         View btnAdd;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             frameThumb = itemView.findViewById(R.id.frameThumb);
+            ivProductImage = itemView.findViewById(R.id.ivProductImage);
             tvEmoji = itemView.findViewById(R.id.tvEmoji);
             tvAgotadoTag = itemView.findViewById(R.id.tvAgotadoTag);
             tvBadgeQty = itemView.findViewById(R.id.tvBadgeQty);

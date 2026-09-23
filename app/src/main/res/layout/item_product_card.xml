@@ -9,24 +9,40 @@
     android:background="@drawable/bg_product_card"
     android:padding="12dp">
 
-    <!-- Thumbnail Background & Emoji -->
-    <FrameLayout
-        android:id="@+id/frameThumb"
+    <!-- Thumbnail Background & Foto / Emoji -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardThumb"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:background="@drawable/bg_thumb_fried"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tvEmoji"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="🍗"
-            android:textSize="30sp" />
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/frameThumb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_thumb_fried">
+
+            <ImageView
+                android:id="@+id/ivProductImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvEmoji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="🍗"
+                android:textSize="30sp" />
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
 
     <!-- Agotado Badge Tag -->
     <TextView
@@ -44,8 +60,8 @@
         android:textColor="@color/white"
         android:textSize="9.5sp"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/frameThumb"
-        app:layout_constraintTop_toTopOf="@id/frameThumb"
+        app:layout_constraintStart_toStartOf="@id/cardThumb"
+        app:layout_constraintTop_toTopOf="@id/cardThumb"
         tools:visibility="visible" />
 
     <!-- Quantity Badge -->
@@ -80,7 +96,7 @@
         android:textSize="13.5sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frameThumb" />
+        app:layout_constraintTop_toBottomOf="@id/cardThumb" />
 
     <!-- Product Description -->
     <TextView

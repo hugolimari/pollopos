@@ -51,7 +51,8 @@ public class VentaViewModel extends AndroidViewModel {
                             catName,
                             e.getThumbDrawableRes(),
                             !e.isDisponible(),
-                            qty
+                            qty,
+                            e.getImagenLocalPath()
                     ));
                 }
                 currentProducts = list;

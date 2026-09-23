@@ -10,8 +10,9 @@ public class Product {
     private int thumbDrawableRes;
     private boolean isAgotado;
     private int quantityInCart;
+    private String imagenLocalPath;
 
-    public Product(int id, String name, String description, double price, String emoji, String category, int thumbDrawableRes, boolean isAgotado, int quantityInCart) {
+    public Product(int id, String name, String description, double price, String emoji, String category, int thumbDrawableRes, boolean isAgotado, int quantityInCart, String imagenLocalPath) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -21,10 +22,15 @@ public class Product {
         this.thumbDrawableRes = thumbDrawableRes;
         this.isAgotado = isAgotado;
         this.quantityInCart = quantityInCart;
+        this.imagenLocalPath = imagenLocalPath;
+    }
+
+    public Product(int id, String name, String description, double price, String emoji, String category, int thumbDrawableRes, boolean isAgotado, int quantityInCart) {
+        this(id, name, description, price, emoji, category, thumbDrawableRes, isAgotado, quantityInCart, null);
     }
 
     public Product(String name, String description, double price, String emoji, String category, int thumbDrawableRes, boolean isAgotado, int quantityInCart) {
-        this(0, name, description, price, emoji, category, thumbDrawableRes, isAgotado, quantityInCart);
+        this(0, name, description, price, emoji, category, thumbDrawableRes, isAgotado, quantityInCart, null);
     }
 
     public int getId() { return id; }
@@ -39,4 +45,6 @@ public class Product {
     public boolean isAgotado() { return isAgotado; }
     public int getQuantityInCart() { return quantityInCart; }
     public void setQuantityInCart(int quantityInCart) { this.quantityInCart = quantityInCart; }
+    public String getImagenLocalPath() { return imagenLocalPath; }
+    public void setImagenLocalPath(String imagenLocalPath) { this.imagenLocalPath = imagenLocalPath; }
 }

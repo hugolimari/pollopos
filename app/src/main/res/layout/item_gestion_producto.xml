@@ -18,21 +18,37 @@
         android:orientation="horizontal"
         android:padding="14dp">
 
-        <!-- Thumb / Emoji -->
-        <FrameLayout
-            android:id="@+id/wrapThumb"
+        <!-- Thumb / Foto / Emoji -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/wrapThumbCard"
             android:layout_width="52dp"
             android:layout_height="52dp"
-            android:background="@drawable/bg_thumb_fried">
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@android:color/transparent">
 
-            <TextView
-                android:id="@+id/tvProductEmoji"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="🍗"
-                android:textSize="26sp" />
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/wrapThumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_thumb_fried">
+
+                <ImageView
+                    android:id="@+id/ivProductImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvProductEmoji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="🍗"
+                    android:textSize="26sp" />
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Product Info -->
         <LinearLayout

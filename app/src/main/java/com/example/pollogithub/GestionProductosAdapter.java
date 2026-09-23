@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pollogithub.data.entity.ProductoEntity;
+import com.example.pollogithub.util.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,8 +61,15 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
         holder.tvProductCategory.setText(getCategoryDescription(p));
         holder.tvProductPrice.setText(String.format(Locale.getDefault(), "Bs. %.2f", p.getPrecio()));
 
-        String emoji = p.getEmoji() != null && !p.getEmoji().isEmpty() ? p.getEmoji() : "🍗";
-        holder.tvProductEmoji.setText(emoji);
+        if (p.getEmoji() != null && !p.getEmoji().isEmpty()) {
+            holder.tvProductEmoji.setText(p.getEmoji());
+        } else {
+            holder.tvProductEmoji.setText("");
+        }
+
+        if (holder.ivProductImage != null) {
+            ImageUtils.displayProductImage(holder.ivProductImage, p.getImagenLocalPath(), holder.tvProductEmoji);
+        }
         holder.wrapThumb.setBackgroundResource(getThumbBackground(p.getCategoriaId()));
 
         // Status badge & switch
@@ -129,6 +138,7 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
 
     static class ProductoViewHolder extends RecyclerView.ViewHolder {
         FrameLayout wrapThumb;
+        ImageView ivProductImage;
         TextView tvProductEmoji, tvProductName, tvProductCategory, tvProductPrice, tvProductStatusBadge;
         SwitchCompat switchDisponible;
         ImageButton btnEditProduct;
@@ -136,6 +146,7 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
             wrapThumb = itemView.findViewById(R.id.wrapThumb);
+            ivProductImage = itemView.findViewById(R.id.ivProductImage);
             tvProductEmoji = itemView.findViewById(R.id.tvProductEmoji);
             tvProductName = itemView.findViewById(R.id.tvProductName);
             tvProductCategory = itemView.findViewById(R.id.tvProductCategory);

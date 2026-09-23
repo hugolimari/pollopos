@@ -28,6 +28,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import android.graphics.Bitmap;
+import android.widget.ImageView;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+
+import com.example.pollogithub.util.ImageUtils;
+
 public class GestionProductosActivity extends AppCompatActivity {
 
     private PosRepository repository;
@@ -41,6 +49,12 @@ public class GestionProductosActivity extends AppCompatActivity {
 
     private final String[] categoryNames = {"Pollo frito", "A la brasa", "Combos", "Bebidas", "Acompañamientos"};
 
+    private ActivityResultLauncher<String> galleryLauncher;
+    private String currentSelectedPhotoPath = null;
+    private ImageView ivCurrentDialogPhoto = null;
+    private View tvCurrentDialogPlaceholder = null;
+    private View btnCurrentDialogRemove = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +65,26 @@ public class GestionProductosActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
+            if (uri != null) {
+                String savedPath = ImageUtils.saveGalleryImageAsWebp(GestionProductosActivity.this, uri, 500);
+                if (savedPath != null) {
+                    currentSelectedPhotoPath = savedPath;
+                    if (ivCurrentDialogPhoto != null) {
+                        Bitmap bmp = ImageUtils.loadBitmapFromPath(savedPath);
+                        if (bmp != null) {
+                            ivCurrentDialogPhoto.setImageBitmap(bmp);
+                            ivCurrentDialogPhoto.setVisibility(View.VISIBLE);
+                            if (tvCurrentDialogPlaceholder != null) tvCurrentDialogPlaceholder.setVisibility(View.GONE);
+                            if (btnCurrentDialogRemove != null) btnCurrentDialogRemove.setVisibility(View.VISIBLE);
+                        }
+                    }
+                } else {
+                    Toast.makeText(GestionProductosActivity.this, "Error al procesar la imagen de la galería", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
 
         repository = PosRepository.getInstance(this);
@@ -202,7 +236,38 @@ public class GestionProductosActivity extends AppCompatActivity {
         EditText etDescripcion = dialogView.findViewById(R.id.etDescripcion);
         SwitchCompat switchDisponible = dialogView.findViewById(R.id.switchDisponibleForm);
 
-        // Emoji selectors
+        // Foto del plato (Almacenamiento Local)
+        ImageView ivFormProductPhoto = dialogView.findViewById(R.id.ivFormProductPhoto);
+        View tvFormPhotoPlaceholder = dialogView.findViewById(R.id.tvFormPhotoPlaceholder);
+        View btnSelectPhoto = dialogView.findViewById(R.id.btnSelectPhoto);
+        View btnRemovePhoto = dialogView.findViewById(R.id.btnRemovePhoto);
+
+        ivCurrentDialogPhoto = ivFormProductPhoto;
+        tvCurrentDialogPlaceholder = tvFormPhotoPlaceholder;
+        btnCurrentDialogRemove = btnRemovePhoto;
+        currentSelectedPhotoPath = productoToEdit != null ? productoToEdit.getImagenLocalPath() : null;
+
+        if (currentSelectedPhotoPath != null) {
+            Bitmap bmp = ImageUtils.loadBitmapFromPath(currentSelectedPhotoPath);
+            if (bmp != null) {
+                ivFormProductPhoto.setImageBitmap(bmp);
+                ivFormProductPhoto.setVisibility(View.VISIBLE);
+                tvFormPhotoPlaceholder.setVisibility(View.GONE);
+                btnRemovePhoto.setVisibility(View.VISIBLE);
+            }
+        }
+
+        btnSelectPhoto.setOnClickListener(v -> galleryLauncher.launch("image/*"));
+
+        btnRemovePhoto.setOnClickListener(v -> {
+            currentSelectedPhotoPath = null;
+            ivFormProductPhoto.setVisibility(View.GONE);
+            tvFormPhotoPlaceholder.setVisibility(View.VISIBLE);
+            btnRemovePhoto.setVisibility(View.GONE);
+        });
+
+        // Emoji selectors (Salvavidas Opcional y Cancelable)
+        TextView optNoEmoji = dialogView.findViewById(R.id.optNoEmoji);
         TextView optChicken = dialogView.findViewById(R.id.optEmojiChicken);
         TextView optFire = dialogView.findViewById(R.id.optEmojiFire);
         TextView optDrink = dialogView.findViewById(R.id.optEmojiDrink);
@@ -211,20 +276,44 @@ public class GestionProductosActivity extends AppCompatActivity {
         TextView optBurger = dialogView.findViewById(R.id.optEmojiBurger);
 
         final TextView[] emojiViews = new TextView[]{optChicken, optFire, optDrink, optFries, optSalad, optBurger};
-        final String[] selectedEmoji = {productoToEdit != null ? productoToEdit.getEmoji() : "🍗"};
+        final String[] selectedEmoji = {productoToEdit != null ? productoToEdit.getEmoji() : null};
 
-        for (TextView ev : emojiViews) {
-            if (ev.getText().toString().equals(selectedEmoji[0])) {
-                ev.setBackgroundResource(R.drawable.bg_chip_selected);
+        Runnable updateEmojiSelection = () -> {
+            boolean hasSelected = selectedEmoji[0] != null && !selectedEmoji[0].isEmpty();
+            if (!hasSelected) {
+                optNoEmoji.setBackgroundResource(R.drawable.bg_chip_selected);
+                optNoEmoji.setTextColor(getColor(R.color.white));
             } else {
-                ev.setBackgroundResource(R.drawable.bg_chip_unselected);
+                optNoEmoji.setBackgroundResource(R.drawable.bg_chip_unselected);
+                optNoEmoji.setTextColor(getColor(R.color.char_700));
             }
 
-            ev.setOnClickListener(v -> {
-                selectedEmoji[0] = ev.getText().toString();
-                for (TextView other : emojiViews) {
-                    other.setBackgroundResource(other == ev ? R.drawable.bg_chip_selected : R.drawable.bg_chip_unselected);
+            for (TextView ev : emojiViews) {
+                if (hasSelected && ev.getText().toString().equals(selectedEmoji[0])) {
+                    ev.setBackgroundResource(R.drawable.bg_chip_selected);
+                } else {
+                    ev.setBackgroundResource(R.drawable.bg_chip_unselected);
                 }
+            }
+        };
+
+        updateEmojiSelection.run();
+
+        optNoEmoji.setOnClickListener(v -> {
+            selectedEmoji[0] = null;
+            updateEmojiSelection.run();
+        });
+
+        for (TextView ev : emojiViews) {
+            ev.setOnClickListener(v -> {
+                String clicked = ev.getText().toString();
+                if (clicked.equals(selectedEmoji[0])) {
+                    // Si ya estaba seleccionado, se cancela/deselecciona
+                    selectedEmoji[0] = null;
+                } else {
+                    selectedEmoji[0] = clicked;
+                }
+                updateEmojiSelection.run();
             });
         }
 
@@ -296,6 +385,7 @@ public class GestionProductosActivity extends AppCompatActivity {
                 productoToEdit.setPrecio(precio);
                 productoToEdit.setDescripcion(descripcion);
                 productoToEdit.setEmoji(selectedEmoji[0]);
+                productoToEdit.setImagenLocalPath(currentSelectedPhotoPath);
                 productoToEdit.setDisponible(disponible);
 
                 repository.updateProducto(productoToEdit, new PosRepository.Callback<Void>() {
@@ -312,7 +402,7 @@ public class GestionProductosActivity extends AppCompatActivity {
                 });
             } else {
                 ProductoEntity nuevo = new ProductoEntity(
-                        sucursalId, catId, nombre, descripcion, precio, disponible, selectedEmoji[0], thumbRes
+                        sucursalId, catId, nombre, descripcion, precio, disponible, selectedEmoji[0], thumbRes, currentSelectedPhotoPath
                 );
 
                 repository.insertProducto(nuevo, new PosRepository.Callback<Long>() {

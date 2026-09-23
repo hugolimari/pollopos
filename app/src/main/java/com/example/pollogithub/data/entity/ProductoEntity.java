@@ -15,8 +15,9 @@ public class ProductoEntity {
     private boolean disponible;
     private String emoji;
     private int thumbDrawableRes;
+    private String imagenLocalPath;
 
-    public ProductoEntity(int sucursalId, int categoriaId, String nombre, String descripcion, double precio, boolean disponible, String emoji, int thumbDrawableRes) {
+    public ProductoEntity(int sucursalId, int categoriaId, String nombre, String descripcion, double precio, boolean disponible, String emoji, int thumbDrawableRes, String imagenLocalPath) {
         this.sucursalId = sucursalId;
         this.categoriaId = categoriaId;
         this.nombre = nombre;
@@ -25,6 +26,12 @@ public class ProductoEntity {
         this.disponible = disponible;
         this.emoji = emoji;
         this.thumbDrawableRes = thumbDrawableRes;
+        this.imagenLocalPath = imagenLocalPath;
+    }
+
+    @androidx.room.Ignore
+    public ProductoEntity(int sucursalId, int categoriaId, String nombre, String descripcion, double precio, boolean disponible, String emoji, int thumbDrawableRes) {
+        this(sucursalId, categoriaId, nombre, descripcion, precio, disponible, emoji, thumbDrawableRes, null);
     }
 
     public int getId() { return id; }
@@ -45,4 +52,6 @@ public class ProductoEntity {
     public void setEmoji(String emoji) { this.emoji = emoji; }
     public int getThumbDrawableRes() { return thumbDrawableRes; }
     public void setThumbDrawableRes(int thumbDrawableRes) { this.thumbDrawableRes = thumbDrawableRes; }
+    public String getImagenLocalPath() { return imagenLocalPath; }
+    public void setImagenLocalPath(String imagenLocalPath) { this.imagenLocalPath = imagenLocalPath; }
 }

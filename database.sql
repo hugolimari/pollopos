@@ -73,7 +73,8 @@ CREATE TABLE IF NOT EXISTS productos (
     descripcion     VARCHAR(255),
     precio          NUMERIC(10,2) NOT NULL CHECK (precio >= 0),
     disponible      BOOLEAN NOT NULL DEFAULT TRUE,  -- botón "marcar agotado" = FALSE (RF06)
-    imagen_emoji    VARCHAR(10),                    -- 🍗, 🔥, 🥤, 🍟...
+    imagen_url      VARCHAR(500),                   -- URL en el bucket de almacenamiento en la nube
+    imagen_emoji    VARCHAR(10),                    -- Emoji opcional como salvavidas
     creado_en       TIMESTAMPTZ NOT NULL DEFAULT now(),
     actualizado_en  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -139,8 +140,8 @@ CREATE TABLE IF NOT EXISTS pedidos (
     numero_orden        INTEGER NOT NULL,          -- Número corto visible (RF11)
     tipo_entrega        VARCHAR(15) NOT NULL
                             CHECK (tipo_entrega IN ('mesa', 'para_llevar')),
-    estado              VARCHAR(20) NOT NULL DEFAULT 'en_cocina'
-                            CHECK (estado IN ('en_cocina', 'listo', 'entregado', 'cancelado')),
+    estado              VARCHAR(20) NOT NULL DEFAULT 'cocina'
+                            CHECK (estado IN ('en_cocina', 'cocina', 'listo', 'entregado', 'cancelado')),
     estado_pago         VARCHAR(15) NOT NULL DEFAULT 'pendiente'
                             CHECK (estado_pago IN ('pendiente', 'pagado', 'cancelado')),
     subtotal            NUMERIC(10,2) NOT NULL DEFAULT 0 CHECK (subtotal >= 0),
@@ -193,5 +194,49 @@ CREATE TABLE IF NOT EXISTS pagos (
 
 CREATE INDEX IF NOT EXISTS idx_pagos_pedido ON pagos(pedido_id);
 CREATE INDEX IF NOT EXISTS idx_pagos_turno ON pagos(turno_id);
+
+-- ============================================================
+-- 10. VISTAS ANALÍTICAS (Reportes y Arqueo de Turnos)
+-- ============================================================
+CREATE OR REPLACE VIEW vw_resumen_turnos AS
+SELECT 
+    t.turno_id,
+    t.sucursal_id,
+    t.usuario_id,
+    u.nombre_completo AS cajero_nombre,
+    t.fondo_inicial,
+    t.abierto_en,
+    t.cerrado_en,
+    t.estado,
+    COALESCE(SUM(CASE WHEN p.estado_pago = 'pagado' THEN p.total ELSE 0 END), 0) AS total_ventas,
+    COALESCE(SUM(CASE WHEN pg.metodo_pago = 'efectivo' THEN pg.monto ELSE 0 END), 0) AS total_efectivo,
+    COALESCE(SUM(CASE WHEN pg.metodo_pago = 'tarjeta' THEN pg.monto ELSE 0 END), 0) AS total_tarjeta,
+    COALESCE(SUM(CASE WHEN pg.metodo_pago = 'qr' THEN pg.monto ELSE 0 END), 0) AS total_qr,
+    COUNT(DISTINCT CASE WHEN p.estado_pago = 'pagado' THEN p.pedido_id END) AS total_pedidos,
+    (t.fondo_inicial + COALESCE(SUM(CASE WHEN pg.metodo_pago = 'efectivo' THEN pg.monto ELSE 0 END), 0)) AS efectivo_esperado,
+    t.efectivo_contado,
+    t.diferencia
+FROM turnos t
+INNER JOIN usuarios u ON t.usuario_id = u.usuario_id
+LEFT JOIN pedidos p ON t.turno_id = p.turno_id
+LEFT JOIN pagos pg ON p.pedido_id = pg.pedido_id
+GROUP BY t.turno_id, t.sucursal_id, t.usuario_id, u.nombre_completo, t.fondo_inicial, t.abierto_en, t.cerrado_en, t.estado, t.efectivo_contado, t.diferencia;
+
+CREATE OR REPLACE VIEW vw_estadisticas_diarias AS
+SELECT
+    p.sucursal_id,
+    DATE(p.creado_en) AS fecha,
+    COUNT(p.pedido_id) AS total_pedidos,
+    COALESCE(SUM(p.total), 0) AS total_ventas,
+    ROUND(COALESCE(AVG(p.total), 0), 2) AS ticket_promedio,
+    COUNT(CASE WHEN p.tipo_entrega = 'mesa' THEN 1 END) AS pedidos_mesa,
+    COUNT(CASE WHEN p.tipo_entrega = 'para_llevar' THEN 1 END) AS pedidos_para_llevar,
+    COALESCE(SUM(CASE WHEN pg.metodo_pago = 'efectivo' THEN pg.monto ELSE 0 END), 0) AS ventas_efectivo,
+    COALESCE(SUM(CASE WHEN pg.metodo_pago = 'tarjeta' THEN pg.monto ELSE 0 END), 0) AS ventas_tarjeta,
+    COALESCE(SUM(CASE WHEN pg.metodo_pago = 'qr' THEN pg.monto ELSE 0 END), 0) AS ventas_qr
+FROM pedidos p
+LEFT JOIN pagos pg ON p.pedido_id = pg.pedido_id
+WHERE p.estado_pago = 'pagado'
+GROUP BY p.sucursal_id, DATE(p.creado_en);
 
 COMMIT;
