@@ -22,6 +22,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Controlador de Vista (Fragmento): PedidosFragment (Monitor de Cocina y Despacho)
+ * 
+ * Capa de Presentación / Módulo KDS (Kitchen Display System)
+ * Hereda de: Fragment
+ * 
+ * Visualiza y orquesta el flujo de preparación y entrega de pedidos en tiempo real.
+ * Se integra con 'PedidosViewModel' mediante la arquitectura MVVM, observando
+ * los cambios en la base de datos local y proveyendo modales de auditoría para
+ * ver el desglose detallado de comandas o cancelar pedidos con registro de causa justificada.
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Ciclo de Vida del Fragmento (Fragment Lifecycle): Uso de 'getViewLifecycleOwner()'
+ *   para suscribirse a LiveData, evitando fugas de memoria al destruir la vista del fragmento.
+ * - Patrón Factory / Inyección Compartida de ViewModel: Uso de 'requireActivity()' en ViewModelProvider
+ *   para compartir el estado del ViewModel a nivel de actividad anfitriona.
+ * - Inyección Dinámica de Componentes de UI: Generación programática de filas y notas de cocina en el diálogo modal.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class PedidosFragment extends Fragment {
 
     private final List<Order> allOrders = new ArrayList<>();
@@ -42,6 +63,7 @@ public class PedidosFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pedidos, container, false);
 
+        // 1. Enlace de vistas para pestañas de filtrado de comandas
         tabCocina = view.findViewById(R.id.tabCocina);
         tabListos = view.findViewById(R.id.tabListos);
 
@@ -54,14 +76,17 @@ public class PedidosFragment extends Fragment {
         lineTabCocina = view.findViewById(R.id.lineTabCocina);
         lineTabListos = view.findViewById(R.id.lineTabListos);
 
+        // 2. Inicialización del ViewModel compartido con la Activity anfitriona
         pedidosViewModel = new ViewModelProvider(requireActivity()).get(PedidosViewModel.class);
 
+        // 3. Configuración del RecyclerView y Adaptador de Órdenes
         RecyclerView rvOrders = view.findViewById(R.id.rvOrders);
         rvOrders.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         adapter = new OrderAdapter(requireContext(), displayedOrders, new OrderAdapter.OnOrderActionListener() {
             @Override
             public void onPrimaryAction(Order order, int position) {
+                // Avanza el estado de la comanda mediante la máquina de estados del ViewModel
                 pedidosViewModel.avanzarEstadoPedido(order, new PosRepository.Callback<Void>() {
                     @Override
                     public void onSuccess(Void result) {
@@ -88,6 +113,7 @@ public class PedidosFragment extends Fragment {
 
         setupTabs();
 
+        // 4. Suscripción reactiva al LiveData de pedidos activos
         pedidosViewModel.getOrdersLiveData().observe(getViewLifecycleOwner(), orders -> {
             if (orders != null) {
                 allOrders.clear();
@@ -100,6 +126,9 @@ public class PedidosFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Computa los totales por estado para actualizar los indicadores numéricos en las pestañas.
+     */
     private void updateTabCounts() {
         int cocinaCount = 0;
         int listosCount = 0;
@@ -113,11 +142,19 @@ public class PedidosFragment extends Fragment {
         if (tvTabListosCount != null) tvTabListosCount.setText(String.valueOf(listosCount));
     }
 
+    /**
+     * Asocia los manejadores de eventos a las pestañas de cocina y listos.
+     */
     private void setupTabs() {
         tabCocina.setOnClickListener(v -> selectTab("cocina"));
         tabListos.setOnClickListener(v -> selectTab("listo"));
     }
 
+    /**
+     * Conmuta la pestaña activa actualizando estilos e invocando el filtrado.
+     * 
+     * @param tab Estado seleccionado ("cocina", "listo").
+     */
     private void selectTab(String tab) {
         currentTab = tab;
 
@@ -133,6 +170,9 @@ public class PedidosFragment extends Fragment {
         filterOrders();
     }
 
+    /**
+     * Aplica el filtro en memoria de acuerdo al estado operativo activo.
+     */
     private void filterOrders() {
         displayedOrders.clear();
         for (Order o : allOrders) {
@@ -145,6 +185,11 @@ public class PedidosFragment extends Fragment {
         }
     }
 
+    /**
+     * Genera dinámicamente un diálogo modal con el desglose de productos y notas de preparación.
+     * 
+     * @param order Orden seleccionada.
+     */
     private void showDetallePedidoDialog(Order order) {
         if (getContext() == null) return;
 
@@ -175,6 +220,7 @@ public class PedidosFragment extends Fragment {
                 .setCancelable(true)
                 .create();
 
+        // Carga asíncrona de las líneas de detalle asociadas a la comanda
         PosRepository.getInstance(requireContext()).getPedidoDetalles(order.getPedidoId(), new PosRepository.Callback<List<com.example.pollogithub.data.entity.PedidoDetalleEntity>>() {
             @Override
             public void onSuccess(List<com.example.pollogithub.data.entity.PedidoDetalleEntity> detalles) {
@@ -205,6 +251,7 @@ public class PedidosFragment extends Fragment {
                         topRow.addView(tvItemSubtotal);
                         row.addView(topRow);
 
+                        // Renderizado de especificaciones particulares para la cocina
                         if (d.getNotas() != null && !d.getNotas().trim().isEmpty()) {
                             TextView tvNote = new TextView(requireContext());
                             tvNote.setText(String.format("↳ Nota: \"%s\"", d.getNotas().trim()));
@@ -238,6 +285,11 @@ public class PedidosFragment extends Fragment {
         dialog.show();
     }
 
+    /**
+     * Despliega un menú modal para capturar la justificación requerida al revocar un pedido.
+     * 
+     * @param order Pedido a cancelar.
+     */
     private void mostrarDialogoMotivoCancelacion(Order order) {
         String[] motivos = {
                 "Cliente desistió de la compra",
@@ -251,6 +303,7 @@ public class PedidosFragment extends Fragment {
                 .setTitle("Motivo de cancelación (" + order.getId() + ")")
                 .setItems(motivos, (d, which) -> {
                     String motivoSeleccionado = motivos[which];
+                    // Invocación al repositorio para ejecutar la cancelación con registro de auditoría
                     PosRepository.getInstance(requireContext()).cancelarPedido(order.getPedidoId(), motivoSeleccionado, new PosRepository.Callback<Void>() {
                         @Override
                         public void onSuccess(Void result) {

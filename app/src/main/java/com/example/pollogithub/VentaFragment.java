@@ -27,6 +27,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Controlador de Vista (Fragmento): VentaFragment (Terminal de Punto de Venta)
+ * 
+ * Capa de Presentación / Módulo de Facturación y Mostrador
+ * Hereda de: Fragment
+ * 
+ * Administra la experiencia de venta táctil en el mostrador del restaurante:
+ * - Renderizado en cuadrícula de productos disponibles clasificados por categorías.
+ * - Barra flotante de carrito de compras reactiva (Cart Bar) que emerge al seleccionar ítems.
+ * - Modal para selección de modalidad de consumo (Consumo en Mesa o Para Llevar).
+ * - Enlace reactivo mediante 'VentaViewModel' según la arquitectura MVVM.
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Arquitectura MVVM con LiveData: Desacoplamiento total de la lógica de precios y estado del carrito.
+ * - Flujo Unidireccional de Datos (UDF): Las interacciones de usuario disparan mutaciones en el ViewModel,
+ *   y la UI se reconstruye automáticamente como observadora pasiva de LiveData.
+ * - Control Reactivo de Visibilidad: La barra de checkout se visibiliza exclusivamente cuando cartCount > 0.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class VentaFragment extends Fragment {
 
     private static final String ARG_USER_NAME = "ARG_USER_NAME";
@@ -43,6 +64,12 @@ public class VentaFragment extends Fragment {
     private String searchQuery = "";
     private String userName = "";
 
+    /**
+     * Patrón Factory para instanciación estandarizada con paso seguro de argumentos.
+     * 
+     * @param userName Nombre del cajero activo.
+     * @return Nueva instancia de VentaFragment.
+     */
     public static VentaFragment newInstance(String userName) {
         VentaFragment fragment = new VentaFragment();
         Bundle args = new Bundle();
@@ -70,7 +97,7 @@ public class VentaFragment extends Fragment {
         TextView tvCashierName = view.findViewById(R.id.tvCashierName);
         TextView tvAvatarHeader = view.findViewById(R.id.tvAvatarHeader);
 
-        // Inicialmente ocultar la barra de pedido si está vacía
+        // Ocultamiento preventivo de la barra de checkout hasta que existan artículos seleccionados
         cartBar.setVisibility(View.GONE);
 
         if (userName != null && !userName.isEmpty()) {
@@ -79,8 +106,10 @@ public class VentaFragment extends Fragment {
             tvAvatarHeader.setText(initial);
         }
 
+        // 1. Obtención del ViewModel compartido a nivel de Activity
         ventaViewModel = new ViewModelProvider(requireActivity()).get(VentaViewModel.class);
 
+        // 2. Configuración de cuadrícula responsiva de 2 columnas
         RecyclerView rvProducts = view.findViewById(R.id.rvProducts);
         rvProducts.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
@@ -90,21 +119,26 @@ public class VentaFragment extends Fragment {
         });
         rvProducts.setAdapter(adapter);
 
-        // Observar visibilidad de la barra de pedido (solo cuando hay ítems seleccionados)
+        // 3. Suscripciones Reactivas a los flujos observables del ViewModel
+
+        // Observador: Visibilidad de la barra flotante de checkout
         ventaViewModel.getIsCartVisible().observe(getViewLifecycleOwner(), visible -> {
             cartBar.setVisibility(Boolean.TRUE.equals(visible) ? View.VISIBLE : View.GONE);
         });
 
+        // Observador: Contador total de unidades añadidas
         ventaViewModel.getCartCount().observe(getViewLifecycleOwner(), count -> {
             if (tvCartCount != null) tvCartCount.setText(String.valueOf(count));
         });
 
+        // Observador: Importe monetario acumulado
         ventaViewModel.getCartTotal().observe(getViewLifecycleOwner(), total -> {
             if (tvCartTotal != null) {
                 tvCartTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", total != null ? total : 0.0));
             }
         });
 
+        // Observador: Catálogo de artículos emitido desde SQLite
         ventaViewModel.getProductsLiveData().observe(getViewLifecycleOwner(), products -> {
             if (products != null) {
                 allProducts.clear();
@@ -116,6 +150,7 @@ public class VentaFragment extends Fragment {
         setupCategoryChips(view);
         setupSearch(view);
 
+        // 4. Disparo de confirmación y selección de modalidad de consumo
         View.OnClickListener openPagoListener = v -> showOrderConfirmationDialog();
 
         view.findViewById(R.id.btnViewOrder).setOnClickListener(openPagoListener);
@@ -128,6 +163,9 @@ public class VentaFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Despliega el diálogo modal para elegir si la orden se consumirá en mesa o para llevar.
+     */
     private void showOrderConfirmationDialog() {
         String[] options = {"Para mesa (Mesa 1)", "Para llevar"};
         new AlertDialog.Builder(requireContext())
@@ -140,6 +178,12 @@ public class VentaFragment extends Fragment {
                 .show();
     }
 
+    /**
+     * Confirma la orden en el ViewModel y navega a la pasarela de cobranza (PagoActivity).
+     * 
+     * @param tipoEntrega "mesa" o "para_llevar".
+     * @param mesaId      Número de mesa (opcional).
+     */
     private void procederAlPago(String tipoEntrega, Integer mesaId) {
         ventaViewModel.confirmarPedido(tipoEntrega, mesaId, new PosRepository.Callback<PedidoEntity>() {
             @Override
@@ -158,6 +202,9 @@ public class VentaFragment extends Fragment {
         });
     }
 
+    /**
+     * Configuración de los chips de filtrado por categoría de comida.
+     */
     private void setupCategoryChips(View view) {
         TextView chipTodos = view.findViewById(R.id.chipTodos);
         TextView chipPolloFrito = view.findViewById(R.id.chipPolloFrito);
@@ -185,6 +232,9 @@ public class VentaFragment extends Fragment {
         }
     }
 
+    /**
+     * Configuración del TextWatcher de búsqueda por texto.
+     */
     private void setupSearch(View view) {
         EditText etSearch = view.findViewById(R.id.etSearch);
         etSearch.addTextChangedListener(new TextWatcher() {
@@ -202,6 +252,9 @@ public class VentaFragment extends Fragment {
         });
     }
 
+    /**
+     * Filtra los artículos de la cuadrícula evaluando el predicado de categoría y búsqueda textual.
+     */
     private void filterProducts() {
         displayedProducts.clear();
         for (Product p : allProducts) {

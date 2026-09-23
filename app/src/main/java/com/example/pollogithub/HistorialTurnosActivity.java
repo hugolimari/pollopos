@@ -19,6 +19,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Controlador de Vista: HistorialTurnosActivity
+ * 
+ * Capa de Presentación / Módulo de Auditoría Contable y Control de Caja
+ * Hereda de: AppCompatActivity
+ * 
+ * Despliega el registro histórico de todas las sesiones de turno operadas en la sucursal.
+ * Permite a la gerencia y supervisores fiscalizar los arqueos de caja, contrastando
+ * los fondos iniciales, ventas en efectivo y eventuales faltantes o sobrantes resultantes
+ * de cada jornada.
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Patrón Empty State (Estado Vacío): Manejo condicional de visibilidad entre la lista de turnos (RecyclerView)
+ *   y un contenedor visual informativo ('layoutEmptyTurnos') cuando no existen registros.
+ * - Enlace Reactivo con LiveData: Observación continua de 'getAllTurnosLiveData()' para asegurar que
+ *   los cierres de caja recientes aparezcan automáticamente en la vista sin necesidad de recargar la actividad.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class HistorialTurnosActivity extends AppCompatActivity {
 
     private PosRepository repository;
@@ -33,6 +53,7 @@ public class HistorialTurnosActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_historial_turnos);
 
+        // Compensación de diseño con respecto a las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainHistorialTurnos), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -46,12 +67,15 @@ public class HistorialTurnosActivity extends AppCompatActivity {
 
         findViewById(R.id.btnBackHistorial).setOnClickListener(v -> finish());
 
+        // 1. Configuración del RecyclerView
         RecyclerView rv = findViewById(R.id.rvTurnosHistorial);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
+        // 2. Asignación del adaptador especializado
         adapter = new HistorialTurnosAdapter(this, turnos);
         rv.setAdapter(adapter);
 
+        // 3. Observación reactiva de la tabla de turnos en Room
         repository.getAllTurnosLiveData().observe(this, list -> {
             turnos.clear();
             if (list != null && !list.isEmpty()) {

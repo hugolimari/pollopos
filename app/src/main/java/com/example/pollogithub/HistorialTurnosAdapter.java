@@ -19,6 +19,28 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Adaptador del Historial de Turnos y Auditoría de Arqueos: HistorialTurnosAdapter
+ * 
+ * Capa de Presentación / Patrón Adapter & ViewHolder
+ * Hereda de: RecyclerView.Adapter<HistorialTurnosAdapter.TurnoViewHolder>
+ * 
+ * Modela el enlace de la colección de entidades TurnoEntity con la vista de auditoría
+ * (item_historial_turno.xml). Proporciona visualización diferenciada para turnos
+ * en curso (abiertos) versus turnos cerrados, destacando los resultados contables
+ * del arqueo (Faltante en rojo, Sobrante en verde o Cuadre exacto).
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Algoritmo Visual de Conciliación Contable:
+ *     * diferencia < -0.01: Desviación negativa (Faltante de caja).
+ *     * diferencia > 0.01: Desviación positiva (Sobrante de caja).
+ *     * abs(diferencia) <= 0.01: Conciliación perfecta (Caja cuadrada).
+ * - Formateo Temporal de Auditoría: Normalización de marcas de tiempo Unix a formatos legibles
+ *   mediante SimpleDateFormat.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class HistorialTurnosAdapter extends RecyclerView.Adapter<HistorialTurnosAdapter.TurnoViewHolder> {
 
     private final Context context;
@@ -26,11 +48,22 @@ public class HistorialTurnosAdapter extends RecyclerView.Adapter<HistorialTurnos
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, h:mm a", Locale.getDefault());
     private final SimpleDateFormat hourFormat = new SimpleDateFormat("h:mm a", Locale.getDefault());
 
+    /**
+     * Constructor del adaptador de turnos históricos.
+     * 
+     * @param context Contexto de la actividad.
+     * @param turnos  Colección de turnos para renderizar.
+     */
     public HistorialTurnosAdapter(Context context, List<TurnoEntity> turnos) {
         this.context = context;
         if (turnos != null) this.turnos.addAll(turnos);
     }
 
+    /**
+     * Actualiza la colección de datos y redibuja la lista en pantalla.
+     * 
+     * @param newList Lista actualizada de entidades de turno.
+     */
     public void updateList(List<TurnoEntity> newList) {
         this.turnos.clear();
         if (newList != null) this.turnos.addAll(newList);
@@ -58,6 +91,7 @@ public class HistorialTurnosAdapter extends RecyclerView.Adapter<HistorialTurnos
 
         boolean isAbierto = "abierto".equalsIgnoreCase(t.getEstado());
         if (isAbierto) {
+            // Renderizado de estado de turno activo
             holder.tvTurnoEstadoBadge.setText("En curso");
             holder.tvTurnoEstadoBadge.setTextColor(ContextCompat.getColor(context, R.color.ok_600));
             holder.tvTurnoEstadoBadge.setBackgroundResource(R.drawable.bg_badge_active_shift);
@@ -68,6 +102,7 @@ public class HistorialTurnosAdapter extends RecyclerView.Adapter<HistorialTurnos
             holder.tvDiferenciaMonto.setText("Turno abierto actualmente");
             holder.tvDiferenciaMonto.setTextColor(ContextCompat.getColor(context, R.color.ember_600));
         } else {
+            // Renderizado de turno liquidado y arqueado
             holder.tvTurnoEstadoBadge.setText("Cerrado");
             holder.tvTurnoEstadoBadge.setTextColor(ContextCompat.getColor(context, R.color.char_700));
             holder.tvTurnoEstadoBadge.setBackgroundResource(R.drawable.bg_badge_agotado);
@@ -80,13 +115,17 @@ public class HistorialTurnosAdapter extends RecyclerView.Adapter<HistorialTurnos
             holder.tvContadoItem.setText(String.format(Locale.getDefault(), "Bs. %.2f", contado));
 
             holder.tvDiferenciaLabel.setText("Diferencia en caja:");
+            // Evaluación semántica del arqueo
             if (diff < -0.01) {
+                // Alerta de faltante (Déficit de efectivo)
                 holder.tvDiferenciaMonto.setText(String.format(Locale.getDefault(), "- Bs. %.2f (Faltante)", Math.abs(diff)));
                 holder.tvDiferenciaMonto.setTextColor(Color.parseColor("#D32F2F"));
             } else if (diff > 0.01) {
+                // Superávit (Sobrante de efectivo)
                 holder.tvDiferenciaMonto.setText(String.format(Locale.getDefault(), "+ Bs. %.2f (Sobrante)", diff));
                 holder.tvDiferenciaMonto.setTextColor(ContextCompat.getColor(context, R.color.ok_600));
             } else {
+                // Conciliación exacta
                 holder.tvDiferenciaMonto.setText("Bs. 0.00 (Cuadrado)");
                 holder.tvDiferenciaMonto.setTextColor(ContextCompat.getColor(context, R.color.ok_600));
             }
@@ -98,6 +137,9 @@ public class HistorialTurnosAdapter extends RecyclerView.Adapter<HistorialTurnos
         return turnos.size();
     }
 
+    /**
+     * ViewHolder con la vinculación directa a los elementos de la tarjeta de arqueo.
+     */
     static class TurnoViewHolder extends RecyclerView.ViewHolder {
         TextView tvTurnoNumero, tvTurnoFechas, tvTurnoEstadoBadge;
         TextView tvFondoInicialItem, tvEsperadoItem, tvContadoItem;

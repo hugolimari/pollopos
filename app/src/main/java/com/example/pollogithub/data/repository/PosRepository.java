@@ -21,25 +21,94 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
+/**
+ * Repositorio Central de Datos: PosRepository
+ * 
+ * Capa de Abstracción de Datos / Patrón Repository
+ * 
+ * Actúa como mediador y Fuente Única de Verdad (Single Source of Truth - SSOT)
+ * entre las fuentes de persistencia subyacentes (Room Database / SQLite y SharedPreferences)
+ * y la capa de presentación (ViewModels, Actividades y Fragmentos).
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Patrón Repository: Desacopla las operaciones CRUD y transacciones de base de datos
+ *   de la lógica de interfaz de usuario, promoviendo la modularidad y testabilidad.
+ * - Patrón Singleton: Instanciación única y segura para subprocesos concurrentes
+ *   (Double-Checked Locking con visibilidad de memoria 'volatile').
+ * - Concurrencia y Despacho de Hilos:
+ *     * Operaciones de I/O y persistencia delegadas al pool 'ExecutorService' (Worker Threads).
+ *     * Despacho y retorno de resultados al Hilo Principal (UI Thread) mediante 'Handler(Looper.getMainLooper())'
+ *       para garantizar que las vistas reciban callbacks de forma segura sin provocar bloqueos ANR (Application Not Responding).
+ * - Patrón Callback: Interfaz genérica asíncrona para propagar resultados exitosos o errores controlados.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class PosRepository {
 
+    /**
+     * Instancia única compartida según el patrón Singleton.
+     */
     private static volatile PosRepository INSTANCE;
+
+    /**
+     * Referencia a la base de datos relacional de la aplicación (Room).
+     */
     private final AppDatabase db;
+
+    /**
+     * Ejecutor multihilo para procesamiento en segundo plano (I/O intensivo).
+     */
     private final ExecutorService executor;
+
+    /**
+     * Manejador vinculado al ciclo de mensajes del hilo principal (Main Looper).
+     */
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
+
+    /**
+     * Administrador de persistencia ligera para credenciales y tokens de sesión.
+     */
     private final SessionManager sessionManager;
 
+    /**
+     * Interfaz genérica de comunicación asíncrona (Observer / Callback Pattern).
+     * 
+     * @param <T> Tipo de dato esperado como resultado de la operación.
+     */
     public interface Callback<T> {
+        /**
+         * Notificación de culminación exitosa en el hilo principal.
+         * 
+         * @param result Carga útil devuelta por la operación.
+         */
         void onSuccess(T result);
+
+        /**
+         * Notificación de anomalía o fallo de validación en el hilo principal.
+         * 
+         * @param error Mensaje descriptivo del error presentado.
+         */
         void onError(String error);
     }
 
+    /**
+     * Constructor privado que previene la instanciación externa directa (Principio Singleton).
+     * 
+     * @param context Contexto de la aplicación para inicializar la base de datos y preferencias.
+     */
     private PosRepository(Context context) {
         db = AppDatabase.getInstance(context);
         executor = AppDatabase.getDatabaseWriteExecutor();
         sessionManager = new SessionManager(context);
     }
 
+    /**
+     * Punto de acceso global thread-safe a la instancia del repositorio.
+     * 
+     * @param context Contexto de Android.
+     * @return Instancia única de PosRepository.
+     */
     public static PosRepository getInstance(Context context) {
         if (INSTANCE == null) {
             synchronized (PosRepository.class) {
@@ -51,26 +120,41 @@ public class PosRepository {
         return INSTANCE;
     }
 
+    /**
+     * Obtiene el gestor de sesiones de usuario.
+     * 
+     * @return Instancia de SessionManager.
+     */
     public SessionManager getSessionManager() {
         return sessionManager;
     }
 
-    // --- AUTENTICACIÓN ---
+    // ==========================================
+    // MÓDULO: AUTENTICACIÓN Y SEGURIDAD
+    // ==========================================
+
+    /**
+     * Autentica a un usuario según su nombre de usuario/contraseña o código PIN rápido.
+     * Procesa la consulta en un Worker Thread y devuelve el resultado en el UI Thread.
+     * 
+     * @param userOrPin Identificador alfanumérico o PIN de acceso.
+     * @param password  Contraseña de acceso (opcional si se utiliza PIN numérico).
+     * @param callback  Receptor asíncrono del resultado de autenticación.
+     */
     public void login(String userOrPin, String password, Callback<UsuarioEntity> callback) {
         executor.execute(() -> {
             UsuarioEntity usuario = null;
             if (password == null || password.isEmpty()) {
-                // Intento login por PIN rápido
+                // Estrategia de autenticación acelerada por PIN
                 usuario = db.usuarioDao().loginWithPin(userOrPin);
             } else {
+                // Estrategia convencional de autenticación por credenciales
                 usuario = db.usuarioDao().login(userOrPin, password);
             }
 
             final UsuarioEntity result = usuario;
             mainHandler.post(() -> {
                 if (result != null) {
-                    // Guardar sesión
-                    TurnoEntity turnoActivo = null;
                     callback.onSuccess(result);
                 } else {
                     callback.onError("Usuario o contraseña incorrectos");
@@ -79,7 +163,15 @@ public class PosRepository {
         });
     }
 
-    // --- TURNOS ---
+    // ==========================================
+    // MÓDULO: GESTIÓN DE TURNOS Y ARQUEOS DE CAJA
+    // ==========================================
+
+    /**
+     * Consulta asíncrona para determinar si existe un turno de caja actualmente abierto.
+     * 
+     * @param callback Callback que retorna el TurnoEntity activo o null si no existe.
+     */
     public void getTurnoActivo(Callback<TurnoEntity> callback) {
         executor.execute(() -> {
             TurnoEntity turno = db.turnoDao().getTurnoActivo();
@@ -87,6 +179,15 @@ public class PosRepository {
         });
     }
 
+    /**
+     * Registra formalmente la apertura de un turno de caja con su fondo inicial.
+     * Si ya existiese un turno en estado abierto, previene la duplicidad y retorna el vigente.
+     * 
+     * @param fondoInicial Monto monetario de cambio inicial.
+     * @param usuarioId    Identificador del cajero responsable.
+     * @param sucursalId   Identificador de la sede operativa.
+     * @param callback     Callback con la entidad de turno creada o reanudada.
+     */
     public void abrirTurno(double fondoInicial, int usuarioId, int sucursalId, Callback<TurnoEntity> callback) {
         executor.execute(() -> {
             TurnoEntity activo = db.turnoDao().getTurnoActivo();
@@ -102,6 +203,16 @@ public class PosRepository {
         });
     }
 
+    /**
+     * Ejecuta el cierre formal y arqueo contable del turno de caja.
+     * Consolida los ingresos en efectivo registrados en pagos y calcula la discrepancia:
+     * esperado = fondoInicial + sumatoria(efectivo)
+     * diferencia = efectivoContado - esperado
+     * 
+     * @param turnoId         Identificador del turno a liquidar.
+     * @param efectivoContado Monto físico real contabilizado por el cajero.
+     * @param callback        Callback con la entidad de turno actualizada y cerrada.
+     */
     public void cerrarTurno(int turnoId, double efectivoContado, Callback<TurnoEntity> callback) {
         executor.execute(() -> {
             TurnoEntity turno = db.turnoDao().getById(turnoId);
@@ -127,15 +238,34 @@ public class PosRepository {
         });
     }
 
-    // --- PRODUCTOS Y CATEGORÍAS ---
+    // ==========================================
+    // MÓDULO: PRODUCTOS Y CATEGORÍAS
+    // ==========================================
+
+    /**
+     * Expone el catálogo de productos como un flujo observable reactivo.
+     * 
+     * @return LiveData que emite la lista completa de productos.
+     */
     public LiveData<List<ProductoEntity>> getProductosLiveData() {
         return db.productoDao().getAllLiveData();
     }
 
+    /**
+     * Expone las categorías comerciales como un flujo observable reactivo.
+     * 
+     * @return LiveData que emite las categorías ordenadas.
+     */
     public LiveData<List<CategoriaEntity>> getCategoriasLiveData() {
         return db.categoriaDao().getAllLiveData();
     }
 
+    /**
+     * Inserta un nuevo producto en el catálogo mediante un hilo de trabajo en segundo plano.
+     * 
+     * @param producto Entidad del producto a registrar.
+     * @param callback Callback que retorna el identificador autogenerado.
+     */
     public void insertProducto(ProductoEntity producto, Callback<Long> callback) {
         executor.execute(() -> {
             long id = db.productoDao().insert(producto);
@@ -146,6 +276,12 @@ public class PosRepository {
         });
     }
 
+    /**
+     * Actualiza la información y precios de un producto existente.
+     * 
+     * @param producto Entidad modificada.
+     * @param callback Callback de confirmación.
+     */
     public void updateProducto(ProductoEntity producto, Callback<Void> callback) {
         executor.execute(() -> {
             db.productoDao().update(producto);
@@ -155,6 +291,13 @@ public class PosRepository {
         });
     }
 
+    /**
+     * Modifica el estado de disponibilidad operativa (control de stock / agotado) de un producto.
+     * 
+     * @param id         Clave primaria del producto.
+     * @param disponible true si está en inventario; false si está agotado.
+     * @param callback   Callback de confirmación.
+     */
     public void setProductoDisponible(int id, boolean disponible, Callback<Void> callback) {
         executor.execute(() -> {
             db.productoDao().setDisponible(id, disponible);
@@ -164,11 +307,24 @@ public class PosRepository {
         });
     }
 
-    // --- TURNOS HISTÓRICOS ---
+    // ==========================================
+    // MÓDULO: AUDITORÍA DE TURNOS
+    // ==========================================
+
+    /**
+     * Observa reactivamente el historial cronológico de turnos de caja.
+     * 
+     * @return LiveData con la lista de turnos registrados.
+     */
     public LiveData<List<TurnoEntity>> getAllTurnosLiveData() {
         return db.turnoDao().getAllLiveData();
     }
 
+    /**
+     * Consulta asíncrona de la lista histórica de turnos para reportes contables.
+     * 
+     * @param callback Callback que entrega la lista de turnos en memoria.
+     */
     public void getHistorialTurnos(Callback<List<TurnoEntity>> callback) {
         executor.execute(() -> {
             List<TurnoEntity> turnos = db.turnoDao().getAllLiveData().getValue();
@@ -178,7 +334,20 @@ public class PosRepository {
         });
     }
 
-    // --- PEDIDOS ---
+    // ==========================================
+    // MÓDULO: PROCESAMIENTO Y COMPOSICIÓN DE PEDIDOS
+    // ==========================================
+
+    /**
+     * Genera una orden de venta transaccional completa (Cabecera y Renglones de Detalle).
+     * Realiza el cálculo algorítmico del subtotal acumulado según los ítems activos en el carrito
+     * y genera el número de orden correlativo para control del consumidor.
+     * 
+     * @param tipoEntrega  Modalidad de despacho ("mesa", "para_llevar").
+     * @param mesaId       Número de mesa o null para órdenes para llevar.
+     * @param cartProducts Colección de artículos con cantidad seleccionada.
+     * @param callback     Callback con la entidad de cabecera creada y persistida.
+     */
     public void crearPedido(String tipoEntrega, Integer mesaId, List<Product> cartProducts, Callback<PedidoEntity> callback) {
         executor.execute(() -> {
             int turnoId = sessionManager.getTurnoId();
@@ -195,7 +364,7 @@ public class PosRepository {
                 }
             }
 
-            double total = subtotal; // sin descuento inicial
+            double total = subtotal; // Sin deducciones iniciales
 
             PedidoEntity pedido = new PedidoEntity(
                     sucursalId, turnoId, usuarioId, mesaId, nextOrden,
@@ -226,14 +395,31 @@ public class PosRepository {
         });
     }
 
+    /**
+     * Flujo reactivo de todas las órdenes en el sistema.
+     * 
+     * @return LiveData de pedidos ordenados por fecha descendente.
+     */
     public LiveData<List<PedidoEntity>> getPedidosLiveData() {
         return db.pedidoDao().getAllLiveData();
     }
 
+    /**
+     * Flujo reactivo filtrado por estado logístico (ej. KDS en "cocina").
+     * 
+     * @param estado Estado de la comanda a filtrar.
+     * @return LiveData de pedidos coincidentes.
+     */
     public LiveData<List<PedidoEntity>> getPedidosByEstadoLiveData(String estado) {
         return db.pedidoDao().getByEstadoLiveData(estado);
     }
 
+    /**
+     * Recupera de forma asíncrona las líneas de detalle pertenecientes a un pedido específico.
+     * 
+     * @param pedidoId Identificador primario de la orden.
+     * @param callback Callback que retorna la lista de PedidoDetalleEntity.
+     */
     public void getPedidoDetalles(int pedidoId, Callback<List<PedidoDetalleEntity>> callback) {
         executor.execute(() -> {
             List<PedidoDetalleEntity> detalles = db.pedidoDetalleDao().getByPedidoId(pedidoId);
@@ -241,6 +427,13 @@ public class PosRepository {
         });
     }
 
+    /**
+     * Actualiza el estado operativo de una orden (ej. de "cocina" a "listo" o "entregado").
+     * 
+     * @param pedidoId    Identificador de la orden.
+     * @param nuevoEstado Nueva etiqueta de estado.
+     * @param callback    Callback de finalización.
+     */
     public void updatePedidoEstado(int pedidoId, String nuevoEstado, Callback<Void> callback) {
         executor.execute(() -> {
             db.pedidoDao().updateEstado(pedidoId, nuevoEstado);
@@ -250,6 +443,14 @@ public class PosRepository {
         });
     }
 
+    /**
+     * Ejecuta la cancelación formal de un pedido, registrando la justificación de auditoría
+     * y revirtiendo el estado de pago.
+     * 
+     * @param pedidoId Identificador del pedido a rescindir.
+     * @param motivo   Causal documentada de anulación.
+     * @param callback Callback de confirmación.
+     */
     public void cancelarPedido(int pedidoId, String motivo, Callback<Void> callback) {
         executor.execute(() -> {
             db.pedidoDao().cancelarPedido(pedidoId, motivo);
@@ -259,7 +460,20 @@ public class PosRepository {
         });
     }
 
-    // --- PAGOS ---
+    // ==========================================
+    // MÓDULO: COBRANZA Y REGISTRO DE PAGOS
+    // ==========================================
+
+    /**
+     * Liquida financieramente un pedido registrando el pago y transicionando el estado contable a 'pagado'.
+     * 
+     * @param pedidoId   Clave foránea de la orden liquidada.
+     * @param metodoPago Modalidad monetaria ("efectivo", "tarjeta", "qr").
+     * @param total      Importe neto cobrado.
+     * @param recibido   Monto nominal entregado por el cliente.
+     * @param vuelto     Diferencial de cambio devuelto.
+     * @param callback   Callback con la entidad de pago registrada.
+     */
     public void registrarPago(int pedidoId, String metodoPago, double total, double recibido, double vuelto, Callback<PagoEntity> callback) {
         executor.execute(() -> {
             int turnoId = sessionManager.getTurnoId();
@@ -273,7 +487,14 @@ public class PosRepository {
         });
     }
 
-    // --- REPORTES ---
+    // ==========================================
+    // MÓDULO: ESTRUCTURAS DTO Y REPORTERÍA FINANCIERA
+    // ==========================================
+
+    /**
+     * DTO (Data Transfer Object) para el informe consolidado del cierre de turno.
+     * Encapsula la agregación financiera por métodos de pago y el saldo esperado en efectivo.
+     */
     public static class ResumenTurno {
         public double totalVentas;
         public double totalEfectivo;
@@ -284,6 +505,12 @@ public class PosRepository {
         public double esperado;
     }
 
+    /**
+     * Computa las métricas de recaudación contable para un turno de caja específico.
+     * 
+     * @param turnoId  Identificador del turno a resumir.
+     * @param callback Callback que retorna el objeto ResumenTurno consolidado.
+     */
     public void getResumenTurno(int turnoId, Callback<ResumenTurno> callback) {
         executor.execute(() -> {
             TurnoEntity turno = db.turnoDao().getById(turnoId);
@@ -317,6 +544,9 @@ public class PosRepository {
         });
     }
 
+    /**
+     * DTO para estadísticas globales de Business Intelligence y métricas operativas del POS.
+     */
     public static class EstadisticasReporte {
         public double totalVentas;
         public int totalPedidos;
@@ -331,6 +561,15 @@ public class PosRepository {
         public int productoMasVendidoCantidad = 0;
     }
 
+    /**
+     * Agrega y calcula indicadores clave de rendimiento (KPIs) globales:
+     * - Volumen de ventas brutas.
+     * - Distribución por medio de pago.
+     * - Ticket promedio (totalVentas / totalPedidos).
+     * - Proporción de servicio en sala vs. pedidos para llevar.
+     * 
+     * @param callback Callback que retorna el DTO EstadisticasReporte calculado.
+     */
     public void getEstadisticasReporte(Callback<EstadisticasReporte> callback) {
         executor.execute(() -> {
             EstadisticasReporte stats = new EstadisticasReporte();
