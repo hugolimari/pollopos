@@ -21,6 +21,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Controlador de Vista: VentaActivity (Terminal de Ventas Autónomo)
+ * 
+ * Capa de Presentación / Módulo Principal de Toma de Pedidos (Point of Sale)
+ * Hereda de: AppCompatActivity
+ * 
+ * Provee la interfaz completa de venta en cuadrícula (Grid) para selección ágil de artículos
+ * en el mostrador del restaurante. Administra el filtrado por categorías, motor de búsqueda,
+ * acumulación en memoria del pedido en curso y transición a la pasarela de cobranza (PagoActivity).
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Diseño de Cuadrícula Adaptativa: Empleo de 'GridLayoutManager(this, 2)' para optimización del espacio en pantallas táctiles de POS.
+ * - Algoritmo de Acumulación y Cálculos Contables:
+ *     * totalCount = sum(quantityInCart)
+ *     * totalPrice = sum(quantityInCart * price)
+ * - Filtrado en Memoria (Filtering Pipeline): Combinación de criterios de selección de chips y subcadenas textuales.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class VentaActivity extends AppCompatActivity {
 
     private final List<Product> allProducts = new ArrayList<>();
@@ -39,6 +59,7 @@ public class VentaActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_venta);
 
+        // Compensación de insets de ventana respecto a barras de sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainVenta), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -50,6 +71,7 @@ public class VentaActivity extends AppCompatActivity {
         TextView tvCashierName = findViewById(R.id.tvCashierName);
         TextView tvAvatarHeader = findViewById(R.id.tvAvatarHeader);
 
+        // Identificación del operador
         String userExtra = getIntent().getStringExtra("USER_NAME");
         if (userExtra != null && !userExtra.isEmpty()) {
             cashierName = userExtra;
@@ -58,11 +80,14 @@ public class VentaActivity extends AppCompatActivity {
             tvAvatarHeader.setText(initial);
         }
 
+        // 1. Carga inicial del menú demostrativo
         initProductList();
 
+        // 2. Configuración de la cuadrícula de 2 columnas en RecyclerView
         RecyclerView rvProducts = findViewById(R.id.rvProducts);
         rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
 
+        // 3. Inicialización del adaptador con callback de adición al carrito
         adapter = new ProductAdapter(this, displayedProducts, product -> {
             product.setQuantityInCart(product.getQuantityInCart() + 1);
             adapter.notifyDataSetChanged();
@@ -75,6 +100,7 @@ public class VentaActivity extends AppCompatActivity {
         setupBottomNav();
         updateCartSummary();
 
+        // 4. Enrutamiento hacia la pantalla de cobranza (PagoActivity)
         View.OnClickListener openPagoListener = v -> {
             double currentTotal = calculateCartTotal();
             Intent intent = new Intent(VentaActivity.this, PagoActivity.class);
@@ -90,6 +116,9 @@ public class VentaActivity extends AppCompatActivity {
         );
     }
 
+    /**
+     * Inicializa el catálogo local con los platos principales de la franquicia.
+     */
     private void initProductList() {
         allProducts.add(new Product("Presa individual", "Pierna o pechuga", 8.50, "🍗", "Pollo frito", R.drawable.bg_thumb_fried, false, 2));
         allProducts.add(new Product("1/4 de pollo frito", "Con papas incluidas", 14.00, "🍗", "Pollo frito", R.drawable.bg_thumb_fried, false, 0));
@@ -101,6 +130,9 @@ public class VentaActivity extends AppCompatActivity {
         filterProducts();
     }
 
+    /**
+     * Vincula los controladores de eventos a los chips de categorías.
+     */
     private void setupCategoryChips() {
         TextView chipTodos = findViewById(R.id.chipTodos);
         TextView chipPolloFrito = findViewById(R.id.chipPolloFrito);
@@ -128,6 +160,9 @@ public class VentaActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Configura el listener de texto para filtrado inmediato por palabras clave.
+     */
     private void setupSearch() {
         EditText etSearch = findViewById(R.id.etSearch);
         etSearch.addTextChangedListener(new TextWatcher() {
@@ -145,6 +180,9 @@ public class VentaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Filtra los artículos mostrados en la cuadrícula según los criterios seleccionados.
+     */
     private void filterProducts() {
         displayedProducts.clear();
         for (Product p : allProducts) {
@@ -161,6 +199,11 @@ public class VentaActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Computa el total monetario acumulado de los ítems con cantidad activa > 0.
+     * 
+     * @return Importe total a liquidar.
+     */
     private double calculateCartTotal() {
         double total = 0.0;
         for (Product p : allProducts) {
@@ -171,6 +214,9 @@ public class VentaActivity extends AppCompatActivity {
         return total;
     }
 
+    /**
+     * Actualiza el badge numérico y la etiqueta de precio en la barra inferior de checkout.
+     */
     private void updateCartSummary() {
         int totalCount = 0;
 
@@ -185,9 +231,12 @@ public class VentaActivity extends AppCompatActivity {
         tvCartTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", totalPrice));
     }
 
+    /**
+     * Configura la navegación inferior entre pantallas.
+     */
     private void setupBottomNav() {
         findViewById(R.id.navItemVenta).setOnClickListener(v -> {
-            // Already on VentaActivity
+            // Ya se encuentra en la pantalla de ventas
         });
 
         findViewById(R.id.navItemPedidos).setOnClickListener(v -> {

@@ -25,11 +25,38 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Controlador de Vista: CierreCajaActivity (Arqueo y Cierre de Turno)
+ * 
+ * Capa de Presentación / Módulo de Conciliación Contable y Cierre de Turno
+ * Hereda de: AppCompatActivity
+ * 
+ * Implementa el protocolo de cierre de turno operativo y arqueo ciego de gaveta.
+ * Consolida los pagos recaudados clasificados por medio monetario (Efectivo, Tarjeta, QR),
+ * computa el saldo en efectivo esperado y evalúa dinámicamente mediante un 'TextWatcher'
+ * la diferencia contable frente al dinero físico contado por el cajero.
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Algoritmo de Conciliación y Arqueo de Caja:
+ *     * Saldo Teórico: efectivoEsperado = fondoInicial + totalEfectivo
+ *     * Discrepancia: diff = efectivoContado - efectivoEsperado
+ *     * Tolerancia de Redondeo: Epsilon (|diff| <= 0.01) para determinar "Caja Cuadrada".
+ * - Retroalimentación Visual Reactiva: TextWatcher que actualiza en tiempo real
+ *   la tarjeta de alerta (CardView), alternando paletas de color y textos semánticos
+ *   (Rojo para Faltante, Verde para Sobrante o Cuadre exacto).
+ * - Restablecimiento de Sesión y Navegación Segura: Al asentar el cierre del turno,
+ *   se limpia el identificador de turno en SessionManager y se purga el stack de navegación
+ *   mediante 'FLAG_ACTIVITY_CLEAR_TASK' para forzar una nueva autenticación o reapertura.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class CierreCajaActivity extends AppCompatActivity {
 
     private PosRepository repo;
     private double efectivoEsperado = 0.0;
 
+    // Componentes para desglose de métricas contables
     private TextView tvResumenSucursalFecha;
     private TextView tvResumenEfectivo;
     private TextView tvResumenTarjeta;
@@ -38,6 +65,7 @@ public class CierreCajaActivity extends AppCompatActivity {
     private TextView tvResumenFondoInicial;
     private TextView tvResumenEsperado;
 
+    // Componentes de retroalimentación de arqueo físico
     private CardView cardAlert;
     private TextView tvAlertTitulo;
     private TextView tvAlertMonto;
@@ -50,6 +78,7 @@ public class CierreCajaActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cierre_caja);
 
+        // Ajuste de insets de ventana para barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener((View) findViewById(R.id.tvTitle).getParent(), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -58,8 +87,10 @@ public class CierreCajaActivity extends AppCompatActivity {
 
         repo = PosRepository.getInstance(this);
 
+        // Control de navegación hacia atrás
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
+        // Enlace de vistas de métricas contables
         tvResumenSucursalFecha = findViewById(R.id.tvResumenSucursalFecha);
         tvResumenEfectivo = findViewById(R.id.tvResumenEfectivo);
         tvResumenTarjeta = findViewById(R.id.tvResumenTarjeta);
@@ -74,17 +105,20 @@ public class CierreCajaActivity extends AppCompatActivity {
         tvAlertDescripcion = findViewById(R.id.tvAlertDescripcion);
         etConteo = findViewById(R.id.etConteo);
 
+        // Formateo de fecha del reporte
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
         String fecha = sdf.format(new Date());
         tvResumenSucursalFecha.setText(String.format("Sucursal Centro · %s", fecha));
 
         int turnoId = repo.getSessionManager().getTurnoId();
 
+        // 1. Carga asíncrona del resumen contable del turno desde el Repositorio
         repo.getResumenTurno(turnoId, new PosRepository.Callback<PosRepository.ResumenTurno>() {
             @Override
             public void onSuccess(PosRepository.ResumenTurno r) {
                 efectivoEsperado = r.esperado;
 
+                // Despliegue de importes en moneda nacional (Bolivianos - Bs.)
                 tvResumenEfectivo.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalEfectivo));
                 tvResumenTarjeta.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalTarjeta));
                 tvResumenQr.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalQr));
@@ -92,6 +126,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                 tvResumenFondoInicial.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.fondoInicial));
                 tvResumenEsperado.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.esperado));
 
+                // Cálculo inicial de diferencia
                 actualizarDiferencia();
             }
 
@@ -99,6 +134,7 @@ public class CierreCajaActivity extends AppCompatActivity {
             public void onError(String error) {}
         });
 
+        // 2. Observador en tiempo real de digitación para el arqueo físico
         etConteo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -112,6 +148,7 @@ public class CierreCajaActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
+        // 3. Confirmación formal y persistencia del cierre de turno
         findViewById(R.id.btnConfirm).setOnClickListener(v -> {
             String conteoStr = etConteo.getText().toString().trim();
             double contado = 0.0;
@@ -125,8 +162,11 @@ public class CierreCajaActivity extends AppCompatActivity {
             repo.cerrarTurno(turnoId, finalContado, new PosRepository.Callback<TurnoEntity>() {
                 @Override
                 public void onSuccess(TurnoEntity result) {
+                    // Reseteo del turno activo en almacenamiento local
                     repo.getSessionManager().setTurnoId(0);
                     Toast.makeText(CierreCajaActivity.this, "Turno cerrado exitosamente", Toast.LENGTH_SHORT).show();
+
+                    // Reenrutamiento a la pantalla inicial limpiando el historial de navegación
                     Intent intent = new Intent(CierreCajaActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -141,6 +181,11 @@ public class CierreCajaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Algoritmo de evaluación de arqueo contable.
+     * Compara el efectivo físico ingresado contra el monto esperado del sistema,
+     * adaptando visualmente la tarjeta de alerta informativa.
+     */
     private void actualizarDiferencia() {
         String inputStr = etConteo.getText().toString().trim();
         double contado = 0.0;
@@ -153,21 +198,21 @@ public class CierreCajaActivity extends AppCompatActivity {
         double diff = contado - efectivoEsperado;
 
         if (diff < -0.01) {
-            // Faltante (Rojo)
+            // Caso: Faltante de dinero en gaveta (Alerta crítica - Rojo)
             cardAlert.setCardBackgroundColor(Color.parseColor("#FFCDD2"));
             tvAlertTitulo.setText("Faltante en caja");
             tvAlertTitulo.setTextColor(Color.parseColor("#D32F2F"));
             tvAlertMonto.setText(String.format(Locale.getDefault(), "- Bs. %.2f", Math.abs(diff)));
             tvAlertDescripcion.setText(String.format(Locale.getDefault(), "Hay Bs. %.2f menos de lo esperado. Revisa si hubo algún vuelto mal entregado antes de cerrar.", Math.abs(diff)));
         } else if (diff > 0.01) {
-            // Sobrante (Verde)
+            // Caso: Sobrante de dinero en gaveta (Alerta informativa - Verde)
             cardAlert.setCardBackgroundColor(Color.parseColor("#E8F5E9"));
             tvAlertTitulo.setText("Sobrante en caja");
             tvAlertTitulo.setTextColor(ContextCompat.getColor(this, R.color.ok_600));
             tvAlertMonto.setText(String.format(Locale.getDefault(), "+ Bs. %.2f", diff));
             tvAlertDescripcion.setText(String.format(Locale.getDefault(), "Hay Bs. %.2f más de lo esperado en la gaveta.", diff));
         } else {
-            // Cuadrado
+            // Caso: Conciliación perfecta (Caja Cuadrada)
             cardAlert.setCardBackgroundColor(Color.parseColor("#E8F5E9"));
             tvAlertTitulo.setText("Caja cuadrada");
             tvAlertTitulo.setTextColor(ContextCompat.getColor(this, R.color.ok_600));

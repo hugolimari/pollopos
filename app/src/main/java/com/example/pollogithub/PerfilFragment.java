@@ -18,6 +18,28 @@ import com.example.pollogithub.data.repository.PosRepository;
 
 import java.util.Locale;
 
+/**
+ * Controlador de Vista (Fragmento): PerfilFragment (Perfil de Operador y Configuración)
+ * 
+ * Capa de Presentación / Módulo de Perfil, Auditoría y Mantenimiento
+ * Hereda de: Fragment
+ * 
+ * Gestiona la visualización del estado del cajero activo, métricas preliminares del turno
+ * en curso (recaudación acumulada y número de órdenes) y provee puntos de entrada para:
+ * 1. Administración del catálogo comercial (GestionProductosActivity).
+ * 2. Auditoría histórica de turnos (HistorialTurnosActivity).
+ * 3. Consulta de arqueo en tiempo real (Corte X / Detalle de Turno).
+ * 4. Liquidación definitiva de turno (CierreCajaActivity).
+ * 5. Cierre de sesión de usuario (Logout) con purga de SharedPreferences.
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Patrón Factory Method (newInstance): Estandarización de la creación de fragmentos mediante paso de Bundle.
+ * - Sincronización en 'onResume': Recálculo automático de métricas financieras al retomar el foco de pantalla.
+ * - Auditoría y Resumen en Memoria: Presentación consolidada de fondos iniciales y cobranzas agrupadas por medio de pago.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class PerfilFragment extends Fragment {
 
     private static final String ARG_USER_NAME = "ARG_USER_NAME";
@@ -27,6 +49,12 @@ public class PerfilFragment extends Fragment {
     private TextView tvProfileVentasHoy;
     private TextView tvProfilePedidosCobrados;
 
+    /**
+     * Patrón Factory para instanciación controlada con argumentos encapsulados en un Bundle.
+     * 
+     * @param userName Nombre del cajero autenticado.
+     * @return Nueva instancia configurada de PerfilFragment.
+     */
     public static PerfilFragment newInstance(String userName) {
         PerfilFragment fragment = new PerfilFragment();
         Bundle args = new Bundle();
@@ -59,13 +87,14 @@ public class PerfilFragment extends Fragment {
         tvProfileVentasHoy = view.findViewById(R.id.tvProfileVentasHoy);
         tvProfilePedidosCobrados = view.findViewById(R.id.tvProfilePedidosCobrados);
 
+        // Despliegue de datos de identidad del cajero
         if (userName != null && !userName.isEmpty()) {
             tvProfileName.setText(userName);
             String initial = userName.substring(0, 1).toUpperCase(Locale.getDefault());
             tvProfileAvatar.setText(initial);
         }
 
-        // 1. Gestión de Menú y Comida
+        // 1. Acceso a Gestión de Catálogo y Menú
         View btnGestionMenu = view.findViewById(R.id.btnGestionMenu);
         if (btnGestionMenu != null) {
             btnGestionMenu.setOnClickListener(v -> {
@@ -74,7 +103,7 @@ public class PerfilFragment extends Fragment {
             });
         }
 
-        // 2. Historial de Turnos y Cierres
+        // 2. Acceso a Auditoría de Turnos Históricos
         View btnHistorialTurnos = view.findViewById(R.id.btnHistorialTurnos);
         if (btnHistorialTurnos != null) {
             btnHistorialTurnos.setOnClickListener(v -> {
@@ -83,13 +112,13 @@ public class PerfilFragment extends Fragment {
             });
         }
 
-        // 3. Detalle del turno activo
+        // 3. Detalle modal del turno activo en curso
         View btnShiftDetails = view.findViewById(R.id.btnShiftDetails);
         if (btnShiftDetails != null) {
             btnShiftDetails.setOnClickListener(v -> showTurnoDetailsDialog());
         }
 
-        // 4. Impresora
+        // 4. Verificación de estado de impresora térmica
         View btnPrinterStatus = view.findViewById(R.id.btnPrinterStatus);
         if (btnPrinterStatus != null) {
             btnPrinterStatus.setOnClickListener(v ->
@@ -97,7 +126,7 @@ public class PerfilFragment extends Fragment {
             );
         }
 
-        // 5. Cerrar Turno
+        // 5. Cierre formal de turno y arqueo de caja
         View btnCloseShift = view.findViewById(R.id.btnCloseShift);
         if (btnCloseShift != null) {
             btnCloseShift.setOnClickListener(v -> {
@@ -106,7 +135,7 @@ public class PerfilFragment extends Fragment {
             });
         }
 
-        // 6. Cerrar Sesión
+        // 6. Cierre de sesión y desautenticación
         View btnLogout = view.findViewById(R.id.btnLogout);
         if (btnLogout != null) {
             btnLogout.setOnClickListener(v -> {
@@ -114,6 +143,7 @@ public class PerfilFragment extends Fragment {
                         .setTitle("Cerrar sesión")
                         .setMessage("¿Estás seguro de que deseas salir del sistema?")
                         .setPositiveButton("Salir", (dialog, which) -> {
+                            // Limpieza de credenciales persistidas en SharedPreferences
                             repository.getSessionManager().clear();
                             Intent intent = new Intent(requireContext(), MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -135,9 +165,13 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        // Refresco de estadísticas contables al retornar a la pestaña
         loadProfileStats();
     }
 
+    /**
+     * Carga asíncrona de las métricas de recaudación del turno actual.
+     */
     private void loadProfileStats() {
         int turnoId = repository.getSessionManager().getTurnoId();
         repository.getResumenTurno(turnoId, new PosRepository.Callback<PosRepository.ResumenTurno>() {
@@ -154,12 +188,13 @@ public class PerfilFragment extends Fragment {
             }
 
             @Override
-            public void onError(String error) {
-                // Keep default if error
-            }
+            public void onError(String error) {}
         });
     }
 
+    /**
+     * Despliega un diálogo emergente con el desglose contable del turno vigente (Corte X).
+     */
     private void showTurnoDetailsDialog() {
         int turnoId = repository.getSessionManager().getTurnoId();
         repository.getResumenTurno(turnoId, new PosRepository.Callback<PosRepository.ResumenTurno>() {
@@ -198,4 +233,4 @@ public class PerfilFragment extends Fragment {
             }
         });
     }
-}
+}

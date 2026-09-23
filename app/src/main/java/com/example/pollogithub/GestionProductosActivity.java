@@ -36,6 +36,27 @@ import androidx.activity.result.contract.ActivityResultContracts;
 
 import com.example.pollogithub.util.ImageUtils;
 
+/**
+ * Controlador de Vista: GestionProductosActivity (Administración de Catálogo)
+ * 
+ * Capa de Presentación / Módulo Administrativo y de Inventario
+ * Hereda de: AppCompatActivity
+ * 
+ * Permite a los administradores del restaurante realizar operaciones de mantenimiento
+ * sobre el catálogo de artículos: alta de nuevos platos, edición de nombres, categorías,
+ * precios e íconos, así como la activación o desactivación inmediata de disponibilidad (stock).
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Algoritmo de Búsqueda y Filtrado en Memoria: Evaluación combinatoria de predicados booleanos
+ *   (categoría seleccionada AND coincidencia de subcadena insensible a mayúsculas/minúsculas).
+ * - Componentes Modales (AlertDialog Personalizado): Formulario emergente para captura de datos
+ *   con validación estricta de precondiciones numéricas (precio > 0).
+ * - Arquitectura Reactiva: Suscripción a 'getProductosLiveData()' del Repositorio para reflejar
+ *   instantáneamente las mutaciones en SQLite sin requerir recarga manual de la pantalla.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class GestionProductosActivity extends AppCompatActivity {
 
     private PosRepository repository;
@@ -61,6 +82,7 @@ public class GestionProductosActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_gestion_productos);
 
+        // Ajuste de insets de ventana para barras del sistema operativo
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainGestionProductos), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -92,12 +114,15 @@ public class GestionProductosActivity extends AppCompatActivity {
         tvTotalCountSubtitle = findViewById(R.id.tvTotalCountSubtitle);
         findViewById(R.id.btnBackGestion).setOnClickListener(v -> finish());
 
+        // 1. Configuración del RecyclerView para la lista de productos
         RecyclerView rv = findViewById(R.id.rvProductosGestion);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
+        // 2. Inicialización del adaptador con callbacks de interacción
         adapter = new GestionProductosAdapter(this, filteredProductos, new GestionProductosAdapter.OnProductoActionListener() {
             @Override
             public void onToggleDisponible(ProductoEntity producto, boolean disponible) {
+                // Actualización asíncrona de disponibilidad en SQLite
                 repository.setProductoDisponible(producto.getId(), disponible, new PosRepository.Callback<Void>() {
                     @Override
                     public void onSuccess(Void result) {
@@ -119,11 +144,14 @@ public class GestionProductosActivity extends AppCompatActivity {
         });
         rv.setAdapter(adapter);
 
+        // 3. Inicialización de componentes de búsqueda y chips de filtro
         setupCategoryChips();
         setupSearch();
 
+        // 4. Botón flotante para registrar un nuevo producto (Formulario en blanco)
         findViewById(R.id.fabAddProduct).setOnClickListener(v -> showProductoFormDialog(null));
 
+        // 5. Suscripción reactiva al catálogo persistido en Room
         repository.getProductosLiveData().observe(this, productos -> {
             if (productos != null) {
                 allProductos.clear();
@@ -133,6 +161,9 @@ public class GestionProductosActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Configura el listener de texto para filtrado reactivo a medida que el usuario escribe.
+     */
     private void setupSearch() {
         EditText etSearch = findViewById(R.id.etSearchGestion);
         etSearch.addTextChangedListener(new TextWatcher() {
@@ -150,6 +181,9 @@ public class GestionProductosActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Asocia los eventos de clic a los chips visuales de categorías de comida.
+     */
     private void setupCategoryChips() {
         TextView chipTodos = findViewById(R.id.chipTodos);
         TextView chipPolloFrito = findViewById(R.id.chipPolloFrito);
@@ -177,6 +211,10 @@ public class GestionProductosActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Algoritmo de filtrado combinatorio:
+     * Aplica simultáneamente el criterio de categoría seleccionada y la subcadena de búsqueda.
+     */
     private void filterList() {
         filteredProductos.clear();
         int activeCount = 0;
@@ -225,6 +263,11 @@ public class GestionProductosActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Despliega el diálogo modal de formulario para creación o edición de producto.
+     * 
+     * @param productoToEdit Entidad a modificar o null si es un nuevo registro.
+     */
     private void showProductoFormDialog(ProductoEntity productoToEdit) {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_producto_form, null);
 
@@ -266,7 +309,7 @@ public class GestionProductosActivity extends AppCompatActivity {
             btnRemovePhoto.setVisibility(View.GONE);
         });
 
-        // Emoji selectors (Salvavidas Opcional y Cancelable)
+        // Selectores visuales de emoji representativo (Salvavidas Opcional y Cancelable)
         TextView optNoEmoji = dialogView.findViewById(R.id.optNoEmoji);
         TextView optChicken = dialogView.findViewById(R.id.optEmojiChicken);
         TextView optFire = dialogView.findViewById(R.id.optEmojiFire);
@@ -347,6 +390,7 @@ public class GestionProductosActivity extends AppCompatActivity {
 
         dialogView.findViewById(R.id.btnCancelarForm).setOnClickListener(v -> dialog.dismiss());
 
+        // Procesamiento del formulario y validación de reglas de negocio
         dialogView.findViewById(R.id.btnGuardarForm).setOnClickListener(v -> {
             String nombre = etNombre.getText().toString().trim();
             String precioStr = etPrecio.getText().toString().trim();
@@ -380,6 +424,7 @@ public class GestionProductosActivity extends AppCompatActivity {
             int thumbRes = getThumbDrawableForCat(catId);
 
             if (isEditing) {
+                // Caso de Modificación: actualización de entidad existente
                 productoToEdit.setNombre(nombre);
                 productoToEdit.setCategoriaId(catId);
                 productoToEdit.setPrecio(precio);
@@ -401,6 +446,7 @@ public class GestionProductosActivity extends AppCompatActivity {
                     }
                 });
             } else {
+                // Caso de Alta: creación de nueva tupla en SQLite
                 ProductoEntity nuevo = new ProductoEntity(
                         sucursalId, catId, nombre, descripcion, precio, disponible, selectedEmoji[0], thumbRes, currentSelectedPhotoPath
                 );

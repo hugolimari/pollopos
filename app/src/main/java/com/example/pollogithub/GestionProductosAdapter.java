@@ -21,10 +21,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Adaptador de Administración de Catálogo: GestionProductosAdapter
+ * 
+ * Capa de Presentación / Patrón Adapter & ViewHolder
+ * Hereda de: RecyclerView.Adapter<GestionProductosAdapter.ProductoViewHolder>
+ * 
+ * Vincula la lista de entidades ProductoEntity con la vista de gestión administrativa
+ * (item_gestion_producto.xml). Permite a los administradores activar o desactivar
+ * la disponibilidad comercial de los platos en tiempo real y acceder a la edición de datos.
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Patrón ViewHolder: Minimiza sobrecarga de inflado y búsqueda de IDs en listas densas.
+ * - Desacoplamiento de Eventos: Interfaz 'OnProductoActionListener' para aislar la manipulación
+ *   del interruptor (Switch) y botones de acción de la lógica de persistencia.
+ * - Prevención de Efectos Secundarios en Vistas Recicladas: Limpieza del listener del Switch
+ *   (setOnCheckedChangeListener(null)) antes de asignar su estado para evitar disparos accidentales.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProductosAdapter.ProductoViewHolder> {
 
+    /**
+     * Interfaz de comunicación para eventos de gestión de producto.
+     */
     public interface OnProductoActionListener {
+        /**
+         * Disparado al cambiar la posición del switch de disponibilidad.
+         * 
+         * @param producto   Entidad afectada.
+         * @param disponible Nuevo estado del indicador.
+         */
         void onToggleDisponible(ProductoEntity producto, boolean disponible);
+
+        /**
+         * Disparado al presionar el botón de editar producto.
+         * 
+         * @param producto Entidad a modificar.
+         */
         void onEditProducto(ProductoEntity producto);
     }
 
@@ -32,12 +67,24 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
     private final List<ProductoEntity> productos = new ArrayList<>();
     private final OnProductoActionListener listener;
 
+    /**
+     * Constructor del adaptador de gestión.
+     * 
+     * @param context   Contexto de la aplicación.
+     * @param productos Lista inicial de entidades de producto.
+     * @param listener  Receptor de eventos administrativos.
+     */
     public GestionProductosAdapter(Context context, List<ProductoEntity> productos, OnProductoActionListener listener) {
         this.context = context;
         if (productos != null) this.productos.addAll(productos);
         this.listener = listener;
     }
 
+    /**
+     * Sincroniza la lista interna con los nuevos registros emitidos por Room.
+     * 
+     * @param newList Colección actualizada de entidades.
+     */
     public void updateList(List<ProductoEntity> newList) {
         this.productos.clear();
         if (newList != null) {
@@ -72,10 +119,11 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
         }
         holder.wrapThumb.setBackgroundResource(getThumbBackground(p.getCategoriaId()));
 
-        // Status badge & switch
+        // Limpieza de listener para prevenir disparos durante el reciclado de la vista
         holder.switchDisponible.setOnCheckedChangeListener(null);
         holder.switchDisponible.setChecked(p.isDisponible());
 
+        // Actualización de insignia visual y estilos según disponibilidad
         if (p.isDisponible()) {
             holder.tvProductStatusBadge.setText("Disponible");
             holder.tvProductStatusBadge.setTextColor(ContextCompat.getColor(context, R.color.ok_600));
@@ -86,6 +134,7 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
             holder.tvProductStatusBadge.setBackgroundResource(R.drawable.bg_badge_agotado);
         }
 
+        // Reasignación del listener para capturar la interacción intencional del usuario
         holder.switchDisponible.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (listener != null) {
                 listener.onToggleDisponible(p, isChecked);
@@ -105,6 +154,9 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
         });
     }
 
+    /**
+     * Compone la descripción combinada de categoría y detalles para la vista.
+     */
     private String getCategoryDescription(ProductoEntity p) {
         String catName;
         switch (p.getCategoriaId()) {
@@ -121,6 +173,9 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
         return catName;
     }
 
+    /**
+     * Mapea la categoría con el recurso de fondo adecuado.
+     */
     private int getThumbBackground(int catId) {
         switch (catId) {
             case 1: return R.drawable.bg_thumb_fried;
@@ -136,6 +191,9 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
         return productos.size();
     }
 
+    /**
+     * Contenedor de vistas de la celda de administración.
+     */
     static class ProductoViewHolder extends RecyclerView.ViewHolder {
         FrameLayout wrapThumb;
         ImageView ivProductImage;

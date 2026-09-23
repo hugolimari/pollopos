@@ -18,6 +18,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controlador de Vista: PedidosActivity (Monitor KDS y Despacho)
+ * 
+ * Capa de Presentación / Sistema de Visualización de Cocina (Kitchen Display System - KDS)
+ * Hereda de: AppCompatActivity
+ * 
+ * Gestiona el ciclo operativo de preparación culinaria y entrega de comandas.
+ * Clasifica los pedidos en tres fases logísticas ("cocina", "listo", "camino"),
+ * permitiendo al personal avanzar dinámicamente los estados mediante pulsadores de acción rápida.
+ * 
+ * Conceptos de Ingeniería de Software aplicados:
+ * - Máquina de Estados Finitos (FSM): Transiciones deterministas:
+ *     * "cocina" -> "listo" -> "entregado" (para mesas y consumo en local)
+ *     * "cocina" -> "listo" -> "camino" -> "entregado" (para despachos con repartidor a domicilio)
+ * - Filtrado en Memoria y Conteo Segmentado: Recálculo en tiempo real de los contadores numéricos
+ *   asociados a cada pestaña de estado operativo.
+ * - Desacoplamiento de Eventos: Uso de listeners en el adaptador para mutar el modelo y refrescar la vista.
+ * 
+ * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
+ * @version 1.0
+ */
 public class PedidosActivity extends AppCompatActivity {
 
     private final List<Order> allOrders = new ArrayList<>();
@@ -37,12 +58,14 @@ public class PedidosActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pedidos);
 
+        // Compensación de insets de ventana para barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainPedidos), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // 1. Enlace de vistas para pestañas de filtrado logístico
         tabCocina = findViewById(R.id.tabCocina);
         tabListos = findViewById(R.id.tabListos);
         tabCamino = findViewById(R.id.tabCamino);
@@ -59,12 +82,15 @@ public class PedidosActivity extends AppCompatActivity {
         lineTabListos = findViewById(R.id.lineTabListos);
         lineTabCamino = findViewById(R.id.lineTabCamino);
 
+        // 2. Carga inicial de datos de demostración
         initOrdersList();
 
+        // 3. Configuración del RecyclerView y enlace con el adaptador
         RecyclerView rvOrders = findViewById(R.id.rvOrders);
         rvOrders.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new OrderAdapter(this, displayedOrders, (order, position) -> {
+            // Transición de estados de la orden según la lógica de preparación
             if (order.getStatus().equals("cocina")) {
                 order.setStatus("listo");
                 order.setPrimaryActionText(order.getType().contains("Delivery") ? "Enviar repartidor" : "Entregado");
@@ -86,6 +112,9 @@ public class PedidosActivity extends AppCompatActivity {
         updateTabCounts();
     }
 
+    /**
+     * Inicializa pedidos de prueba para verificación de la interfaz KDS.
+     */
     private void initOrdersList() {
         allOrders.add(new Order("Pedido #0231", "Hace 3 min · Mesa 4", "cocina", "1/4 pollo frito, 1/2 pollo a la brasa, 2× gaseosa", "Para mesa", 41.40, "Marcar listo"));
         allOrders.add(new Order("Pedido #0230", "Hace 6 min · Para llevar", "cocina", "1× combo familiar, 1× papas fritas", "Para llevar", 58.00, "Marcar listo"));
@@ -100,6 +129,9 @@ public class PedidosActivity extends AppCompatActivity {
         filterOrders();
     }
 
+    /**
+     * Recalcula los contadores cuantitativos para cada pestaña logística.
+     */
     private void updateTabCounts() {
         int cocinaCount = 0;
         int listosCount = 0;
@@ -116,12 +148,20 @@ public class PedidosActivity extends AppCompatActivity {
         tvTabCaminoCount.setText(String.valueOf(caminoCount));
     }
 
+    /**
+     * Asocia los eventos de cambio de pestaña para filtrar los pedidos.
+     */
     private void setupTabs() {
         tabCocina.setOnClickListener(v -> selectTab("cocina"));
         tabListos.setOnClickListener(v -> selectTab("listo"));
         tabCamino.setOnClickListener(v -> selectTab("camino"));
     }
 
+    /**
+     * Aplica los estilos cromáticos a la pestaña seleccionada y actualiza el filtro.
+     * 
+     * @param tab Nombre del estado logístico ("cocina", "listo", "camino").
+     */
     private void selectTab(String tab) {
         currentTab = tab;
 
@@ -140,6 +180,9 @@ public class PedidosActivity extends AppCompatActivity {
         filterOrders();
     }
 
+    /**
+     * Filtra la colección de órdenes en memoria según la pestaña logística activa.
+     */
     private void filterOrders() {
         displayedOrders.clear();
         for (Order o : allOrders) {
@@ -152,6 +195,9 @@ public class PedidosActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Configuración de la barra de navegación inferior para conmutar entre módulos.
+     */
     private void setupBottomNav() {
         findViewById(R.id.navItemVenta).setOnClickListener(v -> {
             Intent intent = new Intent(PedidosActivity.this, VentaActivity.class);
