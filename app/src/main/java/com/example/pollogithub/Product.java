@@ -1,6 +1,7 @@
 package com.example.pollogithub;
 
 public class Product {
+    private int id;
     private String name;
     private String description;
     private double price;
@@ -10,7 +11,8 @@ public class Product {
     private boolean isAgotado;
     private int quantityInCart;
 
-    public Product(String name, String description, double price, String emoji, String category, int thumbDrawableRes, boolean isAgotado, int quantityInCart) {
+    public Product(int id, String name, String description, double price, String emoji, String category, int thumbDrawableRes, boolean isAgotado, int quantityInCart) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -20,6 +22,13 @@ public class Product {
         this.isAgotado = isAgotado;
         this.quantityInCart = quantityInCart;
     }
+
+    public Product(String name, String description, double price, String emoji, String category, int thumbDrawableRes, boolean isAgotado, int quantityInCart) {
+        this(0, name, description, price, emoji, category, thumbDrawableRes, isAgotado, quantityInCart);
+    }
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     public String getName() { return name; }
     public String getDescription() { return description; }

@@ -12,9 +12,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.widget.Toast;
+import androidx.lifecycle.ViewModelProvider;
+import com.example.pollogithub.ui.viewmodel.LoginViewModel;
+
 public class MainActivity extends AppCompatActivity {
 
     private boolean isPasswordVisible = false;
+    private LoginViewModel loginViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         EditText etUser = findViewById(R.id.etUser);
         EditText etPassword = findViewById(R.id.etPassword);
@@ -50,6 +57,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        loginViewModel.getLoginSuccess().observe(this, usuario -> {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            intent.putExtra("USER_NAME", usuario.getNombreCompleto());
+            startActivity(intent);
+            finish();
+        });
+
+        loginViewModel.getLoginError().observe(this, error -> {
+            if (error != null) {
+                Toast.makeText(MainActivity.this, error, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         findViewById(R.id.btnStartShift).setOnClickListener(v -> {
             String user = etUser.getText().toString().trim();
             String pass = etPassword.getText().toString().trim();
@@ -63,9 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-            intent.putExtra("USER_NAME", user);
-            startActivity(intent);
+            loginViewModel.login(user, pass);
         });
     }
 }

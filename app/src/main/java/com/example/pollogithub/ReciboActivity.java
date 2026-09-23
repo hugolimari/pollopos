@@ -36,8 +36,10 @@ public class ReciboActivity extends AppCompatActivity {
         double receivedAmount = getIntent().getDoubleExtra("RECEIVED_AMOUNT", 50.00);
         double changeDue = getIntent().getDoubleExtra("CHANGE_DUE", 8.60);
 
+        int orderNumber = getIntent().getIntExtra("ORDER_NUMBER", 231);
+
         TextView tvSubtitleReceipt = findViewById(R.id.tvSubtitleReceipt);
-        tvSubtitleReceipt.setText(String.format("Pedido #0231 cobrado en %s", paymentMethod.toLowerCase(Locale.getDefault())));
+        tvSubtitleReceipt.setText(String.format(Locale.getDefault(), "Pedido #%04d cobrado en %s", orderNumber, paymentMethod.toLowerCase(Locale.getDefault())));
 
         TextView tvReceiptMeta = findViewById(R.id.tvReceiptMeta);
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy, h:mm a", Locale.getDefault());
@@ -50,9 +52,8 @@ public class ReciboActivity extends AppCompatActivity {
         TextView tvReceiptAmountReceived = findViewById(R.id.tvReceiptAmountReceived);
         TextView tvReceiptChange = findViewById(R.id.tvReceiptChange);
 
-        double subtotal = totalAmount + 4.60;
-        tvReceiptSubtotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", subtotal));
-        tvReceiptDiscount.setText("− Bs. 4.60");
+        tvReceiptSubtotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", totalAmount));
+        tvReceiptDiscount.setText("− Bs. 0.00");
         tvReceiptGrandTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", totalAmount));
         tvReceiptAmountReceived.setText(String.format(Locale.getDefault(), "Bs. %.2f", receivedAmount));
         tvReceiptChange.setText(String.format(Locale.getDefault(), "Bs. %.2f", changeDue));

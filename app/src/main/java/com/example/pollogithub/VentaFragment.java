@@ -13,9 +13,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pollogithub.data.entity.PedidoEntity;
+import com.example.pollogithub.data.repository.PosRepository;
+import com.example.pollogithub.ui.viewmodel.VentaViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +35,8 @@ public class VentaFragment extends Fragment {
     private final List<Product> displayedProducts = new ArrayList<>();
     private ProductAdapter adapter;
 
+    private VentaViewModel ventaViewModel;
+    private View cartBar;
     private TextView tvCartCount;
     private TextView tvCartTotal;
     private String selectedCategory = "Todos";
@@ -56,10 +64,14 @@ public class VentaFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_venta, container, false);
 
+        cartBar = view.findViewById(R.id.cartBar);
         tvCartCount = view.findViewById(R.id.tvCartCount);
         tvCartTotal = view.findViewById(R.id.tvCartTotal);
         TextView tvCashierName = view.findViewById(R.id.tvCashierName);
         TextView tvAvatarHeader = view.findViewById(R.id.tvAvatarHeader);
+
+        // Inicialmente ocultar la barra de pedido si está vacía
+        cartBar.setVisibility(View.GONE);
 
         if (userName != null && !userName.isEmpty()) {
             tvCashierName.setText(userName);
@@ -67,31 +79,47 @@ public class VentaFragment extends Fragment {
             tvAvatarHeader.setText(initial);
         }
 
-        initProductList();
+        ventaViewModel = new ViewModelProvider(requireActivity()).get(VentaViewModel.class);
 
         RecyclerView rvProducts = view.findViewById(R.id.rvProducts);
         rvProducts.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
         adapter = new ProductAdapter(requireContext(), displayedProducts, product -> {
-            product.setQuantityInCart(product.getQuantityInCart() + 1);
+            ventaViewModel.addProductToCart(product);
             adapter.notifyDataSetChanged();
-            updateCartSummary();
         });
         rvProducts.setAdapter(adapter);
 
+        // Observar visibilidad de la barra de pedido (solo cuando hay ítems seleccionados)
+        ventaViewModel.getIsCartVisible().observe(getViewLifecycleOwner(), visible -> {
+            cartBar.setVisibility(Boolean.TRUE.equals(visible) ? View.VISIBLE : View.GONE);
+        });
+
+        ventaViewModel.getCartCount().observe(getViewLifecycleOwner(), count -> {
+            if (tvCartCount != null) tvCartCount.setText(String.valueOf(count));
+        });
+
+        ventaViewModel.getCartTotal().observe(getViewLifecycleOwner(), total -> {
+            if (tvCartTotal != null) {
+                tvCartTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", total != null ? total : 0.0));
+            }
+        });
+
+        ventaViewModel.getProductsLiveData().observe(getViewLifecycleOwner(), products -> {
+            if (products != null) {
+                allProducts.clear();
+                allProducts.addAll(products);
+                filterProducts();
+            }
+        });
+
         setupCategoryChips(view);
         setupSearch(view);
-        updateCartSummary();
 
-        View.OnClickListener openPagoListener = v -> {
-            double currentTotal = calculateCartTotal();
-            Intent intent = new Intent(requireContext(), PagoActivity.class);
-            intent.putExtra("TOTAL_AMOUNT", currentTotal > 0 ? currentTotal : 41.40);
-            startActivity(intent);
-        };
+        View.OnClickListener openPagoListener = v -> showOrderConfirmationDialog();
 
         view.findViewById(R.id.btnViewOrder).setOnClickListener(openPagoListener);
-        view.findViewById(R.id.cartBar).setOnClickListener(openPagoListener);
+        cartBar.setOnClickListener(openPagoListener);
 
         view.findViewById(R.id.btnNotification).setOnClickListener(v ->
             Toast.makeText(requireContext(), "Sin notificaciones pendientes", Toast.LENGTH_SHORT).show()
@@ -100,16 +128,34 @@ public class VentaFragment extends Fragment {
         return view;
     }
 
-    private void initProductList() {
-        allProducts.clear();
-        allProducts.add(new Product("Presa individual", "Pierna o pechuga", 8.50, "🍗", "Pollo frito", R.drawable.bg_thumb_fried, false, 2));
-        allProducts.add(new Product("1/4 de pollo frito", "Con papas incluidas", 14.00, "🍗", "Pollo frito", R.drawable.bg_thumb_fried, false, 0));
-        allProducts.add(new Product("1/2 pollo a la brasa", "Con papas y ensalada", 24.00, "🔥", "A la brasa", R.drawable.bg_thumb_asado, false, 0));
-        allProducts.add(new Product("Combo Familiar", "Pollo entero + 2 gaseosas", 52.00, "🥤", "Combos", R.drawable.bg_thumb_combo, false, 1));
-        allProducts.add(new Product("Gaseosa 500ml", "Varios sabores", 4.00, "🥤", "Bebidas", R.drawable.bg_thumb_bebida, false, 0));
-        allProducts.add(new Product("Papas fritas", "Porción regular", 6.00, "🍟", "Acompañamientos", R.drawable.bg_thumb_fried, true, 0));
+    private void showOrderConfirmationDialog() {
+        String[] options = {"Para mesa (Mesa 1)", "Para llevar"};
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Tipo de pedido")
+                .setItems(options, (dialog, which) -> {
+                    String tipoEntrega = which == 0 ? "mesa" : "para_llevar";
+                    Integer mesaId = which == 0 ? 1 : null;
+                    procederAlPago(tipoEntrega, mesaId);
+                })
+                .show();
+    }
 
-        filterProducts();
+    private void procederAlPago(String tipoEntrega, Integer mesaId) {
+        ventaViewModel.confirmarPedido(tipoEntrega, mesaId, new PosRepository.Callback<PedidoEntity>() {
+            @Override
+            public void onSuccess(PedidoEntity pedido) {
+                Intent intent = new Intent(requireContext(), PagoActivity.class);
+                intent.putExtra("PEDIDO_ID", pedido.getId());
+                intent.putExtra("ORDER_NUMBER", pedido.getNumeroOrden());
+                intent.putExtra("TOTAL_AMOUNT", pedido.getTotal());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onError(String error) {
+                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setupCategoryChips(View view) {
@@ -160,8 +206,9 @@ public class VentaFragment extends Fragment {
         displayedProducts.clear();
         for (Product p : allProducts) {
             boolean matchesCategory = selectedCategory.equals("Todos") || p.getCategory().equalsIgnoreCase(selectedCategory);
-            boolean matchesSearch = searchQuery.isEmpty() || p.getName().toLowerCase(Locale.getDefault()).contains(searchQuery)
-                    || p.getDescription().toLowerCase(Locale.getDefault()).contains(searchQuery);
+            boolean matchesSearch = searchQuery.isEmpty()
+                    || p.getName().toLowerCase(Locale.getDefault()).contains(searchQuery)
+                    || (p.getDescription() != null && p.getDescription().toLowerCase(Locale.getDefault()).contains(searchQuery));
 
             if (matchesCategory && matchesSearch) {
                 displayedProducts.add(p);
@@ -170,29 +217,5 @@ public class VentaFragment extends Fragment {
         if (adapter != null) {
             adapter.updateList(displayedProducts);
         }
-    }
-
-    private double calculateCartTotal() {
-        double total = 0.0;
-        for (Product p : allProducts) {
-            if (p.getQuantityInCart() > 0) {
-                total += p.getQuantityInCart() * p.getPrice();
-            }
-        }
-        return total;
-    }
-
-    private void updateCartSummary() {
-        int totalCount = 0;
-
-        for (Product p : allProducts) {
-            if (p.getQuantityInCart() > 0) {
-                totalCount += p.getQuantityInCart();
-            }
-        }
-
-        double totalPrice = calculateCartTotal();
-        if (tvCartCount != null) tvCartCount.setText(String.valueOf(totalCount));
-        if (tvCartTotal != null) tvCartTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", totalPrice));
     }
 }

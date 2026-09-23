@@ -64,6 +64,9 @@ public class PagoActivity extends AppCompatActivity {
         setupMethodSelection();
         setupCashCalculator();
 
+        int pedidoId = getIntent().getIntExtra("PEDIDO_ID", 1);
+        int orderNumber = getIntent().getIntExtra("ORDER_NUMBER", 231);
+
         findViewById(R.id.btnConfirmPayment).setOnClickListener(v -> {
             String methodStr = selectedMethodIndex == 0 ? "Efectivo" :
                                selectedMethodIndex == 1 ? "Tarjeta" :
@@ -86,18 +89,36 @@ public class PagoActivity extends AppCompatActivity {
                     etAmountReceived.setError(String.format(Locale.getDefault(), "El monto debe ser mínimo Bs. %.2f", totalAmount));
                     return;
                 }
+            } else {
+                received = totalAmount;
             }
 
             double change = received - totalAmount;
             if (change < 0) change = 0.0;
 
-            Intent intent = new Intent(PagoActivity.this, ReciboActivity.class);
-            intent.putExtra("PAYMENT_METHOD", methodStr);
-            intent.putExtra("TOTAL_AMOUNT", totalAmount);
-            intent.putExtra("RECEIVED_AMOUNT", selectedMethodIndex == 0 ? received : totalAmount);
-            intent.putExtra("CHANGE_DUE", selectedMethodIndex == 0 ? change : 0.0);
-            startActivity(intent);
-            finish();
+            final double finalReceived = received;
+            final double finalChange = change;
+
+            com.example.pollogithub.data.repository.PosRepository.getInstance(PagoActivity.this)
+                    .registrarPago(pedidoId, methodStr, totalAmount, finalReceived, finalChange, new com.example.pollogithub.data.repository.PosRepository.Callback<com.example.pollogithub.data.entity.PagoEntity>() {
+                        @Override
+                        public void onSuccess(com.example.pollogithub.data.entity.PagoEntity result) {
+                            Intent intent = new Intent(PagoActivity.this, ReciboActivity.class);
+                            intent.putExtra("PAYMENT_METHOD", methodStr);
+                            intent.putExtra("TOTAL_AMOUNT", totalAmount);
+                            intent.putExtra("RECEIVED_AMOUNT", selectedMethodIndex == 0 ? finalReceived : totalAmount);
+                            intent.putExtra("CHANGE_DUE", selectedMethodIndex == 0 ? finalChange : 0.0);
+                            intent.putExtra("PEDIDO_ID", pedidoId);
+                            intent.putExtra("ORDER_NUMBER", orderNumber);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(String error) {
+                            android.widget.Toast.makeText(PagoActivity.this, "Error al registrar pago: " + error, android.widget.Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
     }
 
