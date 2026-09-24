@@ -34,6 +34,12 @@ public class SessionManager {
     private static final String KEY_USER_ROLE = "user_role";
     private static final String KEY_TURNO_ID = "turno_id";
     private static final String KEY_SUCURSAL_ID = "sucursal_id";
+    private static final String KEY_LOGIN_TIMESTAMP = "login_timestamp";
+
+    /**
+     * Duración máxima de la sesión activa: 4 horas continuas sin requerir reautenticación.
+     */
+    public static final long SESSION_DURATION_MS = 4L * 60 * 60 * 1000L; // 4 horas en milisegundos
 
     private final SharedPreferences prefs;
 
@@ -48,7 +54,8 @@ public class SessionManager {
     }
 
     /**
-     * Persiste de forma atómica y asíncrona la sesión completa del usuario autenticado.
+     * Persiste de forma atómica y asíncrona la sesión completa del usuario autenticado
+     * y fija la marca de tiempo de inicio de sesión para el límite de 4 horas.
      * 
      * @param userId     Identificador primario del operador.
      * @param userName   Nombre completo para despliegue visual.
@@ -63,16 +70,42 @@ public class SessionManager {
                 .putString(KEY_USER_ROLE, userRole)
                 .putInt(KEY_TURNO_ID, turnoId)
                 .putInt(KEY_SUCURSAL_ID, sucursalId)
+                .putLong(KEY_LOGIN_TIMESTAMP, System.currentTimeMillis())
                 .apply();
+    }
+
+    /**
+     * Determina si la sesión del usuario está activa y no ha superado el límite de 4 horas.
+     * 
+     * @return true si la sesión es válida y no ha expirado; false si expiró o fue cerrada.
+     */
+    public boolean isSessionActive() {
+        int userId = prefs.getInt(KEY_USER_ID, 0);
+        if (userId <= 0) return false;
+
+        long loginTime = prefs.getLong(KEY_LOGIN_TIMESTAMP, 0L);
+        if (loginTime <= 0) return false;
+
+        long elapsed = System.currentTimeMillis() - loginTime;
+        return elapsed < SESSION_DURATION_MS;
+    }
+
+    /**
+     * Refresca la marca de tiempo de sesión si el operador continúa trabajando.
+     */
+    public void refreshSessionTimestamp() {
+        if (getUserId() > 0) {
+            prefs.edit().putLong(KEY_LOGIN_TIMESTAMP, System.currentTimeMillis()).apply();
+        }
     }
 
     /**
      * Recupera el identificador del usuario autenticado actualmente.
      * 
-     * @return Entero con el ID del usuario o valor predeterminado (1).
+     * @return Entero con el ID del usuario o 0 si no hay sesión.
      */
     public int getUserId() {
-        return prefs.getInt(KEY_USER_ID, 1);
+        return prefs.getInt(KEY_USER_ID, 0);
     }
 
     /**
@@ -96,10 +129,10 @@ public class SessionManager {
     /**
      * Obtiene el identificador del turno de caja vigente.
      * 
-     * @return Entero con el ID del turno activo.
+     * @return Entero con el ID del turno activo o 0 si está cerrado.
      */
     public int getTurnoId() {
-        return prefs.getInt(KEY_TURNO_ID, 1);
+        return prefs.getInt(KEY_TURNO_ID, 0);
     }
 
     /**

@@ -28,13 +28,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.example.pollogithub.util.ImageUtils;
+
+import java.io.File;
 
 /**
  * Controlador de Vista: GestionProductosActivity (Administración de Catálogo)
@@ -71,6 +79,11 @@ public class GestionProductosActivity extends AppCompatActivity {
     private final String[] categoryNames = {"Pollo frito", "A la brasa", "Combos", "Bebidas", "Acompañamientos"};
 
     private ActivityResultLauncher<String> galleryLauncher;
+    private ActivityResultLauncher<Uri> takePictureLauncher;
+    private ActivityResultLauncher<String> cameraPermissionLauncher;
+    private ActivityResultLauncher<Intent> cropLauncher;
+    private Uri cameraTempUri = null;
+
     private String currentSelectedPhotoPath = null;
     private ImageView ivCurrentDialogPhoto = null;
     private View tvCurrentDialogPlaceholder = null;
@@ -89,9 +102,33 @@ public class GestionProductosActivity extends AppCompatActivity {
             return insets;
         });
 
+        // 1. Selector de Galería -> Enrutado directo a la pantalla de recorte
         galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
             if (uri != null) {
-                String savedPath = ImageUtils.saveGalleryImageAsWebp(GestionProductosActivity.this, uri, 500);
+                launchCropActivity(uri);
+            }
+        });
+
+        // 2. Captura con Cámara -> Enrutado directo a la pantalla de recorte
+        takePictureLauncher = registerForActivityResult(new ActivityResultContracts.TakePicture(), success -> {
+            if (Boolean.TRUE.equals(success) && cameraTempUri != null) {
+                launchCropActivity(cameraTempUri);
+            }
+        });
+
+        // 3. Solicitud de Permiso en Tiempo de Ejecución para Cámara
+        cameraPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            if (Boolean.TRUE.equals(isGranted)) {
+                startCameraCapture();
+            } else {
+                Toast.makeText(GestionProductosActivity.this, "Permiso de cámara no concedido. No se puede capturar la foto.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 4. Recepción del resultado de la pantalla de recorte (CropImageActivity)
+        cropLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                String savedPath = result.getData().getStringExtra(CropImageActivity.EXTRA_CROPPED_PATH);
                 if (savedPath != null) {
                     currentSelectedPhotoPath = savedPath;
                     if (ivCurrentDialogPhoto != null) {
@@ -103,8 +140,6 @@ public class GestionProductosActivity extends AppCompatActivity {
                             if (btnCurrentDialogRemove != null) btnCurrentDialogRemove.setVisibility(View.VISIBLE);
                         }
                     }
-                } else {
-                    Toast.makeText(GestionProductosActivity.this, "Error al procesar la imagen de la galería", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -281,12 +316,13 @@ public class GestionProductosActivity extends AppCompatActivity {
 
         // Foto del plato (Almacenamiento Local)
         ImageView ivFormProductPhoto = dialogView.findViewById(R.id.ivFormProductPhoto);
-        View tvFormPhotoPlaceholder = dialogView.findViewById(R.id.tvFormPhotoPlaceholder);
+        View ivFormPhotoPlaceholder = dialogView.findViewById(R.id.ivFormPhotoPlaceholder);
+        View cardPhotoContainer = dialogView.findViewById(R.id.cardPhotoContainer);
         View btnSelectPhoto = dialogView.findViewById(R.id.btnSelectPhoto);
         View btnRemovePhoto = dialogView.findViewById(R.id.btnRemovePhoto);
 
         ivCurrentDialogPhoto = ivFormProductPhoto;
-        tvCurrentDialogPlaceholder = tvFormPhotoPlaceholder;
+        tvCurrentDialogPlaceholder = ivFormPhotoPlaceholder;
         btnCurrentDialogRemove = btnRemovePhoto;
         currentSelectedPhotoPath = productoToEdit != null ? productoToEdit.getImagenLocalPath() : null;
 
@@ -295,17 +331,21 @@ public class GestionProductosActivity extends AppCompatActivity {
             if (bmp != null) {
                 ivFormProductPhoto.setImageBitmap(bmp);
                 ivFormProductPhoto.setVisibility(View.VISIBLE);
-                tvFormPhotoPlaceholder.setVisibility(View.GONE);
+                if (ivFormPhotoPlaceholder != null) ivFormPhotoPlaceholder.setVisibility(View.GONE);
                 btnRemovePhoto.setVisibility(View.VISIBLE);
             }
         }
 
-        btnSelectPhoto.setOnClickListener(v -> galleryLauncher.launch("image/*"));
+        View.OnClickListener pickPhotoListener = v -> showPhotoSourceDialog();
+        btnSelectPhoto.setOnClickListener(pickPhotoListener);
+        if (cardPhotoContainer != null) {
+            cardPhotoContainer.setOnClickListener(pickPhotoListener);
+        }
 
         btnRemovePhoto.setOnClickListener(v -> {
             currentSelectedPhotoPath = null;
             ivFormProductPhoto.setVisibility(View.GONE);
-            tvFormPhotoPlaceholder.setVisibility(View.VISIBLE);
+            if (ivFormPhotoPlaceholder != null) ivFormPhotoPlaceholder.setVisibility(View.VISIBLE);
             btnRemovePhoto.setVisibility(View.GONE);
         });
 
@@ -477,5 +517,64 @@ public class GestionProductosActivity extends AppCompatActivity {
             case 4: return R.drawable.bg_thumb_bebida;
             default: return R.drawable.bg_thumb_fried;
         }
+    }
+
+    /**
+     * Lanza la pantalla de recorte de imagen (CropImageActivity) con la Uri suministrada.
+     */
+    private void launchCropActivity(Uri uri) {
+        Intent intent = new Intent(this, CropImageActivity.class);
+        intent.putExtra(CropImageActivity.EXTRA_IMAGE_URI, uri);
+        cropLauncher.launch(intent);
+    }
+
+    /**
+     * Inicia la captura de imagen con la cámara del dispositivo utilizando un FileProvider seguro.
+     */
+    private void startCameraCapture() {
+        try {
+            File dir = new File(getCacheDir(), "camera");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            File tempFile = new File(dir, "cam_" + System.currentTimeMillis() + ".jpg");
+            cameraTempUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", tempFile);
+            takePictureLauncher.launch(cameraTempUri);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error al preparar la cámara: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Despliega el modal de selección de origen de imagen (Cámara o Galería).
+     */
+    private void showPhotoSourceDialog() {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_select_photo_source, null);
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create();
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        dialogView.findViewById(R.id.btnOptionCamera).setOnClickListener(v -> {
+            dialog.dismiss();
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                startCameraCapture();
+            } else {
+                cameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+            }
+        });
+
+        dialogView.findViewById(R.id.btnOptionGallery).setOnClickListener(v -> {
+            dialog.dismiss();
+            galleryLauncher.launch("image/*");
+        });
+
+        dialogView.findViewById(R.id.btnCancelSource).setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
 }

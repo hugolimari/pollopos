@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -109,6 +111,21 @@ public class CierreCajaActivity extends AppCompatActivity {
         tvAlertDescripcion = findViewById(R.id.tvAlertDescripcion);
         etConteo = findViewById(R.id.etConteo);
 
+        // Restricción a máximo 2 decimales en el arqueo físico
+        etConteo.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                String replacement = source.subSequence(start, end).toString();
+                String newVal = dest.subSequence(0, dstart).toString() + replacement + dest.subSequence(dend, dest.length()).toString();
+                if (newVal.isEmpty()) return null;
+                // Permite enteros o números con hasta 2 cifras decimales (usando punto o coma)
+                if (!newVal.matches("^\\d*([.,]\\d{0,2})?$")) {
+                    return "";
+                }
+                return null;
+            }
+        }});
+
         // Formateo de fecha del reporte
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
         String fecha = sdf.format(new Date());
@@ -160,7 +177,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
         // 3. Confirmación formal y persistencia del cierre de turno
         findViewById(R.id.btnConfirm).setOnClickListener(v -> {
-            String conteoStr = etConteo.getText().toString().trim();
+            String conteoStr = etConteo.getText().toString().trim().replace(',', '.');
             double contado = 0.0;
             try {
                 if (!conteoStr.isEmpty()) {
@@ -197,7 +214,7 @@ public class CierreCajaActivity extends AppCompatActivity {
      * adaptando visualmente la tarjeta de alerta informativa.
      */
     private void actualizarDiferencia() {
-        String inputStr = etConteo.getText().toString().trim();
+        String inputStr = etConteo.getText().toString().trim().replace(',', '.');
         double contado = 0.0;
         try {
             if (!inputStr.isEmpty()) {

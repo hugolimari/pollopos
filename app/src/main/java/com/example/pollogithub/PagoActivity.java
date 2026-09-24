@@ -397,7 +397,7 @@ public class PagoActivity extends AppCompatActivity {
 
             received = ef + dig;
             change = Math.max(0.0, received - totalAmount);
-            referencia = String.format(Locale.getDefault(), "Efectivo: Bs. %.2f | Digital: Bs. %.2f", ef, dig);
+            referencia = String.format(Locale.US, "MIXTO|EF:%.2f|DIG:%.2f (Efectivo: Bs. %.2f, Digital: Bs. %.2f)", ef, dig, ef, dig);
 
         } else { // Tarjeta o QR
             received = totalAmount;

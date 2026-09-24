@@ -212,7 +212,7 @@
                     android:background="@drawable/bg_order_card"
                     android:fontFamily="sans-serif"
                     android:padding="12dp"
-                    android:text="ℹ️ Este fondo se sumará a tus ventas en efectivo para calcular el arqueo final al cierre de turno."
+                    android:text="Este fondo se sumará a tus ventas en efectivo para calcular el arqueo final al cierre de turno."
                     android:textColor="@color/char_400"
                     android:textSize="11.5sp" />
 

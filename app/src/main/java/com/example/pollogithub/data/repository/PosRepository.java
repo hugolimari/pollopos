@@ -223,10 +223,16 @@ public class PosRepository {
                 return;
             }
 
-            Double efectivoVentas = db.pagoDao().getTotalEfectivoByTurno(turnoId);
-            if (efectivoVentas == null) efectivoVentas = 0.0;
+            List<PagoEntity> pagos = db.pagoDao().getByTurnoId(turnoId);
+            DesglosePagos desglose = calcularDesglosePagos(pagos);
 
-            double esperado = turno.getFondoInicial() + efectivoVentas;
+            Double totalEgresos = db.movimientoCajaDao().getTotalEgresosByTurno(turnoId);
+            if (totalEgresos == null) totalEgresos = 0.0;
+
+            Double totalIngresos = db.movimientoCajaDao().getTotalIngresosExtraByTurno(turnoId);
+            if (totalIngresos == null) totalIngresos = 0.0;
+
+            double esperado = turno.getFondoInicial() + desglose.totalEfectivo + totalIngresos - totalEgresos;
             double diferencia = efectivoContado - esperado;
 
             turno.setCerradoEn(System.currentTimeMillis());
@@ -529,17 +535,8 @@ public class PosRepository {
             TurnoEntity turno = db.turnoDao().getById(turnoId);
             double fondo = turno != null ? turno.getFondoInicial() : 0.0;
 
-            Double totalVentas = db.pagoDao().getTotalVentasByTurno(turnoId);
-            if (totalVentas == null) totalVentas = 0.0;
-
-            Double totalEfectivo = db.pagoDao().getTotalEfectivoByTurno(turnoId);
-            if (totalEfectivo == null) totalEfectivo = 0.0;
-
-            Double totalTarjeta = db.pagoDao().getTotalTarjetaByTurno(turnoId);
-            if (totalTarjeta == null) totalTarjeta = 0.0;
-
-            Double totalQr = db.pagoDao().getTotalQrByTurno(turnoId);
-            if (totalQr == null) totalQr = 0.0;
+            List<PagoEntity> pagos = db.pagoDao().getByTurnoId(turnoId);
+            DesglosePagos desglose = calcularDesglosePagos(pagos);
 
             Double totalEgresos = db.movimientoCajaDao().getTotalEgresosByTurno(turnoId);
             if (totalEgresos == null) totalEgresos = 0.0;
@@ -547,19 +544,16 @@ public class PosRepository {
             Double totalIngresos = db.movimientoCajaDao().getTotalIngresosExtraByTurno(turnoId);
             if (totalIngresos == null) totalIngresos = 0.0;
 
-            List<PagoEntity> pagos = db.pagoDao().getByTurnoId(turnoId);
-            int countPedidos = pagos != null ? pagos.size() : 0;
-
             ResumenTurno resumen = new ResumenTurno();
             resumen.fondoInicial = fondo;
-            resumen.totalVentas = totalVentas;
-            resumen.totalEfectivo = totalEfectivo;
-            resumen.totalTarjeta = totalTarjeta;
-            resumen.totalQr = totalQr;
+            resumen.totalVentas = desglose.totalVentas;
+            resumen.totalEfectivo = desglose.totalEfectivo;
+            resumen.totalTarjeta = desglose.totalTarjeta;
+            resumen.totalQr = desglose.totalQr;
             resumen.totalEgresosGastos = totalEgresos;
             resumen.totalIngresosExtra = totalIngresos;
-            resumen.totalPedidos = countPedidos;
-            resumen.esperado = fondo + totalEfectivo + totalIngresos - totalEgresos;
+            resumen.totalPedidos = desglose.totalPedidos;
+            resumen.esperado = fondo + desglose.totalEfectivo + totalIngresos - totalEgresos;
 
             mainHandler.post(() -> callback.onSuccess(resumen));
         });
@@ -585,7 +579,7 @@ public class PosRepository {
     /**
      * Agrega y calcula indicadores clave de rendimiento (KPIs) globales:
      * - Volumen de ventas brutas.
-     * - Distribución por medio de pago.
+     * - Distribución por medio de pago (incluyendo desglose mixto).
      * - Ticket promedio (totalVentas / totalPedidos).
      * - Proporción de servicio en sala vs. pedidos para llevar.
      * 
@@ -595,21 +589,13 @@ public class PosRepository {
         executor.execute(() -> {
             EstadisticasReporte stats = new EstadisticasReporte();
             List<PagoEntity> todosLosPagos = db.pagoDao().getAll();
-            double suma = 0.0;
-            double ef = 0.0, tj = 0.0, qr = 0.0;
-            if (todosLosPagos != null) {
-                for (PagoEntity p : todosLosPagos) {
-                    suma += p.getMonto();
-                    if ("efectivo".equalsIgnoreCase(p.getMetodoPago())) ef += p.getMonto();
-                    else if ("tarjeta".equalsIgnoreCase(p.getMetodoPago())) tj += p.getMonto();
-                    else if ("qr".equalsIgnoreCase(p.getMetodoPago())) qr += p.getMonto();
-                }
-                stats.totalPedidos = todosLosPagos.size();
-            }
-            stats.totalVentas = suma;
-            stats.totalEfectivo = ef;
-            stats.totalTarjeta = tj;
-            stats.totalQr = qr;
+            DesglosePagos desglose = calcularDesglosePagos(todosLosPagos);
+
+            stats.totalPedidos = desglose.totalPedidos;
+            stats.totalVentas = desglose.totalVentas;
+            stats.totalEfectivo = desglose.totalEfectivo;
+            stats.totalTarjeta = desglose.totalTarjeta;
+            stats.totalQr = desglose.totalQr;
             stats.ticketPromedio = stats.totalPedidos > 0 ? (stats.totalVentas / stats.totalPedidos) : 0.0;
 
             List<PedidoEntity> todosPedidos = db.pedidoDao().getAll();
@@ -625,6 +611,106 @@ public class PosRepository {
 
             mainHandler.post(() -> callback.onSuccess(stats));
         });
+    }
+
+    /**
+     * DTO interno para el cómputo exacto de ingresos distribuidos por instrumento de cobro,
+     * particionando fielmente los pedidos liquidados con método mixto (Efectivo + QR/Tarjeta).
+     */
+    public static class DesglosePagos {
+        public double totalVentas = 0.0;
+        public double totalEfectivo = 0.0;
+        public double totalTarjeta = 0.0;
+        public double totalQr = 0.0;
+        public int totalPedidos = 0;
+    }
+
+    /**
+     * Algoritmo contable que procesa la colección de pagos, asegurando que los pagos mixtos
+     * sumen su cuota de papel moneda al efectivo físico de caja y su cuota electrónica a QR/bancos.
+     * 
+     * @param pagos Lista de pagos del turno o histórico.
+     * @return Desglose consolidado sin discrepancias aritméticas.
+     */
+    public static DesglosePagos calcularDesglosePagos(List<PagoEntity> pagos) {
+        DesglosePagos d = new DesglosePagos();
+        if (pagos == null) return d;
+
+        java.util.Set<Integer> distinctOrders = new java.util.HashSet<>();
+        for (PagoEntity p : pagos) {
+            d.totalVentas += p.getMonto();
+            distinctOrders.add(p.getPedidoId());
+
+            String metodo = p.getMetodoPago() != null ? p.getMetodoPago().toLowerCase().trim() : "";
+            if ("efectivo".equals(metodo)) {
+                d.totalEfectivo += p.getMonto();
+            } else if ("tarjeta".equals(metodo)) {
+                d.totalTarjeta += p.getMonto();
+            } else if ("qr".equals(metodo)) {
+                d.totalQr += p.getMonto();
+            } else if ("mixto".equals(metodo)) {
+                double[] partes = extraerPartesMixto(p.getMonto(), p.getReferencia());
+                d.totalEfectivo += partes[0];
+                d.totalQr += partes[1];
+            } else {
+                d.totalEfectivo += p.getMonto();
+            }
+        }
+        d.totalPedidos = distinctOrders.size();
+        return d;
+    }
+
+    /**
+     * Extrae de forma robusta la parte en efectivo y la parte digital de una transacción mixta.
+     * Soporta formato estructurado MIXTO|EF:xx|DIG:xx y formatos textuales legacy.
+     */
+    public static double[] extraerPartesMixto(double montoTotal, String ref) {
+        double ef = 0.0;
+        double dig = 0.0;
+        if (ref != null && !ref.isEmpty()) {
+            try {
+                if (ref.contains("EF:") && ref.contains("DIG:")) {
+                    String[] parts = ref.split("\\|");
+                    for (String part : parts) {
+                        if (part.startsWith("EF:")) {
+                            String val = part.substring(3).trim();
+                            int spaceIdx = val.indexOf(' ');
+                            if (spaceIdx > 0) val = val.substring(0, spaceIdx);
+                            ef = Double.parseDouble(val);
+                        } else if (part.startsWith("DIG:")) {
+                            String val = part.substring(4).trim();
+                            int spaceIdx = val.indexOf(' ');
+                            if (spaceIdx > 0) val = val.substring(0, spaceIdx);
+                            dig = Double.parseDouble(val);
+                        }
+                    }
+                } else {
+                    java.util.regex.Matcher mEf = java.util.regex.Pattern.compile(
+                            "(?:efectivo|ef)\\s*[:=]\\s*(?:bs\\.?\\s*)?([0-9]+(?:[.,][0-9]+)?)",
+                            java.util.regex.Pattern.CASE_INSENSITIVE).matcher(ref);
+                    if (mEf.find()) {
+                        ef = Double.parseDouble(mEf.group(1).replace(",", "."));
+                    }
+                    java.util.regex.Matcher mDig = java.util.regex.Pattern.compile(
+                            "(?:digital|qr|tarjeta|dig)\\s*[:=]\\s*(?:bs\\.?\\s*)?([0-9]+(?:[.,][0-9]+)?)",
+                            java.util.regex.Pattern.CASE_INSENSITIVE).matcher(ref);
+                    if (mDig.find()) {
+                        dig = Double.parseDouble(mDig.group(1).replace(",", "."));
+                    }
+                }
+            } catch (Exception ignored) {}
+        }
+
+        if (ef <= 0 && dig <= 0) {
+            ef = Math.floor(montoTotal / 2.0);
+            dig = montoTotal - ef;
+        } else if (ef > 0 && dig <= 0) {
+            dig = Math.max(0.0, montoTotal - ef);
+        } else if (dig > 0 && ef <= 0) {
+            ef = Math.max(0.0, montoTotal - dig);
+        }
+
+        return new double[]{ef, dig};
     }
 
     // ==========================================

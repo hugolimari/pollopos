@@ -55,6 +55,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Habilita diseño moderno de borde a borde (Edge-to-Edge)
         EdgeToEdge.enable(this);
+
+        // Verificación de sesión activa (duración de 4 horas continuas)
+        com.example.pollogithub.data.SessionManager sessionManager = new com.example.pollogithub.data.SessionManager(this);
+        if (sessionManager.isSessionActive()) {
+            int turnoId = sessionManager.getTurnoId();
+            if (turnoId > 0) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                intent.putExtra("USER_NAME", sessionManager.getUserName());
+                startActivity(intent);
+                finish();
+                return;
+            } else {
+                Intent intent = new Intent(MainActivity.this, AperturaCajaActivity.class);
+                intent.putExtra("USER_NAME", sessionManager.getUserName());
+                intent.putExtra("USER_ID", sessionManager.getUserId());
+                intent.putExtra("SUCURSAL_ID", sessionManager.getSucursalId());
+                startActivity(intent);
+                finish();
+                return;
+            }
+        }
+
         setContentView(R.layout.activity_main);
 
         // Compensación de márgenes para prevenir solapamiento con barras de estado y navegación

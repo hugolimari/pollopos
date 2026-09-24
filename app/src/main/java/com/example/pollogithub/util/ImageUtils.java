@@ -3,6 +3,8 @@ package com.example.pollogithub.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
@@ -75,6 +77,118 @@ public class ImageUtils {
             scaledBitmap.recycle();
 
             return targetFile.getAbsolutePath();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Guarda un Bitmap en almacenamiento local en formato WebP con dimensiones optimizadas.
+     */
+    public static String saveBitmapAsWebp(Context context, Bitmap bitmap, int maxDimension) {
+        if (context == null || bitmap == null) return null;
+
+        try {
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+            float ratio = (float) width / (float) height;
+
+            int targetWidth = width;
+            int targetHeight = height;
+
+            if (width > maxDimension || height > maxDimension) {
+                if (ratio > 1) {
+                    targetWidth = maxDimension;
+                    targetHeight = Math.round(maxDimension / ratio);
+                } else {
+                    targetHeight = maxDimension;
+                    targetWidth = Math.round(maxDimension * ratio);
+                }
+            }
+
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, targetWidth, targetHeight, true);
+
+            File dir = new File(context.getFilesDir(), PRODUCT_IMAGE_DIR);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            String filename = "prod_" + System.currentTimeMillis() + ".webp";
+            File targetFile = new File(dir, filename);
+
+            FileOutputStream fos = new FileOutputStream(targetFile);
+            scaledBitmap.compress(Bitmap.CompressFormat.WEBP_LOSSY, 88, fos);
+            fos.flush();
+            fos.close();
+
+            if (scaledBitmap != bitmap) {
+                scaledBitmap.recycle();
+            }
+
+            return targetFile.getAbsolutePath();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Decodifica un Bitmap de forma segura desde un Uri, optimizando la memoria y respetando la orientación EXIF.
+     */
+    public static Bitmap loadBitmapFromUriWithExif(Context context, Uri uri, int maxDimension) {
+        if (context == null || uri == null) return null;
+
+        try {
+            // 1. Obtener dimensiones sin cargar a memoria
+            BitmapFactory.Options boundsOptions = new BitmapFactory.Options();
+            boundsOptions.inJustDecodeBounds = true;
+            InputStream isBounds = context.getContentResolver().openInputStream(uri);
+            if (isBounds == null) return null;
+            BitmapFactory.decodeStream(isBounds, null, boundsOptions);
+            isBounds.close();
+
+            int sampleSize = 1;
+            while ((boundsOptions.outWidth / sampleSize) > maxDimension || (boundsOptions.outHeight / sampleSize) > maxDimension) {
+                sampleSize *= 2;
+            }
+
+            // 2. Decodificar con sampleSize adecuado
+            BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
+            decodeOptions.inSampleSize = sampleSize;
+            InputStream isDecode = context.getContentResolver().openInputStream(uri);
+            if (isDecode == null) return null;
+            Bitmap bitmap = BitmapFactory.decodeStream(isDecode, null, decodeOptions);
+            isDecode.close();
+
+            if (bitmap == null) return null;
+
+            // 3. Inspeccionar metadatos EXIF para rotación
+            try {
+                InputStream exifStream = context.getContentResolver().openInputStream(uri);
+                if (exifStream != null) {
+                    ExifInterface exif = new ExifInterface(exifStream);
+                    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+                    exifStream.close();
+
+                    int rotation = 0;
+                    if (orientation == ExifInterface.ORIENTATION_ROTATE_90) rotation = 90;
+                    else if (orientation == ExifInterface.ORIENTATION_ROTATE_180) rotation = 180;
+                    else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) rotation = 270;
+
+                    if (rotation != 0) {
+                        Matrix matrix = new Matrix();
+                        matrix.postRotate(rotation);
+                        Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+                        if (rotated != bitmap) {
+                            bitmap.recycle();
+                            bitmap = rotated;
+                        }
+                    }
+                }
+            } catch (Exception ignored) {}
+
+            return bitmap;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

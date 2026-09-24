@@ -177,16 +177,19 @@
                 app:cardBackgroundColor="@color/paper_100">
 
                 <FrameLayout
+                    android:id="@+id/cardPhotoContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                    <TextView
-                        android:id="@+id/tvFormPhotoPlaceholder"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/ivFormPhotoPlaceholder"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:layout_gravity="center"
-                        android:text="📷"
-                        android:textSize="24sp" />
+                        android:src="@drawable/ic_camera"
+                        app:tint="@color/icon_muted" />
 
                     <ImageView
                         android:id="@+id/ivFormProductPhoto"
@@ -211,7 +214,7 @@
                     android:background="@drawable/bg_chip_selected"
                     android:fontFamily="sans-serif-bold"
                     android:paddingHorizontal="14dp"
-                    android:text="Elegir de galería"
+                    android:text="Subir foto / Cámara"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="12sp" />

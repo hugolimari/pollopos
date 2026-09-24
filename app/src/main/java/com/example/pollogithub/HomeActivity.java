@@ -78,6 +78,14 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.navItemReportes).setOnClickListener(v -> selectTab(2));
         findViewById(R.id.navItemPerfil).setOnClickListener(v -> selectTab(3));
 
+        // Gestión de botón atrás para minimizar la aplicación en lugar de destruir la sesión
+        getOnBackPressedDispatcher().addCallback(this, new androidx.activity.OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                moveTaskToBack(true);
+            }
+        });
+
         // Selección inicial de pestaña (Terminal de Ventas) en el primer arranque
         if (savedInstanceState == null) {
             selectTab(0);
