@@ -7,7 +7,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.content.res.ColorStateList;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +66,11 @@ public class VentaFragment extends Fragment {
     private String searchQuery = "";
     private String userName = "";
 
+    private String currentTipoEntrega = "mesa"; // "mesa" representa "En el local" en la base de datos
+    private View btnHeaderModeLocal, btnHeaderModeLlevar;
+    private ImageView ivHeaderIconLocal, ivHeaderIconLlevar;
+    private TextView tvHeaderTextLocal, tvHeaderTextLlevar;
+
     /**
      * Patrón Factory para instanciación estandarizada con paso seguro de argumentos.
      * 
@@ -99,6 +106,17 @@ public class VentaFragment extends Fragment {
 
         // Ocultamiento preventivo de la barra de checkout hasta que existan artículos seleccionados
         cartBar.setVisibility(View.GONE);
+
+        // Control segmentado de modalidad de entrega
+        btnHeaderModeLocal = view.findViewById(R.id.btnHeaderModeLocal);
+        btnHeaderModeLlevar = view.findViewById(R.id.btnHeaderModeLlevar);
+        ivHeaderIconLocal = view.findViewById(R.id.ivHeaderIconLocal);
+        ivHeaderIconLlevar = view.findViewById(R.id.ivHeaderIconLlevar);
+        tvHeaderTextLocal = view.findViewById(R.id.tvHeaderTextLocal);
+        tvHeaderTextLlevar = view.findViewById(R.id.tvHeaderTextLlevar);
+
+        btnHeaderModeLocal.setOnClickListener(v -> setOrderDeliveryMode("mesa"));
+        btnHeaderModeLlevar.setOnClickListener(v -> setOrderDeliveryMode("para_llevar"));
 
         if (userName != null && !userName.isEmpty()) {
             tvCashierName.setText(userName);
@@ -164,34 +182,137 @@ public class VentaFragment extends Fragment {
     }
 
     /**
-     * Despliega el diálogo modal para elegir si la orden se consumirá en mesa o para llevar.
+     * Conmuta la modalidad de despacho activa y actualiza el control segmentado de la cabecera.
+     * 
+     * @param mode "mesa" (Consumo en el local) o "para_llevar".
+     */
+    private void setOrderDeliveryMode(String mode) {
+        currentTipoEntrega = mode;
+        boolean isLocal = "mesa".equalsIgnoreCase(mode);
+
+        if (isLocal) {
+            btnHeaderModeLocal.setBackgroundResource(R.drawable.bg_order_mode_active);
+            ivHeaderIconLocal.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.ember_600)));
+            tvHeaderTextLocal.setTextColor(requireContext().getColor(R.color.ember_600));
+            tvHeaderTextLocal.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);
+
+            btnHeaderModeLlevar.setBackgroundResource(android.R.color.transparent);
+            ivHeaderIconLlevar.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.char_400)));
+            tvHeaderTextLlevar.setTextColor(requireContext().getColor(R.color.char_400));
+            tvHeaderTextLlevar.setTypeface(android.graphics.Typeface.DEFAULT);
+        } else {
+            btnHeaderModeLlevar.setBackgroundResource(R.drawable.bg_order_mode_active);
+            ivHeaderIconLlevar.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.ember_600)));
+            tvHeaderTextLlevar.setTextColor(requireContext().getColor(R.color.ember_600));
+            tvHeaderTextLlevar.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);
+
+            btnHeaderModeLocal.setBackgroundResource(android.R.color.transparent);
+            ivHeaderIconLocal.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.char_400)));
+            tvHeaderTextLocal.setTextColor(requireContext().getColor(R.color.char_400));
+            tvHeaderTextLocal.setTypeface(android.graphics.Typeface.DEFAULT);
+        }
+    }
+
+    /**
+     * Despliega el diálogo modal estilizado para elegir si la orden se consumirá en el local o para llevar.
      */
     private void showOrderConfirmationDialog() {
-        String[] options = {"Para mesa (Mesa 1)", "Para llevar"};
-        new AlertDialog.Builder(requireContext())
-                .setTitle("Tipo de pedido")
-                .setItems(options, (dialog, which) -> {
-                    String tipoEntrega = which == 0 ? "mesa" : "para_llevar";
-                    Integer mesaId = which == 0 ? 1 : null;
-                    procederAlPago(tipoEntrega, mesaId);
-                })
-                .show();
+        Integer cartCount = ventaViewModel.getCartCount().getValue();
+        if (cartCount == null || cartCount <= 0) {
+            Toast.makeText(requireContext(), "El pedido está vacío", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Double totalPrice = ventaViewModel.getCartTotal().getValue();
+        if (totalPrice == null) totalPrice = 0.0;
+
+        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_tipo_pedido, null);
+
+        View cardOptionLocal = dialogView.findViewById(R.id.cardOptionLocal);
+        View cardOptionLlevar = dialogView.findViewById(R.id.cardOptionLlevar);
+        ImageView ivModalIconLocal = dialogView.findViewById(R.id.ivModalIconLocal);
+        ImageView ivModalIconLlevar = dialogView.findViewById(R.id.ivModalIconLlevar);
+        ImageView radioLocalIndicator = dialogView.findViewById(R.id.radioLocalIndicator);
+        ImageView radioLlevarIndicator = dialogView.findViewById(R.id.radioLlevarIndicator);
+        TextView tvModalCartSummary = dialogView.findViewById(R.id.tvModalCartSummary);
+        TextView tvModalTotalAmount = dialogView.findViewById(R.id.tvModalTotalAmount);
+        androidx.appcompat.widget.AppCompatButton btnConfirmOrderMode = dialogView.findViewById(R.id.btnConfirmOrderMode);
+        View btnDismissModal = dialogView.findViewById(R.id.btnDismissModal);
+
+        tvModalCartSummary.setText(String.format(Locale.getDefault(), "%d productos en el pedido", cartCount));
+        tvModalTotalAmount.setText(String.format(Locale.getDefault(), "Bs. %.2f", totalPrice));
+        btnConfirmOrderMode.setText(String.format(Locale.getDefault(), "Continuar a Cobrar (Bs. %.2f) →", totalPrice));
+
+        final String[] selectedMode = {currentTipoEntrega};
+
+        Runnable updateDialogCardsUI = () -> {
+            boolean isLocal = "mesa".equalsIgnoreCase(selectedMode[0]);
+            if (isLocal) {
+                cardOptionLocal.setBackgroundResource(R.drawable.bg_card_mode_selected);
+                ivModalIconLocal.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.white)));
+                radioLocalIndicator.setImageResource(R.drawable.ic_check_circle_ember);
+
+                cardOptionLlevar.setBackgroundResource(R.drawable.bg_card_mode_unselected);
+                ivModalIconLlevar.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.char_700)));
+                radioLlevarIndicator.setImageResource(R.drawable.ic_circle_outline);
+            } else {
+                cardOptionLlevar.setBackgroundResource(R.drawable.bg_card_mode_selected);
+                ivModalIconLlevar.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.white)));
+                radioLlevarIndicator.setImageResource(R.drawable.ic_check_circle_ember);
+
+                cardOptionLocal.setBackgroundResource(R.drawable.bg_card_mode_unselected);
+                ivModalIconLocal.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.char_700)));
+                radioLocalIndicator.setImageResource(R.drawable.ic_circle_outline);
+            }
+        };
+
+        updateDialogCardsUI.run();
+
+        cardOptionLocal.setOnClickListener(v -> {
+            selectedMode[0] = "mesa";
+            updateDialogCardsUI.run();
+        });
+
+        cardOptionLlevar.setOnClickListener(v -> {
+            selectedMode[0] = "para_llevar";
+            updateDialogCardsUI.run();
+        });
+
+        androidx.appcompat.app.AlertDialog dialog = new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setView(dialogView)
+                .setCancelable(true)
+                .create();
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        btnDismissModal.setOnClickListener(v -> dialog.dismiss());
+
+        btnConfirmOrderMode.setOnClickListener(v -> {
+            setOrderDeliveryMode(selectedMode[0]);
+            dialog.dismiss();
+            procederAlPago(selectedMode[0], null);
+        });
+
+        dialog.show();
     }
 
     /**
      * Confirma la orden en el ViewModel y navega a la pasarela de cobranza (PagoActivity).
      * 
-     * @param tipoEntrega "mesa" o "para_llevar".
-     * @param mesaId      Número de mesa (opcional).
+     * @param tipoEntrega "mesa" (Consumo en el local) o "para_llevar".
+     * @param mesaId      Número de mesa (nulo por diseño de negocio).
      */
     private void procederAlPago(String tipoEntrega, Integer mesaId) {
-        ventaViewModel.confirmarPedido(tipoEntrega, mesaId, new PosRepository.Callback<PedidoEntity>() {
+        ventaViewModel.confirmarPedido(tipoEntrega, null, new PosRepository.Callback<PedidoEntity>() {
             @Override
             public void onSuccess(PedidoEntity pedido) {
                 Intent intent = new Intent(requireContext(), PagoActivity.class);
                 intent.putExtra("PEDIDO_ID", pedido.getId());
                 intent.putExtra("ORDER_NUMBER", pedido.getNumeroOrden());
                 intent.putExtra("TOTAL_AMOUNT", pedido.getTotal());
+                intent.putExtra("TIPO_ENTREGA", tipoEntrega);
                 startActivity(intent);
             }
 

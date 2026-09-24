@@ -597,7 +597,7 @@ public class PosRepository {
             int mesa = 0, llevar = 0;
             if (todosPedidos != null) {
                 for (PedidoEntity pe : todosPedidos) {
-                    if ("mesa".equalsIgnoreCase(pe.getTipoEntrega())) mesa++;
+                    if ("mesa".equalsIgnoreCase(pe.getTipoEntrega()) || "local".equalsIgnoreCase(pe.getTipoEntrega())) mesa++;
                     else llevar++;
                 }
             }

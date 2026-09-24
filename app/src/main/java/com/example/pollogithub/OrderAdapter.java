@@ -106,10 +106,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.btnPrimaryAction.setText(order.getPrimaryActionText());
 
         // Asignación de ícono contextual según la modalidad de despacho
-        if (order.getType().contains("mesa")) {
-            holder.imgTypeIcon.setImageResource(R.drawable.ic_type_table);
-        } else if (order.getType().contains("llevar")) {
-            holder.imgTypeIcon.setImageResource(R.drawable.ic_type_takeaway);
+        String typeLower = order.getType().toLowerCase(Locale.getDefault());
+        if (typeLower.contains("local") || typeLower.contains("mesa")) {
+            holder.imgTypeIcon.setImageResource(R.drawable.ic_dining_local);
+        } else if (typeLower.contains("llevar")) {
+            holder.imgTypeIcon.setImageResource(R.drawable.ic_takeaway_bag);
         } else {
             holder.imgTypeIcon.setImageResource(R.drawable.ic_type_delivery);
         }

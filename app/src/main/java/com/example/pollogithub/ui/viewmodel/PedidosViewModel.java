@@ -96,9 +96,10 @@ public class PedidosViewModel extends AndroidViewModel {
             }
 
             String hora = sdf.format(new Date(e.getCreadoEn()));
-            String subtitle = hora + " · " + (e.getMesaId() != null ? "Mesa " + e.getMesaId() : "Para llevar");
+            boolean isLocal = "mesa".equalsIgnoreCase(e.getTipoEntrega()) || "local".equalsIgnoreCase(e.getTipoEntrega());
+            String subtitle = hora + " · " + (isLocal ? "En el local" : "Para llevar");
             String actionText = "cocina".equalsIgnoreCase(e.getEstado()) ? "Marcar listo" : "Entregado";
-            String tipo = e.getMesaId() != null ? "Para mesa" : "Para llevar";
+            String tipo = isLocal ? "En el local" : "Para llevar";
 
             Order order = new Order(
                     e.getId(),

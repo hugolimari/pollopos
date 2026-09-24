@@ -98,6 +98,77 @@
             </FrameLayout>
         </RelativeLayout>
 
+        <!-- Selector de Modalidad: En el local vs Para llevar -->
+        <LinearLayout
+            android:id="@+id/layoutOrderModeSelector"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_order_mode_container"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <LinearLayout
+                android:id="@+id/btnHeaderModeLocal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_order_mode_active"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivHeaderIconLocal"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="En el local"
+                    android:src="@drawable/ic_dining_local"
+                    app:tint="@color/ember_600" />
+
+                <TextView
+                    android:id="@+id/tvHeaderTextLocal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="En el local"
+                    android:textColor="@color/ember_600"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnHeaderModeLlevar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivHeaderIconLlevar"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="Para llevar"
+                    android:src="@drawable/ic_takeaway_bag"
+                    app:tint="@color/char_400" />
+
+                <TextView
+                    android:id="@+id/tvHeaderTextLlevar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Para llevar"
+                    android:textColor="@color/char_400"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="44dp"

@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="sans-serif"
-                    android:text="Hace 5 min · Para mesa (Mesa 2)"
+                    android:text="Hace 5 min · En el local"
                     android:textColor="@color/char_400"
                     android:textSize="12sp" />
             </LinearLayout>

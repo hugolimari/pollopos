@@ -95,6 +95,13 @@ public class PagoActivity extends AppCompatActivity {
 
         int pedidoId = getIntent().getIntExtra("PEDIDO_ID", 1);
         int orderNumber = getIntent().getIntExtra("ORDER_NUMBER", 231);
+        String tipoEntrega = getIntent().getStringExtra("TIPO_ENTREGA");
+
+        TextView tvPaymentSubtitle = findViewById(R.id.tvPaymentSubtitle);
+        if (tvPaymentSubtitle != null) {
+            boolean isLocal = tipoEntrega == null || "mesa".equalsIgnoreCase(tipoEntrega) || "local".equalsIgnoreCase(tipoEntrega);
+            tvPaymentSubtitle.setText(String.format(Locale.getDefault(), "Pedido #%04d · %s", orderNumber, isLocal ? "En el local" : "Para llevar"));
+        }
 
         // 4. Confirmación de liquidación financiera
         findViewById(R.id.btnConfirmPayment).setOnClickListener(v -> {

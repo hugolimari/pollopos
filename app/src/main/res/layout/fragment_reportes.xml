@@ -263,8 +263,8 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_gravity="center"
-                            android:contentDescription="Mesa"
-                            android:src="@drawable/ic_type_table"
+                            android:contentDescription="En el local"
+                            android:src="@drawable/ic_dining_local"
                             app:tint="@color/ember_600" />
                     </FrameLayout>
 
@@ -282,7 +282,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="sans-serif"
-                        android:text="Para mesa"
+                        android:text="En el local"
                         android:textColor="@color/char_400"
                         android:textSize="11.5sp" />
                 </LinearLayout>

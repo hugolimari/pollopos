@@ -28,23 +28,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <!-- Back Button -->
-            <androidx.cardview.widget.CardView
+            <ImageButton
                 android:id="@+id/btnBackGestion"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:cardBackgroundColor="@color/ember_100"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="&lt;"
-                    android:textColor="@color/char_900"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </androidx.cardview.widget.CardView>
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_back_btn"
+                android:contentDescription="Volver"
+                android:src="@drawable/ic_back_arrow" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -129,6 +119,8 @@
                     android:layout_height="32dp"
                     android:layout_marginEnd="6dp"
                     android:background="@drawable/bg_chip_selected"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
@@ -142,7 +134,9 @@
                     android:layout_height="32dp"
                     android:layout_marginEnd="6dp"
                     android:background="@drawable/bg_chip_unselected"
-                    android:fontFamily="sans-serif-medium"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
                     android:text="Pollo frito"
@@ -155,7 +149,9 @@
                     android:layout_height="32dp"
                     android:layout_marginEnd="6dp"
                     android:background="@drawable/bg_chip_unselected"
-                    android:fontFamily="sans-serif-medium"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
                     android:text="A la brasa"
@@ -168,7 +164,9 @@
                     android:layout_height="32dp"
                     android:layout_marginEnd="6dp"
                     android:background="@drawable/bg_chip_unselected"
-                    android:fontFamily="sans-serif-medium"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
                     android:text="Combos"
@@ -181,7 +179,9 @@
                     android:layout_height="32dp"
                     android:layout_marginEnd="6dp"
                     android:background="@drawable/bg_chip_unselected"
-                    android:fontFamily="sans-serif-medium"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
                     android:text="Bebidas"
@@ -193,7 +193,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:background="@drawable/bg_chip_unselected"
-                    android:fontFamily="sans-serif-medium"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
                     android:text="Acompañamientos"

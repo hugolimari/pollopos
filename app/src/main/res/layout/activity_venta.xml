@@ -162,6 +162,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_chip_selected"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="sans-serif-bold"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="9dp"
@@ -175,6 +177,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_chip_unselected"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="sans-serif-bold"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="9dp"
@@ -188,6 +192,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_chip_unselected"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="sans-serif-bold"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="9dp"
@@ -201,6 +207,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_chip_unselected"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="sans-serif-bold"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="9dp"
@@ -214,6 +222,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_chip_unselected"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="sans-serif-bold"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="9dp"
@@ -226,6 +236,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_chip_unselected"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="sans-serif-bold"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="9dp"
@@ -384,6 +396,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -391,7 +405,8 @@
                 android:layout_width="21dp"
                 android:layout_height="21dp"
                 android:contentDescription="@string/nav_sale"
-                android:src="@drawable/ic_nav_sale" />
+                android:src="@drawable/ic_nav_sale"
+                app:tint="@color/ember_600" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -409,6 +424,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -416,7 +433,8 @@
                 android:layout_width="21dp"
                 android:layout_height="21dp"
                 android:contentDescription="@string/nav_orders"
-                android:src="@drawable/ic_nav_orders" />
+                android:src="@drawable/ic_nav_orders"
+                app:tint="@color/char_400" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -434,6 +452,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -441,7 +461,8 @@
                 android:layout_width="21dp"
                 android:layout_height="21dp"
                 android:contentDescription="@string/nav_reports"
-                android:src="@drawable/ic_nav_reports" />
+                android:src="@drawable/ic_nav_reports"
+                app:tint="@color/char_400" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -459,6 +480,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -466,7 +489,8 @@
                 android:layout_width="21dp"
                 android:layout_height="21dp"
                 android:contentDescription="@string/nav_profile"
-                android:src="@drawable/ic_nav_profile" />
+                android:src="@drawable/ic_nav_profile"
+                app:tint="@color/char_400" />
 
             <TextView
                 android:layout_width="wrap_content"
