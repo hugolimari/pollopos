@@ -389,14 +389,6 @@ public class PosRepository {
                             p.getPrice() * p.getQuantityInCart(),
                             p.getNotes() != null ? p.getNotes() : ""
                     ));
-
-                    // Deducción automática de insumos crudos mediante recetas de conversión
-                    List<com.example.pollogithub.data.entity.RecetaInsumoEntity> recetas = db.recetaInsumoDao().getByProductoId(p.getId());
-                    if (recetas != null) {
-                        for (com.example.pollogithub.data.entity.RecetaInsumoEntity r : recetas) {
-                            db.insumoDao().descontarStock(r.getInsumoId(), r.getCantidadRequerida() * p.getQuantityInCart());
-                        }
-                    }
                 }
             }
             db.pedidoDetalleDao().insertAll(detalles);
@@ -663,32 +655,6 @@ public class PosRepository {
 
     public LiveData<List<com.example.pollogithub.data.entity.MovimientoCajaEntity>> getMovimientosCajaLiveData(int turnoId) {
         return db.movimientoCajaDao().getByTurnoIdLiveData(turnoId);
-    }
-
-    // ==========================================
-    // MÓDULO: CONTROL DE INVENTARIO E INSUMOS CRUDOS
-    // ==========================================
-
-    public LiveData<List<com.example.pollogithub.data.entity.InsumoEntity>> getInsumosLiveData() {
-        return db.insumoDao().getAllLiveData();
-    }
-
-    public void getInsumos(Callback<List<com.example.pollogithub.data.entity.InsumoEntity>> callback) {
-        executor.execute(() -> {
-            List<com.example.pollogithub.data.entity.InsumoEntity> list = db.insumoDao().getAll();
-            mainHandler.post(() -> {
-                if (callback != null) callback.onSuccess(list);
-            });
-        });
-    }
-
-    public void agregarStockInsumo(int insumoId, double cantidad, Callback<Void> callback) {
-        executor.execute(() -> {
-            db.insumoDao().agregarStock(insumoId, cantidad);
-            mainHandler.post(() -> {
-                if (callback != null) callback.onSuccess(null);
-            });
-        });
     }
 
     // ==========================================

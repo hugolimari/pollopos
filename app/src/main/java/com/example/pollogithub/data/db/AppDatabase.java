@@ -10,24 +10,20 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.pollogithub.R;
 import com.example.pollogithub.data.dao.CategoriaDao;
-import com.example.pollogithub.data.dao.InsumoDao;
 import com.example.pollogithub.data.dao.MovimientoCajaDao;
 import com.example.pollogithub.data.dao.PagoDao;
 import com.example.pollogithub.data.dao.PedidoDao;
 import com.example.pollogithub.data.dao.PedidoDetalleDao;
 import com.example.pollogithub.data.dao.ProductoDao;
-import com.example.pollogithub.data.dao.RecetaInsumoDao;
 import com.example.pollogithub.data.dao.SucursalDao;
 import com.example.pollogithub.data.dao.TurnoDao;
 import com.example.pollogithub.data.dao.UsuarioDao;
 import com.example.pollogithub.data.entity.CategoriaEntity;
-import com.example.pollogithub.data.entity.InsumoEntity;
 import com.example.pollogithub.data.entity.MovimientoCajaEntity;
 import com.example.pollogithub.data.entity.PagoEntity;
 import com.example.pollogithub.data.entity.PedidoDetalleEntity;
 import com.example.pollogithub.data.entity.PedidoEntity;
 import com.example.pollogithub.data.entity.ProductoEntity;
-import com.example.pollogithub.data.entity.RecetaInsumoEntity;
 import com.example.pollogithub.data.entity.RolEntity;
 import com.example.pollogithub.data.entity.SucursalEntity;
 import com.example.pollogithub.data.entity.TurnoEntity;
@@ -62,10 +58,8 @@ import java.util.concurrent.Executors;
         PedidoEntity.class,
         PedidoDetalleEntity.class,
         PagoEntity.class,
-        MovimientoCajaEntity.class,
-        InsumoEntity.class,
-        RecetaInsumoEntity.class
-}, version = 3, exportSchema = false)
+        MovimientoCajaEntity.class
+}, version = 4, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     /**
@@ -94,8 +88,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract PedidoDetalleDao pedidoDetalleDao();
     public abstract PagoDao pagoDao();
     public abstract MovimientoCajaDao movimientoCajaDao();
-    public abstract InsumoDao insumoDao();
-    public abstract RecetaInsumoDao recetaInsumoDao();
 
     /**
      * Proporciona acceso global al ejecutor de subprocesos de base de datos.
@@ -213,39 +205,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 db.productoDao().insertAll(productos);
             }
 
-            // 5. Insumos Crudos (Inventario de Materia Prima)
-            if (db.insumoDao().count() == 0) {
-                List<InsumoEntity> insumos = new ArrayList<>();
-                insumos.add(new InsumoEntity((int) sucursalId, "Pollo entero crudo", "unidades", 40.0, 5.0, 22.00));
-                insumos.add(new InsumoEntity((int) sucursalId, "Papas para freír", "kg", 30.0, 8.0, 6.50));
-                insumos.add(new InsumoEntity((int) sucursalId, "Gaseosa 500ml", "unidades", 50.0, 10.0, 2.80));
-                insumos.add(new InsumoEntity((int) sucursalId, "Aceite freidora", "litros", 20.0, 5.0, 12.00));
-                db.insumoDao().insertAll(insumos);
-            }
-
-            // 6. Recetas de Conversión de Insumos por Producto
-            if (db.recetaInsumoDao().count() == 0) {
-                List<RecetaInsumoEntity> recetas = new ArrayList<>();
-                // Presa individual -> 0.125 pollo (1/8)
-                recetas.add(new RecetaInsumoEntity(1, 1, 0.125));
-                // 1/4 de pollo frito -> 0.25 pollo + 0.25 kg papas
-                recetas.add(new RecetaInsumoEntity(2, 1, 0.25));
-                recetas.add(new RecetaInsumoEntity(2, 2, 0.25));
-                // 1/2 pollo a la brasa -> 0.50 pollo + 0.35 kg papas
-                recetas.add(new RecetaInsumoEntity(3, 1, 0.50));
-                recetas.add(new RecetaInsumoEntity(3, 2, 0.35));
-                // Combo Familiar -> 1.0 pollo + 0.60 kg papas + 2 gaseosas
-                recetas.add(new RecetaInsumoEntity(4, 1, 1.00));
-                recetas.add(new RecetaInsumoEntity(4, 2, 0.60));
-                recetas.add(new RecetaInsumoEntity(4, 3, 2.00));
-                // Gaseosa 500ml -> 1.0 gaseosa
-                recetas.add(new RecetaInsumoEntity(5, 3, 1.00));
-                // Papas fritas -> 0.35 kg papas
-                recetas.add(new RecetaInsumoEntity(6, 2, 0.35));
-                db.recetaInsumoDao().insertAll(recetas);
-            }
-
-            // 7. Turno Inicial de Operación en Caja (si no existe turno)
+            // 5. Turno Inicial de Operación en Caja (si no existe turno)
             if (db.turnoDao().getTurnoActivo() == null) {
                 TurnoEntity turno = new TurnoEntity((int) sucursalId, 1, 100.00, System.currentTimeMillis() - 3600000, null, null, null, null, "abierto");
                 long turnoId = db.turnoDao().insert(turno);

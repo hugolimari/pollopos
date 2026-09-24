@@ -139,6 +139,12 @@ public class VentaFragment extends Fragment {
             }
 
             @Override
+            public void onRemoveFromCart(Product product) {
+                ventaViewModel.removeProductFromCart(product);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
             public void onCustomizeProduct(Product product) {
                 showProductModifiersDialog(product);
             }
@@ -181,10 +187,6 @@ public class VentaFragment extends Fragment {
 
         view.findViewById(R.id.btnViewOrder).setOnClickListener(openPagoListener);
         cartBar.setOnClickListener(openPagoListener);
-
-        view.findViewById(R.id.btnNotification).setOnClickListener(v ->
-            Toast.makeText(requireContext(), "Sin notificaciones pendientes", Toast.LENGTH_SHORT).show()
-        );
 
         return view;
     }
@@ -238,6 +240,8 @@ public class VentaFragment extends Fragment {
 
         View cardOptionLocal = dialogView.findViewById(R.id.cardOptionLocal);
         View cardOptionLlevar = dialogView.findViewById(R.id.cardOptionLlevar);
+        View iconContainerLocal = dialogView.findViewById(R.id.iconContainerLocal);
+        View iconContainerLlevar = dialogView.findViewById(R.id.iconContainerLlevar);
         ImageView ivModalIconLocal = dialogView.findViewById(R.id.ivModalIconLocal);
         ImageView ivModalIconLlevar = dialogView.findViewById(R.id.ivModalIconLlevar);
         ImageView radioLocalIndicator = dialogView.findViewById(R.id.radioLocalIndicator);
@@ -257,18 +261,22 @@ public class VentaFragment extends Fragment {
             boolean isLocal = "mesa".equalsIgnoreCase(selectedMode[0]);
             if (isLocal) {
                 cardOptionLocal.setBackgroundResource(R.drawable.bg_card_mode_selected);
+                iconContainerLocal.setBackgroundResource(R.drawable.bg_avatar_circle);
                 ivModalIconLocal.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.white)));
                 radioLocalIndicator.setImageResource(R.drawable.ic_check_circle_ember);
 
                 cardOptionLlevar.setBackgroundResource(R.drawable.bg_card_mode_unselected);
+                iconContainerLlevar.setBackgroundResource(R.drawable.bg_icon_btn);
                 ivModalIconLlevar.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.char_700)));
                 radioLlevarIndicator.setImageResource(R.drawable.ic_circle_outline);
             } else {
                 cardOptionLlevar.setBackgroundResource(R.drawable.bg_card_mode_selected);
+                iconContainerLlevar.setBackgroundResource(R.drawable.bg_avatar_circle);
                 ivModalIconLlevar.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.white)));
                 radioLlevarIndicator.setImageResource(R.drawable.ic_check_circle_ember);
 
                 cardOptionLocal.setBackgroundResource(R.drawable.bg_card_mode_unselected);
+                iconContainerLocal.setBackgroundResource(R.drawable.bg_icon_btn);
                 ivModalIconLocal.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.char_700)));
                 radioLocalIndicator.setImageResource(R.drawable.ic_circle_outline);
             }

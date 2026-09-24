@@ -18,7 +18,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.pollogithub.data.entity.InsumoEntity;
 import com.example.pollogithub.data.entity.MovimientoCajaEntity;
 import com.example.pollogithub.data.entity.TurnoEntity;
 import com.example.pollogithub.data.repository.PosRepository;
@@ -95,13 +94,7 @@ public class PerfilFragment extends Fragment {
             });
         }
 
-        // 2. Control de Inventario de Insumos Crudos
-        View btnInventarioInsumos = view.findViewById(R.id.btnInventarioInsumos);
-        if (btnInventarioInsumos != null) {
-            btnInventarioInsumos.setOnClickListener(v -> showInventarioDialog());
-        }
-
-        // 3. Movimientos de Caja Chica (Gastos / Ingresos)
+        // 2. Movimientos de Caja Chica (Gastos / Ingresos)
         View btnMovimientoCaja = view.findViewById(R.id.btnMovimientoCaja);
         if (btnMovimientoCaja != null) {
             btnMovimientoCaja.setOnClickListener(v -> showMovimientoCajaDialog());
@@ -334,147 +327,5 @@ public class PerfilFragment extends Fragment {
         });
 
         dialog.show();
-    }
-
-    /**
-     * Muestra el diálogo modal con el stock de insumos crudos y opción de recarga rápida de stock.
-     */
-    private void showInventarioDialog() {
-        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_inventario_insumos, null);
-        LinearLayout layoutInsumos = dialogView.findViewById(R.id.layoutInsumosContainer);
-        View btnClose = dialogView.findViewById(R.id.btnCloseInventario);
-        View btnListo = dialogView.findViewById(R.id.btnCerrarInventario);
-
-        AlertDialog dialog = new AlertDialog.Builder(requireContext())
-                .setView(dialogView)
-                .setCancelable(true)
-                .create();
-
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        }
-
-        btnClose.setOnClickListener(v -> dialog.dismiss());
-        btnListo.setOnClickListener(v -> dialog.dismiss());
-
-        repository.getInsumos(new PosRepository.Callback<List<InsumoEntity>>() {
-            @Override
-            public void onSuccess(List<InsumoEntity> insumos) {
-                layoutInsumos.removeAllViews();
-                if (insumos == null || insumos.isEmpty()) {
-                    TextView tvVacio = new TextView(requireContext());
-                    tvVacio.setText("No hay insumos registrados en el sistema.");
-                    tvVacio.setTextColor(ContextCompat.getColor(requireContext(), R.color.char_400));
-                    layoutInsumos.addView(tvVacio);
-                    return;
-                }
-
-                for (InsumoEntity ins : insumos) {
-                    LinearLayout row = new LinearLayout(requireContext());
-                    row.setOrientation(LinearLayout.VERTICAL);
-                    row.setPadding(0, 8, 0, 8);
-
-                    RelativeLayout itemRow = new RelativeLayout(requireContext());
-
-                    LinearLayout leftCol = new LinearLayout(requireContext());
-                    leftCol.setOrientation(LinearLayout.VERTICAL);
-
-                    TextView tvNombre = new TextView(requireContext());
-                    tvNombre.setText(ins.getNombre());
-                    tvNombre.setTextColor(ContextCompat.getColor(requireContext(), R.color.char_900));
-                    tvNombre.setTextSize(13.5f);
-                    tvNombre.setTypeface(Typeface.create("sans-serif-bold", Typeface.BOLD));
-
-                    TextView tvStock = new TextView(requireContext());
-                    boolean stockBajo = ins.getStockActual() <= ins.getStockMinimo();
-                    tvStock.setText(String.format(Locale.getDefault(), "Stock: %.1f %s (Mín: %.1f)", 
-                            ins.getStockActual(), ins.getUnidadMedida(), ins.getStockMinimo()));
-                    tvStock.setTextColor(ContextCompat.getColor(requireContext(), stockBajo ? R.color.ember_600 : R.color.char_700));
-                    tvStock.setTextSize(12f);
-
-                    leftCol.addView(tvNombre);
-                    leftCol.addView(tvStock);
-
-                    RelativeLayout.LayoutParams lpLeft = new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.WRAP_CONTENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT);
-                    lpLeft.addRule(RelativeLayout.ALIGN_PARENT_START);
-                    itemRow.addView(leftCol, lpLeft);
-
-                    // Botón para sumar stock
-                    TextView btnAdd = new TextView(requireContext());
-                    btnAdd.setText("+ Añadir");
-                    btnAdd.setBackgroundResource(R.drawable.bg_chip_selected);
-                    btnAdd.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
-                    btnAdd.setTextSize(11.5f);
-                    btnAdd.setTypeface(Typeface.create("sans-serif-bold", Typeface.BOLD));
-                    btnAdd.setPadding(20, 10, 20, 10);
-
-                    RelativeLayout.LayoutParams lpBtn = new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.WRAP_CONTENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT);
-                    lpBtn.addRule(RelativeLayout.ALIGN_PARENT_END);
-                    lpBtn.addRule(RelativeLayout.CENTER_VERTICAL);
-                    itemRow.addView(btnAdd, lpBtn);
-
-                    btnAdd.setOnClickListener(v -> {
-                        showAgregarStockDialog(ins, dialog);
-                    });
-
-                    row.addView(itemRow);
-
-                    View sep = new View(requireContext());
-                    sep.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
-                    sep.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.line_color));
-                    row.addView(sep);
-
-                    layoutInsumos.addView(row);
-                }
-            }
-
-            @Override
-            public void onError(String error) {
-                Toast.makeText(requireContext(), "Error al cargar inventario: " + error, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        dialog.show();
-    }
-
-    private void showAgregarStockDialog(InsumoEntity insumo, AlertDialog parentDialog) {
-        EditText input = new EditText(requireContext());
-        input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        input.setHint("Cantidad a ingresar");
-        input.setPadding(40, 30, 40, 30);
-
-        new AlertDialog.Builder(requireContext())
-                .setTitle("Ingreso de Insumo: " + insumo.getNombre())
-                .setMessage("Ingresa la cantidad en " + insumo.getUnidadMedida() + " que ingresa al local:")
-                .setView(input)
-                .setPositiveButton("Agregar", (d, w) -> {
-                    String str = input.getText().toString().trim();
-                    if (!str.isEmpty()) {
-                        try {
-                            double cant = Double.parseDouble(str);
-                            if (cant > 0) {
-                                repository.agregarStockInsumo(insumo.getId(), cant, new PosRepository.Callback<Void>() {
-                                    @Override
-                                    public void onSuccess(Void result) {
-                                        Toast.makeText(requireContext(), "Stock actualizado", Toast.LENGTH_SHORT).show();
-                                        if (parentDialog.isShowing()) {
-                                            parentDialog.dismiss();
-                                            showInventarioDialog();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onError(String error) {}
-                                });
-                            }
-                        } catch (NumberFormatException ignored) {}
-                    }
-                })
-                .setNegativeButton("Cancelar", null)
-                .show();
     }
 }

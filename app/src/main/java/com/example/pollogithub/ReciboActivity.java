@@ -271,7 +271,7 @@ public class ReciboActivity extends AppCompatActivity {
         } else {
             double subtotal = totalAmount + discountAmount;
             bytes = builder.buildTicketCliente(
-                    "POLLOS EL SABOR DEL CHEF",
+                    "POLLO QUE HACE POLLO",
                     "Sucursal Centro",
                     orderNumber,
                     tipoEntrega,
@@ -314,7 +314,7 @@ public class ReciboActivity extends AppCompatActivity {
         StringBuilder sbHtml = new StringBuilder();
         sbHtml.append("<html><body style='font-family:sans-serif; padding:12px;'>");
         sbHtml.append("<div style='text-align:center;'>");
-        sbHtml.append("<h2>POLLOS EL SABOR DEL CHEF</h2>");
+        sbHtml.append("<h2>POLLO QUE HACE POLLO</h2>");
         sbHtml.append("<p>Sucursal Centro</p>");
         sbHtml.append("<h3>ORDEN #").append(String.format(Locale.getDefault(), "%04d", orderNumber)).append("</h3>");
         String mod = "mesa".equalsIgnoreCase(tipoEntrega) || "local".equalsIgnoreCase(tipoEntrega) ? "En el local" : "Para llevar";
@@ -354,7 +354,7 @@ public class ReciboActivity extends AppCompatActivity {
     private void compartirComprobante() {
         double subtotal = totalAmount + discountAmount;
         String textTicket = EscPosTicketBuilder.buildPlainTextTicket(
-                "POLLOS EL SABOR DEL CHEF",
+                "POLLO QUE HACE POLLO",
                 orderNumber,
                 tipoEntrega,
                 detallesList,

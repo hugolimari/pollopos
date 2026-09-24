@@ -157,6 +157,26 @@ public class VentaViewModel extends AndroidViewModel {
     }
 
     /**
+     * Decrementa la cantidad de un producto dentro del carrito de compras.
+     * Si llega a cero, se remueve del carrito.
+     * 
+     * @param product Artículo a decrementar por el cajero.
+     */
+    public void removeProductFromCart(Product product) {
+        int currentQty = cartQuantities.containsKey(product.getId()) ? cartQuantities.get(product.getId()) : 0;
+        if (currentQty <= 0) return;
+        int newQty = currentQty - 1;
+        if (newQty > 0) {
+            cartQuantities.put(product.getId(), newQty);
+        } else {
+            cartQuantities.remove(product.getId());
+        }
+        product.setQuantityInCart(newQty);
+
+        recalculateCart();
+    }
+
+    /**
      * Restablece el carrito de compras, vaciando el estado en memoria y reseteando contadores a cero.
      */
     public void clearCart() {

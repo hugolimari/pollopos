@@ -49,6 +49,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         void onAddToCart(Product product);
 
         /**
+         * Notifica la intención de remover o restar una unidad del producto del carrito.
+         */
+        default void onRemoveFromCart(Product product) {
+            // Implementación por defecto opcional
+        }
+
+        /**
          * Notifica la intención de personalizar el plato con notas o modificadores de cocina.
          * Por defecto, agrega una unidad directamente al carrito si no se sobreescribe.
          */
@@ -132,6 +139,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             holder.tvBadgeQty.setVisibility(View.GONE);
         }
 
+        // Control de botón '-' (reducir cantidad)
+        if (holder.btnMinus != null) {
+            if (product.getQuantityInCart() > 0 && !product.isAgotado()) {
+                holder.btnMinus.setEnabled(true);
+                holder.btnMinus.setAlpha(1.0f);
+            } else {
+                holder.btnMinus.setEnabled(false);
+                holder.btnMinus.setAlpha(0.35f);
+            }
+
+            holder.btnMinus.setOnClickListener(v -> {
+                if (!product.isAgotado() && product.getQuantityInCart() > 0 && listener != null) {
+                    listener.onRemoveFromCart(product);
+                }
+            });
+        }
+
         // Delegación de eventos: botón '+' agrega directo, tocar la tarjeta abre modificadores
         holder.btnAdd.setOnClickListener(v -> {
             if (!product.isAgotado() && listener != null) {
@@ -159,6 +183,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         ImageView ivProductImage;
         TextView tvEmoji, tvAgotadoTag, tvBadgeQty, tvName, tvDesc, tvPrice;
         View btnAdd;
+        View btnMinus;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -171,6 +196,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             tvDesc = itemView.findViewById(R.id.tvProductDesc);
             tvPrice = itemView.findViewById(R.id.tvProductPrice);
             btnAdd = itemView.findViewById(R.id.btnAdd);
+            btnMinus = itemView.findViewById(R.id.btnMinus);
         }
     }
 }

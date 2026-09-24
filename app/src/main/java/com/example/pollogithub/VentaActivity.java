@@ -87,11 +87,23 @@ public class VentaActivity extends AppCompatActivity {
         RecyclerView rvProducts = findViewById(R.id.rvProducts);
         rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
 
-        // 3. Inicialización del adaptador con callback de adición al carrito
-        adapter = new ProductAdapter(this, displayedProducts, product -> {
-            product.setQuantityInCart(product.getQuantityInCart() + 1);
-            adapter.notifyDataSetChanged();
-            updateCartSummary();
+        // 3. Inicialización del adaptador con callbacks de adición y remoción
+        adapter = new ProductAdapter(this, displayedProducts, new ProductAdapter.OnProductClickListener() {
+            @Override
+            public void onAddToCart(Product product) {
+                product.setQuantityInCart(product.getQuantityInCart() + 1);
+                adapter.notifyDataSetChanged();
+                updateCartSummary();
+            }
+
+            @Override
+            public void onRemoveFromCart(Product product) {
+                if (product.getQuantityInCart() > 0) {
+                    product.setQuantityInCart(product.getQuantityInCart() - 1);
+                    adapter.notifyDataSetChanged();
+                    updateCartSummary();
+                }
+            }
         });
         rvProducts.setAdapter(adapter);
 
@@ -110,10 +122,6 @@ public class VentaActivity extends AppCompatActivity {
 
         findViewById(R.id.btnViewOrder).setOnClickListener(openPagoListener);
         findViewById(R.id.cartBar).setOnClickListener(openPagoListener);
-
-        findViewById(R.id.btnNotification).setOnClickListener(v ->
-            Toast.makeText(this, "Sin notificaciones pendientes", Toast.LENGTH_SHORT).show()
-        );
     }
 
     /**

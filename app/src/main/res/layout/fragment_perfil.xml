@@ -196,33 +196,7 @@
                     android:textColor="@color/ember_700"
                     android:textSize="13.5sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/line_color" />
-
-                <!-- 2. Inventario de Insumos (Pollos, Bebidas, etc.) -->
-                <TextView
-                    android:id="@+id/btnInventarioInsumos"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="?attr/selectableItemBackground"
-                    android:drawableStart="@drawable/ic_trend_up"
-                    android:drawablePadding="12dp"
-                    android:drawableTint="@color/char_700"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="12dp"
-                    android:text="Inventario de Insumos (Pollos / Bebidas)"
-                    android:textColor="@color/char_700"
-                    android:textSize="13sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/line_color" />
-
-                <!-- 3. Movimientos de Caja Chica (Gastos / Ingresos) -->
+                <!-- 2. Movimientos de Caja Chica (Gastos / Ingresos) -->
                 <TextView
                     android:id="@+id/btnMovimientoCaja"
                     android:layout_width="match_parent"
