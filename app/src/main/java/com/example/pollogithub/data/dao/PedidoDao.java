@@ -140,6 +140,9 @@ public interface PedidoDao {
     @Query("UPDATE pedidos SET estado = 'cancelado', estadoPago = 'cancelado', motivoCancelacion = :motivo WHERE id = :id")
     void cancelarPedido(int id, String motivo);
 
+    @Query("UPDATE pedidos SET montoDescuento = :montoDescuento, total = subtotal - :montoDescuento WHERE id = :id")
+    void updateDescuento(int id, double montoDescuento);
+
     /**
      * Total absoluto de pedidos gestionados por el sistema desde su puesta en marcha.
      * 

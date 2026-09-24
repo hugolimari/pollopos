@@ -41,13 +41,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     /**
      * Interfaz de comunicación desacoplada para eventos de selección de producto.
      */
+    @FunctionalInterface
     public interface OnProductClickListener {
         /**
-         * Notifica la intención de agregar una unidad del producto al carrito.
-         * 
-         * @param product Instancia del producto seleccionado.
+         * Notifica la intención de agregar una unidad del producto directamente al carrito.
          */
         void onAddToCart(Product product);
+
+        /**
+         * Notifica la intención de personalizar el plato con notas o modificadores de cocina.
+         * Por defecto, agrega una unidad directamente al carrito si no se sobreescribe.
+         */
+        default void onCustomizeProduct(Product product) {
+            onAddToCart(product);
+        }
     }
 
     private Context context;
@@ -125,7 +132,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             holder.tvBadgeQty.setVisibility(View.GONE);
         }
 
-        // Delegación de eventos de pulsación al listener externo
+        // Delegación de eventos: botón '+' agrega directo, tocar la tarjeta abre modificadores
         holder.btnAdd.setOnClickListener(v -> {
             if (!product.isAgotado() && listener != null) {
                 listener.onAddToCart(product);
@@ -134,7 +141,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.itemView.setOnClickListener(v -> {
             if (!product.isAgotado() && listener != null) {
-                listener.onAddToCart(product);
+                listener.onCustomizeProduct(product);
             }
         });
     }

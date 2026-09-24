@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_order_card"
+    android:orientation="vertical"
+    android:padding="22dp">
+
+    <!-- Header -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Movimiento de Caja Chica"
+                android:textColor="@color/char_900"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif"
+                android:text="Registrar gastos menores o inyecciones de efectivo"
+                android:textColor="@color/char_400"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btnCloseMovimiento"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="6dp"
+            android:src="@drawable/ic_back_arrow"
+            app:tint="@color/char_400" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/line_color" />
+
+    <!-- Selector de Tipo: Egreso vs Ingreso -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-bold"
+        android:text="Tipo de movimiento:"
+        android:textColor="@color/char_700"
+        android:textSize="12.5sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_order_mode_container"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/btnTipoEgreso"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_order_mode_active"
+            android:fontFamily="sans-serif-bold"
+            android:gravity="center"
+            android:text="Salida / Gasto (-)"
+            android:textColor="@color/ember_600"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/btnTipoIngreso"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="Ingreso Extra (+)"
+            android:textColor="@color/char_400"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- Importe Monetario -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-bold"
+        android:text="Monto en efectivo:"
+        android:textColor="@color/char_700"
+        android:textSize="12.5sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_cash_input"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="14dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-bold"
+            android:text="Bs."
+            android:textColor="@color/char_400"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etMontoMovimiento"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:fontFamily="sans-serif-bold"
+            android:hint="0.00"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/char_900"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <!-- Motivos rápidos -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-bold"
+        android:text="Concepto común rápido:"
+        android:textColor="@color/char_700"
+        android:textSize="12.5sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/chipMotivoCarbon"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Carbón"
+            android:textColor="@color/char_700"
+            android:textSize="11.5sp" />
+
+        <TextView
+            android:id="@+id/chipMotivoHielo"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Hielo"
+            android:textColor="@color/char_700"
+            android:textSize="11.5sp" />
+
+        <TextView
+            android:id="@+id/chipMotivoVerduras"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Verduras"
+            android:textColor="@color/char_700"
+            android:textSize="11.5sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="sans-serif-bold"
+        android:text="Justificación o detalle:"
+        android:textColor="@color/char_700"
+        android:textSize="12.5sp" />
+
+    <EditText
+        android:id="@+id/etConceptoMovimiento"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_input_field"
+        android:fontFamily="sans-serif"
+        android:hint="Ej. Compra de 2 bolsas de hielo para bebidas"
+        android:importantForAutofill="no"
+        android:inputType="textCapSentences"
+        android:paddingHorizontal="14dp"
+        android:textColor="@color/char_900"
+        android:textColorHint="@color/char_400"
+        android:textSize="13sp" />
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancelarMovimiento"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_outline"
+            android:fontFamily="sans-serif-bold"
+            android:text="Cancelar"
+            android:textColor="@color/char_700"
+            android:textSize="13sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGuardarMovimiento"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1.6"
+            android:background="@drawable/bg_button_primary"
+            android:fontFamily="sans-serif-bold"
+            android:text="Registrar en Caja"
+            android:textColor="@color/white"
+            android:textSize="13.5sp" />
+    </LinearLayout>
+</LinearLayout>

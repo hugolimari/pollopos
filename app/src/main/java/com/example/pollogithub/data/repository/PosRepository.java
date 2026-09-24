@@ -387,8 +387,16 @@ public class PosRepository {
                             p.getQuantityInCart(),
                             p.getPrice(),
                             p.getPrice() * p.getQuantityInCart(),
-                            ""
+                            p.getNotes() != null ? p.getNotes() : ""
                     ));
+
+                    // Deducción automática de insumos crudos mediante recetas de conversión
+                    List<com.example.pollogithub.data.entity.RecetaInsumoEntity> recetas = db.recetaInsumoDao().getByProductoId(p.getId());
+                    if (recetas != null) {
+                        for (com.example.pollogithub.data.entity.RecetaInsumoEntity r : recetas) {
+                            db.insumoDao().descontarStock(r.getInsumoId(), r.getCantidadRequerida() * p.getQuantityInCart());
+                        }
+                    }
                 }
             }
             db.pedidoDetalleDao().insertAll(detalles);
@@ -477,9 +485,17 @@ public class PosRepository {
      * @param callback   Callback con la entidad de pago registrada.
      */
     public void registrarPago(int pedidoId, String metodoPago, double total, double recibido, double vuelto, Callback<PagoEntity> callback) {
+        registrarPago(pedidoId, metodoPago, total, recibido, vuelto, "", callback);
+    }
+
+    /**
+     * Liquida financieramente un pedido registrando el pago, referencia de cobro mixto/digital
+     * y transicionando el estado contable a 'pagado'.
+     */
+    public void registrarPago(int pedidoId, String metodoPago, double total, double recibido, double vuelto, String referencia, Callback<PagoEntity> callback) {
         executor.execute(() -> {
             int turnoId = sessionManager.getTurnoId();
-            PagoEntity pago = new PagoEntity(pedidoId, turnoId, metodoPago.toLowerCase(), total, recibido, vuelto, "", System.currentTimeMillis());
+            PagoEntity pago = new PagoEntity(pedidoId, turnoId, metodoPago.toLowerCase(), total, recibido, vuelto, referencia != null ? referencia : "", System.currentTimeMillis());
             long pagoId = db.pagoDao().insert(pago);
             pago.setId((int) pagoId);
 
@@ -495,7 +511,7 @@ public class PosRepository {
 
     /**
      * DTO (Data Transfer Object) para el informe consolidado del cierre de turno.
-     * Encapsula la agregación financiera por métodos de pago y el saldo esperado en efectivo.
+     * Encapsula la agregación financiera por métodos de pago, egresos/gastos y saldo esperado en efectivo.
      */
     public static class ResumenTurno {
         public double totalVentas;
@@ -504,11 +520,14 @@ public class PosRepository {
         public double totalQr;
         public int totalPedidos;
         public double fondoInicial;
+        public double totalEgresosGastos;
+        public double totalIngresosExtra;
         public double esperado;
     }
 
     /**
-     * Computa las métricas de recaudación contable para un turno de caja específico.
+     * Computa las métricas de recaudación contable para un turno de caja específico,
+     * considerando fondo inicial, ventas en efectivo y movimientos de caja chica (egresos e ingresos).
      * 
      * @param turnoId  Identificador del turno a resumir.
      * @param callback Callback que retorna el objeto ResumenTurno consolidado.
@@ -530,6 +549,12 @@ public class PosRepository {
             Double totalQr = db.pagoDao().getTotalQrByTurno(turnoId);
             if (totalQr == null) totalQr = 0.0;
 
+            Double totalEgresos = db.movimientoCajaDao().getTotalEgresosByTurno(turnoId);
+            if (totalEgresos == null) totalEgresos = 0.0;
+
+            Double totalIngresos = db.movimientoCajaDao().getTotalIngresosExtraByTurno(turnoId);
+            if (totalIngresos == null) totalIngresos = 0.0;
+
             List<PagoEntity> pagos = db.pagoDao().getByTurnoId(turnoId);
             int countPedidos = pagos != null ? pagos.size() : 0;
 
@@ -539,8 +564,10 @@ public class PosRepository {
             resumen.totalEfectivo = totalEfectivo;
             resumen.totalTarjeta = totalTarjeta;
             resumen.totalQr = totalQr;
+            resumen.totalEgresosGastos = totalEgresos;
+            resumen.totalIngresosExtra = totalIngresos;
             resumen.totalPedidos = countPedidos;
-            resumen.esperado = fondo + totalEfectivo;
+            resumen.esperado = fondo + totalEfectivo + totalIngresos - totalEgresos;
 
             mainHandler.post(() -> callback.onSuccess(resumen));
         });
@@ -605,6 +632,75 @@ public class PosRepository {
             stats.pedidosLlevar = llevar;
 
             mainHandler.post(() -> callback.onSuccess(stats));
+        });
+    }
+
+    // ==========================================
+    // MÓDULO: CONTROL DE CAJA CHICA Y EGRESOS
+    // ==========================================
+
+    public void registrarMovimientoCaja(String tipo, double monto, String concepto, Callback<com.example.pollogithub.data.entity.MovimientoCajaEntity> callback) {
+        executor.execute(() -> {
+            int turnoId = sessionManager.getTurnoId();
+            com.example.pollogithub.data.entity.MovimientoCajaEntity mov = 
+                new com.example.pollogithub.data.entity.MovimientoCajaEntity(turnoId, tipo.toUpperCase(), monto, concepto, System.currentTimeMillis());
+            long id = db.movimientoCajaDao().insert(mov);
+            mov.setId((int) id);
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(mov);
+            });
+        });
+    }
+
+    public void getMovimientosCajaByTurno(int turnoId, Callback<List<com.example.pollogithub.data.entity.MovimientoCajaEntity>> callback) {
+        executor.execute(() -> {
+            List<com.example.pollogithub.data.entity.MovimientoCajaEntity> list = db.movimientoCajaDao().getByTurnoId(turnoId);
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(list);
+            });
+        });
+    }
+
+    public LiveData<List<com.example.pollogithub.data.entity.MovimientoCajaEntity>> getMovimientosCajaLiveData(int turnoId) {
+        return db.movimientoCajaDao().getByTurnoIdLiveData(turnoId);
+    }
+
+    // ==========================================
+    // MÓDULO: CONTROL DE INVENTARIO E INSUMOS CRUDOS
+    // ==========================================
+
+    public LiveData<List<com.example.pollogithub.data.entity.InsumoEntity>> getInsumosLiveData() {
+        return db.insumoDao().getAllLiveData();
+    }
+
+    public void getInsumos(Callback<List<com.example.pollogithub.data.entity.InsumoEntity>> callback) {
+        executor.execute(() -> {
+            List<com.example.pollogithub.data.entity.InsumoEntity> list = db.insumoDao().getAll();
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(list);
+            });
+        });
+    }
+
+    public void agregarStockInsumo(int insumoId, double cantidad, Callback<Void> callback) {
+        executor.execute(() -> {
+            db.insumoDao().agregarStock(insumoId, cantidad);
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(null);
+            });
+        });
+    }
+
+    // ==========================================
+    // MÓDULO: DESCUENTOS Y PROMOCIONES
+    // ==========================================
+
+    public void aplicarDescuentoPedido(int pedidoId, double montoDescuento, Callback<Void> callback) {
+        executor.execute(() -> {
+            db.pedidoDao().updateDescuento(pedidoId, montoDescuento);
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(null);
+            });
         });
     }
 }

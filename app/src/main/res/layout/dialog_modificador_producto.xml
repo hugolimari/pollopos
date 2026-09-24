@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_order_card"
+    android:orientation="vertical"
+    android:padding="22dp">
+
+    <!-- Header Modal -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvModalProdName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="1/4 de pollo frito"
+                android:textColor="@color/char_900"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tvModalProdPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif-bold"
+                android:text="Bs. 14.00"
+                android:textColor="@color/ember_600"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btnCloseModifier"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="6dp"
+            android:src="@drawable/ic_back_arrow"
+            app:tint="@color/char_400" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="14dp"
+        android:background="@color/line_color" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-bold"
+        android:text="Opciones rápidas de preparación:"
+        android:textColor="@color/char_700"
+        android:textSize="12.5sp" />
+
+    <!-- Quick Chips Grid / Flow -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/chipPierna"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Pierna"
+            android:textColor="@color/char_700"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/chipPechuga"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Pechuga"
+            android:textColor="@color/char_700"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/chipDorado"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Bien dorado"
+            android:textColor="@color/char_700"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/chipSinEnsalada"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Sin ensalada"
+            android:textColor="@color/char_700"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/chipSinAji"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Sin ají"
+            android:textColor="@color/char_700"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/chipSalsaAparte"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_unselected"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Salsa aparte"
+            android:textColor="@color/char_700"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-bold"
+        android:text="Nota especial o comanda:"
+        android:textColor="@color/char_700"
+        android:textSize="12.5sp" />
+
+    <EditText
+        android:id="@+id/etCustomNotes"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_input_field"
+        android:fontFamily="sans-serif"
+        android:hint="Ej. Papas bien cocidas, presa grande..."
+        android:importantForAutofill="no"
+        android:inputType="textCapSentences"
+        android:paddingHorizontal="14dp"
+        android:textColor="@color/char_900"
+        android:textColorHint="@color/char_400"
+        android:textSize="13sp" />
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancelModifier"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_outline"
+            android:fontFamily="sans-serif-bold"
+            android:text="Cancelar"
+            android:textColor="@color/char_700"
+            android:textSize="13sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnConfirmModifier"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1.6"
+            android:background="@drawable/bg_button_primary"
+            android:fontFamily="sans-serif-bold"
+            android:text="Agregar al Pedido"
+            android:textColor="@color/white"
+            android:textSize="13.5sp" />
+    </LinearLayout>
+</LinearLayout>

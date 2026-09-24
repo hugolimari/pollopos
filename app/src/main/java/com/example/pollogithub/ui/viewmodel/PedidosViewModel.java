@@ -120,8 +120,11 @@ public class PedidosViewModel extends AndroidViewModel {
                         StringBuilder sb = new StringBuilder();
                         for (int i = 0; i < result.size(); i++) {
                             PedidoDetalleEntity d = result.get(i);
-                            if (i > 0) sb.append(", ");
+                            if (i > 0) sb.append("\n");
                             sb.append(d.getCantidad()).append("× ").append(d.getNombreProducto());
+                            if (d.getNotas() != null && !d.getNotas().trim().isEmpty()) {
+                                sb.append(" [").append(d.getNotas().trim()).append("]");
+                            }
                         }
                         order.setItems(sb.toString());
                         // Notificación de mutación de detalle al observador

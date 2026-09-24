@@ -63,6 +63,8 @@ public class CierreCajaActivity extends AppCompatActivity {
     private TextView tvResumenQr;
     private TextView tvResumenTotalVendido;
     private TextView tvResumenFondoInicial;
+    private TextView tvResumenIngresosExtra;
+    private TextView tvResumenEgresosGastos;
     private TextView tvResumenEsperado;
 
     // Componentes de retroalimentación de arqueo físico
@@ -97,6 +99,8 @@ public class CierreCajaActivity extends AppCompatActivity {
         tvResumenQr = findViewById(R.id.tvResumenQr);
         tvResumenTotalVendido = findViewById(R.id.tvResumenTotalVendido);
         tvResumenFondoInicial = findViewById(R.id.tvResumenFondoInicial);
+        tvResumenIngresosExtra = findViewById(R.id.tvResumenIngresosExtra);
+        tvResumenEgresosGastos = findViewById(R.id.tvResumenEgresosGastos);
         tvResumenEsperado = findViewById(R.id.tvResumenEsperado);
 
         cardAlert = findViewById(R.id.cardAlert);
@@ -124,6 +128,12 @@ public class CierreCajaActivity extends AppCompatActivity {
                 tvResumenQr.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalQr));
                 tvResumenTotalVendido.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalVentas));
                 tvResumenFondoInicial.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.fondoInicial));
+                if (tvResumenIngresosExtra != null) {
+                    tvResumenIngresosExtra.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalIngresosExtra));
+                }
+                if (tvResumenEgresosGastos != null) {
+                    tvResumenEgresosGastos.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalEgresosGastos));
+                }
                 tvResumenEsperado.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.esperado));
 
                 // Cálculo inicial de diferencia

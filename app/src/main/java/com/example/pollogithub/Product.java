@@ -66,6 +66,7 @@ public class Product {
      */
     private int quantityInCart;
     private String imagenLocalPath;
+    private String notes = "";
 
     /**
      * Constructor parametrizado completo.
@@ -123,4 +124,7 @@ public class Product {
     public void setQuantityInCart(int quantityInCart) { this.quantityInCart = quantityInCart; }
     public String getImagenLocalPath() { return imagenLocalPath; }
     public void setImagenLocalPath(String imagenLocalPath) { this.imagenLocalPath = imagenLocalPath; }
+
+    public String getNotes() { return notes != null ? notes : ""; }
+    public void setNotes(String notes) { this.notes = notes != null ? notes : ""; }
 }

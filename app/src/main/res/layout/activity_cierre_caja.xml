@@ -142,8 +142,18 @@
                 </LinearLayout>
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Efectivo esperado en caja" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenEsperado" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="(+) Ingresos extra de caja" android:textSize="12sp" android:textColor="@color/ok_600" />
+                    <TextView android:id="@+id/tvResumenIngresosExtra" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/ok_600" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="(-) Gastos / Salidas menores" android:textSize="12sp" android:textColor="@color/ember_600" />
+                    <TextView android:id="@+id/tvResumenEgresosGastos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/ember_600" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="(=) Efectivo esperado en caja" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/char_900" />
+                    <TextView android:id="@+id/tvResumenEsperado" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12.5sp" android:textColor="@color/ember_700" />
                 </LinearLayout>
 
             </LinearLayout>

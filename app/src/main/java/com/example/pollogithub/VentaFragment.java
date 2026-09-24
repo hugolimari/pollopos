@@ -131,9 +131,17 @@ public class VentaFragment extends Fragment {
         RecyclerView rvProducts = view.findViewById(R.id.rvProducts);
         rvProducts.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
-        adapter = new ProductAdapter(requireContext(), displayedProducts, product -> {
-            ventaViewModel.addProductToCart(product);
-            adapter.notifyDataSetChanged();
+        adapter = new ProductAdapter(requireContext(), displayedProducts, new ProductAdapter.OnProductClickListener() {
+            @Override
+            public void onAddToCart(Product product) {
+                ventaViewModel.addProductToCart(product);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCustomizeProduct(Product product) {
+                showProductModifiersDialog(product);
+            }
         });
         rvProducts.setAdapter(adapter);
 
@@ -391,5 +399,86 @@ public class VentaFragment extends Fragment {
         if (adapter != null) {
             adapter.updateList(displayedProducts);
         }
+    }
+
+    /**
+     * Muestra el diálogo modal para personalizar el plato con modificadores de cocina rápidos
+     * (Pierna, Pechuga, Bien dorado, Sin ensalada, Sin ají, Salsa aparte) o notas de comanda.
+     */
+    private void showProductModifiersDialog(Product product) {
+        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_modificador_producto, null);
+
+        TextView tvModalProdName = dialogView.findViewById(R.id.tvModalProdName);
+        TextView tvModalProdPrice = dialogView.findViewById(R.id.tvModalProdPrice);
+        EditText etCustomNotes = dialogView.findViewById(R.id.etCustomNotes);
+        View btnCloseModifier = dialogView.findViewById(R.id.btnCloseModifier);
+        View btnCancelModifier = dialogView.findViewById(R.id.btnCancelModifier);
+        View btnConfirmModifier = dialogView.findViewById(R.id.btnConfirmModifier);
+
+        tvModalProdName.setText(product.getName());
+        tvModalProdPrice.setText(String.format(Locale.getDefault(), "Bs. %.2f", product.getPrice()));
+
+        TextView chipPierna = dialogView.findViewById(R.id.chipPierna);
+        TextView chipPechuga = dialogView.findViewById(R.id.chipPechuga);
+        TextView chipDorado = dialogView.findViewById(R.id.chipDorado);
+        TextView chipSinEnsalada = dialogView.findViewById(R.id.chipSinEnsalada);
+        TextView chipSinAji = dialogView.findViewById(R.id.chipSinAji);
+        TextView chipSalsaAparte = dialogView.findViewById(R.id.chipSalsaAparte);
+
+        TextView[] chips = new TextView[]{chipPierna, chipPechuga, chipDorado, chipSinEnsalada, chipSinAji, chipSalsaAparte};
+        boolean[] chipStates = new boolean[chips.length];
+
+        for (int i = 0; i < chips.length; i++) {
+            final int idx = i;
+            chips[idx].setOnClickListener(v -> {
+                chipStates[idx] = !chipStates[idx];
+                if (chipStates[idx]) {
+                    chips[idx].setBackgroundResource(R.drawable.bg_chip_selected);
+                    chips[idx].setTextColor(requireContext().getColor(R.color.white));
+                } else {
+                    chips[idx].setBackgroundResource(R.drawable.bg_chip_unselected);
+                    chips[idx].setTextColor(requireContext().getColor(R.color.char_700));
+                }
+            });
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setView(dialogView)
+                .setCancelable(true)
+                .create();
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        btnCloseModifier.setOnClickListener(v -> dialog.dismiss());
+        btnCancelModifier.setOnClickListener(v -> dialog.dismiss());
+
+        btnConfirmModifier.setOnClickListener(v -> {
+            List<String> activeModifiers = new ArrayList<>();
+            for (int i = 0; i < chips.length; i++) {
+                if (chipStates[i]) {
+                    activeModifiers.add(chips[i].getText().toString());
+                }
+            }
+
+            String customText = etCustomNotes.getText().toString().trim();
+            if (!customText.isEmpty()) {
+                activeModifiers.add(customText);
+            }
+
+            String finalNotes = String.join(" · ", activeModifiers);
+            product.setNotes(finalNotes);
+
+            ventaViewModel.addProductToCart(product);
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            }
+
+            dialog.dismiss();
+            Toast.makeText(requireContext(), product.getName() + (finalNotes.isEmpty() ? " agregado" : " (" + finalNotes + ")"), Toast.LENGTH_SHORT).show();
+        });
+
+        dialog.show();
     }
 }
