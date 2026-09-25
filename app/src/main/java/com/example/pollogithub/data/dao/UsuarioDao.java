@@ -26,9 +26,6 @@ import java.util.List;
  * - Seguridad y Control de Acceso: Cláusulas SQL que validan la combinación de credenciales y vigencia del usuario.
  * - Prevención de Inyección SQL: Consultas precompiladas y parametrizadas generadas por el compilador de Room.
  * - Manejo de Identidad: Búsqueda indexada por credenciales primarias y secundarias (PIN).
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Dao
 public interface UsuarioDao {

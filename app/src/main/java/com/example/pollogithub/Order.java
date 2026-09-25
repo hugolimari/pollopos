@@ -14,9 +14,6 @@ package com.example.pollogithub;
  * - Patrón DTO (Data Transfer Object): Aísla los requerimientos de representación visual
  *   (fechas formateadas, textos de botones dinámicos) de la entidad de persistencia relacional 'PedidoEntity'.
  * - Abstracción de Interfaz de Usuario: Simplifica el enlace de datos (Data Binding) para la vista KDS.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class Order {
 

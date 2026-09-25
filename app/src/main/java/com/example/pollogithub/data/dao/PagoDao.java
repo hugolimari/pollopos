@@ -25,9 +25,6 @@ import java.util.List;
  * - Manejo Seguro de Nulos: Retorno de tipo envoltorio 'Double' para mitigar excepciones de NullPointerException
  *   cuando un turno no registra pagos en determinada modalidad.
  * - Integridad de Auditoría: Registro de id de inserción autogenerado para vinculación de comprobantes.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Dao
 public interface PagoDao {

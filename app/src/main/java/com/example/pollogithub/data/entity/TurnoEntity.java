@@ -21,9 +21,6 @@ import androidx.room.PrimaryKey;
  * - Fórmulas Matemáticas de Conciliación: diferencia = efectivoContado - efectivoEsperado.
  *   (diferencia < 0: faltante de caja; diferencia > 0: sobrante de caja).
  * - Trazabilidad de Auditoría: Registro de operador (usuarioId) y sede (sucursalId).
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Entity(tableName = "turnos")
 public class TurnoEntity {

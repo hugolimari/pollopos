@@ -35,9 +35,6 @@ import java.util.Locale;
  *   de la base de datos de los requerimientos de formateo de texto, fechas y estados visuales.
  * - Máquina de Estados Operativa: Método 'avanzarEstadoPedido' que gestiona la transición progresiva
  *   ("cocina" -> "listo" -> "entregado") conforme a la dinámica culinaria y de despacho.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class PedidosViewModel extends AndroidViewModel {
 

@@ -22,9 +22,6 @@ import static org.junit.Assert.*;
  * Conceptos de Ingeniería de Software aplicados:
  * - Pruebas Instrumentadas (AndroidX Test Runner): Acceso al Context real de la aplicación
  *   mediante InstrumentationRegistry para validar configuraciones de empaquetado y manifiesto.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {

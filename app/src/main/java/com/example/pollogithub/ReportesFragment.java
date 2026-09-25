@@ -33,9 +33,6 @@ import java.util.Locale;
  * - Computación Asíncrona de Métricas: Consulta vectorizada de pagos y pedidos en Worker Thread.
  * - Sincronización en el Ciclo de Vida: Invocación en 'onResume' para reflejar nuevas ventas
  *   inmediatamente después de cerrar una transacción en la pestaña de ventas.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class ReportesFragment extends Fragment {
 

@@ -32,9 +32,6 @@ import java.util.Locale;
  *   hacia el componente contenedor (Fragment/Activity) mediante la interfaz 'OnProductClickListener'.
  * - Gestión de Estados de Renderizado: Alterna opacidad (alpha) y deshabilitación de componentes
  *   según el estado de disponibilidad/agotamiento del producto.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 

@@ -16,9 +16,6 @@ import static org.junit.Assert.*;
  * Conceptos de Ingeniería de Software aplicados:
  * - Ciclo de Pruebas Unitarias (JUnit 4): Validación de aserciones lógicas deterministas.
  * - Eficiencia en CI/CD: Pruebas ultrarrápidas al no requerir emulador ni dispositivo físico.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class ExampleUnitTest {
 

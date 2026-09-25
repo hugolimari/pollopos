@@ -25,9 +25,6 @@ import java.util.List;
  * - Desacoplamiento (SoC): Aísla las sentencias SQL nativas de la capa de presentación.
  * - Patrón Observer: Retorno de LiveData para actualización automática de vistas.
  * - Idempotencia en Inserción: Estrategia OnConflictStrategy.REPLACE para evitar tuplas duplicadas.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Dao
 public interface CategoriaDao {

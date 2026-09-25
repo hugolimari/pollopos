@@ -15,9 +15,6 @@ package com.example.pollogithub;
  * - Separación de Modelos (Domain/Presentation vs Entity): Desacopla las restricciones
  *   de base de datos del estado mutable de la interfaz gráfica.
  * - Inmutabilidad y Encapsulamiento: Atributos privados con métodos accesores y mutadores selectivos.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class Product {
 

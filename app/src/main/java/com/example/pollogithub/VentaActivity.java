@@ -37,9 +37,6 @@ import java.util.Locale;
  *     * totalCount = sum(quantityInCart)
  *     * totalPrice = sum(quantityInCart * price)
  * - Filtrado en Memoria (Filtering Pipeline): Combinación de criterios de selección de chips y subcadenas textuales.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class VentaActivity extends AppCompatActivity {
 

@@ -16,9 +16,6 @@ import androidx.room.PrimaryKey;
  * Conceptos de Ingeniería aplicados:
  * - Soporte Multi-Tenant / Multi-Sucursal: Permite segmentar las operaciones de caja y catálogo por nodo geográfico.
  * - Desactivación Lógica: El atributo 'activa' habilita o inhabilita la operativa de una sucursal sin comprometer registros históricos.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Entity(tableName = "sucursales")
 public class SucursalEntity {

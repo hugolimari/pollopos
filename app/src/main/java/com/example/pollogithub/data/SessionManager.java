@@ -17,9 +17,6 @@ import android.content.SharedPreferences;
  *   una interfaz fuertemente tipada a la capa de presentación y repositorio.
  * - Concurrencia y Persistencia Asíncrona: Utilización de 'apply()' en lugar de 'commit()'
  *   para garantizar escrituras no bloqueantes en memoria RAM y persistencia diferida a disco.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class SessionManager {
 

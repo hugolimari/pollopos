@@ -20,9 +20,6 @@ import com.example.pollogithub.data.entity.SucursalEntity;
  * Conceptos de Ingeniería aplicados:
  * - Aislamiento Contextual: Provisión de la sucursal activa para vincular ventas y arqueos.
  * - Inicialización del Sistema: Consulta 'getFirst' para configuración predeterminada en entornos de tienda única.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Dao
 public interface SucursalDao {

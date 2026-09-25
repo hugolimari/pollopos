@@ -35,9 +35,6 @@ import java.util.List;
  * - Filtrado en Memoria y Conteo Segmentado: Recálculo en tiempo real de los contadores numéricos
  *   asociados a cada pestaña de estado operativo.
  * - Desacoplamiento de Eventos: Uso de listeners en el adaptador para mutar el modelo y refrescar la vista.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class PedidosActivity extends AppCompatActivity {
 

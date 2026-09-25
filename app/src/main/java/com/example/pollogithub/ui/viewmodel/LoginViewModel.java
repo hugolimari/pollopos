@@ -27,9 +27,6 @@ import com.example.pollogithub.data.repository.PosRepository;
  *   garantizando un flujo unidireccional de datos (Unidirectional Data Flow - UDF).
  * - Lógica de Negocio y Enrutamiento Condicional: Si el usuario se autentica pero no existe un turno abierto,
  *   notifica a la vista mediante 'needsTurnoApertura' para redirigir a la pantalla de arqueo inicial.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class LoginViewModel extends AndroidViewModel {
 

@@ -25,9 +25,6 @@ import java.util.List;
  * Conceptos de Ingeniería aplicados:
  * - Mutación Atómica de Flags: 'setDisponible' actualiza exclusivamente la columna de estado sin sobrecargar el registro.
  * - Reactive Data Streams: Emisión mediante LiveData para refresco instantáneo del catálogo en el punto de venta.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Dao
 public interface ProductoDao {

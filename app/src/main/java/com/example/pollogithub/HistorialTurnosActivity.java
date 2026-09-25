@@ -35,9 +35,6 @@ import java.util.Locale;
  *   y un contenedor visual informativo ('layoutEmptyTurnos') cuando no existen registros.
  * - Enlace Reactivo con LiveData: Observación continua de 'getAllTurnosLiveData()' para asegurar que
  *   los cierres de caja recientes aparezcan automáticamente en la vista sin necesidad de recargar la actividad.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class HistorialTurnosActivity extends AppCompatActivity {
 

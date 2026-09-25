@@ -35,9 +35,6 @@ import java.util.Locale;
  *   en el SessionManager tras la respuesta asíncrona favorable del Repositorio.
  * - Limpieza de Pila de Actividades (Back Stack Management): Utilización de banderas 'FLAG_ACTIVITY_CLEAR_TOP'
  *   para evitar que el usuario regrese a la pantalla de apertura mediante el botón atrás del sistema operativo.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class AperturaCajaActivity extends AppCompatActivity {
 

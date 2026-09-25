@@ -37,9 +37,6 @@ import java.util.Locale;
  *     * abs(diferencia) <= 0.01: Conciliación perfecta (Caja cuadrada).
  * - Formateo Temporal de Auditoría: Normalización de marcas de tiempo Unix a formatos legibles
  *   mediante SimpleDateFormat.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class HistorialTurnosAdapter extends RecyclerView.Adapter<HistorialTurnosAdapter.TurnoViewHolder> {
 

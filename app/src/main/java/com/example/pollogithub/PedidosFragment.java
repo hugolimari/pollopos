@@ -39,9 +39,6 @@ import java.util.Locale;
  * - Patrón Factory / Inyección Compartida de ViewModel: Uso de 'requireActivity()' en ViewModelProvider
  *   para compartir el estado del ViewModel a nivel de actividad anfitriona.
  * - Inyección Dinámica de Componentes de UI: Generación programática de filas y notas de cocina en el diálogo modal.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class PedidosFragment extends Fragment {
 

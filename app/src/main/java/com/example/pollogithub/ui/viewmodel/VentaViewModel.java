@@ -36,9 +36,6 @@ import java.util.Map;
  *   precio acumulado y visibilidad condicional de la barra de resumen de pedido.
  * - Desacoplamiento de Negocio: La lógica de acumulación, totales y armado del pedido reside en el ViewModel,
  *   manteniendo los Fragmentos y Actividades como simples renderizadores pasivos (Dumb Views).
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class VentaViewModel extends AndroidViewModel {
 

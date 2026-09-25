@@ -22,9 +22,6 @@ import androidx.core.view.WindowInsetsCompat;
  * Conceptos de Ingeniería de Software aplicados:
  * - Seguridad y Recuperación de Cuentas: Interfaz para emisión de códigos de verificación temporal (OTP / Token).
  * - Control de Navegación Simple: Cierre controlado de actividad ('finish()') para retornar a la pantalla de login principal.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class RecuperarPasswordActivity extends AppCompatActivity {
 

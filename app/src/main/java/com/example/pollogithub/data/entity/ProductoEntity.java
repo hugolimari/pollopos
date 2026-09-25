@@ -19,9 +19,6 @@ import androidx.room.PrimaryKey;
  *   o deshabilitación temporal, preservando la integridad referencial en transacciones pasadas.
  * - Desacoplamiento de Recursos Visuales: Mapea identificadores de recursos Android (@DrawableRes) y caracteres Unicode (emojis)
  *   para optimizar la renderización sin requerir sobrecarga de descarga en red.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Entity(tableName = "productos")
 public class ProductoEntity {

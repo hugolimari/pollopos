@@ -18,9 +18,6 @@ import androidx.room.PrimaryKey;
  *   para garantizar la inmutabilidad histórica del comprobante frente a futuras modificaciones en el catálogo.
  * - Integridad Referencial: Claves foráneas hacia 'pedidos' y 'productos'.
  * - Cálculo de Subtotal: Validación de la regla de negocio subtotal = cantidad * precioUnitario.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Entity(tableName = "pedido_detalles")
 public class PedidoDetalleEntity {

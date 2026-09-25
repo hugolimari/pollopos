@@ -23,9 +23,6 @@ import java.util.List;
  * Conceptos de Ingeniería aplicados:
  * - Operaciones en Lote (Batch Processing): Inserción atómica de múltiples detalles en un único ciclo I/O.
  * - Patrón Maestro-Detalle: Consultas dependientes de la clave foránea 'pedidoId'.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Dao
 public interface PedidoDetalleDao {

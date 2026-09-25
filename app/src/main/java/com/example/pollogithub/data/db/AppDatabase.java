@@ -44,9 +44,6 @@ import java.util.concurrent.Executors;
  * Singleton con inicialización perezosa (Lazy Initialization) y bloqueo de doble comprobación
  * (Double-Checked Locking) para garantizar una única instancia de la base de datos
  * compartida en toda la aplicación.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 2.0
  */
 @Database(entities = {
         SucursalEntity.class,

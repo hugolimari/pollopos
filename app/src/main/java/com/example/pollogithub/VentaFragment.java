@@ -46,9 +46,6 @@ import java.util.Locale;
  * - Flujo Unidireccional de Datos (UDF): Las interacciones de usuario disparan mutaciones en el ViewModel,
  *   y la UI se reconstruye automáticamente como observadora pasiva de LiveData.
  * - Control Reactivo de Visibilidad: La barra de checkout se visibiliza exclusivamente cuando cartCount > 0.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class VentaFragment extends Fragment {
 

@@ -20,9 +20,6 @@ import androidx.room.PrimaryKey;
  * - Desactivación Lógica: El flag 'activo' permite revocar accesos sin quebrar la integridad referencial
  *   de las órdenes y arqueos previamente asociados a la clave primaria del usuario.
  * - Aislamiento Organizacional: Clave foránea 'sucursalId' para delimitar el contexto operativo del operador.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Entity(tableName = "usuarios")
 public class UsuarioEntity {

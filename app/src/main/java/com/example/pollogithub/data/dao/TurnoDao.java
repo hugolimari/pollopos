@@ -25,9 +25,6 @@ import java.util.List;
  * Conceptos de Ingeniería aplicados:
  * - Control de Concurrencia de Negocio: Invariante de negocio donde solo un turno puede estar en estado 'abierto' por terminal.
  * - Reactive State Streams: LiveData de turno activo para reaccionar ante bloqueos o cierres de sesión desde cualquier pantalla.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Dao
 public interface TurnoDao {

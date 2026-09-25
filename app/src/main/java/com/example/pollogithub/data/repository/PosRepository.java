@@ -40,9 +40,6 @@ import java.util.concurrent.ExecutorService;
  *     * Despacho y retorno de resultados al Hilo Principal (UI Thread) mediante 'Handler(Looper.getMainLooper())'
  *       para garantizar que las vistas reciban callbacks de forma segura sin provocar bloqueos ANR (Application Not Responding).
  * - Patrón Callback: Interfaz genérica asíncrona para propagar resultados exitosos o errores controlados.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class PosRepository {
 

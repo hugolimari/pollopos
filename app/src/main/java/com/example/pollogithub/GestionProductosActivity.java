@@ -61,9 +61,6 @@ import java.io.File;
  *   con validación estricta de precondiciones numéricas (precio > 0).
  * - Arquitectura Reactiva: Suscripción a 'getProductosLiveData()' del Repositorio para reflejar
  *   instantáneamente las mutaciones en SQLite sin requerir recarga manual de la pantalla.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class GestionProductosActivity extends AppCompatActivity {
 

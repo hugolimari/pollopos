@@ -37,9 +37,6 @@ import java.util.Locale;
  *   del interruptor (Switch) y botones de acción de la lógica de persistencia.
  * - Prevención de Efectos Secundarios en Vistas Recicladas: Limpieza del listener del Switch
  *   (setOnCheckedChangeListener(null)) antes de asignar su estado para evitar disparos accidentales.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProductosAdapter.ProductoViewHolder> {
 

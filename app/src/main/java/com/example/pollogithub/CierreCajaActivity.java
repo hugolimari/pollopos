@@ -49,9 +49,6 @@ import java.util.Locale;
  * - Restablecimiento de Sesión y Navegación Segura: Al asentar el cierre del turno,
  *   se limpia el identificador de turno en SessionManager y se purga el stack de navegación
  *   mediante 'FLAG_ACTIVITY_CLEAR_TASK' para forzar una nueva autenticación o reapertura.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class CierreCajaActivity extends AppCompatActivity {
 

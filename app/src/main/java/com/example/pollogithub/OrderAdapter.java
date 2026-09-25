@@ -31,9 +31,6 @@ import java.util.Locale;
  *   de detalle y avance de estado de forma segregada.
  * - Enrutamiento Polimórfico de Recursos Gráficos: Selección contextual de íconos según modalidad
  *   (mesa vs llevar vs delivery) y paleta de colores semántica (amarillo espera, verde éxito, azul info).
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
 

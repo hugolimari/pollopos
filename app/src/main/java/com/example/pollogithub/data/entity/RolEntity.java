@@ -17,9 +17,6 @@ import androidx.room.PrimaryKey;
  * Conceptos de Ingeniería aplicados:
  * - Seguridad y Autorización: Principio de Menor Privilegio (Principle of Least Privilege).
  * - Normalización de Base de Datos: Tercera Forma Normal (3FN), desacoplando los roles de la tabla 'usuarios'.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Entity(tableName = "roles")
 public class RolEntity {

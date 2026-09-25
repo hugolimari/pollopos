@@ -18,9 +18,6 @@ import androidx.room.PrimaryKey;
  * - Trazabilidad y Auditoría: Atributos temporales en milisegundos Epoch ('creadoEn')
  *   y código/referencia para conciliación de medios electrónicos (tarjeta/QR).
  * - Soporte Multimoneda y Multimodal: Canalización de flujos de efectivo, pasarelas bancarias y billeteras digitales.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Entity(tableName = "pagos")
 public class PagoEntity {

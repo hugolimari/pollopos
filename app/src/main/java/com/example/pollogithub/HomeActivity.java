@@ -33,9 +33,6 @@ import androidx.fragment.app.Fragment;
  * - Transacciones Atómicas de Fragmentos: Uso de 'FragmentManager.beginTransaction().replace().commit()'
  *   para garantizar transiciones de vista limpias y sin fugas de memoria.
  * - Gestión de Estado Visual: Mutación programática de ColorStateList para destacar el elemento de navegación seleccionado.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class HomeActivity extends AppCompatActivity {
 

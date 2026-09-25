@@ -26,9 +26,6 @@ import java.util.List;
  * - Generación de Secuencias Autoincrementales de Negocio: Obtención del valor máximo de 'numeroOrden'
  *   para garantizar correlativos únicos por jornada.
  * - Monitoreo Reactivo: Exposición de flujos LiveData para actualización inmediata en pantallas KDS (Kitchen Display System).
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Dao
 public interface PedidoDao {

@@ -34,9 +34,6 @@ import com.example.pollogithub.ui.viewmodel.LoginViewModel;
  *     * Si el usuario se autentica y ya tiene un turno abierto -> Navega a HomeActivity.
  *     * Si el usuario se autentica pero no tiene turno activo -> Navega a AperturaCajaActivity para forzar el arqueo inicial.
  * - Soporte Edge-To-Edge: Adaptación de la interfaz a las barras del sistema (System Bars / WindowInsets) para compatibilidad con Android 14/15+.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class MainActivity extends AppCompatActivity {
 

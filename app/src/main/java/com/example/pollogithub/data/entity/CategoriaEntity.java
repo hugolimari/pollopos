@@ -17,9 +17,6 @@ import androidx.room.PrimaryKey;
  * Conceptos de Ingeniería aplicados:
  * - Mapeo Objeto-Relacional (ORM) mediante Room.
  * - Atributo 'orden' para garantizar consistencia en la ordenación determinista en UI.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Entity(tableName = "categorias")
 public class CategoriaEntity {

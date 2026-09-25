@@ -21,9 +21,6 @@ import androidx.room.PrimaryKey;
  * - Integridad y Auditoría: Traza el cajero emisor (usuarioId), el turno de caja (turnoId)
  *   y la sucursal física (sucursalId).
  * - Algoritmo Contable: total = subtotal - montoDescuento.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 @Entity(tableName = "pedidos")
 public class PedidoEntity {

@@ -30,9 +30,6 @@ import java.util.Locale;
  *   la intención de cerrar turno antes de finalizar la sesión operativa.
  * - Limpieza de Pila de Actividades (Task Stack Purge): Empleo de 'FLAG_ACTIVITY_CLEAR_TASK'
  *   para garantizar que no persistan estados volátiles de sesión en el historial de Android tras el logout.
- * 
- * @author Estudiante de Ingeniería de Sistemas (Proyecto Final / Taller de Grado)
- * @version 1.0
  */
 public class PerfilActivity extends AppCompatActivity {
 
