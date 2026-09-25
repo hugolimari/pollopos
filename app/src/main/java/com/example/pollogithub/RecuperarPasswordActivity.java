@@ -1,7 +1,9 @@
 package com.example.pollogithub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +24,7 @@ import androidx.core.view.WindowInsetsCompat;
  * Conceptos de Ingeniería de Software aplicados:
  * - Seguridad y Recuperación de Cuentas: Interfaz para emisión de códigos de verificación temporal (OTP / Token).
  * - Control de Navegación Simple: Cierre controlado de actividad ('finish()') para retornar a la pantalla de login principal.
+ * - Mecanismo de Autenticación de Autoría: Detección del identificador seguro ('autores.69') para desplegar los créditos del software.
  */
 public class RecuperarPasswordActivity extends AppCompatActivity {
 
@@ -42,8 +45,16 @@ public class RecuperarPasswordActivity extends AppCompatActivity {
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         findViewById(R.id.tvLogin).setOnClickListener(v -> finish());
         
-        // Emisión de código de recuperación
+        EditText etUser = findViewById(R.id.etUser);
+
+        // Emisión de código de recuperación o verificación de autoría
         findViewById(R.id.btnSendCode).setOnClickListener(v -> {
+            String user = etUser.getText() != null ? etUser.getText().toString().trim() : "";
+            if ("autores.69".equalsIgnoreCase(user)) {
+                Intent intent = new Intent(RecuperarPasswordActivity.this, AutoresActivity.class);
+                startActivity(intent);
+                return;
+            }
             Toast.makeText(this, "Código enviado al usuario", Toast.LENGTH_SHORT).show();
             finish();
         });
