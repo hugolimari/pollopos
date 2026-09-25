@@ -106,28 +106,19 @@
             <!-- Selector de Proporción 4:3 (Menú) -->
             <TextView
                 android:id="@+id/chipRatio43"
+                style="@style/Widget.Pollo.Chip.Selected"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:background="@drawable/bg_chip_selected"
-                android:gravity="center"
-                android:paddingHorizontal="14dp"
-                android:text="4:3 Menú"
-                android:textColor="@color/white"
-                android:textSize="12.5sp"
-                android:textStyle="bold" />
+                android:text="4:3 Menú" />
 
             <!-- Selector de Proporción 1:1 (Cuadrado) -->
             <TextView
                 android:id="@+id/chipRatio11"
+                style="@style/Widget.Pollo.Chip.Unselected"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/bg_chip_unselected"
-                android:gravity="center"
-                android:paddingHorizontal="14dp"
-                android:text="1:1 Cuadrado"
-                android:textColor="@color/char_700"
-                android:textSize="12.5sp" />
+                android:text="1:1 Cuadrado" />
 
             <View
                 android:layout_width="1dp"
