@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Pollo.Card.Order"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_order_card"
     android:orientation="vertical"
-    android:padding="22dp">
+    android:padding="@dimen/dialog_padding">
 
     <!-- Header Modal -->
     <RelativeLayout
@@ -21,22 +21,18 @@
 
             <TextView
                 android:id="@+id/tvModalProdName"
+                android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:text="1/4 de pollo frito"
-                android:textColor="@color/char_900"
-                android:textSize="17sp" />
+                android:text="1/4 de pollo frito" />
 
             <TextView
                 android:id="@+id/tvModalProdPrice"
+                android:textAppearance="@style/TextAppearance.Pollo.Price.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif-bold"
-                android:text="Bs. 14.00"
-                android:textColor="@color/ember_600"
-                android:textSize="14sp" />
+                android:layout_marginTop="@dimen/spacing_2xs"
+                android:text="Bs. 14.00" />
         </LinearLayout>
 
         <ImageView
@@ -51,10 +47,8 @@
     </RelativeLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="14dp"
-        android:background="@color/line_color" />
+        style="@style/Widget.Pollo.Divider"
+        android:layout_marginBottom="14dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -188,25 +182,17 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCancelModifier"
+            style="@style/Widget.Pollo.Button.Outline.Medium"
             android:layout_width="0dp"
-            android:layout_height="46dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_btn_outline"
-            android:fontFamily="sans-serif-bold"
-            android:text="Cancelar"
-            android:textColor="@color/char_700"
-            android:textSize="13sp" />
+            android:text="Cancelar" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnConfirmModifier"
+            style="@style/Widget.Pollo.Button.Primary.Medium"
             android:layout_width="0dp"
-            android:layout_height="46dp"
             android:layout_weight="1.6"
-            android:background="@drawable/bg_button_primary"
-            android:fontFamily="sans-serif-bold"
-            android:text="Agregar al Pedido"
-            android:textColor="@color/white"
-            android:textSize="13.5sp" />
+            android:text="Agregar al Pedido" />
     </LinearLayout>
 </LinearLayout>

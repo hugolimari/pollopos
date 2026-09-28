@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Pollo.Card.Order"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="6dp"
-    android:background="@drawable/bg_order_card"
-    android:orientation="vertical"
-    android:padding="15dp">
+    android:layout_marginHorizontal="@dimen/card_margin_horizontal"
+    android:layout_marginVertical="@dimen/card_margin_vertical"
+    android:orientation="vertical">
 
     <!-- Top Row: Order ID, Time & Status Badge -->
     <RelativeLayout
@@ -24,50 +23,43 @@
 
             <TextView
                 android:id="@+id/tvOrderId"
+                style="@style/TextAppearance.Pollo.Title.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-bold"
-                android:text="Pedido #0231"
-                android:textColor="@color/char_900"
-                android:textSize="14.5sp" />
+                android:text="Pedido #0231" />
 
             <TextView
                 android:id="@+id/tvOrderTime"
+                style="@style/TextAppearance.Pollo.Subtitle.Muted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif"
-                android:text="Hace 3 min · Mesa 4"
-                android:textColor="@color/char_400"
-                android:textSize="11sp" />
+                android:layout_marginTop="@dimen/spacing_2xs"
+                android:text="Hace 3 min · Mesa 4" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvStatusBadge"
+            style="@style/TextAppearance.Pollo.Badge.Status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:background="@drawable/bg_status_cocina"
-            android:fontFamily="sans-serif-bold"
             android:paddingHorizontal="10dp"
             android:paddingVertical="5dp"
             android:text="@string/status_cocina"
-            android:textColor="@color/wait_600"
-            android:textSize="11sp" />
+            android:textColor="@color/wait_600" />
     </RelativeLayout>
 
     <!-- Items Summary -->
     <TextView
         android:id="@+id/tvOrderItems"
+        style="@style/TextAppearance.Pollo.Body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:fontFamily="sans-serif"
         android:lineSpacingExtra="2dp"
-        android:text="1/4 pollo frito, 1/2 pollo a la brasa, 2× gaseosa"
-        android:textColor="@color/char_700"
-        android:textSize="12.5sp" />
+        android:text="1/4 pollo frito, 1/2 pollo a la brasa, 2× gaseosa" />
 
     <!-- Type and Total Row -->
     <RelativeLayout
@@ -91,58 +83,47 @@
 
             <TextView
                 android:id="@+id/tvOrderType"
+                style="@style/TextAppearance.Pollo.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:fontFamily="sans-serif-bold"
-                android:text="Para mesa"
-                android:textColor="@color/char_400"
-                android:textSize="11.5sp" />
+                android:text="Para mesa" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvOrderTotal"
+            style="@style/TextAppearance.Pollo.Price.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:fontFamily="sans-serif-bold"
-            android:text="Bs. 41.40"
-            android:textColor="@color/ember_700"
-            android:textSize="14sp" />
+            android:text="Bs. 41.40" />
     </RelativeLayout>
 
     <!-- Action Buttons Row -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/spacing_m"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnViewDetail"
+            style="@style/Widget.Pollo.Button.Outline.Small"
             android:layout_width="0dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="@dimen/btn_height_small"
+            android:layout_marginEnd="@dimen/spacing_s"
             android:layout_weight="1"
-            android:background="@drawable/bg_btn_outline"
-            android:fontFamily="sans-serif-bold"
-            android:text="@string/btn_view_detail"
-            android:textAllCaps="false"
-            android:textColor="@color/char_700"
-            android:textSize="12sp" />
+            android:text="@string/btn_view_detail" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPrimaryAction"
+            style="@style/Widget.Pollo.Button.Primary.Small"
             android:layout_width="0dp"
-            android:layout_height="38dp"
+            android:layout_height="@dimen/btn_height_small"
             android:layout_weight="1"
-            android:background="@drawable/bg_button_primary"
-            android:fontFamily="sans-serif-bold"
-            android:text="@string/btn_mark_ready"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:text="@string/btn_mark_ready" />
     </LinearLayout>
 
 </LinearLayout>

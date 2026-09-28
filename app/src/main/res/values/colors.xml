@@ -26,6 +26,17 @@
 
     <color name="cart_label">#D8C6BB</color>
 
+    <color name="danger_600">#D32F2F</color>
+    <color name="danger_100">#FDE8E8</color>
+    <color name="white_translucent">#D9FFFFFF</color>
+
+    <!-- Crop Screen Dark Colors -->
+    <color name="crop_bg">#16181C</color>
+    <color name="crop_bar_bg">#1F2228</color>
+    <color name="crop_divider">#3A3E48</color>
+    <color name="crop_text_muted">#88909E</color>
+    <color name="crop_text_secondary">#A0A6B2</color>
+
     <!-- Thumb Gradients -->
     <color name="thumb_fried_start">#FFE4D1</color>
     <color name="thumb_fried_end">#FFD0A8</color>

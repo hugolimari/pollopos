@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Pollo.Card.White"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="6dp"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="14dp"
-    app:cardElevation="1dp"
-    app:strokeColor="@color/line_color"
-    app:strokeWidth="1dp">
+    android:layout_marginHorizontal="@dimen/card_margin_horizontal"
+    android:layout_marginVertical="@dimen/card_margin_vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/spacing_l">
 
         <!-- Header: Turno Number & Badge -->
         <LinearLayout
@@ -32,42 +28,35 @@
 
                 <TextView
                     android:id="@+id/tvTurnoNumero"
+                    style="@style/TextAppearance.Pollo.Title.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:text="Turno #0001"
-                    android:textColor="@color/char_900"
-                    android:textSize="16sp" />
+                    android:text="Turno #0001" />
 
                 <TextView
                     android:id="@+id/tvTurnoFechas"
+                    style="@style/TextAppearance.Pollo.Subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="sans-serif"
-                    android:text="15 sep · 8:02 AM - 6:20 PM"
-                    android:textColor="@color/char_400"
-                    android:textSize="12sp" />
+                    android:layout_marginTop="@dimen/spacing_2xs"
+                    android:text="15 sep · 8:02 AM - 6:20 PM" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tvTurnoEstadoBadge"
+                style="@style/TextAppearance.Pollo.Badge.Status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_badge_active_shift"
-                android:fontFamily="sans-serif-bold"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="3dp"
                 android:text="Cerrado"
-                android:textColor="@color/ok_600"
-                android:textSize="11.5sp" />
+                android:textColor="@color/ok_600" />
         </LinearLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="12dp"
-            android:background="@color/line_color" />
+            style="@style/Widget.Pollo.Divider"
+            android:layout_marginVertical="@dimen/spacing_m" />
 
         <!-- Financial breakdown 3 columns -->
         <LinearLayout
@@ -82,22 +71,19 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/TextAppearance.Pollo.Subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:text="Fondo inicial"
-                    android:textColor="@color/char_400"
-                    android:textSize="11.5sp" />
+                    android:text="Fondo inicial" />
 
                 <TextView
                     android:id="@+id/tvFondoInicialItem"
+                    style="@style/TextAppearance.Pollo.Body.Dark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="@dimen/spacing_2xs"
                     android:fontFamily="sans-serif-bold"
-                    android:text="Bs. 100.00"
-                    android:textColor="@color/char_900"
-                    android:textSize="13.5sp" />
+                    android:text="Bs. 100.00" />
             </LinearLayout>
 
             <LinearLayout
@@ -107,22 +93,19 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/TextAppearance.Pollo.Subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:text="Esperado"
-                    android:textColor="@color/char_400"
-                    android:textSize="11.5sp" />
+                    android:text="Esperado" />
 
                 <TextView
                     android:id="@+id/tvEsperadoItem"
+                    style="@style/TextAppearance.Pollo.Body.Dark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="@dimen/spacing_2xs"
                     android:fontFamily="sans-serif-bold"
-                    android:text="Bs. 600.00"
-                    android:textColor="@color/char_900"
-                    android:textSize="13.5sp" />
+                    android:text="Bs. 600.00" />
             </LinearLayout>
 
             <LinearLayout
@@ -132,46 +115,41 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/TextAppearance.Pollo.Subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:text="Contado físico"
-                    android:textColor="@color/char_400"
-                    android:textSize="11.5sp" />
+                    android:text="Contado físico" />
 
                 <TextView
                     android:id="@+id/tvContadoItem"
+                    style="@style/TextAppearance.Pollo.Body.Dark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="@dimen/spacing_2xs"
                     android:fontFamily="sans-serif-bold"
-                    android:text="Bs. 590.00"
-                    android:textColor="@color/char_900"
-                    android:textSize="13.5sp" />
+                    android:text="Bs. 590.00" />
             </LinearLayout>
         </LinearLayout>
 
         <!-- Balance Difference Row -->
         <LinearLayout
             android:id="@+id/layoutDiferencia"
+            style="@style/Widget.Pollo.Card.Order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bg_order_card"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="8dp">
+            android:paddingHorizontal="@dimen/spacing_m"
+            android:paddingVertical="@dimen/spacing_s">
 
             <TextView
                 android:id="@+id/tvDiferenciaLabel"
+                style="@style/TextAppearance.Pollo.Label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="sans-serif-medium"
-                android:text="Diferencia en caja:"
-                android:textColor="@color/char_700"
-                android:textSize="12sp" />
+                android:text="Diferencia en caja:" />
 
             <TextView
                 android:id="@+id/tvDiferenciaMonto"
@@ -179,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="- Bs. 10.00 (Faltante)"
-                android:textColor="#D32F2F"
+                android:textColor="@color/danger_600"
                 android:textSize="13sp" />
         </LinearLayout>
 

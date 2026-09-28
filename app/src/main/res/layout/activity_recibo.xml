@@ -43,24 +43,20 @@
             <!-- Title -->
             <TextView
                 android:id="@+id/tvTitleReceipt"
+                android:textAppearance="@style/TextAppearance.Pollo.Title.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/title_receipt_success"
-                android:textColor="@color/char_900"
-                android:textSize="20sp" />
+                android:text="@string/title_receipt_success" />
 
             <!-- Subtitle -->
             <TextView
                 android:id="@+id/tvSubtitleReceipt"
+                android:textAppearance="@style/TextAppearance.Pollo.Subtitle.Emphasis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/spacing_xs"
                 android:layout_marginBottom="26dp"
-                android:fontFamily="sans-serif"
-                android:text="Pedido #0231 cobrado en efectivo"
-                android:textColor="@color/char_700"
-                android:textSize="13.5sp" />
+                android:text="Pedido #0231 cobrado en efectivo" />
 
             <!-- Receipt Ticket Container -->
             <LinearLayout
@@ -415,34 +411,22 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnPrintReceipt"
+                    style="@style/Widget.Pollo.Button.Outline"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_btn_outline"
                     android:drawableStart="@drawable/ic_printer"
                     android:drawablePadding="8dp"
-                    android:fontFamily="sans-serif-bold"
-                    android:paddingHorizontal="14dp"
-                    android:text="@string/btn_print"
-                    android:textAllCaps="false"
-                    android:textColor="@color/char_700"
-                    android:textSize="13.5sp" />
+                    android:text="@string/btn_print" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnWhatsappReceipt"
+                    style="@style/Widget.Pollo.Button.Outline"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_btn_outline"
                     android:drawableStart="@drawable/ic_whatsapp"
                     android:drawablePadding="8dp"
-                    android:fontFamily="sans-serif-bold"
-                    android:paddingHorizontal="14dp"
-                    android:text="@string/btn_whatsapp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/char_700"
-                    android:textSize="13.5sp" />
+                    android:text="@string/btn_whatsapp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -464,15 +448,9 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNewSale"
+            style="@style/Widget.Pollo.Button.Primary.Hero"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:background="@drawable/bg_button_primary"
-            android:elevation="4dp"
-            android:fontFamily="sans-serif-bold"
-            android:text="@string/btn_new_sale"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:text="@string/btn_new_sale" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

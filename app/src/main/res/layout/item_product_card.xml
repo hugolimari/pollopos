@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardProduct"
+    style="@style/Widget.Pollo.Card.Product"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
-    android:background="@drawable/bg_product_card"
-    android:padding="12dp">
+    android:layout_margin="6dp">
 
     <!-- Thumbnail Background & Foto / Emoji -->
     <androidx.cardview.widget.CardView
@@ -47,18 +46,15 @@
     <!-- Agotado Badge Tag -->
     <TextView
         android:id="@+id/tvAgotadoTag"
+        android:textAppearance="@style/TextAppearance.Pollo.Badge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/bg_badge_agotado"
-        android:fontFamily="sans-serif-black"
         android:paddingHorizontal="8dp"
         android:paddingVertical="3dp"
         android:text="@string/tag_agotado"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="9.5sp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/cardThumb"
         app:layout_constraintTop_toTopOf="@id/cardThumb"
@@ -67,14 +63,12 @@
     <!-- Quantity Badge -->
     <TextView
         android:id="@+id/tvBadgeQty"
+        android:textAppearance="@style/TextAppearance.Pollo.Badge"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:background="@drawable/bg_badge_qty"
-        android:fontFamily="sans-serif-bold"
         android:gravity="center"
         android:text="2"
-        android:textColor="@color/white"
-        android:textSize="11sp"
         android:translationX="6dp"
         android:translationY="-6dp"
         android:visibility="gone"
@@ -85,15 +79,13 @@
     <!-- Product Name -->
     <TextView
         android:id="@+id/tvProductName"
+        android:textAppearance="@style/TextAppearance.Pollo.Title.Small"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-bold"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Presa individual"
-        android:textColor="@color/char_900"
-        android:textSize="13.5sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardThumb" />
@@ -101,15 +93,13 @@
     <!-- Product Description -->
     <TextView
         android:id="@+id/tvProductDesc"
+        android:textAppearance="@style/TextAppearance.Pollo.Subtitle.Muted"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:fontFamily="sans-serif"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Pierna o pechuga"
-        android:textColor="@color/char_400"
-        android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvProductName" />
@@ -117,13 +107,11 @@
     <!-- Price and Action Buttons Row -->
     <TextView
         android:id="@+id/tvProductPrice"
+        android:textAppearance="@style/TextAppearance.Pollo.Price.Small"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:fontFamily="sans-serif-black"
         android:text="Bs. 8.50"
-        android:textColor="@color/ember_700"
-        android:textSize="14sp"
         android:maxLines="1"
         android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -143,28 +131,14 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnMinus"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            style="@style/Widget.Pollo.Button.Stepper.Minus"
             android:layout_marginEnd="6dp"
-            android:background="@drawable/bg_minus_btn"
-            android:fontFamily="sans-serif-black"
-            android:includeFontPadding="false"
-            android:padding="0dp"
-            android:text="−"
-            android:textColor="@color/ember_700"
-            android:textSize="18sp" />
+            android:text="−" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAdd"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/bg_add_btn"
-            android:fontFamily="sans-serif-bold"
-            android:includeFontPadding="false"
-            android:padding="0dp"
-            android:text="+"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            style="@style/Widget.Pollo.Button.Stepper.Add"
+            android:text="+" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ======================================================== -->
+    <!--  1. ESPACIADOS GENERALES (SPACINGS, PADDINGS, MARGINS)    -->
+    <!-- ======================================================== -->
+    <dimen name="spacing_2xs">2dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_s">8dp</dimen>
+    <dimen name="spacing_m">12dp</dimen>
+    <dimen name="spacing_l">16dp</dimen>
+    <dimen name="spacing_xl">20dp</dimen>
+    <dimen name="spacing_2xl">24dp</dimen>
+    <dimen name="spacing_3xl">32dp</dimen>
+    <dimen name="spacing_4xl">40dp</dimen>
+    <dimen name="spacing_5xl">48dp</dimen>
+
+    <!-- ======================================================== -->
+    <!--  2. ALTURAS Y MEDIDAS DE COMPONENTES                     -->
+    <!-- ======================================================== -->
+    <!-- Botones -->
+    <dimen name="btn_height_primary">52dp</dimen>
+    <dimen name="btn_height_hero">54dp</dimen>
+    <dimen name="btn_height_medium">46dp</dimen>
+    <dimen name="btn_height_small">38dp</dimen>
+    <dimen name="btn_height_compact">36dp</dimen>
+    <dimen name="btn_stepper_size">32dp</dimen>
+
+    <!-- Botones de Icono y Volver -->
+    <dimen name="btn_icon_size">40dp</dimen>
+    <dimen name="btn_icon_size_small">36dp</dimen>
+    <dimen name="btn_icon_size_tiny">32dp</dimen>
+
+    <!-- Campos de Entrada (Inputs / EditText) -->
+    <dimen name="input_height">52dp</dimen>
+    <dimen name="input_height_medium">48dp</dimen>
+    <dimen name="input_height_compact">44dp</dimen>
+    <dimen name="input_padding_horizontal">14dp</dimen>
+
+    <!-- Encabezados y Barras de Navegación -->
+    <dimen name="header_padding_top">16dp</dimen>
+    <dimen name="header_padding_bottom">14dp</dimen>
+    <dimen name="header_padding_horizontal">20dp</dimen>
+    <dimen name="bottom_nav_height">58dp</dimen>
+
+    <!-- Modales y Tarjetas -->
+    <dimen name="dialog_padding">22dp</dimen>
+    <dimen name="card_padding_standard">14dp</dimen>
+    <dimen name="card_padding_product">12dp</dimen>
+    <dimen name="card_margin_horizontal">16dp</dimen>
+    <dimen name="card_margin_vertical">6dp</dimen>
+
+    <!-- Avatares -->
+    <dimen name="avatar_size_large">64dp</dimen>
+    <dimen name="avatar_size_medium">44dp</dimen>
+    <dimen name="avatar_size_small">38dp</dimen>
+
+    <!-- ======================================================== -->
+    <!--  3. RADIO DE BORDES Y ELEVACIONES                        -->
+    <!-- ======================================================== -->
+    <dimen name="radius_small">8dp</dimen>
+    <dimen name="radius_medium">12dp</dimen>
+    <dimen name="radius_card">14dp</dimen>
+    <dimen name="radius_large">16dp</dimen>
+    <dimen name="radius_dialog">24dp</dimen>
+
+    <dimen name="elevation_low">2dp</dimen>
+    <dimen name="elevation_medium">4dp</dimen>
+    <dimen name="elevation_high">8dp</dimen>
+
+    <!-- ======================================================== -->
+    <!--  4. TAMAÑOS DE TIPOGRAFÍA (TEXT SIZES)                   -->
+    <!-- ======================================================== -->
+    <dimen name="text_size_hero">24sp</dimen>
+    <dimen name="text_size_title_large">20sp</dimen>
+    <dimen name="text_size_title_medium">18sp</dimen>
+    <dimen name="text_size_title_small">15sp</dimen>
+    <dimen name="text_size_body">13.5sp</dimen>
+    <dimen name="text_size_label">12.5sp</dimen>
+    <dimen name="text_size_caption">11.5sp</dimen>
+    <dimen name="text_size_badge">10.5sp</dimen>
+
+    <!-- Precios -->
+    <dimen name="text_size_price_hero">22sp</dimen>
+    <dimen name="text_size_price_large">18sp</dimen>
+    <dimen name="text_size_price_medium">16sp</dimen>
+    <dimen name="text_size_price_small">14sp</dimen>
+
+    <!-- Botones -->
+    <dimen name="text_size_btn_primary">15sp</dimen>
+    <dimen name="text_size_btn_medium">13.5sp</dimen>
+    <dimen name="text_size_btn_small">12sp</dimen>
+</resources>

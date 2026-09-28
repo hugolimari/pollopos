@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Pollo.Dialog.Container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_card_top_rounded"
-    android:padding="22dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,42 +25,35 @@
 
                 <TextView
                     android:id="@+id/tvDetalleOrderId"
+                    android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:text="Pedido #0231"
-                    android:textColor="@color/char_900"
-                    android:textSize="18sp" />
+                    android:text="Pedido #0231" />
 
                 <TextView
                     android:id="@+id/tvDetalleOrderMeta"
+                    android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="sans-serif"
-                    android:text="Hace 5 min · En el local"
-                    android:textColor="@color/char_400"
-                    android:textSize="12sp" />
+                    android:layout_marginTop="@dimen/spacing_2xs"
+                    android:text="Hace 5 min · En el local" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tvDetalleStatusBadge"
+                android:textAppearance="@style/TextAppearance.Pollo.Badge.Status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_status_cocina"
-                android:fontFamily="sans-serif-bold"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="4dp"
                 android:text="En cocina"
-                android:textColor="@color/wait_600"
-                android:textSize="11.5sp" />
+                android:textColor="@color/wait_600" />
         </LinearLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="14dp"
-            android:background="@color/line_color" />
+            style="@style/Widget.Pollo.Divider"
+            android:layout_marginVertical="14dp" />
 
         <!-- Label Productos -->
         <TextView
@@ -120,28 +112,18 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancelarPedidoDialog"
+                style="@style/Widget.Pollo.Button.Danger"
                 android:layout_width="0dp"
-                android:layout_height="46dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_btn_outline"
-                android:fontFamily="sans-serif-bold"
-                android:text="Cancelar pedido"
-                android:textAllCaps="false"
-                android:textColor="#D32F2F"
-                android:textSize="12.5sp" />
+                android:text="Cancelar pedido" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCerrarDetalleDialog"
+                style="@style/Widget.Pollo.Button.Primary.Medium"
                 android:layout_width="0dp"
-                android:layout_height="46dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_button_primary"
-                android:fontFamily="sans-serif-bold"
-                android:text="Cerrar"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="13sp" />
+                android:text="Cerrar" />
         </LinearLayout>
 
     </LinearLayout>

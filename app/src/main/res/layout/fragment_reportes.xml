@@ -28,21 +28,17 @@
             android:orientation="vertical">
 
             <TextView
+                android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:text="Reportes"
-                android:textColor="@color/char_900"
-                android:textSize="19sp" />
+                android:text="Reportes" />
 
             <TextView
+                android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif"
-                android:text="Sucursal Centro"
-                android:textColor="@color/char_400"
-                android:textSize="12.5sp" />
+                android:layout_marginTop="@dimen/spacing_2xs"
+                android:text="Sucursal Centro" />
         </LinearLayout>
 
         <!-- Period Select Button -->
@@ -106,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
                     android:text="VENTAS DE HOY"
-                    android:textColor="#D9FFFFFF"
+                    android:textColor="@color/white_translucent"
                     android:textSize="12sp" />
 
                 <TextView

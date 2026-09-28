@@ -10,34 +10,22 @@
     <!-- Barra Superior -->
     <LinearLayout
         android:id="@+id/layoutTopBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="36dp"
-        android:paddingBottom="12dp"
+        style="@style/Widget.Pollo.Header.Horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/bg_back_btn"
-            android:contentDescription="Volver"
-            android:src="@drawable/ic_back_arrow" />
+            style="@style/Widget.Pollo.Button.Back.Large" />
 
         <TextView
+            android:textAppearance="@style/TextAppearance.Pollo.Title.Large"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
+            android:layout_marginStart="@dimen/spacing_l"
             android:layout_weight="1"
-            android:fontFamily="sans-serif-black"
-            android:text="Protección de Autoría"
-            android:textColor="@color/char_900"
-            android:textSize="20sp" />
+            android:text="Protección de Autoría" />
 
         <ImageView
             android:layout_width="26dp"

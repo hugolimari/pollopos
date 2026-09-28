@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Pollo.Dialog.Container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_card_top_rounded"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:orientation="vertical">
 
     <TextView
+        android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Foto del plato"
-        android:textColor="@color/char_900"
-        android:textSize="18sp" />
+        android:text="Foto del plato" />
 
     <TextView
+        android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:fontFamily="sans-serif"
-        android:text="Selecciona el origen de la imagen para el menú"
-        android:textColor="@color/char_400"
-        android:textSize="12sp" />
+        android:layout_marginTop="@dimen/spacing_2xs"
+        android:text="Selecciona el origen de la imagen para el menú" />
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginVertical="16dp"
-        android:background="@color/line_color" />
+        style="@style/Widget.Pollo.Divider"
+        android:layout_marginVertical="16dp" />
 
     <!-- Opción 1: Cámara -->
     <LinearLayout
@@ -132,14 +125,10 @@
     <!-- Cancelar -->
     <TextView
         android:id="@+id/btnCancelSource"
+        style="@style/Widget.Pollo.Button.Outline.Medium"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bg_btn_outline"
-        android:fontFamily="sans-serif-bold"
         android:gravity="center"
-        android:text="Cancelar"
-        android:textColor="@color/char_700"
-        android:textSize="13sp" />
+        android:text="Cancelar" />
 
 </LinearLayout>

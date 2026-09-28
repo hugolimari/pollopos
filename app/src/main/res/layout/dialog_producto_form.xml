@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Pollo.Dialog.Container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_card_top_rounded"
-    android:padding="22dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,28 +13,22 @@
         <!-- Title & Subtitle -->
         <TextView
             android:id="@+id/tvFormTitle"
+            android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:text="Añadir comida al menú"
-            android:textColor="@color/char_900"
-            android:textSize="18sp" />
+            android:text="Añadir comida al menú" />
 
         <TextView
             android:id="@+id/tvFormSubtitle"
+            android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:fontFamily="sans-serif"
-            android:text="Ingresa los datos para registrar el producto en el catálogo"
-            android:textColor="@color/char_400"
-            android:textSize="12sp" />
+            android:layout_marginTop="@dimen/spacing_2xs"
+            android:text="Ingresa los datos para registrar el producto en el catálogo" />
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="14dp"
-            android:background="@color/line_color" />
+            style="@style/Widget.Pollo.Divider"
+            android:layout_marginVertical="14dp" />
 
         <!-- Nombre del Producto -->
         <TextView
@@ -392,28 +385,17 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancelarForm"
+                style="@style/Widget.Pollo.Button.Outline.Medium"
                 android:layout_width="wrap_content"
-                android:layout_height="46dp"
-                android:background="@drawable/bg_btn_outline"
-                android:fontFamily="sans-serif-bold"
-                android:paddingHorizontal="18dp"
-                android:text="Cancelar"
-                android:textAllCaps="false"
-                android:textColor="@color/char_700"
-                android:textSize="13.5sp" />
+                android:text="Cancelar" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnGuardarForm"
+                style="@style/Widget.Pollo.Button.Primary.Medium"
                 android:layout_width="wrap_content"
-                android:layout_height="46dp"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/bg_button_primary"
-                android:fontFamily="sans-serif-bold"
-                android:paddingHorizontal="24dp"
-                android:text="Guardar"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="13.5sp" />
+                android:layout_marginStart="@dimen/spacing_m"
+                android:paddingHorizontal="@dimen/spacing_2xl"
+                android:text="Guardar" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

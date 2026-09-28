@@ -19,12 +19,7 @@
     <!-- Fixed Bottom Navigation Bar -->
     <LinearLayout
         android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@drawable/bg_bottom_nav"
-        android:elevation="12dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        style="@style/Widget.Pollo.BottomNav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -50,13 +45,11 @@
 
             <TextView
                 android:id="@+id/txtNavVenta"
+                style="@style/TextAppearance.Pollo.Nav.Active"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif-bold"
-                android:text="@string/nav_sale"
-                android:textColor="@color/ember_600"
-                android:textSize="10.5sp" />
+                android:layout_marginTop="@dimen/spacing_2xs"
+                android:text="@string/nav_sale" />
         </LinearLayout>
 
         <!-- Item Pedidos -->
@@ -80,13 +73,11 @@
 
             <TextView
                 android:id="@+id/txtNavPedidos"
+                style="@style/TextAppearance.Pollo.Nav.Inactive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/nav_orders"
-                android:textColor="@color/char_400"
-                android:textSize="10.5sp" />
+                android:layout_marginTop="@dimen/spacing_2xs"
+                android:text="@string/nav_orders" />
         </LinearLayout>
 
         <!-- Item Reportes -->
@@ -110,13 +101,11 @@
 
             <TextView
                 android:id="@+id/txtNavReportes"
+                style="@style/TextAppearance.Pollo.Nav.Inactive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/nav_reports"
-                android:textColor="@color/char_400"
-                android:textSize="10.5sp" />
+                android:layout_marginTop="@dimen/spacing_2xs"
+                android:text="@string/nav_reports" />
         </LinearLayout>
 
         <!-- Item Perfil -->
@@ -140,13 +129,11 @@
 
             <TextView
                 android:id="@+id/txtNavPerfil"
+                style="@style/TextAppearance.Pollo.Nav.Inactive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/nav_profile"
-                android:textColor="@color/char_400"
-                android:textSize="10.5sp" />
+                android:layout_marginTop="@dimen/spacing_2xs"
+                android:text="@string/nav_profile" />
         </LinearLayout>
     </LinearLayout>
 

@@ -105,4 +105,5 @@
     <string name="item_lock_title">Bloquear Terminal / Cambiar PIN</string>
     <string name="item_lock_subtitle">Protege el punto de venta</string>
     <string name="btn_end_shift">Cerrar Turno / Salir</string>
+    <string name="content_desc_back">Volver</string>
 </resources>

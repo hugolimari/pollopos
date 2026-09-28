@@ -79,13 +79,11 @@
 
             <!-- Brand Subtitle -->
             <TextView
+                android:textAppearance="@style/TextAppearance.Pollo.Subtitle.Emphasis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/brand_subtitle"
-                android:textColor="@color/char_700"
-                android:textSize="14sp" />
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="@string/brand_subtitle" />
         </LinearLayout>
 
         <!-- Main Form Card -->
@@ -94,10 +92,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/bg_card_top_rounded"
-            android:elevation="4dp"
-            android:paddingHorizontal="24dp"
-            android:paddingTop="32dp"
-            android:paddingBottom="32dp"
+            android:elevation="@dimen/elevation_medium"
+            android:paddingHorizontal="@dimen/spacing_2xl"
+            android:paddingTop="@dimen/spacing_3xl"
+            android:paddingBottom="@dimen/spacing_3xl"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,25 +104,21 @@
             <!-- Card Header -->
             <TextView
                 android:id="@+id/tvWelcomeTitle"
+                android:textAppearance="@style/TextAppearance.Pollo.Title.Large"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
                 android:text="@string/welcome_title"
-                android:textColor="@color/char_900"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvWelcomeSubtitle"
+                android:textAppearance="@style/TextAppearance.Pollo.Subtitle.Emphasis"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="sans-serif"
+                android:layout_marginTop="@dimen/spacing_xs"
                 android:text="@string/welcome_subtitle"
-                android:textColor="@color/char_700"
-                android:textSize="13.5sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvWelcomeTitle" />
@@ -132,23 +126,20 @@
             <!-- User Field Label -->
             <TextView
                 android:id="@+id/lblUser"
+                android:textAppearance="@style/TextAppearance.Pollo.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="@dimen/spacing_2xl"
                 android:text="@string/label_user"
-                android:textColor="@color/char_700"
-                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvWelcomeSubtitle" />
 
             <!-- User Field Input Box -->
             <FrameLayout
                 android:id="@+id/wrapUser"
+                style="@style/Widget.Pollo.InputContainer"
                 android:layout_width="0dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_input_field"
+                android:layout_marginTop="@dimen/spacing_s"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lblUser">
@@ -163,40 +154,31 @@
 
                 <EditText
                     android:id="@+id/etUser"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:fontFamily="sans-serif"
+                    style="@style/Widget.Pollo.EditText"
                     android:hint="@string/hint_user"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:paddingStart="48dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/char_900"
-                    android:textColorHint="@color/placeholder_text"
-                    android:textSize="15sp" />
+                    android:paddingEnd="16dp" />
             </FrameLayout>
 
             <!-- Password Field Label -->
             <TextView
                 android:id="@+id/lblPassword"
+                android:textAppearance="@style/TextAppearance.Pollo.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:fontFamily="sans-serif-medium"
                 android:text="@string/label_password"
-                android:textColor="@color/char_700"
-                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/wrapUser" />
 
             <!-- Password Field Input Box -->
             <FrameLayout
                 android:id="@+id/wrapPassword"
+                style="@style/Widget.Pollo.InputContainer"
                 android:layout_width="0dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_input_field"
+                android:layout_marginTop="@dimen/spacing_s"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lblPassword">
@@ -211,18 +193,12 @@
 
                 <EditText
                     android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:fontFamily="sans-serif"
+                    style="@style/Widget.Pollo.EditText"
                     android:hint="@string/hint_password"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:paddingStart="48dp"
-                    android:paddingEnd="48dp"
-                    android:textColor="@color/char_900"
-                    android:textColorHint="@color/placeholder_text"
-                    android:textSize="15sp" />
+                    android:paddingEnd="48dp" />
 
                 <ImageButton
                     android:id="@+id/btnToggleEye"
@@ -255,16 +231,10 @@
             <!-- Primary Button: Iniciar turno -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnStartShift"
+                style="@style/Widget.Pollo.Button.Primary.Hero"
                 android:layout_width="0dp"
-                android:layout_height="54dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/bg_button_primary"
-                android:elevation="4dp"
-                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="@dimen/spacing_2xl"
                 android:text="@string/btn_start_shift"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="15.5sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvForgotPin" />
@@ -272,13 +242,11 @@
             <!-- Footer Note -->
             <TextView
                 android:id="@+id/tvFooterNote"
+                android:textAppearance="@style/TextAppearance.Pollo.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:fontFamily="sans-serif"
+                android:layout_marginTop="@dimen/spacing_4xl"
                 android:text="@string/footer_note"
-                android:textColor="@color/placeholder_text"
-                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

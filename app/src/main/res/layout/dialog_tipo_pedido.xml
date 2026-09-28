@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Pollo.Card.Order"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_order_card"
     android:orientation="vertical"
-    android:padding="22dp">
+    android:padding="@dimen/dialog_padding">
 
     <!-- Header Modal -->
     <RelativeLayout
@@ -21,21 +21,17 @@
             android:orientation="vertical">
 
             <TextView
+                android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:text="Modalidad del pedido"
-                android:textColor="@color/char_900"
-                android:textSize="18sp" />
+                android:text="Modalidad del pedido" />
 
             <TextView
+                android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif"
-                android:text="Selecciona cómo se entregará la orden"
-                android:textColor="@color/char_400"
-                android:textSize="12.5sp" />
+                android:layout_marginTop="@dimen/spacing_2xs"
+                android:text="Selecciona cómo se entregará la orden" />
         </LinearLayout>
 
         <ImageView

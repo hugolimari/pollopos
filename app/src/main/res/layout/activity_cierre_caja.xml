@@ -16,60 +16,48 @@
         <!-- Back Button -->
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/bg_back_btn"
-            android:contentDescription="Volver"
-            android:src="@drawable/ic_back_arrow"
+            style="@style/Widget.Pollo.Button.Back"
+            android:layout_marginStart="@dimen/spacing_2xl"
+            android:layout_marginTop="@dimen/spacing_3xl"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Header Titles -->
         <TextView
             android:id="@+id/tvTitle"
+            android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="sans-serif-black"
+            android:layout_marginStart="@dimen/spacing_l"
             android:text="Cierre de caja"
-            android:textColor="@color/char_900"
-            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@id/btnBack"
             app:layout_constraintTop_toTopOf="@id/btnBack" />
 
         <TextView
             android:id="@+id/tvSubtitle"
+            android:textAppearance="@style/TextAppearance.Pollo.Subtitle.Dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:fontFamily="sans-serif"
+            android:layout_marginTop="@dimen/spacing_2xs"
             android:text="Turno de Hugo Daza - 9:01am - 6:20pm"
-            android:textColor="@color/char_700"
-            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
         <View
             android:id="@+id/dividerTop"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/line_color"
+            style="@style/Widget.Pollo.Divider"
+            android:layout_marginTop="@dimen/spacing_2xl"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
 
         <!-- Resumen del turno -->
         <TextView
             android:id="@+id/lblResumen"
+            android:textAppearance="@style/TextAppearance.Pollo.Title.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif-bold"
+            android:layout_marginStart="@dimen/spacing_2xl"
+            android:layout_marginTop="@dimen/spacing_2xl"
             android:text="Resumen del turno"
-            android:textColor="@color/char_900"
-            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dividerTop" />
 
@@ -289,16 +277,11 @@
         <!-- Confirm Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnConfirm"
+            style="@style/Widget.Pollo.Button.Primary.Hero"
             android:layout_width="0dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginHorizontal="20dp"
-            android:background="@drawable/bg_button_primary"
-            android:fontFamily="sans-serif-bold"
+            android:layout_marginTop="@dimen/spacing_3xl"
+            android:layout_marginHorizontal="@dimen/spacing_xl"
             android:text="Confirmar cierre de turno"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardAlert" />

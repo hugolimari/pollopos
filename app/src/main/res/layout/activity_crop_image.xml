@@ -4,14 +4,14 @@
     android:id="@+id/mainCropLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#16181C">
+    android:background="@color/crop_bg">
 
     <!-- Barra Superior -->
     <LinearLayout
         android:id="@+id/topBarCrop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1F2228"
+        android:background="@color/crop_bar_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingHorizontal="16dp"
@@ -48,21 +48,16 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:text="Proporción recomendada: 4:3"
-                android:textColor="#A0A6B2"
+                android:textColor="@color/crop_text_secondary"
                 android:textSize="12sp" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDoneCrop"
+            style="@style/Widget.Pollo.Button.Primary.Small"
             android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:background="@drawable/bg_button_primary"
-            android:fontFamily="sans-serif-bold"
             android:paddingHorizontal="18dp"
-            android:text="Listo"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="13sp" />
+            android:text="Listo" />
     </LinearLayout>
 
     <!-- Área de Recorte Interactiva -->
@@ -80,7 +75,7 @@
         android:id="@+id/bottomBarCrop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1F2228"
+        android:background="@color/crop_bar_bg"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingHorizontal="16dp"
@@ -94,7 +89,7 @@
             android:layout_marginBottom="12dp"
             android:fontFamily="sans-serif"
             android:text="Arrastra y pellizca para encuadrar la comida"
-            android:textColor="#88909E"
+            android:textColor="@color/crop_text_muted"
             android:textSize="11.5sp" />
 
         <LinearLayout
@@ -124,7 +119,7 @@
                 android:layout_width="1dp"
                 android:layout_height="24dp"
                 android:layout_marginHorizontal="12dp"
-                android:background="#3A3E48" />
+                android:background="@color/crop_divider" />
 
             <!-- Botón de Rotación 90° -->
             <LinearLayout

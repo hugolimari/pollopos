@@ -8,62 +8,131 @@
     <style name="TextAppearance.Pollo" parent="android:TextAppearance" />
     <style name="TextAppearance.Pollo.Title" parent="TextAppearance.Pollo" />
 
-    <!-- Título Principal de Pantalla (Grande / Hero) -->
-    <style name="TextAppearance.Pollo.Title.Large" parent="TextAppearance.Pollo.Title">
+    <!-- Título Principal Hero (Pantallas principales, Apertura) -->
+    <style name="TextAppearance.Pollo.Title.Hero" parent="TextAppearance.Pollo.Title">
         <item name="android:fontFamily">sans-serif-black</item>
         <item name="android:textColor">@color/char_900</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">@dimen/text_size_hero</item>
         <item name="android:letterSpacing">-0.01</item>
     </style>
 
-    <!-- Título de Sección o Modal -->
+    <!-- Título Grande (Encabezados de bienvenida, recibo, recuperación) -->
+    <style name="TextAppearance.Pollo.Title.Large" parent="TextAppearance.Pollo.Title">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textColor">@color/char_900</item>
+        <item name="android:textSize">@dimen/text_size_title_large</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+
+    <!-- Título de Sección, Barra Superior o Modal -->
     <style name="TextAppearance.Pollo.Title.Medium" parent="TextAppearance.Pollo.Title">
         <item name="android:fontFamily">sans-serif-black</item>
         <item name="android:textColor">@color/char_900</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_size_title_medium</item>
     </style>
 
-    <!-- Título de Tarjeta o Item -->
+    <!-- Título de Tarjeta o Item (Plato, Pedido, Turno) -->
     <style name="TextAppearance.Pollo.Title.Small" parent="TextAppearance.Pollo.Title">
-        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
         <item name="android:textColor">@color/char_900</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">@dimen/text_size_title_small</item>
     </style>
 
-    <!-- Subtítulo Informativo / Muted -->
+    <!-- Subtítulo Informativo / Muted Estándar -->
     <style name="TextAppearance.Pollo.Subtitle" parent="TextAppearance.Pollo">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/char_400</item>
-        <item name="android:textSize">12.5sp</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
+    </style>
+
+    <!-- Subtítulo Muted Pequeño / Caption -->
+    <style name="TextAppearance.Pollo.Subtitle.Muted" parent="TextAppearance.Pollo.Subtitle">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <!-- Subtítulo con Énfasis Oscuro -->
+    <style name="TextAppearance.Pollo.Subtitle.Emphasis" parent="TextAppearance.Pollo">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/char_700</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
+    </style>
+
+    <!-- Subtítulo Oscuro -->
+    <style name="TextAppearance.Pollo.Subtitle.Dark" parent="TextAppearance.Pollo.Subtitle">
+        <item name="android:textColor">@color/char_700</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
+    </style>
+
+    <!-- Subtítulo con Acento de Marca (Ember) -->
+    <style name="TextAppearance.Pollo.Subtitle.Accent" parent="TextAppearance.Pollo">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/ember_600</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <!-- Etiqueta de Campo de Formulario (Label) -->
     <style name="TextAppearance.Pollo.Label" parent="TextAppearance.Pollo">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/char_700</item>
-        <item name="android:textSize">12.5sp</item>
+        <item name="android:textSize">@dimen/text_size_label</item>
+    </style>
+
+    <!-- Etiqueta de Campo de Formulario Destacada (Bold) -->
+    <style name="TextAppearance.Pollo.Label.Bold" parent="TextAppearance.Pollo.Label">
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textColor">@color/char_700</item>
     </style>
 
     <!-- Texto de Cuerpo Estándar -->
     <style name="TextAppearance.Pollo.Body" parent="TextAppearance.Pollo">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/char_700</item>
-        <item name="android:textSize">13.5sp</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
     </style>
 
-    <!-- Texto de Importes y Precios (Ember) -->
+    <!-- Texto de Cuerpo Oscuro / Contraste Alto -->
+    <style name="TextAppearance.Pollo.Body.Dark" parent="TextAppearance.Pollo.Body">
+        <item name="android:textColor">@color/char_900</item>
+    </style>
+
+    <!-- Texto de Nota al Pie o Helper Placeholder -->
+    <style name="TextAppearance.Pollo.Caption" parent="TextAppearance.Pollo">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/placeholder_text</item>
+        <item name="android:textSize">@dimen/text_size_caption</item>
+    </style>
+
+    <!-- Texto de Precios Principal (Ember mediano) -->
     <style name="TextAppearance.Pollo.Price" parent="TextAppearance.Pollo">
         <item name="android:fontFamily">sans-serif-black</item>
         <item name="android:textColor">@color/ember_600</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/text_size_price_medium</item>
+    </style>
+
+    <!-- Texto de Precios Hero (Grandes totales y arqueos) -->
+    <style name="TextAppearance.Pollo.Price.Hero" parent="TextAppearance.Pollo.Price">
+        <item name="android:textSize">@dimen/text_size_price_hero</item>
+    </style>
+
+    <!-- Texto de Precios Pequeño / Items de Catálogo -->
+    <style name="TextAppearance.Pollo.Price.Small" parent="TextAppearance.Pollo.Price">
+        <item name="android:textColor">@color/ember_700</item>
+        <item name="android:textSize">@dimen/text_size_price_small</item>
     </style>
 
     <!-- Texto de Badges y Tags en Mayúsculas -->
     <style name="TextAppearance.Pollo.Badge" parent="TextAppearance.Pollo">
         <item name="android:fontFamily">sans-serif-black</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">10.5sp</item>
+        <item name="android:textSize">@dimen/text_size_badge</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- Texto de Badges de Estado (Cocina, Entregado, etc.) -->
+    <style name="TextAppearance.Pollo.Badge.Status" parent="TextAppearance.Pollo.Badge">
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textSize">11.5sp</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
 
@@ -77,16 +146,37 @@
     <style name="Widget.Pollo.Card" parent="" />
     <style name="Widget.Pollo.Dialog" parent="" />
 
-    <!-- Botón Primario (Ember naranja degradado / llamativo) -->
+    <!-- Botón Primario Estándar (Ember Naranja) -->
     <style name="Widget.Pollo.Button.Primary" parent="Widget.Pollo.Button">
         <item name="android:background">@drawable/bg_button_primary</item>
         <item name="android:fontFamily">sans-serif-bold</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_size_btn_primary</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:paddingHorizontal">20dp</item>
-        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingHorizontal">@dimen/spacing_xl</item>
+        <item name="android:minHeight">@dimen/btn_height_primary</item>
         <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Botón Primario Hero (Login, Inicio de Turno) -->
+    <style name="Widget.Pollo.Button.Primary.Hero" parent="Widget.Pollo.Button.Primary">
+        <item name="android:minHeight">@dimen/btn_height_hero</item>
+        <item name="android:textSize">15.5sp</item>
+        <item name="android:elevation">@dimen/elevation_medium</item>
+    </style>
+
+    <!-- Botón Primario Mediano (Modales y Formularios) -->
+    <style name="Widget.Pollo.Button.Primary.Medium" parent="Widget.Pollo.Button.Primary">
+        <item name="android:minHeight">@dimen/btn_height_medium</item>
+        <item name="android:textSize">@dimen/text_size_btn_medium</item>
+        <item name="android:paddingHorizontal">@dimen/spacing_l</item>
+    </style>
+
+    <!-- Botón Primario Pequeño (Tarjetas de Lista y Acciones Rápidas) -->
+    <style name="Widget.Pollo.Button.Primary.Small" parent="Widget.Pollo.Button.Primary">
+        <item name="android:minHeight">@dimen/btn_height_small</item>
+        <item name="android:textSize">@dimen/text_size_btn_small</item>
+        <item name="android:paddingHorizontal">@dimen/spacing_m</item>
     </style>
 
     <!-- Botón Secundario / Contorno (Outline) -->
@@ -94,42 +184,110 @@
         <item name="android:background">@drawable/bg_btn_outline</item>
         <item name="android:fontFamily">sans-serif-bold</item>
         <item name="android:textColor">@color/char_700</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">@dimen/text_size_btn_medium</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:paddingHorizontal">16dp</item>
-        <item name="android:minHeight">44dp</item>
+        <item name="android:paddingHorizontal">@dimen/spacing_l</item>
+        <item name="android:minHeight">@dimen/btn_height_primary</item>
         <item name="android:stateListAnimator">@null</item>
     </style>
 
-    <!-- Botón Chip Seleccionado -->
+    <!-- Botón Secundario Mediano (Modales y Formularios) -->
+    <style name="Widget.Pollo.Button.Outline.Medium" parent="Widget.Pollo.Button.Outline">
+        <item name="android:minHeight">@dimen/btn_height_medium</item>
+        <item name="android:paddingHorizontal">@dimen/spacing_l</item>
+    </style>
+
+    <!-- Botón Secundario Pequeño (Tarjetas de Pedidos) -->
+    <style name="Widget.Pollo.Button.Outline.Small" parent="Widget.Pollo.Button.Outline">
+        <item name="android:minHeight">@dimen/btn_height_small</item>
+        <item name="android:textSize">@dimen/text_size_btn_small</item>
+        <item name="android:paddingHorizontal">@dimen/spacing_m</item>
+    </style>
+
+    <!-- Botón de Acción Peligrosa / Cancelación / Eliminar -->
+    <style name="Widget.Pollo.Button.Danger" parent="Widget.Pollo.Button">
+        <item name="android:background">@drawable/bg_btn_outline</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textColor">@color/danger_600</item>
+        <item name="android:textSize">@dimen/text_size_btn_medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/btn_height_medium</item>
+        <item name="android:paddingHorizontal">@dimen/spacing_l</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Botón Circular de Retorno / Back Estándar -->
+    <style name="Widget.Pollo.Button.Back" parent="Widget.Pollo">
+        <item name="android:layout_width">@dimen/btn_icon_size_small</item>
+        <item name="android:layout_height">@dimen/btn_icon_size_small</item>
+        <item name="android:background">@drawable/bg_back_btn</item>
+        <item name="android:src">@drawable/ic_back_arrow</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:contentDescription">@string/content_desc_back</item>
+    </style>
+
+    <!-- Botón Circular de Retorno / Back Grande (40dp) -->
+    <style name="Widget.Pollo.Button.Back.Large" parent="Widget.Pollo.Button.Back">
+        <item name="android:layout_width">@dimen/btn_icon_size</item>
+        <item name="android:layout_height">@dimen/btn_icon_size</item>
+    </style>
+
+    <!-- Botón de Monto Rápido en Efectivo (Apertura y Pago) -->
+    <style name="Widget.Pollo.Button.QuickCash" parent="Widget.Pollo">
+        <item name="android:background">@drawable/bg_quick_cash_btn</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textColor">@color/char_700</item>
+        <item name="android:textSize">@dimen/text_size_label</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">@dimen/btn_height_small</item>
+    </style>
+
+    <!-- Botón Stepper de Cantidad (−) -->
+    <style name="Widget.Pollo.Button.Stepper.Minus" parent="Widget.Pollo.Button">
+        <item name="android:layout_width">@dimen/btn_stepper_size</item>
+        <item name="android:layout_height">@dimen/btn_stepper_size</item>
+        <item name="android:background">@drawable/bg_minus_btn</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textColor">@color/ember_700</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Botón Stepper de Cantidad (+) -->
+    <style name="Widget.Pollo.Button.Stepper.Add" parent="Widget.Pollo.Button">
+        <item name="android:layout_width">@dimen/btn_stepper_size</item>
+        <item name="android:layout_height">@dimen/btn_stepper_size</item>
+        <item name="android:background">@drawable/bg_add_btn</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- Chip de Filtro / Categoría Seleccionado -->
     <style name="Widget.Pollo.Chip.Selected" parent="Widget.Pollo.Chip">
         <item name="android:background">@drawable/bg_chip_selected</item>
         <item name="android:fontFamily">sans-serif-bold</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">12.5sp</item>
+        <item name="android:textSize">@dimen/text_size_label</item>
         <item name="android:gravity">center</item>
-        <item name="android:paddingHorizontal">14dp</item>
-        <item name="android:minHeight">36dp</item>
+        <item name="android:paddingHorizontal">@dimen/input_padding_horizontal</item>
+        <item name="android:minHeight">@dimen/btn_height_compact</item>
     </style>
 
-    <!-- Botón Chip No Seleccionado -->
+    <!-- Chip de Filtro / Categoría No Seleccionado -->
     <style name="Widget.Pollo.Chip.Unselected" parent="Widget.Pollo.Chip">
         <item name="android:background">@drawable/bg_chip_unselected</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/char_700</item>
-        <item name="android:textSize">12.5sp</item>
+        <item name="android:textSize">@dimen/text_size_label</item>
         <item name="android:gravity">center</item>
-        <item name="android:paddingHorizontal">14dp</item>
-        <item name="android:minHeight">36dp</item>
-    </style>
-
-    <!-- Botón Circular de Retorno / Back -->
-    <style name="Widget.Pollo.Button.Back" parent="Widget.Pollo.Button">
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:background">@drawable/bg_back_btn</item>
-        <item name="android:src">@drawable/ic_back_arrow</item>
-        <item name="android:scaleType">centerInside</item>
+        <item name="android:paddingHorizontal">@dimen/input_padding_horizontal</item>
+        <item name="android:minHeight">@dimen/btn_height_compact</item>
     </style>
 
 
@@ -137,12 +295,17 @@
     <!--  3. CAMPOS DE ENTRADA Y FORMULARIOS                      -->
     <!-- ======================================================== -->
 
-    <!-- Contenedor de Input Field con borde suave y fondo paper -->
+    <!-- Contenedor de Input Field Principal (52dp) -->
     <style name="Widget.Pollo.InputContainer" parent="Widget.Pollo">
         <item name="android:background">@drawable/bg_input_field</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_height">@dimen/input_height</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:paddingHorizontal">14dp</item>
+        <item name="android:paddingHorizontal">@dimen/input_padding_horizontal</item>
+    </style>
+
+    <!-- Contenedor de Input Field Mediano (48dp) -->
+    <style name="Widget.Pollo.InputContainer.Medium" parent="Widget.Pollo.InputContainer">
+        <item name="android:layout_height">@dimen/input_height_medium</item>
     </style>
 
     <!-- EditText sin fondo propio, dentro de contenedor -->
@@ -151,32 +314,113 @@
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/char_900</item>
         <item name="android:textColorHint">@color/placeholder_text</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
 
     <!-- ======================================================== -->
-    <!--  4. TARJETAS Y CONTENEDORES                              -->
+    <!--  4. TARJETAS, CONTENEDORES Y BARRAS SUPERIORES           -->
     <!-- ======================================================== -->
+
+    <!-- Barra de Encabezado Superior Horizontal (con Back + Título) -->
+    <style name="Widget.Pollo.Header.Horizontal" parent="Widget.Pollo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">@dimen/elevation_low</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingHorizontal">@dimen/header_padding_horizontal</item>
+        <item name="android:paddingTop">@dimen/header_padding_top</item>
+        <item name="android:paddingBottom">@dimen/header_padding_bottom</item>
+    </style>
+
+    <!-- Barra de Encabezado Superior Vertical (Título + Subtítulo) -->
+    <style name="Widget.Pollo.Header.Vertical" parent="Widget.Pollo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">@dimen/elevation_low</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingHorizontal">@dimen/header_padding_horizontal</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">@dimen/header_padding_bottom</item>
+    </style>
 
     <!-- Tarjeta de Producto en el Menú de Venta -->
     <style name="Widget.Pollo.Card.Product" parent="Widget.Pollo.Card">
         <item name="android:background">@drawable/bg_product_card</item>
-        <item name="android:padding">12dp</item>
+        <item name="android:padding">@dimen/card_padding_product</item>
     </style>
 
-    <!-- Tarjeta de Pedido / Resumen -->
+    <!-- Tarjeta de Pedido / Resumen de Turno / Caja -->
     <style name="Widget.Pollo.Card.Order" parent="Widget.Pollo.Card">
         <item name="android:background">@drawable/bg_order_card</item>
-        <item name="android:padding">14dp</item>
+        <item name="android:padding">@dimen/card_padding_standard</item>
     </style>
 
     <!-- Modal con Esquinas Superiores Redondeadas (BottomSheet / Form) -->
     <style name="Widget.Pollo.Dialog.Container" parent="Widget.Pollo.Dialog">
         <item name="android:background">@drawable/bg_card_top_rounded</item>
-        <item name="android:padding">22dp</item>
+        <item name="android:padding">@dimen/dialog_padding</item>
+    </style>
+
+    <!-- Tarjeta Blanca Estándar con Borde y Sombra Suave -->
+    <style name="Widget.Pollo.Card.White" parent="Widget.Pollo.Card">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">@dimen/radius_card</item>
+        <item name="cardElevation">1dp</item>
+        <item name="strokeColor">@color/line_color</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- Divisor de Línea Reutilizable -->
+    <style name="Widget.Pollo.Divider" parent="Widget.Pollo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/line_color</item>
+    </style>
+
+    <!-- Texto de Ítem de Navegación Inferior (Activo) -->
+    <style name="TextAppearance.Pollo.Nav.Active" parent="TextAppearance.Pollo">
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textColor">@color/ember_600</item>
+        <item name="android:textSize">@dimen/text_size_badge</item>
+    </style>
+
+    <!-- Texto de Ítem de Navegación Inferior (Inactivo) -->
+    <style name="TextAppearance.Pollo.Nav.Inactive" parent="TextAppearance.Pollo">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/char_400</item>
+        <item name="android:textSize">@dimen/text_size_badge</item>
+    </style>
+
+    <!-- Barra de Navegación Inferior -->
+    <style name="Widget.Pollo.BottomNav" parent="Widget.Pollo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/bottom_nav_height</item>
+        <item name="android:background">@drawable/bg_bottom_nav</item>
+        <item name="android:elevation">12dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- Barra Flotante de Carrito de Compras -->
+    <style name="Widget.Pollo.CartBar" parent="Widget.Pollo">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/bottom_nav_height</item>
+        <item name="android:background">@drawable/bg_cart_bar</item>
+        <item name="android:elevation">@dimen/elevation_high</item>
+        <item name="android:paddingHorizontal">@dimen/card_margin_horizontal</item>
+    </style>
+
+    <!-- Barra Contenedora de Búsqueda -->
+    <style name="Widget.Pollo.SearchContainer" parent="Widget.Pollo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/input_height_compact</item>
+        <item name="android:background">@drawable/bg_search</item>
     </style>
 
 </resources>
