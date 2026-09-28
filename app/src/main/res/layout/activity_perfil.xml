@@ -12,6 +12,8 @@
     <LinearLayout
         android:id="@+id/headerPerfil"
         style="@style/Widget.Pollo.Header.Vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -90,7 +92,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="Carlos Méndez"
+                            android:text="Administrador"
                             android:textColor="@color/char_900"
                             android:textSize="17sp" />
 

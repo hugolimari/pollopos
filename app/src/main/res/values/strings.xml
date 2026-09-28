@@ -8,7 +8,7 @@
     <string name="welcome_subtitle">Ingresa con tu usuario de cajero para abrir turno.</string>
 
     <string name="label_user">Usuario</string>
-    <string name="hint_user">ej. carlos.caja1</string>
+    <string name="hint_user">ej. admin</string>
 
     <string name="label_password">Contraseña / PIN</string>
     <string name="hint_password">••••••</string>
@@ -30,7 +30,7 @@
 
     <!-- Pago Screen -->
     <string name="title_pay">Cobrar pedido</string>
-    <string name="subtitle_pay">Pedido #0231 · Para llevar</string>
+    <string name="subtitle_pay">Pedido · Cobranza</string>
     <string name="label_total_to_pay">TOTAL A COBRAR</string>
     <string name="section_payment_method">Método de pago</string>
     <string name="method_cash">Efectivo</string>

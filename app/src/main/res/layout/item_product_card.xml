@@ -132,12 +132,16 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnMinus"
             style="@style/Widget.Pollo.Button.Stepper.Minus"
+            android:layout_width="@dimen/btn_stepper_size"
+            android:layout_height="@dimen/btn_stepper_size"
             android:layout_marginEnd="6dp"
             android:text="−" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAdd"
             style="@style/Widget.Pollo.Button.Stepper.Add"
+            android:layout_width="@dimen/btn_stepper_size"
+            android:layout_height="@dimen/btn_stepper_size"
             android:text="+" />
     </LinearLayout>
 

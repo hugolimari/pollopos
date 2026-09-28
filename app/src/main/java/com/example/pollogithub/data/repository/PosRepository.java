@@ -360,7 +360,7 @@ public class PosRepository {
             int sucursalId = sessionManager.getSucursalId();
 
             Integer maxOrden = db.pedidoDao().getMaxNumeroOrden();
-            int nextOrden = (maxOrden == null || maxOrden < 200) ? 232 : maxOrden + 1;
+            int nextOrden = (maxOrden == null || maxOrden <= 0) ? 1 : maxOrden + 1;
 
             double subtotal = 0.0;
             for (Product p : cartProducts) {

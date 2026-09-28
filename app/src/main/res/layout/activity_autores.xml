@@ -11,13 +11,17 @@
     <LinearLayout
         android:id="@+id/layoutTopBar"
         style="@style/Widget.Pollo.Header.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/btnBack"
-            style="@style/Widget.Pollo.Button.Back.Large" />
+            style="@style/Widget.Pollo.Button.Back.Large"
+            android:layout_width="@dimen/btn_icon_size"
+            android:layout_height="@dimen/btn_icon_size" />
 
         <TextView
             android:textAppearance="@style/TextAppearance.Pollo.Title.Large"
@@ -99,7 +103,7 @@
                         android:contentDescription="Autor"
                         android:padding="8dp"
                         android:src="@drawable/ic_person"
-                        app:tint="@color/ember_600" />
+                        app:tint="@color/white" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -146,7 +150,7 @@
                         android:contentDescription="Autor"
                         android:padding="8dp"
                         android:src="@drawable/ic_person"
-                        app:tint="@color/ember_600" />
+                        app:tint="@color/white" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -175,86 +179,225 @@
 
             </LinearLayout>
 
-            <!-- Tarjeta: Retrato Digital ASCII -->
+            <!-- Tarjeta: Información Académica -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_order_card"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="20dp">
 
+                <!-- Badge -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_chip_selected"
+                    android:fontFamily="sans-serif-bold"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:text="INFORMACIÓN ACADÉMICA"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="10.5sp" />
+
+                <!-- Título -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Datos Académicos:"
+                    android:textColor="@color/char_900"
+                    android:textSize="20sp" />
+
+                <!-- 1. Universidad -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_avatar_circle"
+                        android:contentDescription="Universidad"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_school"
+                        app:tint="@color/white" />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-black"
-                            android:text="Retrato Digital ASCII"
-                            android:textColor="@color/char_900"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/tvModeSubtitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Redimensionada para este dispositivo"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="Universidad:"
                             android:textColor="@color/char_400"
                             android:textSize="11.5sp" />
-                    </LinearLayout>
-
-                    <!-- Botón para alternar resolución -->
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnToggleResolution"
-                        android:layout_width="wrap_content"
-                        android:layout_height="34dp"
-                        android:background="@drawable/bg_btn_outline"
-                        android:fontFamily="sans-serif-bold"
-                        android:paddingHorizontal="10dp"
-                        android:text="Ver Original"
-                        android:textAllCaps="false"
-                        android:textColor="@color/char_700"
-                        android:textSize="11.5sp" />
-                </LinearLayout>
-
-                <!-- Contenedor con borde del ASCII -->
-                <FrameLayout
-                    android:id="@+id/containerAscii"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_cash_input"
-                    android:padding="8dp">
-
-                    <HorizontalScrollView
-                        android:id="@+id/horizontalScrollAscii"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scrollbars="horizontal">
 
                         <TextView
-                            android:id="@+id/tvAsciiArt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="monospace"
-                            android:includeFontPadding="false"
-                            android:lineSpacingMultiplier="0.84"
+                            android:layout_marginTop="1dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="Universidad Privada Domingo Savio"
                             android:textColor="@color/char_900"
-                            android:textSize="6sp"
-                            android:typeface="monospace" />
-                    </HorizontalScrollView>
-                </FrameLayout>
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@color/line_color" />
+
+                <!-- 2. Docente -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_avatar_circle"
+                        android:contentDescription="Docente"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_person"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="Docente:"
+                            android:textColor="@color/char_400"
+                            android:textSize="11.5sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="Omar Surci"
+                            android:textColor="@color/char_900"
+                            android:textSize="15.5sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@color/line_color" />
+
+                <!-- 3. Materia -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_avatar_circle"
+                        android:contentDescription="Materia"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_menu_book"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="Materia:"
+                            android:textColor="@color/char_400"
+                            android:textSize="11.5sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="Desarrollo de aplicaciones móviles I"
+                            android:textColor="@color/char_900"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@color/line_color" />
+
+                <!-- 4. Año -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_avatar_circle"
+                        android:contentDescription="Año"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_calendar"
+                        app:tint="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="Año:"
+                            android:textColor="@color/char_400"
+                            android:textSize="11.5sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="2026"
+                            android:textColor="@color/char_900"
+                            android:textSize="15.5sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
             <!-- Botón de retorno -->

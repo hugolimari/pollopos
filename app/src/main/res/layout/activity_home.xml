@@ -20,6 +20,8 @@
     <LinearLayout
         android:id="@+id/bottomNav"
         style="@style/Widget.Pollo.BottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_nav_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

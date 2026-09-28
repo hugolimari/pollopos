@@ -144,6 +144,7 @@
                         android:id="@+id/btnQuickFondo50"
                         style="@style/Widget.Pollo.Button.QuickCash"
                         android:layout_width="0dp"
+                        android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
                         android:layout_weight="1"
                         android:text="Bs. 50" />
@@ -152,6 +153,7 @@
                         android:id="@+id/btnQuickFondo100"
                         style="@style/Widget.Pollo.Button.QuickCash"
                         android:layout_width="0dp"
+                        android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
                         android:layout_weight="1"
                         android:text="Bs. 100" />
@@ -160,6 +162,7 @@
                         android:id="@+id/btnQuickFondo200"
                         style="@style/Widget.Pollo.Button.QuickCash"
                         android:layout_width="0dp"
+                        android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
                         android:layout_weight="1"
                         android:text="Bs. 200" />
@@ -168,6 +171,7 @@
                         android:id="@+id/btnQuickFondo300"
                         style="@style/Widget.Pollo.Button.QuickCash"
                         android:layout_width="0dp"
+                        android:layout_height="@dimen/btn_height_small"
                         android:layout_weight="1"
                         android:text="Bs. 300" />
                 </LinearLayout>
@@ -186,6 +190,7 @@
                     android:id="@+id/btnAbrirTurno"
                     style="@style/Widget.Pollo.Button.Primary"
                     android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height_primary"
                     android:layout_marginTop="22dp"
                     android:elevation="3dp"
                     android:text="Abrir Turno y Comenzar" />

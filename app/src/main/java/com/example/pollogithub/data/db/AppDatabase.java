@@ -56,7 +56,7 @@ import java.util.concurrent.Executors;
         PedidoDetalleEntity.class,
         PagoEntity.class,
         MovimientoCajaEntity.class
-}, version = 4, exportSchema = false)
+}, version = 5, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     /**
@@ -173,11 +173,9 @@ public abstract class AppDatabase extends RoomDatabase {
                 sucursalId = db.sucursalDao().insert(sucursal);
             }
 
-            // 2. Siembra de Usuarios y Roles predeterminados (Admin y Cajero)
+            // 2. Siembra del Usuario Administrador predeterminado (solo admin)
             UsuarioEntity admin = new UsuarioEntity((int) sucursalId, 1, "Administrador", "admin", "1234", "1234", true);
-            UsuarioEntity cajero = new UsuarioEntity((int) sucursalId, 2, "Carlos Méndez", "carlos", "1234", "1234", true);
             db.usuarioDao().insert(admin);
-            db.usuarioDao().insert(cajero);
 
             // 3. Taxonomía de Categorías de Productos
             if (db.categoriaDao().count() == 0) {
@@ -190,7 +188,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 db.categoriaDao().insertAll(categorias);
             }
 
-            // 4. Catálogo de Artículos de Venta con referencias a recursos drawables locales
+            // 4. Catálogo de Artículos de Venta iniciales
             if (db.productoDao().count() == 0) {
                 List<ProductoEntity> productos = new ArrayList<>();
                 productos.add(new ProductoEntity((int) sucursalId, 1, "Presa individual", "Pierna o pechuga", 8.50, true, "", R.drawable.bg_thumb_fried));
@@ -202,33 +200,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 db.productoDao().insertAll(productos);
             }
 
-            // 5. Turno Inicial de Operación en Caja (si no existe turno)
-            if (db.turnoDao().getTurnoActivo() == null) {
-                TurnoEntity turno = new TurnoEntity((int) sucursalId, 1, 100.00, System.currentTimeMillis() - 3600000, null, null, null, null, "abierto");
-                long turnoId = db.turnoDao().insert(turno);
-
-                // Movimiento inicial de prueba en caja chica (Gasto de carbón)
-                db.movimientoCajaDao().insert(new MovimientoCajaEntity((int) turnoId, "EGRESO", 25.00, "Compra de carbón vegetal", System.currentTimeMillis() - 3000000));
-
-                // Transacciones Demo: Pedido en cocina (Local)
-                PedidoEntity p1 = new PedidoEntity((int) sucursalId, (int) turnoId, 1, null, 231, "mesa", "cocina", "pendiente", 41.40, null, 0.0, 41.40, null, System.currentTimeMillis() - 180000);
-                long p1Id = db.pedidoDao().insert(p1);
-                db.pedidoDetalleDao().insert(new PedidoDetalleEntity((int) p1Id, 2, "1/4 de pollo frito", 1, 14.00, 14.00, "Pierna · bien dorado"));
-                db.pedidoDetalleDao().insert(new PedidoDetalleEntity((int) p1Id, 3, "1/2 pollo a la brasa", 1, 24.00, 24.00, "Sin ensalada"));
-                db.pedidoDetalleDao().insert(new PedidoDetalleEntity((int) p1Id, 5, "Gaseosa 500ml", 2, 4.00, 8.00, ""));
-
-                // Transacciones Demo: Pedido para llevar
-                PedidoEntity p2 = new PedidoEntity((int) sucursalId, (int) turnoId, 1, null, 230, "para_llevar", "cocina", "pendiente", 58.00, null, 0.0, 58.00, null, System.currentTimeMillis() - 360000);
-                long p2Id = db.pedidoDao().insert(p2);
-                db.pedidoDetalleDao().insert(new PedidoDetalleEntity((int) p2Id, 4, "Combo Familiar", 1, 52.00, 52.00, "Salsa aparte"));
-                db.pedidoDetalleDao().insert(new PedidoDetalleEntity((int) p2Id, 6, "Papas fritas", 1, 6.00, 6.00, "sin sal"));
-
-                // Transacciones Demo: Pedido completado y liquidado en efectivo
-                PedidoEntity p3 = new PedidoEntity((int) sucursalId, (int) turnoId, 1, null, 226, "mesa", "listo", "pagado", 52.00, null, 0.0, 52.00, null, System.currentTimeMillis() - 1080000);
-                long p3Id = db.pedidoDao().insert(p3);
-                db.pedidoDetalleDao().insert(new PedidoDetalleEntity((int) p3Id, 4, "Combo Familiar", 1, 52.00, 52.00, ""));
-                db.pagoDao().insert(new PagoEntity((int) p3Id, (int) turnoId, "efectivo", 52.00, 60.00, 8.00, "", System.currentTimeMillis() - 1080000));
-            }
+            // 5. La caja inicia cerrada, sin movimientos y sin pedidos previos en cola
         });
     }
 }

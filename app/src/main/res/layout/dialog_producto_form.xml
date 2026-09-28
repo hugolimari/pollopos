@@ -28,6 +28,8 @@
 
         <View
             style="@style/Widget.Pollo.Divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginVertical="14dp" />
 
         <!-- Nombre del Producto -->
@@ -387,12 +389,14 @@
                 android:id="@+id/btnCancelarForm"
                 style="@style/Widget.Pollo.Button.Outline.Medium"
                 android:layout_width="wrap_content"
+                android:layout_height="@dimen/btn_height_medium"
                 android:text="Cancelar" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnGuardarForm"
                 style="@style/Widget.Pollo.Button.Primary.Medium"
                 android:layout_width="wrap_content"
+                android:layout_height="@dimen/btn_height_medium"
                 android:layout_marginStart="@dimen/spacing_m"
                 android:paddingHorizontal="@dimen/spacing_2xl"
                 android:text="Guardar" />

@@ -12,8 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pollogithub.data.repository.PosRepository;
+import com.example.pollogithub.ui.viewmodel.PedidosViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,51 +83,45 @@ public class PedidosActivity extends AppCompatActivity {
         lineTabListos = findViewById(R.id.lineTabListos);
         lineTabCamino = findViewById(R.id.lineTabCamino);
 
-        // 2. Carga inicial de datos de demostración
-        initOrdersList();
+        // 2. ViewModel para sincronización reactiva real desde Room (sin datos mock)
+        PedidosViewModel pedidosViewModel = new ViewModelProvider(this).get(PedidosViewModel.class);
 
         // 3. Configuración del RecyclerView y enlace con el adaptador
         RecyclerView rvOrders = findViewById(R.id.rvOrders);
         rvOrders.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new OrderAdapter(this, displayedOrders, (order, position) -> {
-            // Transición de estados de la orden según la lógica de preparación
-            if (order.getStatus().equals("cocina")) {
-                order.setStatus("listo");
-                order.setPrimaryActionText(order.getType().contains("Delivery") ? "Enviar repartidor" : "Entregado");
-                Toast.makeText(this, order.getId() + " marcado como listo", Toast.LENGTH_SHORT).show();
-            } else if (order.getStatus().equals("listo")) {
-                order.setStatus("camino");
-                order.setPrimaryActionText("Entregado");
-                Toast.makeText(this, order.getId() + " enviado con repartidor", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, order.getId() + " entregado al cliente", Toast.LENGTH_SHORT).show();
-            }
-            updateTabCounts();
-            filterOrders();
+            pedidosViewModel.avanzarEstadoPedido(order, new PosRepository.Callback<Void>() {
+                @Override
+                public void onSuccess(Void result) {
+                    if ("cocina".equalsIgnoreCase(order.getStatus())) {
+                        Toast.makeText(PedidosActivity.this, order.getId() + " marcado como listo", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(PedidosActivity.this, order.getId() + " entregado al cliente", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onError(String error) {
+                    Toast.makeText(PedidosActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                }
+            });
         });
         rvOrders.setAdapter(adapter);
 
         setupTabs();
         setupBottomNav();
+
+        // 4. Observación reactiva de pedidos reales en base de datos
+        pedidosViewModel.getOrdersLiveData().observe(this, orders -> {
+            allOrders.clear();
+            if (orders != null) {
+                allOrders.addAll(orders);
+            }
+            updateTabCounts();
+            filterOrders();
+        });
         updateTabCounts();
-    }
-
-    /**
-     * Inicializa pedidos de prueba para verificación de la interfaz KDS.
-     */
-    private void initOrdersList() {
-        allOrders.add(new Order("Pedido #0231", "Hace 3 min · Mesa 4", "cocina", "1/4 pollo frito, 1/2 pollo a la brasa, 2× gaseosa", "Para mesa", 41.40, "Marcar listo"));
-        allOrders.add(new Order("Pedido #0230", "Hace 6 min · Para llevar", "cocina", "1× combo familiar, 1× papas fritas", "Para llevar", 58.00, "Marcar listo"));
-        allOrders.add(new Order("Pedido #0228", "Hace 12 min · Mesa 2", "cocina", "1/2 pollo a la brasa, 1× gaseosa 1.5L", "Para mesa", 30.00, "Marcar listo"));
-        allOrders.add(new Order("Pedido #0227", "Hace 15 min · Para llevar", "cocina", "2× presa individual", "Para llevar", 17.00, "Marcar listo"));
-
-        allOrders.add(new Order("Pedido #0229", "Hace 9 min · Delivery", "listo", "2× presa individual, 1× gaseosa 1.5L", "Delivery", 33.00, "Enviar repartidor"));
-        allOrders.add(new Order("Pedido #0226", "Hace 18 min · Mesa 1", "listo", "1× combo familiar", "Para mesa", 52.00, "Entregado"));
-
-        allOrders.add(new Order("Pedido #0225", "Hace 22 min · Delivery", "camino", "1/2 pollo a la brasa, 1× papas fritas", "Delivery", 30.00, "Entregado"));
-
-        filterOrders();
     }
 
     /**

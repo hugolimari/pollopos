@@ -36,8 +36,8 @@ import java.util.Locale;
  */
 public class PagoActivity extends AppCompatActivity {
 
-    private double originalTotal = 41.40;
-    private double totalAmount = 41.40;
+    private double originalTotal = 0.0;
+    private double totalAmount = 0.0;
     private double discountAmount = 0.0;
     private int selectedMethodIndex = 0; // 0: Efectivo, 1: Tarjeta, 2: QR, 3: Mixto
 
@@ -79,9 +79,9 @@ public class PagoActivity extends AppCompatActivity {
         });
 
         // 1. Obtención de parámetros del pedido
-        pedidoId = getIntent().getIntExtra("PEDIDO_ID", 1);
-        orderNumber = getIntent().getIntExtra("ORDER_NUMBER", 231);
-        originalTotal = getIntent().getDoubleExtra("TOTAL_AMOUNT", 41.40);
+        pedidoId = getIntent().getIntExtra("PEDIDO_ID", 0);
+        orderNumber = getIntent().getIntExtra("ORDER_NUMBER", 1);
+        originalTotal = getIntent().getDoubleExtra("TOTAL_AMOUNT", 0.0);
         totalAmount = originalTotal;
         tipoEntrega = getIntent().getStringExtra("TIPO_ENTREGA");
 

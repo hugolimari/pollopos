@@ -48,6 +48,10 @@ public class SessionManager {
      */
     public SessionManager(Context context) {
         prefs = context.getApplicationContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        // Si hay una sesión previa o turno remanente de versiones anteriores, purgar para inicio limpio
+        if (prefs.getInt("data_clean_version", 0) < 5) {
+            prefs.edit().clear().putInt("data_clean_version", 5).apply();
+        }
     }
 
     /**

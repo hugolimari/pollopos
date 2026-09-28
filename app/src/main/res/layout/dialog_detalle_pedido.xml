@@ -53,6 +53,8 @@
 
         <View
             style="@style/Widget.Pollo.Divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginVertical="14dp" />
 
         <!-- Label Productos -->
@@ -114,6 +116,7 @@
                 android:id="@+id/btnCancelarPedidoDialog"
                 style="@style/Widget.Pollo.Button.Danger"
                 android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height_primary"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:text="Cancelar pedido" />
@@ -122,6 +125,7 @@
                 android:id="@+id/btnCerrarDetalleDialog"
                 style="@style/Widget.Pollo.Button.Primary.Medium"
                 android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height_medium"
                 android:layout_weight="1"
                 android:text="Cerrar" />
         </LinearLayout>

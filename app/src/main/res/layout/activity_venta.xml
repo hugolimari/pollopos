@@ -61,7 +61,7 @@
                         style="@style/TextAppearance.Pollo.Title.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Carlos Mendoza" />
+                        android:text="Administrador" />
 
                     <TextView
                         android:id="@+id/tvShiftInfo"
@@ -75,7 +75,9 @@
 
         <!-- Search Input Bar -->
         <FrameLayout
-            style="@style/Widget.Pollo.SearchContainer">
+            style="@style/Widget.Pollo.SearchContainer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height_compact">
 
             <ImageView
                 android:layout_width="18dp"
@@ -88,6 +90,8 @@
             <EditText
                 android:id="@+id/etSearch"
                 style="@style/Widget.Pollo.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:hint="@string/search_hint"
                 android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
@@ -217,6 +221,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cartBar"
         style="@style/Widget.Pollo.CartBar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/bottom_nav_height"
         android:layout_marginHorizontal="@dimen/header_padding_horizontal"
         android:layout_marginBottom="@dimen/spacing_m"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
@@ -304,6 +310,8 @@
     <LinearLayout
         android:id="@+id/bottomNav"
         style="@style/Widget.Pollo.BottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_nav_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

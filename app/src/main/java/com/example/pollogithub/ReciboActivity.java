@@ -71,21 +71,21 @@ public class ReciboActivity extends AppCompatActivity {
         printerManager = new ThermalPrinterManager(this);
 
         // 1. Extracción de parámetros transportados mediante Intent
-        pedidoId = getIntent().getIntExtra("PEDIDO_ID", 1);
-        orderNumber = getIntent().getIntExtra("ORDER_NUMBER", 231);
+        pedidoId = getIntent().getIntExtra("PEDIDO_ID", 0);
+        orderNumber = getIntent().getIntExtra("ORDER_NUMBER", 1);
         paymentMethod = getIntent().getStringExtra("PAYMENT_METHOD");
         if (paymentMethod == null) paymentMethod = "Efectivo";
 
         tipoEntrega = getIntent().getStringExtra("TIPO_ENTREGA");
         if (tipoEntrega == null) tipoEntrega = "mesa";
 
-        totalAmount = getIntent().getDoubleExtra("TOTAL_AMOUNT", 41.40);
-        receivedAmount = getIntent().getDoubleExtra("RECEIVED_AMOUNT", 50.00);
-        changeDue = getIntent().getDoubleExtra("CHANGE_DUE", 8.60);
+        totalAmount = getIntent().getDoubleExtra("TOTAL_AMOUNT", 0.0);
+        receivedAmount = getIntent().getDoubleExtra("RECEIVED_AMOUNT", 0.0);
+        changeDue = getIntent().getDoubleExtra("CHANGE_DUE", 0.0);
         discountAmount = getIntent().getDoubleExtra("DISCOUNT_AMOUNT", 0.0);
 
         cashierName = repository.getSessionManager().getUserName();
-        if (cashierName == null || cashierName.isEmpty()) cashierName = "Carlos";
+        if (cashierName == null || cashierName.isEmpty()) cashierName = "Administrador";
 
         // 2. Renderizado de cabecera y metadata
         TextView tvSubtitleReceipt = findViewById(R.id.tvSubtitleReceipt);

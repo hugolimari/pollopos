@@ -21,6 +21,8 @@
 
     <View
         style="@style/Widget.Pollo.Divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_marginVertical="16dp" />
 
     <!-- Opción 1: Cámara -->
@@ -127,6 +129,7 @@
         android:id="@+id/btnCancelSource"
         style="@style/Widget.Pollo.Button.Outline.Medium"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height_medium"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Cancelar" />

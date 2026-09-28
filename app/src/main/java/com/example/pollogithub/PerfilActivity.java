@@ -33,7 +33,7 @@ import java.util.Locale;
  */
 public class PerfilActivity extends AppCompatActivity {
 
-    private String cashierName = "Carlos Méndez";
+    private String cashierName = "Administrador";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -48,7 +48,7 @@ public class VentaActivity extends AppCompatActivity {
     private TextView tvCartTotal;
     private String selectedCategory = "Todos";
     private String searchQuery = "";
-    private String cashierName = "Carlos Méndez";
+    private String cashierName = "Administrador";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,8 +112,12 @@ public class VentaActivity extends AppCompatActivity {
         // 4. Enrutamiento hacia la pantalla de cobranza (PagoActivity)
         View.OnClickListener openPagoListener = v -> {
             double currentTotal = calculateCartTotal();
+            if (currentTotal <= 0) {
+                Toast.makeText(VentaActivity.this, "El pedido está vacío", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent intent = new Intent(VentaActivity.this, PagoActivity.class);
-            intent.putExtra("TOTAL_AMOUNT", currentTotal > 0 ? currentTotal : 41.40);
+            intent.putExtra("TOTAL_AMOUNT", currentTotal);
             startActivity(intent);
         };
 
@@ -125,12 +129,12 @@ public class VentaActivity extends AppCompatActivity {
      * Inicializa el catálogo local con los platos principales de la franquicia.
      */
     private void initProductList() {
-        allProducts.add(new Product("Presa individual", "Pierna o pechuga", 8.50, "🍗", "Pollo frito", R.drawable.bg_thumb_fried, false, 2));
+        allProducts.add(new Product("Presa individual", "Pierna o pechuga", 8.50, "🍗", "Pollo frito", R.drawable.bg_thumb_fried, false, 0));
         allProducts.add(new Product("1/4 de pollo frito", "Con papas incluidas", 14.00, "🍗", "Pollo frito", R.drawable.bg_thumb_fried, false, 0));
         allProducts.add(new Product("1/2 pollo a la brasa", "Con papas y ensalada", 24.00, "🔥", "A la brasa", R.drawable.bg_thumb_asado, false, 0));
-        allProducts.add(new Product("Combo Familiar", "Pollo entero + 2 gaseosas", 52.00, "🥤", "Combos", R.drawable.bg_thumb_combo, false, 1));
+        allProducts.add(new Product("Combo Familiar", "Pollo entero + 2 gaseosas", 52.00, "🥤", "Combos", R.drawable.bg_thumb_combo, false, 0));
         allProducts.add(new Product("Gaseosa 500ml", "Varios sabores", 4.00, "🥤", "Bebidas", R.drawable.bg_thumb_bebida, false, 0));
-        allProducts.add(new Product("Papas fritas", "Porción regular", 6.00, "🍟", "Acompañamientos", R.drawable.bg_thumb_fried, true, 0));
+        allProducts.add(new Product("Papas fritas", "Porción regular", 6.00, "🍟", "Acompañamientos", R.drawable.bg_thumb_fried, false, 0));
 
         filterProducts();
     }
