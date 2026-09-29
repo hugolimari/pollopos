@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Pollo.Dialog.Container"
+    style="@style/Widget.Pollo.Dialogo.Contenedor"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -13,21 +13,21 @@
         <!-- Title & Subtitle -->
         <TextView
             android:id="@+id/tvFormTitle"
-            android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
+            android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_add_food_menu" />
 
         <TextView
             android:id="@+id/tvFormSubtitle"
-            android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
+            android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
             android:text="@string/subtitle_add_food_menu" />
 
         <View
-            style="@style/Widget.Pollo.Divider"
+            style="@style/Widget.Pollo.Divisor"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginVertical="14dp" />
@@ -387,14 +387,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancelarForm"
-                style="@style/Widget.Pollo.Button.Outline.Medium"
+                style="@style/Widget.Pollo.Boton.Contorno.Mediano"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btn_height_medium"
                 android:text="@string/btn_cancel" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnGuardarForm"
-                style="@style/Widget.Pollo.Button.Primary.Medium"
+                style="@style/Widget.Pollo.Boton.Primario.Mediano"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btn_height_medium"
                 android:layout_marginStart="@dimen/spacing_m"

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,7 +16,7 @@
         <!-- Back Button -->
         <ImageButton
             android:id="@+id/btnBack"
-            style="@style/Widget.Pollo.Button.Back"
+            style="@style/Widget.Pollo.Boton.Volver"
             android:layout_width="@dimen/btn_icon_size"
             android:layout_height="@dimen/btn_icon_size"
             android:layout_marginStart="@dimen/spacing_2xl"
@@ -27,7 +27,7 @@
         <!-- Header Titles -->
         <TextView
             android:id="@+id/tvTitle"
-            android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
+            android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_l"
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/tvSubtitle"
-            android:textAppearance="@style/TextAppearance.Pollo.Subtitle.Dark"
+            android:textAppearance="@style/TextAppearance.Pollo.Subtitulo.Oscuro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
@@ -47,7 +47,7 @@
 
         <View
             android:id="@+id/dividerTop"
-            style="@style/Widget.Pollo.Divider"
+            style="@style/Widget.Pollo.Divisor"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="@dimen/spacing_2xl"
@@ -56,7 +56,7 @@
         <!-- Resumen del turno -->
         <TextView
             android:id="@+id/lblResumen"
-            android:textAppearance="@style/TextAppearance.Pollo.Title.Small"
+            android:textAppearance="@style/TextAppearance.Pollo.Titulo.Pequeno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_2xl"
@@ -281,7 +281,7 @@
         <!-- Confirm Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnConfirm"
-            style="@style/Widget.Pollo.Button.Primary.Hero"
+            style="@style/Widget.Pollo.Boton.Primario.Principal"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_hero"
             android:layout_marginTop="@dimen/spacing_3xl"

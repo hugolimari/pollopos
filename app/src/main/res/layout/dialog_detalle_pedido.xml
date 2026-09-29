@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Pollo.Dialog.Container"
+    style="@style/Widget.Pollo.Dialogo.Contenedor"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -25,14 +25,14 @@
 
                 <TextView
                     android:id="@+id/tvDetalleOrderId"
-                    android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
+                    android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Pedido #0231" />
 
                 <TextView
                     android:id="@+id/tvDetalleOrderMeta"
-                    android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
+                    android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_2xs"
@@ -41,7 +41,7 @@
 
             <TextView
                 android:id="@+id/tvDetalleStatusBadge"
-                android:textAppearance="@style/TextAppearance.Pollo.Badge.Status"
+                android:textAppearance="@style/TextAppearance.Pollo.Insignia.Estado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_status_cocina"
@@ -52,7 +52,7 @@
         </LinearLayout>
 
         <View
-            style="@style/Widget.Pollo.Divider"
+            style="@style/Widget.Pollo.Divisor"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginVertical="14dp" />
@@ -114,7 +114,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancelarPedidoDialog"
-                style="@style/Widget.Pollo.Button.Danger"
+                style="@style/Widget.Pollo.Boton.Peligro"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/btn_height_primary"
                 android:layout_marginEnd="8dp"
@@ -123,7 +123,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCerrarDetalleDialog"
-                style="@style/Widget.Pollo.Button.Primary.Medium"
+                style="@style/Widget.Pollo.Boton.Primario.Mediano"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/btn_height_medium"
                 android:layout_weight="1"

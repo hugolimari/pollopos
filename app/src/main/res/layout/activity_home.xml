@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,7 +19,7 @@
     <!-- Fixed Bottom Navigation Bar -->
     <LinearLayout
         android:id="@+id/bottomNav"
-        style="@style/Widget.Pollo.BottomNav"
+        style="@style/Widget.Pollo.NavegacionInferior"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_nav_height"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +47,7 @@
 
             <TextView
                 android:id="@+id/txtNavVenta"
-                style="@style/TextAppearance.Pollo.Nav.Active"
+                style="@style/TextAppearance.Pollo.Navegacion.Activo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
@@ -75,7 +75,7 @@
 
             <TextView
                 android:id="@+id/txtNavPedidos"
-                style="@style/TextAppearance.Pollo.Nav.Inactive"
+                style="@style/TextAppearance.Pollo.Navegacion.Inactivo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
@@ -103,7 +103,7 @@
 
             <TextView
                 android:id="@+id/txtNavReportes"
-                style="@style/TextAppearance.Pollo.Nav.Inactive"
+                style="@style/TextAppearance.Pollo.Navegacion.Inactivo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
@@ -131,7 +131,7 @@
 
             <TextView
                 android:id="@+id/txtNavPerfil"
-                style="@style/TextAppearance.Pollo.Nav.Inactive"
+                style="@style/TextAppearance.Pollo.Navegacion.Inactivo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"

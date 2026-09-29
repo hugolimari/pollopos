@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -79,7 +79,7 @@
 
             <!-- Brand Subtitle -->
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitle.Emphasis"
+                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo.Enfasis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
@@ -104,7 +104,7 @@
             <!-- Card Header -->
             <TextView
                 android:id="@+id/tvWelcomeTitle"
-                android:textAppearance="@style/TextAppearance.Pollo.Title.Large"
+                android:textAppearance="@style/TextAppearance.Pollo.Titulo.Grande"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/welcome_title"
@@ -114,7 +114,7 @@
 
             <TextView
                 android:id="@+id/tvWelcomeSubtitle"
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitle.Emphasis"
+                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo.Enfasis"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
@@ -126,7 +126,7 @@
             <!-- User Field Label -->
             <TextView
                 android:id="@+id/lblUser"
-                android:textAppearance="@style/TextAppearance.Pollo.Label"
+                android:textAppearance="@style/TextAppearance.Pollo.Etiqueta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xl"
@@ -137,7 +137,7 @@
             <!-- User Field Input Box -->
             <FrameLayout
                 android:id="@+id/wrapUser"
-                style="@style/Widget.Pollo.InputContainer"
+                style="@style/Widget.Pollo.ContenedorEntrada"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/input_height"
                 android:layout_marginTop="@dimen/spacing_s"
@@ -155,7 +155,7 @@
 
                 <EditText
                     android:id="@+id/etUser"
-                    style="@style/Widget.Pollo.EditText"
+                    style="@style/Widget.Pollo.CampoTexto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/hint_user"
@@ -168,7 +168,7 @@
             <!-- Password Field Label -->
             <TextView
                 android:id="@+id/lblPassword"
-                android:textAppearance="@style/TextAppearance.Pollo.Label"
+                android:textAppearance="@style/TextAppearance.Pollo.Etiqueta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
@@ -179,7 +179,7 @@
             <!-- Password Field Input Box -->
             <FrameLayout
                 android:id="@+id/wrapPassword"
-                style="@style/Widget.Pollo.InputContainer"
+                style="@style/Widget.Pollo.ContenedorEntrada"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/input_height"
                 android:layout_marginTop="@dimen/spacing_s"
@@ -197,7 +197,7 @@
 
                 <EditText
                     android:id="@+id/etPassword"
-                    style="@style/Widget.Pollo.EditText"
+                    style="@style/Widget.Pollo.CampoTexto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/hint_password"
@@ -237,7 +237,7 @@
             <!-- Primary Button: Iniciar turno -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnStartShift"
-                style="@style/Widget.Pollo.Button.Primary.Hero"
+                style="@style/Widget.Pollo.Boton.Primario.Principal"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/btn_height_hero"
                 android:layout_marginTop="@dimen/spacing_2xl"
@@ -249,7 +249,7 @@
             <!-- Footer Note -->
             <TextView
                 android:id="@+id/tvFooterNote"
-                android:textAppearance="@style/TextAppearance.Pollo.Caption"
+                android:textAppearance="@style/TextAppearance.Pollo.Leyenda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_4xl"

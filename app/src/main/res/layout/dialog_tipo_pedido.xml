@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.Pollo.Card.Order"
+    style="@style/Widget.Pollo.Tarjeta.Pedido"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -22,13 +22,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
+                android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/title_modalidad_pedido" />
 
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
+                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"

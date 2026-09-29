@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.Pollo.Card.White"
+    style="@style/Widget.Pollo.Tarjeta.Blanca"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/card_margin_horizontal"
@@ -29,14 +29,14 @@
 
                 <TextView
                     android:id="@+id/tvTurnoNumero"
-                    style="@style/TextAppearance.Pollo.Title.Small"
+                    style="@style/TextAppearance.Pollo.Titulo.Pequeno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Turno #0001" />
 
                 <TextView
                     android:id="@+id/tvTurnoFechas"
-                    style="@style/TextAppearance.Pollo.Subtitle"
+                    style="@style/TextAppearance.Pollo.Subtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_2xs"
@@ -45,7 +45,7 @@
 
             <TextView
                 android:id="@+id/tvTurnoEstadoBadge"
-                style="@style/TextAppearance.Pollo.Badge.Status"
+                style="@style/TextAppearance.Pollo.Insignia.Estado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_badge_active_shift"
@@ -56,7 +56,7 @@
         </LinearLayout>
 
         <View
-            style="@style/Widget.Pollo.Divider"
+            style="@style/Widget.Pollo.Divisor"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginVertical="@dimen/spacing_m" />
@@ -74,14 +74,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/TextAppearance.Pollo.Subtitle"
+                    style="@style/TextAppearance.Pollo.Subtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_fondo_inicial" />
 
                 <TextView
                     android:id="@+id/tvFondoInicialItem"
-                    style="@style/TextAppearance.Pollo.Body.Dark"
+                    style="@style/TextAppearance.Pollo.Cuerpo.Oscuro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_2xs"
@@ -96,14 +96,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/TextAppearance.Pollo.Subtitle"
+                    style="@style/TextAppearance.Pollo.Subtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_esperado" />
 
                 <TextView
                     android:id="@+id/tvEsperadoItem"
-                    style="@style/TextAppearance.Pollo.Body.Dark"
+                    style="@style/TextAppearance.Pollo.Cuerpo.Oscuro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_2xs"
@@ -118,14 +118,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/TextAppearance.Pollo.Subtitle"
+                    style="@style/TextAppearance.Pollo.Subtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_contado_fisico" />
 
                 <TextView
                     android:id="@+id/tvContadoItem"
-                    style="@style/TextAppearance.Pollo.Body.Dark"
+                    style="@style/TextAppearance.Pollo.Cuerpo.Oscuro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_2xs"
@@ -137,7 +137,7 @@
         <!-- Balance Difference Row -->
         <LinearLayout
             android:id="@+id/layoutDiferencia"
-            style="@style/Widget.Pollo.Card.Order"
+            style="@style/Widget.Pollo.Tarjeta.Pedido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -148,7 +148,7 @@
 
             <TextView
                 android:id="@+id/tvDiferenciaLabel"
-                style="@style/TextAppearance.Pollo.Label"
+                style="@style/TextAppearance.Pollo.Etiqueta"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

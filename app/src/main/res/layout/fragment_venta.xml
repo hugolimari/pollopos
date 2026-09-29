@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -53,14 +53,14 @@
 
                     <TextView
                         android:id="@+id/tvCashierName"
-                        style="@style/TextAppearance.Pollo.Title.Small"
+                        style="@style/TextAppearance.Pollo.Titulo.Pequeno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/role_admin" />
 
                     <TextView
                         android:id="@+id/tvShiftInfo"
-                        style="@style/TextAppearance.Pollo.Subtitle"
+                        style="@style/TextAppearance.Pollo.Subtitulo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/shift_info" />
@@ -140,7 +140,7 @@
         </LinearLayout>
 
         <FrameLayout
-            style="@style/Widget.Pollo.SearchContainer"
+            style="@style/Widget.Pollo.ContenedorBusqueda"
             android:layout_width="match_parent"
             android:layout_height="@dimen/input_height_compact">
 
@@ -154,7 +154,7 @@
 
             <EditText
                 android:id="@+id/etSearch"
-                style="@style/Widget.Pollo.EditText"
+                style="@style/Widget.Pollo.CampoTexto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/search_hint"
@@ -187,7 +187,7 @@
 
             <TextView
                 android:id="@+id/chipTodos"
-                style="@style/Widget.Pollo.Chip.Selected"
+                style="@style/Widget.Pollo.Chip.Seleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_s"
@@ -197,7 +197,7 @@
 
             <TextView
                 android:id="@+id/chipPolloFrito"
-                style="@style/Widget.Pollo.Chip.Unselected"
+                style="@style/Widget.Pollo.Chip.NoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_s"
@@ -207,7 +207,7 @@
 
             <TextView
                 android:id="@+id/chipBrasa"
-                style="@style/Widget.Pollo.Chip.Unselected"
+                style="@style/Widget.Pollo.Chip.NoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_s"
@@ -217,7 +217,7 @@
 
             <TextView
                 android:id="@+id/chipCombos"
-                style="@style/Widget.Pollo.Chip.Unselected"
+                style="@style/Widget.Pollo.Chip.NoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_s"
@@ -227,7 +227,7 @@
 
             <TextView
                 android:id="@+id/chipAcompanamientos"
-                style="@style/Widget.Pollo.Chip.Unselected"
+                style="@style/Widget.Pollo.Chip.NoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_s"
@@ -237,7 +237,7 @@
 
             <TextView
                 android:id="@+id/chipBebidas"
-                style="@style/Widget.Pollo.Chip.Unselected"
+                style="@style/Widget.Pollo.Chip.NoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -263,7 +263,7 @@
 
             <TextView
                 android:id="@+id/tvSectionTitle"
-                style="@style/TextAppearance.Pollo.Title.Small"
+                style="@style/TextAppearance.Pollo.Titulo.Pequeno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
@@ -283,7 +283,7 @@
     <!-- Floating Cart Bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cartBar"
-        style="@style/Widget.Pollo.CartBar"
+        style="@style/Widget.Pollo.BarraCarrito"
         android:layout_width="0dp"
         android:layout_height="@dimen/bottom_nav_height"
         android:layout_marginHorizontal="@dimen/header_padding_horizontal"
@@ -319,7 +319,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/TextAppearance.Pollo.Caption"
+                    style="@style/TextAppearance.Pollo.Leyenda"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cart_total_label"
@@ -327,7 +327,7 @@
 
                 <TextView
                     android:id="@+id/tvCartTotal"
-                    style="@style/TextAppearance.Pollo.Price"
+                    style="@style/TextAppearance.Pollo.Precio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Bs. 68.50"

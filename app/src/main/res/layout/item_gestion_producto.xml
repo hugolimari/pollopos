@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.Pollo.Card.White"
+    style="@style/Widget.Pollo.Tarjeta.Blanca"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/card_margin_horizontal"
@@ -57,7 +57,7 @@
 
             <TextView
                 android:id="@+id/tvProductName"
-                style="@style/TextAppearance.Pollo.Title.Small"
+                style="@style/TextAppearance.Pollo.Titulo.Pequeno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -66,7 +66,7 @@
 
             <TextView
                 android:id="@+id/tvProductCategory"
-                style="@style/TextAppearance.Pollo.Subtitle"
+                style="@style/TextAppearance.Pollo.Subtitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
@@ -81,14 +81,14 @@
 
                 <TextView
                     android:id="@+id/tvProductPrice"
-                    style="@style/TextAppearance.Pollo.Price.Small"
+                    style="@style/TextAppearance.Pollo.Precio.Pequeno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Bs. 14.00" />
 
                 <TextView
                     android:id="@+id/tvProductStatusBadge"
-                    style="@style/TextAppearance.Pollo.Badge.Status"
+                    style="@style/TextAppearance.Pollo.Insignia.Estado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
