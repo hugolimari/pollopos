@@ -226,7 +226,7 @@ public class VentaFragment extends Fragment {
     private void showOrderConfirmationDialog() {
         Integer cartCount = ventaViewModel.getCartCount().getValue();
         if (cartCount == null || cartCount <= 0) {
-            Toast.makeText(requireContext(), "El pedido está vacío", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), R.string.toast_order_is_empty, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -481,7 +481,10 @@ public class VentaFragment extends Fragment {
             }
 
             dialog.dismiss();
-            Toast.makeText(requireContext(), product.getName() + (finalNotes.isEmpty() ? " agregado" : " (" + finalNotes + ")"), Toast.LENGTH_SHORT).show();
+            String toastMsg = finalNotes.isEmpty()
+                    ? getString(R.string.toast_product_added_to_cart, product.getName())
+                    : getString(R.string.toast_product_added_with_notes, product.getName(), finalNotes);
+            Toast.makeText(requireContext(), toastMsg, Toast.LENGTH_SHORT).show();
         });
 
         dialog.show();

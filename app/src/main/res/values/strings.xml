@@ -1,25 +1,136 @@
 <resources>
+    <!-- Identidad de la Aplicación y Marca -->
     <string name="app_name">PolloPOS</string>
+    <string name="app_version">V1.2</string>
     <string name="brand_title_brasa">Pollo</string>
     <string name="brand_title_pos">POS</string>
     <string name="brand_subtitle">Punto de venta · El Pollo que hace Pollo</string>
+    <string name="footer_note">Sucursal Centro · v2.0.0</string>
+    <string name="label_sucursal_centro">Sucursal Centro</string>
+    <string name="role_admin">Administrador</string>
 
+    <!-- Común / Acciones Generales / Símbolos -->
+    <string name="currency_bs">Bs.</string>
+    <string name="zero_currency">Bs. 0.00</string>
+    <string name="zero_decimal">0.00</string>
+    <string name="zero_count">0</string>
+    <string name="plus_sign">+</string>
+    <string name="minus_sign">-</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_save">Guardar</string>
+    <string name="btn_done">Listo</string>
+    <string name="btn_close">Cerrar</string>
+    <string name="btn_accept">Aceptar</string>
+    <string name="btn_exit">Salir</string>
+    <string name="btn_return">Regresar</string>
+    <string name="btn_understood">Entendido</string>
+    <string name="content_desc_back">Volver</string>
+    <string name="desc_search">Buscar</string>
+    <string name="desc_detalle">Detalle</string>
+    <string name="desc_selected">Seleccionado</string>
+    <string name="desc_not_selected">No seleccionado</string>
+    <string name="status_disponible">Disponible</string>
+    <string name="status_en_curso">En curso</string>
+    <string name="status_cerrado">Cerrado</string>
+    <string name="status_pendiente">Pendiente</string>
+    <string name="calculating">Calculando...</string>
+    <string name="toast_error_with_msg">Error: %1$s</string>
+    <string name="toast_section_reports">Sección Reportes</string>
+
+    <!-- Autenticación y Login (MainActivity) -->
     <string name="welcome_title">Bienvenido de nuevo</string>
     <string name="welcome_subtitle">Ingresa con tu usuario de cajero para abrir turno.</string>
-
     <string name="label_user">Usuario</string>
     <string name="hint_user">ej. admin</string>
-
     <string name="label_password">Contraseña / PIN</string>
     <string name="hint_password">••••••</string>
-
     <string name="forgot_pin">¿Olvidaste tu PIN?</string>
     <string name="btn_start_shift">Iniciar turno</string>
     <string name="quick_access">ACCESO RÁPIDO</string>
+    <string name="error_user_required">Usuario requerido</string>
+    <string name="error_password_required">Contraseña requerida</string>
+    <string name="error_invalid_credentials">Usuario o contraseña incorrectos</string>
+    <string name="error_shift_not_found">Turno no encontrado</string>
 
-    <string name="footer_note">Sucursal Centro · v2.0.0</string>
+    <!-- Recuperación de Contraseña (RecuperarPasswordActivity) -->
+    <string name="title_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="desc_forgot_password">Ingresa tu usuario y se reestablecera la contraseña a una contraseña designada por el administrador.</string>
+    <string name="btn_send_recovery_code">Enviar código de recuperación</string>
+    <string name="prompt_remembered_password">¿Recordaste tu contraseña? </string>
+    <string name="btn_login">Iniciar sesión</string>
+    <string name="toast_code_sent_to_user">Código enviado al usuario</string>
 
-    <!-- Venta Screen -->
+    <!-- Protección de Autoría (AutoresActivity) -->
+    <string name="title_autoria">Protección de Autoría</string>
+    <string name="desc_verified">Verificado</string>
+    <string name="badge_propiedad_intelectual">REGISTRO DE PROPIEDAD INTELECTUAL</string>
+    <string name="label_autores">Autores:</string>
+    <string name="desc_author">Autor</string>
+    <string name="author_1_name">Hugo Marcelo Daza Limari</string>
+    <string name="author_2_name">Noel David Limachi Abelo</string>
+    <string name="author_career_role">Ingeniería de Sistemas - Autor &amp; Desarrollador</string>
+    <string name="badge_info_academica">INFORMACIÓN ACADÉMICA</string>
+    <string name="label_datos_academicos">Datos Académicos:</string>
+    <string name="desc_university">Universidad</string>
+    <string name="label_universidad">Universidad:</string>
+    <string name="value_universidad">Universidad Privada Domingo Savio</string>
+    <string name="desc_teacher">Docente</string>
+    <string name="label_docente">Docente:</string>
+    <string name="value_docente">Omar Surci</string>
+    <string name="desc_subject">Materia</string>
+    <string name="label_materia">Materia:</string>
+    <string name="value_materia">Desarrollo de aplicaciones móviles I</string>
+    <string name="desc_year">Año</string>
+    <string name="label_year">Año:</string>
+    <string name="value_year">2026</string>
+    <string name="btn_return_to_login">Volver al Inicio de Sesión</string>
+
+    <!-- Apertura de Turno (AperturaCajaActivity) -->
+    <string name="desc_apertura_turno">Apertura de turno</string>
+    <string name="title_apertura_turno">Apertura de Turno</string>
+    <string name="subtitle_apertura_welcome_default">Bienvenido, Cajero Principal</string>
+    <string name="apertura_welcome_user">Bienvenido, %1$s</string>
+    <string name="title_fondo_inicial">Fondo Inicial de Caja</string>
+    <string name="desc_fondo_inicial">Ingresa el monto de efectivo con el que inicias operaciones en tu gaveta.</string>
+    <string name="default_initial_fund_hint">100.00</string>
+    <string name="btn_quick_50">Bs. 50</string>
+    <string name="btn_quick_100">Bs. 100</string>
+    <string name="btn_quick_200">Bs. 200</string>
+    <string name="btn_quick_300">Bs. 300</string>
+    <string name="note_fondo_inicial">Este fondo se sumará a tus ventas en efectivo para calcular el arqueo final al cierre de turno.</string>
+    <string name="btn_open_shift_and_start">Abrir Turno y Comenzar</string>
+    <string name="footer_apertura">PolloPOS · Sucursal Centro</string>
+    <string name="error_enter_initial_fund">Ingresa el fondo inicial</string>
+    <string name="error_amount_negative">El monto no puede ser negativo</string>
+    <string name="error_invalid_amount">Monto inválido</string>
+    <string name="toast_shift_opened_success">Turno abierto exitosamente</string>
+    <string name="toast_error_opening_shift">Error al abrir turno: %1$s</string>
+
+    <!-- Cierre de Caja (CierreCajaActivity) -->
+    <string name="title_cierre_caja">Cierre de caja</string>
+    <string name="subtitle_cierre_caja_default">Turno de Hugo Daza - 9:01am - 6:20pm</string>
+    <string name="title_resumen_turno">Resumen del turno</string>
+    <string name="label_ventas_efectivo">Ventas en efectivo</string>
+    <string name="label_ventas_tarjeta">Ventas con tarjeta</string>
+    <string name="label_ventas_qr">Ventas QR</string>
+    <string name="label_total_vendido">Total vendido</string>
+    <string name="label_fondo_inicial_caja">Fondo inicial de caja</string>
+    <string name="label_ingresos_extra_caja">(+) Ingresos extra de caja</string>
+    <string name="label_gastos_salidas_menores">(-) Gastos / Salidas menores</string>
+    <string name="label_efectivo_esperado_caja">(=) Efectivo esperado en caja</string>
+    <string name="title_conteo_efectivo">Conteo de efectivo</string>
+    <string name="prompt_cuanto_efectivo_caja">¿Cuánto dinero en efectivo hay en caja?</string>
+    <string name="cierre_alert_deficit_title">Faltante en caja</string>
+    <string name="cierre_alert_deficit_desc">Hay Bs. %1$.2f menos de lo esperado. Revisa si hubo algún vuelto mal entregado antes de cerrar.</string>
+    <string name="cierre_alert_surplus_title">Sobrante en caja</string>
+    <string name="cierre_alert_surplus_desc">Hay Bs. %1$.2f más de lo esperado en la gaveta.</string>
+    <string name="cierre_alert_exact_title">Caja cuadrada</string>
+    <string name="cierre_alert_exact_desc">El efectivo contado coincide con el esperado.</string>
+    <string name="btn_confirm_close_shift">Confirmar cierre de turno</string>
+    <string name="toast_shift_closed_success">Turno cerrado exitosamente</string>
+    <string name="toast_error_closing_shift">Error al cerrar turno: %1$s</string>
+
+    <!-- Pantalla y Pestaña de Ventas (VentaActivity / VentaFragment) -->
     <string name="title_sale">Nueva venta</string>
     <string name="shift_info">Caja 1 · Turno abierto 8:02am</string>
     <string name="search_hint">Buscar producto o código...</string>
@@ -27,11 +138,51 @@
     <string name="tag_agotado">Agotado</string>
     <string name="cart_total_label">Total del pedido</string>
     <string name="cart_view_order">Ver pedido</string>
+    <string name="order_mode_local">En el local</string>
+    <string name="order_mode_llevar">Para llevar</string>
+    <string name="category_todos">Todos</string>
+    <string name="category_pollo_frito">Pollo frito</string>
+    <string name="category_a_la_brasa">A la brasa</string>
+    <string name="category_combos">Combos</string>
+    <string name="category_bebidas">Bebidas</string>
+    <string name="category_acompanamientos">Acompañamientos</string>
+    <string name="toast_order_is_empty">El pedido está vacío</string>
+    <string name="toast_cart_is_empty">El carrito está vacío</string>
+    <string name="toast_product_added_to_cart">%1$s agregado</string>
+    <string name="toast_product_added_with_notes">%1$s (%2$s)</string>
 
-    <!-- Pago Screen -->
+    <!-- Modalidad de Pedido (dialog_tipo_pedido) -->
+    <string name="title_modalidad_pedido">Modalidad del pedido</string>
+    <string name="subtitle_modalidad_pedido">Selecciona cómo se entregará la orden</string>
+    <string name="modalidad_consumo_local">Consumo en el local</string>
+    <string name="desc_consumo_local">Servir en bandeja o plato para el salón</string>
+    <string name="desc_para_llevar">Empacar en bolsa y recipientes térmicos</string>
+    <string name="zero_products_selected">0 productos seleccionados</string>
+    <string name="btn_continue_to_pay">Continuar a Cobrar →</string>
+
+    <!-- Modificador de Producto (dialog_modificador_producto) -->
+    <string name="label_opciones_rapidas_preparacion">Opciones rápidas de preparación:</string>
+    <string name="chip_modifier_pierna">Pierna</string>
+    <string name="chip_modifier_pechuga">Pechuga</string>
+    <string name="chip_modifier_bien_dorado">Bien dorado</string>
+    <string name="chip_modifier_sin_ensalada">Sin ensalada</string>
+    <string name="chip_modifier_sin_aji">Sin ají</string>
+    <string name="chip_modifier_salsa_aparte">Salsa aparte</string>
+    <string name="label_nota_especial_comanda">Nota especial o comanda:</string>
+    <string name="hint_nota_especial">Ej. Papas bien cocidas, presa grande...</string>
+    <string name="btn_add_to_order">Agregar al Pedido</string>
+
+    <!-- Cobranza y Métodos de Pago (PagoActivity) -->
     <string name="title_pay">Cobrar pedido</string>
     <string name="subtitle_pay">Pedido · Cobranza</string>
     <string name="label_total_to_pay">TOTAL A COBRAR</string>
+    <string name="label_descuento_promocion">Descuento / Promoción:</string>
+    <string name="chip_no_discount">Sin desc.</string>
+    <string name="chip_discount_5" formatted="false">5%</string>
+    <string name="chip_discount_10" formatted="false">10%</string>
+    <string name="chip_discount_15" formatted="false">15%</string>
+    <string name="chip_discount_20" formatted="false">20%</string>
+    <string name="chip_discount_cortesia">Cortesía</string>
     <string name="section_payment_method">Método de pago</string>
     <string name="method_cash">Efectivo</string>
     <string name="method_card">Tarjeta</string>
@@ -39,10 +190,27 @@
     <string name="method_mixed">Mixto</string>
     <string name="label_amount_received">Monto recibido</string>
     <string name="label_change_due">Vuelto a entregar</string>
+    <string name="btn_quick_exact">Exacto</string>
+    <string name="btn_quick_plus_20">+20</string>
+    <string name="btn_quick_plus_50">+50</string>
+    <string name="btn_quick_plus_100">+100</string>
+    <string name="btn_quick_plus_200">+200</string>
+    <string name="title_desglose_mixto">Desglose de Cobro Mixto</string>
+    <string name="label_parte_efectivo">Parte en Efectivo:</string>
+    <string name="label_parte_electronica">Parte Electrónica (QR / Tarjeta):</string>
+    <string name="desc_ingresa_montos_mixto">Ingresa los montos para cubrir el total</string>
     <string name="btn_confirm_payment">Confirmar pago</string>
+    <string name="error_enter_amount_received">Ingresa el monto recibido</string>
+    <string name="error_amount_min_format">El monto debe ser mínimo Bs. %1$.2f</string>
+    <string name="toast_mixed_payment_insufficient">El desglose de pago mixto no cubre el total de la orden</string>
+    <string name="toast_error_registering_payment">Error al registrar pago: %1$s</string>
+    <string name="status_mixto_covered_success">Total cubierto con éxito (Bs. %1$.2f)</string>
+    <string name="status_mixto_missing">Faltan Bs. %1$.2f para cubrir el total</string>
+    <string name="status_mixto_change">Total cubierto (Vuelto en efectivo: Bs. %1$.2f)</string>
 
-    <!-- Recibo Screen -->
+    <!-- Recibo y Ticket (ReciboActivity) -->
     <string name="title_receipt_success">Venta registrada</string>
+    <string name="subtitle_pedido_cobrado_exito">Pedido cobrado con éxito</string>
     <string name="receipt_biz_name">Pollos El Fogón</string>
     <string name="receipt_label_order">Pedido</string>
     <string name="receipt_label_type">Tipo</string>
@@ -56,8 +224,24 @@
     <string name="btn_print">Imprimir</string>
     <string name="btn_whatsapp">Enviar WhatsApp</string>
     <string name="btn_new_sale">Nueva venta</string>
+    <string name="no_items_registered">Sin ítems registrados</string>
+    <string name="toast_error_loading_details">Error al cargar detalles: %1$s</string>
+    <string name="title_print_options">Opciones de Impresión</string>
+    <string-array name="opciones_impresion">
+        <item>Imprimir Ticket Térmico (Bluetooth ESC/POS)</item>
+        <item>Imprimir Comanda de Cocina (Bluetooth)</item>
+        <item>Impresora del Sistema / Guardar PDF</item>
+        <item>Configurar / Cambiar Impresora Térmica</item>
+    </string-array>
+    <string name="toast_printer_configured">Impresora configurada exitosamente</string>
+    <string name="toast_transmitting_thermal_printer">Transmitiendo a impresora térmica...</string>
+    <string name="toast_ticket_printed_success">Ticket impreso correctamente</string>
+    <string name="title_print_error">Error de Impresión</string>
+    <string name="msg_print_error_options">%1$s\n\n¿Deseas imprimir usando el servicio del sistema Android o configurar otra impresora?</string>
+    <string name="btn_print_with_system">Imprimir con Sistema</string>
+    <string name="btn_configure_printer">Configurar Impresora</string>
 
-    <!-- Pedidos Screen -->
+    <!-- Comandas y Pedidos KDS (PedidosActivity / PedidosFragment / OrderAdapter) -->
     <string name="title_orders">Pedidos</string>
     <string name="subtitle_orders">Sucursal Centro · hoy, 14 sep</string>
     <string name="tab_cocina">En cocina</string>
@@ -65,26 +249,62 @@
     <string name="tab_camino">En camino</string>
     <string name="btn_view_detail">Ver detalle</string>
     <string name="btn_mark_ready">Marcar listo</string>
+    <string name="btn_delivered">Entregado</string>
     <string name="btn_send_driver">Enviar repartidor</string>
     <string name="status_cocina">En cocina</string>
     <string name="status_listo">Listo</string>
     <string name="status_camino">En camino</string>
+    <string name="order_marked_ready">%1$s marcado como listo</string>
+    <string name="order_delivered_to_customer">%1$s entregado al cliente</string>
+    <string name="title_cancel_reason">Motivo de cancelación (%1$s)</string>
+    <string name="order_cancelled_format">%1$s cancelado: %2$s</string>
+    <string name="toast_error_cancelling">Error al cancelar: %1$s</string>
+    <string name="order_type_table">Para mesa</string>
+    <string name="desc_type">Tipo</string>
+    <string-array name="motivos_cancelacion">
+        <item>Cliente desistió de la compra</item>
+        <item>Error en la toma del pedido</item>
+        <item>Falta de insumos / producto agotado</item>
+        <item>Demora excesiva en preparación</item>
+        <item>Otro motivo</item>
+    </string-array>
 
-    <!-- Nav Items -->
+    <!-- Detalle de Pedido (dialog_detalle_pedido) -->
+    <string name="label_productos_notas_preparacion">Productos y notas de preparación</string>
+    <string name="label_total_de_la_orden">Total de la orden</string>
+    <string name="btn_cancel_order">Cancelar pedido</string>
+
+    <!-- Navegación Inferior (Bottom Navigation) -->
     <string name="nav_sale">Venta</string>
     <string name="nav_orders">Pedidos</string>
     <string name="nav_reports">Reportes</string>
     <string name="nav_profile">Perfil</string>
 
-    <!-- Quick User Letters -->
+    <!-- Letras de Avatar / Iniciales Rápidas -->
     <string name="user_initial_c">C</string>
     <string name="user_initial_m">M</string>
     <string name="user_initial_j">J</string>
-    <string name="plus_sign">+</string>
 
-    <!-- Perfil Screen -->
+    <!-- Perfil del Cajero (PerfilActivity / PerfilFragment) -->
     <string name="title_profile">Perfil de Cajero</string>
     <string name="subtitle_profile">Turno activo · Terminal #01</string>
+    <string name="title_perfil_usuario">Perfil de Usuario</string>
+    <string name="subtitle_perfil_usuario">Información de caja y turno activo</string>
+    <string name="admin_sistema">Administrador · Sistema</string>
+    <string name="shift_info_sample">Sucursal Centro · Turno abierto 8:02 AM</string>
+    <string name="label_ventas_de_hoy">Ventas de hoy</string>
+    <string name="label_pedidos_cobrados">Pedidos cobrados</string>
+    <string name="zero_pedidos">0 pedidos</string>
+    <string name="item_menu_management">Gestión de Menú y Comida</string>
+    <string name="item_cash_movements">Movimientos de Caja (Gastos / Ingresos)</string>
+    <string name="item_shift_history">Historial de turnos y cierres</string>
+    <string name="item_active_shift_details">Detalle y Arqueo del turno activo</string>
+    <string name="item_configure_printer">Configurar Impresora Térmica</string>
+    <string name="item_app_version_offline">PolloPOS v2.0.0 (Local Offline)</string>
+    <string name="btn_close_cash_shift">Cerrar turno de caja</string>
+    <string name="btn_logout">Cerrar sesión</string>
+    <string name="title_logout">Cerrar sesión</string>
+    <string name="msg_confirm_logout">¿Estás seguro de que deseas salir del sistema?</string>
     <string name="profile_role_default">Cajero de Turno</string>
     <string name="profile_branch_default">Sucursal Centro · Caja 1</string>
     <string name="status_shift_active">Turno Abierto</string>
@@ -105,5 +325,153 @@
     <string name="item_lock_title">Bloquear Terminal / Cambiar PIN</string>
     <string name="item_lock_subtitle">Protege el punto de venta</string>
     <string name="btn_end_shift">Cerrar Turno / Salir</string>
-    <string name="content_desc_back">Volver</string>
+    <string name="title_close_shift">Cerrar turno</string>
+    <string name="msg_confirm_close_shift">¿Estás seguro de que deseas cerrar tu turno y salir?</string>
+    <string name="btn_close_shift">Cerrar turno</string>
+    <string name="title_active_shift_detail">Detalle del Turno Activo (Turno #%1$d)</string>
+    <string name="toast_cannot_get_shift_detail">No se pudo obtener el detalle del turno</string>
+    <string name="format_detalle_turno_activo">• Fondo Inicial de Caja: Bs. %1$.2f\n\n• (+) Ventas en Efectivo: Bs. %2$.2f\n• (+) Ingresos Extra en Caja: Bs. %3$.2f\n• (-) Salidas / Gastos Menores: Bs. %4$.2f\n\n• (=) EFECTIVO ESPERADO EN CAJA: Bs. %5$.2f\n\n--------------------------------\n• Ventas Tarjeta: Bs. %6$.2f\n• Ventas QR: Bs. %7$.2f\n• TOTAL RECAUDADO: Bs. %8$.2f (%9$d pedidos)</string>
+    <string name="toast_printer_ready_ok">Impresora Epson TM-T20III lista · Estado OK</string>
+    <string name="toast_generating_cash_cut_x">Generando arqueo de caja (Corte X)...</string>
+    <string name="toast_syncing_cloud">Sincronizando pedidos con la nube...</string>
+    <string name="toast_terminal_lock_active">Bloqueo de terminal activo</string>
+
+    <!-- Movimientos de Caja Chica (dialog_movimiento_caja) -->
+    <string name="title_movimiento_caja_chica">Movimiento de Caja Chica</string>
+    <string name="subtitle_movimiento_caja_chica">Registrar gastos menores o inyecciones de efectivo</string>
+    <string name="label_tipo_movimiento">Tipo de movimiento:</string>
+    <string name="tipo_movimiento_egreso">Salida / Gasto (-)</string>
+    <string name="tipo_movimiento_ingreso">Ingreso Extra (+)</string>
+    <string name="label_monto_efectivo">Monto en efectivo:</string>
+    <string name="label_concepto_comun_rapido">Concepto común rápido:</string>
+    <string name="chip_concepto_carbon">Carbón</string>
+    <string name="chip_concepto_hielo">Hielo</string>
+    <string name="chip_concepto_verduras">Verduras</string>
+    <string name="concept_carbon">Compra de carbón vegetal</string>
+    <string name="concept_ice">Compra de hielo para refrescos</string>
+    <string name="concept_vegetables">Compra de verduras para ensalada</string>
+    <string name="concept_default_egreso">Gasto menor de caja</string>
+    <string name="concept_default_ingreso">Ingreso extra a caja</string>
+    <string name="label_justificacion_detalle">Justificación o detalle:</string>
+    <string name="hint_justificacion_movimiento">Ej. Compra de 2 bolsas de hielo para bebidas</string>
+    <string name="btn_registrar_en_caja">Registrar en Caja</string>
+    <string name="error_enter_amount">Ingresa el monto</string>
+    <string name="error_amount_greater_than_zero">El monto debe ser mayor a cero</string>
+    <string name="toast_movement_registered_success">Movimiento registrado con éxito (Bs. %1$.2f)</string>
+    <string name="toast_error_movement">Error al registrar movimiento: %1$s</string>
+
+    <!-- Gestión de Catálogo y Menú (GestionProductosActivity / Adapter) -->
+    <string name="title_gestion_menu">Gestión de Menú</string>
+    <string name="subtitle_gestion_menu">Precios, estado y catálogo de comida</string>
+    <string name="hint_search_product">Buscar plato, combo o bebida...</string>
+    <string name="btn_add_food">Añadir comida</string>
+    <string name="title_edit_product">Modificar comida</string>
+    <string name="subtitle_edit_product">Actualiza los detalles del plato en el menú</string>
+    <string name="error_enter_product_name">Ingresa el nombre del plato</string>
+    <string name="error_enter_price">Ingresa el precio</string>
+    <string name="error_price_greater_than_zero">El precio debe ser mayor a 0</string>
+    <string name="error_invalid_price">Precio inválido</string>
+    <string name="toast_product_updated">Plato actualizado con éxito</string>
+    <string name="toast_product_added">Plato añadido al catálogo</string>
+    <string name="toast_camera_permission_denied">Permiso de cámara no concedido. No se puede capturar la foto.</string>
+    <string name="toast_camera_prep_error">Error al preparar la cámara: %1$s</string>
+    <string name="toast_product_enabled">%1$s habilitado para la venta</string>
+    <string name="toast_product_agotado">%1$s marcado como agotado</string>
+    <string name="format_menu_products_count">%1$d productos en menú (%2$d disponibles)</string>
+    <string name="desc_edit_product">Editar producto</string>
+
+    <!-- Formulario de Producto (dialog_producto_form) -->
+    <string name="title_add_food_menu">Añadir comida al menú</string>
+    <string name="subtitle_add_food_menu">Ingresa los datos para registrar el producto en el catálogo</string>
+    <string name="label_product_name_required">Nombre del plato o producto *</string>
+    <string name="hint_product_name">ej. 1/4 Pollo Broaster</string>
+    <string name="label_category_required">Categoría *</string>
+    <string name="label_price_required">Precio (Bs.) *</string>
+    <string name="label_product_desc">Descripción o guarniciones</string>
+    <string name="hint_product_desc">ej. Con papas fritas y ensalada</string>
+    <string name="label_photo_product">Foto del plato (Imagen real para la tarjeta)</string>
+    <string name="btn_upload_photo_camera">Subir foto / Cámara</string>
+    <string name="btn_remove_selected_photo">🗑️ Quitar foto seleccionada</string>
+    <string name="label_emoji_fallback">Ícono Emoji (Salvavidas opcional si no hay foto)</string>
+    <string name="opt_no_emoji">❌ Sin emoji</string>
+    <string name="label_enabled_for_sale">Habilitado para la venta</string>
+    <string name="desc_enabled_for_sale">Disponible inmediatamente en la pantalla de pedidos</string>
+    <string name="notice_product_integrity">ℹ️ Para mantener la integridad de los reportes y recibos históricos, los productos no se eliminan físicamente; puedes marcarlos como \'Agotado/Deshabilitado\'.</string>
+
+    <!-- Origen de Fotografía (dialog_select_photo_source) -->
+    <string name="title_photo_product">Foto del plato</string>
+    <string name="subtitle_select_photo_source">Selecciona el origen de la imagen para el menú</string>
+    <string name="option_take_photo_camera">Tomar foto con la cámara</string>
+    <string name="desc_take_photo_camera">Captura directamente la foto del plato</string>
+    <string name="option_choose_from_gallery">Elegir de la galería</string>
+    <string name="desc_choose_from_gallery">Selecciona una imagen guardada en el dispositivo</string>
+
+    <!-- Recorte de Imagen (CropImageActivity) -->
+    <string name="title_crop_menu_photo">Recortar foto del menú</string>
+    <string name="crop_ratio_recommended_desc">Proporción recomendada: 4:3</string>
+    <string name="crop_ratio_square_desc">Proporción cuadrada: 1:1</string>
+    <string name="crop_drag_pinch_instructions">Arrastra y pellizca para encuadrar la comida</string>
+    <string name="chip_ratio_4_3">4:3 Menú</string>
+    <string name="chip_ratio_1_1">1:1 Cuadrado</string>
+    <string name="btn_rotate_90">Girar 90°</string>
+    <string name="toast_no_image_received">No se recibió ninguna imagen para recortar</string>
+    <string name="toast_error_loading_image">Error al cargar la imagen para recorte</string>
+    <string name="toast_cannot_crop">No se pudo realizar el recorte</string>
+    <string name="toast_error_saving_crop">Error al guardar la imagen recortada</string>
+
+    <!-- Reportes y Analítica (ReportesFragment) -->
+    <string name="title_reports">Reportes</string>
+    <string name="period_today">Hoy</string>
+    <string name="desc_period">Periodo</string>
+    <string name="label_ventas_de_hoy_upper">VENTAS DE HOY</string>
+    <string name="desc_growth">Crecimiento</string>
+    <string name="sample_growth_rate" formatted="false">18% vs. ayer</string>
+    <string name="desc_orders">Pedidos</string>
+    <string name="label_pedidos_hoy">Pedidos hoy</string>
+    <string name="desc_ticket">Ticket</string>
+    <string name="label_ticket_promedio">Ticket promedio</string>
+    <string name="desc_in_venue">En el local</string>
+    <string name="label_en_el_local">En el local</string>
+    <string name="desc_rush_hour">Hora Pico</string>
+    <string name="label_hora_pico">Hora pico</string>
+    <string name="label_ventas_por_hora_hoy">Ventas por hora de hoy</string>
+    <string name="hour_11a">11a</string>
+    <string name="hour_12p">12p</string>
+    <string name="hour_1p">1p</string>
+    <string name="hour_2p">2p</string>
+    <string name="hour_3p">3p</string>
+    <string name="hour_4p">4p</string>
+    <string name="hour_5p">5p</string>
+    <string name="label_productos_mas_vendidos">Productos más vendidos</string>
+    <string name="label_caja">Caja</string>
+    <string name="desc_cerrar_caja">Cerrar caja</string>
+    <string name="label_cerrar_caja_turno">Cerrar caja del turno</string>
+    <string name="label_cuadre_efectivo_pendiente">Cuadre de efectivo pendiente</string>
+
+    <!-- Historial de Turnos (HistorialTurnosActivity / Adapter) -->
+    <string name="title_historial_turnos">Historial de Turnos</string>
+    <string name="subtitle_historial_turnos">Cierres de caja y arqueos registrados</string>
+    <string name="no_shifts_registered">Sin turnos registrados</string>
+    <string name="desc_shifts_will_appear_here">Los turnos cerrados aparecerán aquí.</string>
+    <string name="turnos_registered_count">%1$d turnos registrados en la sucursal</string>
+    <string name="turnos_fechas_format">%1$s · Hasta %2$s</string>
+    <string name="label_fondo_inicial">Fondo inicial</string>
+    <string name="label_esperado">Esperado</string>
+    <string name="label_contado_fisico">Contado físico</string>
+    <string name="label_estado_del_turno">Estado del turno:</string>
+    <string name="turno_abierto_actualmente">Turno abierto actualmente</string>
+    <string name="label_diferencia_en_caja">Diferencia en caja:</string>
+    <string name="diferencia_faltante_format">- Bs. %1$.2f (Faltante)</string>
+    <string name="diferencia_sobrante_format">+ Bs. %1$.2f (Sobrante)</string>
+    <string name="diferencia_cuadrado">Bs. 0.00 (Cuadrado)</string>
+
+    <!-- Impresora Térmica Bluetooth (ThermalPrinterManager) -->
+    <string name="title_thermal_printer">Impresora Térmica</string>
+    <string name="msg_no_paired_printers">No se encontraron impresoras Bluetooth emparejadas en este dispositivo.\n\nPor favor empareja tu impresora térmica en los Ajustes de Bluetooth de Android.</string>
+    <string name="device_default_name">Dispositivo</string>
+    <string name="title_select_printer">Seleccionar Impresora Térmica</string>
+    <string name="toast_printer_selected">Impresora seleccionada: %1$s</string>
+    <string name="toast_printer_linked_success">Impresora vinculada correctamente</string>
+    <string name="btn_paper_size_format">Tamaño: %1$s</string>
+    <string name="toast_paper_format_changed">Formato cambiado a %1$s</string>
 </resources>

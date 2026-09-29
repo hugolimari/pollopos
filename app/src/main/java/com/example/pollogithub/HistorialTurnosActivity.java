@@ -80,13 +80,13 @@ public class HistorialTurnosActivity extends AppCompatActivity {
                 layoutEmpty.setVisibility(View.GONE);
                 rv.setVisibility(View.VISIBLE);
                 if (tvTurnosSubtitle != null) {
-                    tvTurnosSubtitle.setText(String.format(Locale.getDefault(), "%d turnos registrados en la sucursal", list.size()));
+                    tvTurnosSubtitle.setText(getString(R.string.turnos_registered_count, list.size()));
                 }
             } else {
                 layoutEmpty.setVisibility(View.VISIBLE);
                 rv.setVisibility(View.GONE);
                 if (tvTurnosSubtitle != null) {
-                    tvTurnosSubtitle.setText("Sin turnos registrados");
+                    tvTurnosSubtitle.setText(R.string.no_shifts_registered);
                 }
             }
             adapter.updateList(turnos);

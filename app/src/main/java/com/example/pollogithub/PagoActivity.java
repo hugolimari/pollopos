@@ -252,62 +252,97 @@ public class PagoActivity extends AppCompatActivity {
         calculateChange();
     }
 
-    private void sumarBillete(double billete) {
-        String inputStr = etAmountReceived.getText().toString().trim();
-        double actual = 0.0;
-        try {
-            if (!inputStr.isEmpty()) actual = Double.parseDouble(inputStr);
-        } catch (NumberFormatException ignored) {}
+    // Variable para evitar bucles recursivos en el TextWatcher de Pago Mixto
+    private boolean isUpdatingMixto = false;
 
+    private double parseDoubleSafe(String text) {
+        if (text == null) return 0.0;
+        String clean = text.trim().replace(',', '.');
+        if (clean.isEmpty()) return 0.0;
+        try {
+            return Double.parseDouble(clean);
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
+    }
+
+    private void sumarBillete(double billete) {
+        double actual = parseDoubleSafe(etAmountReceived.getText().toString());
         if (actual < totalAmount) {
-            etAmountReceived.setText(String.format(Locale.getDefault(), "%.2f", billete));
+            etAmountReceived.setText(String.format(Locale.US, "%.2f", billete));
         } else {
-            etAmountReceived.setText(String.format(Locale.getDefault(), "%.2f", actual + billete));
+            etAmountReceived.setText(String.format(Locale.US, "%.2f", actual + billete));
         }
     }
 
     private void calculateChange() {
-        String inputStr = etAmountReceived.getText().toString().trim();
-        double received = 0.0;
-        try {
-            if (!inputStr.isEmpty()) received = Double.parseDouble(inputStr);
-        } catch (NumberFormatException ignored) {}
-
+        double received = parseDoubleSafe(etAmountReceived.getText().toString());
         double change = received - totalAmount;
-        if (change < 0) {
+        if (change < -0.01) {
             tvChangeDue.setText(String.format(Locale.getDefault(), "Faltan Bs. %.2f", Math.abs(change)));
             tvChangeDue.setTextColor(ContextCompat.getColor(this, R.color.ember_600));
         } else {
-            tvChangeDue.setText(String.format(Locale.getDefault(), "Bs. %.2f", change));
+            tvChangeDue.setText(String.format(Locale.getDefault(), "Bs. %.2f", Math.max(0.0, change)));
             tvChangeDue.setTextColor(ContextCompat.getColor(this, R.color.ok_600));
         }
     }
 
     /**
      * Calculadora y validador de Cobro Mixto.
+     * Soporta auto-ajuste inteligente del monto restante y tolerancia a comas/puntos decimales.
      */
     private void setupMixtoCalculator() {
-        TextWatcher mixtoWatcher = new TextWatcher() {
+        etMixtoEfectivo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (isUpdatingMixto) return;
+                if (etMixtoEfectivo.hasFocus()) {
+                    double ef = parseDoubleSafe(s.toString());
+                    if (ef >= 0 && ef <= totalAmount) {
+                        isUpdatingMixto = true;
+                        etMixtoDigital.setText(String.format(Locale.US, "%.2f", Math.max(0.0, totalAmount - ef)));
+                        isUpdatingMixto = false;
+                    }
+                }
                 validarMixto();
             }
 
             @Override
             public void afterTextChanged(Editable s) {}
-        };
+        });
 
-        etMixtoEfectivo.addTextChangedListener(mixtoWatcher);
-        etMixtoDigital.addTextChangedListener(mixtoWatcher);
+        etMixtoDigital.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (isUpdatingMixto) return;
+                if (etMixtoDigital.hasFocus()) {
+                    double dig = parseDoubleSafe(s.toString());
+                    if (dig >= 0 && dig <= totalAmount) {
+                        isUpdatingMixto = true;
+                        etMixtoEfectivo.setText(String.format(Locale.US, "%.2f", Math.max(0.0, totalAmount - dig)));
+                        isUpdatingMixto = false;
+                    }
+                }
+                validarMixto();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
     }
 
     private void recalcularMixtoPorDefecto() {
+        isUpdatingMixto = true;
         if (totalAmount <= 0) {
             etMixtoEfectivo.setText("0.00");
             etMixtoDigital.setText("0.00");
+            isUpdatingMixto = false;
             validarMixto();
             return;
         }
@@ -315,38 +350,30 @@ public class PagoActivity extends AppCompatActivity {
         double mitadEfectivo = Math.floor(totalAmount / 2.0);
         double restoDigital = totalAmount - mitadEfectivo;
 
-        etMixtoEfectivo.setText(String.format(Locale.getDefault(), "%.2f", mitadEfectivo));
-        etMixtoDigital.setText(String.format(Locale.getDefault(), "%.2f", restoDigital));
+        etMixtoEfectivo.setText(String.format(Locale.US, "%.2f", mitadEfectivo));
+        etMixtoDigital.setText(String.format(Locale.US, "%.2f", restoDigital));
+        isUpdatingMixto = false;
         validarMixto();
     }
 
     private boolean validarMixto() {
-        double ef = 0.0;
-        double dig = 0.0;
-        try {
-            String sEf = etMixtoEfectivo.getText().toString().trim();
-            if (!sEf.isEmpty()) ef = Double.parseDouble(sEf);
-        } catch (NumberFormatException ignored) {}
-
-        try {
-            String sDig = etMixtoDigital.getText().toString().trim();
-            if (!sDig.isEmpty()) dig = Double.parseDouble(sDig);
-        } catch (NumberFormatException ignored) {}
+        double ef = parseDoubleSafe(etMixtoEfectivo.getText().toString());
+        double dig = parseDoubleSafe(etMixtoDigital.getText().toString());
 
         double suma = ef + dig;
         double diff = suma - totalAmount;
 
         if (Math.abs(diff) < 0.01) {
-            tvMixtoStatus.setText(String.format(Locale.getDefault(), "Total cubierto con éxito (Bs. %.2f)", suma));
+            tvMixtoStatus.setText(getString(R.string.status_mixto_covered_success, suma));
             tvMixtoStatus.setTextColor(ContextCompat.getColor(this, R.color.ok_600));
             return true;
-        } else if (diff < 0) {
-            tvMixtoStatus.setText(String.format(Locale.getDefault(), "Faltan Bs. %.2f para cubrir el total", Math.abs(diff)));
+        } else if (diff < -0.01) {
+            tvMixtoStatus.setText(getString(R.string.status_mixto_missing, Math.abs(diff)));
             tvMixtoStatus.setTextColor(ContextCompat.getColor(this, R.color.ember_600));
             return false;
         } else {
-            tvMixtoStatus.setText(String.format(Locale.getDefault(), "Excede por Bs. %.2f", diff));
-            tvMixtoStatus.setTextColor(ContextCompat.getColor(this, R.color.char_700));
+            tvMixtoStatus.setText(getString(R.string.status_mixto_change, diff));
+            tvMixtoStatus.setTextColor(ContextCompat.getColor(this, R.color.ok_600));
             return true;
         }
     }
@@ -362,42 +389,39 @@ public class PagoActivity extends AppCompatActivity {
         double received = 0.0;
         double change = 0.0;
         String referencia = "";
+        double efMixto = 0.0;
+        double digMixto = 0.0;
 
         if (selectedMethodIndex == 0) { // Efectivo
-            String inputStr = etAmountReceived.getText().toString().trim();
+            String inputStr = etAmountReceived.getText().toString().trim().replace(',', '.');
             if (inputStr.isEmpty()) {
-                etAmountReceived.setError("Ingresa el monto recibido");
+                etAmountReceived.setError(getString(R.string.error_enter_amount_received));
                 return;
             }
             try {
                 received = Double.parseDouble(inputStr);
             } catch (NumberFormatException e) {
-                etAmountReceived.setError("Monto inválido");
+                etAmountReceived.setError(getString(R.string.error_invalid_amount));
                 return;
             }
 
             if (received < totalAmount) {
-                etAmountReceived.setError(String.format(Locale.getDefault(), "El monto debe ser mínimo Bs. %.2f", totalAmount));
+                etAmountReceived.setError(getString(R.string.error_amount_min_format, totalAmount));
                 return;
             }
             change = Math.max(0.0, received - totalAmount);
 
         } else if (selectedMethodIndex == 3) { // Mixto
             if (!validarMixto()) {
-                Toast.makeText(this, "El desglose de pago mixto no cubre el total de la orden", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_mixed_payment_insufficient, Toast.LENGTH_SHORT).show();
                 return;
             }
-            double ef = 0.0, dig = 0.0;
-            try {
-                ef = Double.parseDouble(etMixtoEfectivo.getText().toString().trim());
-            } catch (Exception ignored) {}
-            try {
-                dig = Double.parseDouble(etMixtoDigital.getText().toString().trim());
-            } catch (Exception ignored) {}
+            efMixto = parseDoubleSafe(etMixtoEfectivo.getText().toString());
+            digMixto = parseDoubleSafe(etMixtoDigital.getText().toString());
 
-            received = ef + dig;
+            received = efMixto + digMixto;
             change = Math.max(0.0, received - totalAmount);
-            referencia = String.format(Locale.US, "MIXTO|EF:%.2f|DIG:%.2f (Efectivo: Bs. %.2f, Digital: Bs. %.2f)", ef, dig, ef, dig);
+            referencia = String.format(Locale.US, "MIXTO|EF:%.2f|DIG:%.2f (Efectivo: Bs. %.2f, Digital: Bs. %.2f)", efMixto, digMixto, efMixto, digMixto);
 
         } else { // Tarjeta o QR
             received = totalAmount;
@@ -407,6 +431,8 @@ public class PagoActivity extends AppCompatActivity {
         final double finalReceived = received;
         final double finalChange = change;
         final String finalReferencia = referencia;
+        final double finalEfMixto = efMixto;
+        final double finalDigMixto = digMixto;
 
         PosRepository repo = PosRepository.getInstance(PagoActivity.this);
 
@@ -428,13 +454,16 @@ public class PagoActivity extends AppCompatActivity {
                 intent.putExtra("PEDIDO_ID", pedidoId);
                 intent.putExtra("ORDER_NUMBER", orderNumber);
                 intent.putExtra("TIPO_ENTREGA", tipoEntrega);
+                intent.putExtra("PAYMENT_REFERENCE", finalReferencia);
+                intent.putExtra("MIXTO_EFECTIVO", finalEfMixto);
+                intent.putExtra("MIXTO_DIGITAL", finalDigMixto);
                 startActivity(intent);
                 finish();
             }
 
             @Override
             public void onError(String error) {
-                Toast.makeText(PagoActivity.this, "Error al registrar pago: " + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(PagoActivity.this, getString(R.string.toast_error_registering_payment, error), Toast.LENGTH_SHORT).show();
             }
         });
     }

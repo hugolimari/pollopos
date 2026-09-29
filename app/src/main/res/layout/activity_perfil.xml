@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="sans-serif-black"
-                        android:text="C"
+                        android:text="@string/user_initial_c"
                         android:textColor="@color/white"
                         android:textSize="26sp" />
                 </FrameLayout>
@@ -92,7 +92,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="Administrador"
+                            android:text="@string/role_admin"
                             android:textColor="@color/char_900"
                             android:textSize="17sp" />
 
@@ -535,8 +535,8 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/nav_sale"
-                android:textColor="@color/char_400"
-                android:textSize="10.5sp" />
+                style="@style/TextAppearance.Pollo.Subtitle.Accent"
+                />
         </LinearLayout>
 
         <!-- Item Pedidos -->
@@ -562,8 +562,8 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/nav_orders"
-                android:textColor="@color/char_400"
-                android:textSize="10.5sp" />
+                style="@style/TextAppearance.Pollo.Subtitle.Accent"
+                />
         </LinearLayout>
 
         <!-- Item Reportes -->
@@ -589,8 +589,8 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/nav_reports"
-                android:textColor="@color/char_400"
-                android:textSize="10.5sp" />
+                style="@style/TextAppearance.Pollo.Subtitle.Accent"
+                />
         </LinearLayout>
 
         <!-- Item Perfil (Active) -->

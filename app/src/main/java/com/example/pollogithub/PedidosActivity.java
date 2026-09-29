@@ -95,15 +95,15 @@ public class PedidosActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Void result) {
                     if ("cocina".equalsIgnoreCase(order.getStatus())) {
-                        Toast.makeText(PedidosActivity.this, order.getId() + " marcado como listo", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PedidosActivity.this, getString(R.string.order_marked_ready, order.getId()), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(PedidosActivity.this, order.getId() + " entregado al cliente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PedidosActivity.this, getString(R.string.order_delivered_to_customer, order.getId()), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onError(String error) {
-                    Toast.makeText(PedidosActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PedidosActivity.this, getString(R.string.toast_error_with_msg, error), Toast.LENGTH_SHORT).show();
                 }
             });
         });
@@ -202,7 +202,7 @@ public class PedidosActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.navItemReportes).setOnClickListener(v ->
-            Toast.makeText(this, "Sección Reportes", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_section_reports, Toast.LENGTH_SHORT).show()
         );
 
         findViewById(R.id.navItemPerfil).setOnClickListener(v -> {

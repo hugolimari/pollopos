@@ -54,6 +54,8 @@ public class ReciboActivity extends AppCompatActivity {
     private double changeDue;
     private double discountAmount;
     private String cashierName = "Cajero";
+    private double mixtoEf = 0.0;
+    private double mixtoDig = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +86,27 @@ public class ReciboActivity extends AppCompatActivity {
         changeDue = getIntent().getDoubleExtra("CHANGE_DUE", 0.0);
         discountAmount = getIntent().getDoubleExtra("DISCOUNT_AMOUNT", 0.0);
 
+        String paymentReference = getIntent().getStringExtra("PAYMENT_REFERENCE");
+        mixtoEf = getIntent().getDoubleExtra("MIXTO_EFECTIVO", 0.0);
+        mixtoDig = getIntent().getDoubleExtra("MIXTO_DIGITAL", 0.0);
+        if ("mixto".equalsIgnoreCase(paymentMethod)) {
+            if (mixtoEf <= 0 && mixtoDig <= 0 && paymentReference != null && !paymentReference.isEmpty()) {
+                double[] partes = PosRepository.extraerPartesMixto(totalAmount, paymentReference);
+                mixtoEf = partes[0];
+                mixtoDig = partes[1];
+            }
+        }
+
         cashierName = repository.getSessionManager().getUserName();
         if (cashierName == null || cashierName.isEmpty()) cashierName = "Administrador";
 
         // 2. Renderizado de cabecera y metadata
         TextView tvSubtitleReceipt = findViewById(R.id.tvSubtitleReceipt);
-        tvSubtitleReceipt.setText(String.format(Locale.getDefault(), "Pedido #%04d cobrado en %s", orderNumber, paymentMethod.toLowerCase(Locale.getDefault())));
+        if ("mixto".equalsIgnoreCase(paymentMethod) && (mixtoEf > 0 || mixtoDig > 0)) {
+            tvSubtitleReceipt.setText(String.format(Locale.getDefault(), "Pedido #%04d · Cobro Mixto (Ef: Bs. %.2f | Dig: Bs. %.2f)", orderNumber, mixtoEf, mixtoDig));
+        } else {
+            tvSubtitleReceipt.setText(String.format(Locale.getDefault(), "Pedido #%04d cobrado en %s", orderNumber, paymentMethod.toLowerCase(Locale.getDefault())));
+        }
 
         TextView tvReceiptMeta = findViewById(R.id.tvReceiptMeta);
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy, h:mm a", Locale.getDefault());
@@ -159,7 +176,7 @@ public class ReciboActivity extends AppCompatActivity {
 
                 if (detallesList.isEmpty()) {
                     TextView tvVacio = new TextView(ReciboActivity.this);
-                    tvVacio.setText("Sin ítems registrados");
+                    tvVacio.setText(R.string.no_items_registered);
                     tvVacio.setTextColor(ContextCompat.getColor(ReciboActivity.this, R.color.char_400));
                     layoutReceiptItems.addView(tvVacio);
                     return;
@@ -214,7 +231,7 @@ public class ReciboActivity extends AppCompatActivity {
 
             @Override
             public void onError(String error) {
-                Toast.makeText(ReciboActivity.this, "Error al cargar detalles: " + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReciboActivity.this, getString(R.string.toast_error_loading_details, error), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -223,15 +240,10 @@ public class ReciboActivity extends AppCompatActivity {
      * Despliega las alternativas de impresión térmica Bluetooth o impresora del sistema.
      */
     private void mostrarOpcionesImpresion() {
-        String[] opciones = new String[]{
-                "Imprimir Ticket Térmico (Bluetooth ESC/POS)",
-                "Imprimir Comanda de Cocina (Bluetooth)",
-                "Impresora del Sistema / Guardar PDF",
-                "Configurar / Cambiar Impresora Térmica"
-        };
+        String[] opciones = getResources().getStringArray(R.array.opciones_impresion);
 
         new AlertDialog.Builder(this)
-                .setTitle("Opciones de Impresión")
+                .setTitle(R.string.title_print_options)
                 .setItems(opciones, (dialog, which) -> {
                     switch (which) {
                         case 0:
@@ -245,12 +257,12 @@ public class ReciboActivity extends AppCompatActivity {
                             break;
                         case 3:
                             printerManager.showPrinterSelectionDialog(this, () -> {
-                                Toast.makeText(this, "Impresora configurada exitosamente", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, R.string.toast_printer_configured, Toast.LENGTH_SHORT).show();
                             });
                             break;
                     }
                 })
-                .setNegativeButton("Cerrar", null)
+                .setNegativeButton(R.string.btn_close, null)
                 .show();
     }
 
@@ -270,6 +282,10 @@ public class ReciboActivity extends AppCompatActivity {
             bytes = builder.buildComandaCocina(orderNumber, tipoEntrega, detallesList, cashierName);
         } else {
             double subtotal = totalAmount + discountAmount;
+            String methodTicket = paymentMethod;
+            if ("mixto".equalsIgnoreCase(paymentMethod) && (mixtoEf > 0 || mixtoDig > 0)) {
+                methodTicket = String.format(Locale.getDefault(), "Mixto (Ef:%.2f Dig:%.2f)", mixtoEf, mixtoDig);
+            }
             bytes = builder.buildTicketCliente(
                     "POLLO QUE HACE POLLO",
                     "Sucursal Centro",
@@ -279,29 +295,29 @@ public class ReciboActivity extends AppCompatActivity {
                     subtotal,
                     discountAmount,
                     totalAmount,
-                    paymentMethod,
+                    methodTicket,
                     receivedAmount,
                     changeDue,
                     cashierName
             );
         }
 
-        Toast.makeText(this, "Transmitiendo a impresora térmica...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.toast_transmitting_thermal_printer, Toast.LENGTH_SHORT).show();
 
         printerManager.printEscPosBytes(bytes, new ThermalPrinterManager.PrintCallback() {
             @Override
             public void onSuccess() {
-                Toast.makeText(ReciboActivity.this, "Ticket impreso correctamente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReciboActivity.this, R.string.toast_ticket_printed_success, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(String error) {
                 new AlertDialog.Builder(ReciboActivity.this)
-                        .setTitle("Error de Impresión")
-                        .setMessage(error + "\n\n¿Deseas imprimir usando el servicio del sistema Android o configurar otra impresora?")
-                        .setPositiveButton("Imprimir con Sistema", (d, w) -> imprimirConSistemaAndroid())
-                        .setNeutralButton("Configurar Impresora", (d, w) -> printerManager.showPrinterSelectionDialog(ReciboActivity.this, null))
-                        .setNegativeButton("Cancelar", null)
+                        .setTitle(R.string.title_print_error)
+                        .setMessage(getString(R.string.msg_print_error_options, error))
+                        .setPositiveButton(R.string.btn_print_with_system, (d, w) -> imprimirConSistemaAndroid())
+                        .setNeutralButton(R.string.btn_configure_printer, (d, w) -> printerManager.showPrinterSelectionDialog(ReciboActivity.this, null))
+                        .setNegativeButton(R.string.btn_cancel, null)
                         .show();
             }
         });
@@ -340,7 +356,12 @@ public class ReciboActivity extends AppCompatActivity {
             sbHtml.append("<p>Descuento: -Bs. ").append(String.format(Locale.getDefault(), "%.2f", discountAmount)).append("</p>");
         }
         sbHtml.append("<h3>TOTAL: Bs. ").append(String.format(Locale.getDefault(), "%.2f", totalAmount)).append("</h3>");
-        sbHtml.append("<p>Pago: ").append(paymentMethod).append(" | Recibido: Bs. ").append(String.format(Locale.getDefault(), "%.2f", receivedAmount))
+
+        String methodDisplay = paymentMethod;
+        if ("mixto".equalsIgnoreCase(paymentMethod) && (mixtoEf > 0 || mixtoDig > 0)) {
+            methodDisplay = String.format(Locale.getDefault(), "Mixto (Efectivo: Bs. %.2f | Digital: Bs. %.2f)", mixtoEf, mixtoDig);
+        }
+        sbHtml.append("<p>Pago: ").append(methodDisplay).append(" | Recibido: Bs. ").append(String.format(Locale.getDefault(), "%.2f", receivedAmount))
                 .append(" | Vuelto: Bs. ").append(String.format(Locale.getDefault(), "%.2f", changeDue)).append("</p>");
         sbHtml.append("<p style='text-align:center; margin-top:20px;'><small>¡Gracias por su compra!<br/>PolloPOS v2.0</small></p>");
         sbHtml.append("</body></html>");
@@ -353,6 +374,10 @@ public class ReciboActivity extends AppCompatActivity {
      */
     private void compartirComprobante() {
         double subtotal = totalAmount + discountAmount;
+        String methodDisplay = paymentMethod;
+        if ("mixto".equalsIgnoreCase(paymentMethod) && (mixtoEf > 0 || mixtoDig > 0)) {
+            methodDisplay = String.format(Locale.getDefault(), "Mixto (Efectivo: Bs. %.2f, Digital: Bs. %.2f)", mixtoEf, mixtoDig);
+        }
         String textTicket = EscPosTicketBuilder.buildPlainTextTicket(
                 "POLLO QUE HACE POLLO",
                 orderNumber,
@@ -361,7 +386,7 @@ public class ReciboActivity extends AppCompatActivity {
                 subtotal,
                 discountAmount,
                 totalAmount,
-                paymentMethod,
+                methodDisplay,
                 receivedAmount,
                 changeDue
         );

@@ -16,7 +16,7 @@
             android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Añadir comida al menú" />
+            android:text="@string/title_add_food_menu" />
 
         <TextView
             android:id="@+id/tvFormSubtitle"
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
-            android:text="Ingresa los datos para registrar el producto en el catálogo" />
+            android:text="@string/subtitle_add_food_menu" />
 
         <View
             style="@style/Widget.Pollo.Divider"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="Nombre del plato o producto *"
+            android:text="@string/label_product_name_required"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -53,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:fontFamily="sans-serif"
-                android:hint="ej. 1/4 Pollo Broaster"
+                android:hint="@string/hint_product_name"
                 android:inputType="textCapSentences"
                 android:paddingHorizontal="14dp"
                 android:textColor="@color/char_900"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Categoría *"
+            android:text="@string/label_category_required"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Precio (Bs.) *"
+            android:text="@string/label_price_required"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -107,7 +107,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:fontFamily="sans-serif-bold"
-                android:hint="0.00"
+                android:hint="@string/zero_decimal"
                 android:inputType="numberDecimal"
                 android:paddingHorizontal="14dp"
                 android:textColor="@color/char_900"
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Descripción o guarniciones"
+            android:text="@string/label_product_desc"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -137,7 +137,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:fontFamily="sans-serif"
-                android:hint="ej. Con papas fritas y ensalada"
+                android:hint="@string/hint_product_desc"
                 android:inputType="textCapSentences"
                 android:paddingHorizontal="14dp"
                 android:textColor="@color/char_900"
@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Foto del plato (Imagen real para la tarjeta)"
+            android:text="@string/label_photo_product"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -209,7 +209,7 @@
                     android:background="@drawable/bg_chip_selected"
                     android:fontFamily="sans-serif-bold"
                     android:paddingHorizontal="14dp"
-                    android:text="Subir foto / Cámara"
+                    android:text="@string/btn_upload_photo_camera"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -221,7 +221,7 @@
                     android:layout_marginTop="4dp"
                     android:fontFamily="sans-serif"
                     android:padding="4dp"
-                    android:text="🗑️ Quitar foto seleccionada"
+                    android:text="@string/btn_remove_selected_photo"
                     android:textColor="@color/ember_600"
                     android:textSize="11.5sp"
                     android:visibility="gone" />
@@ -234,7 +234,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Ícono Emoji (Salvavidas opcional si no hay foto)"
+            android:text="@string/label_emoji_fallback"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -259,7 +259,7 @@
                     android:background="@drawable/bg_chip_selected"
                     android:gravity="center"
                     android:paddingHorizontal="12dp"
-                    android:text="❌ Sin emoji"
+                    android:text="@string/opt_no_emoji"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -342,7 +342,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
-                    android:text="Habilitado para la venta"
+                    android:text="@string/label_enabled_for_sale"
                     android:textColor="@color/char_900"
                     android:textSize="13sp" />
 
@@ -351,7 +351,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="sans-serif"
-                    android:text="Disponible inmediatamente en la pantalla de pedidos"
+                    android:text="@string/desc_enabled_for_sale"
                     android:textColor="@color/char_400"
                     android:textSize="11.5sp" />
             </LinearLayout>
@@ -373,7 +373,7 @@
             android:background="@drawable/bg_order_card"
             android:fontFamily="sans-serif"
             android:padding="10dp"
-            android:text="ℹ️ Para mantener la integridad de los reportes y recibos históricos, los productos no se eliminan físicamente; puedes marcarlos como 'Agotado/Deshabilitado'."
+            android:text="@string/notice_product_integrity"
             android:textColor="@color/char_400"
             android:textSize="11sp" />
 
@@ -390,7 +390,7 @@
                 style="@style/Widget.Pollo.Button.Outline.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btn_height_medium"
-                android:text="Cancelar" />
+                android:text="@string/btn_cancel" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnGuardarForm"
@@ -399,7 +399,7 @@
                 android:layout_height="@dimen/btn_height_medium"
                 android:layout_marginStart="@dimen/spacing_m"
                 android:paddingHorizontal="@dimen/spacing_2xl"
-                android:text="Guardar" />
+                android:text="@string/btn_save" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -31,14 +31,14 @@
                 android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reportes" />
+                android:text="@string/title_reports" />
 
             <TextView
                 android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
-                android:text="Sucursal Centro" />
+                android:text="@string/label_sucursal_centro" />
         </LinearLayout>
 
         <!-- Period Select Button -->
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-bold"
-                android:text="Hoy"
+                android:text="@string/period_today"
                 android:textColor="@color/char_700"
                 android:textSize="12.5sp" />
 
@@ -68,7 +68,7 @@
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 android:layout_marginStart="6dp"
-                android:contentDescription="Periodo"
+                android:contentDescription="@string/desc_period"
                 android:src="@drawable/ic_chevron_down" />
         </LinearLayout>
     </RelativeLayout>
@@ -101,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="VENTAS DE HOY"
+                    android:text="@string/label_ventas_de_hoy_upper"
                     android:textColor="@color/white_translucent"
                     android:textSize="12sp" />
 
@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="Bs 1,284.50"
+                    tools:text="Bs 1,284.50"
                     android:textColor="@color/white"
                     android:textSize="32sp" />
 
@@ -128,7 +128,7 @@
                     <ImageView
                         android:layout_width="12dp"
                         android:layout_height="12dp"
-                        android:contentDescription="Crecimiento"
+                        android:contentDescription="@string/desc_growth"
                         android:src="@drawable/ic_trend_up" />
 
                     <TextView
@@ -136,7 +136,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:fontFamily="sans-serif-bold"
-                        android:text="18% vs. ayer"
+                        android:text="@string/sample_growth_rate"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -171,7 +171,7 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_gravity="center"
-                            android:contentDescription="Pedidos"
+                            android:contentDescription="@string/desc_orders"
                             android:src="@drawable/ic_nav_sale"
                             app:tint="@color/ember_600" />
                     </FrameLayout>
@@ -181,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="0"
+                        tools:text="0"
                         android:textColor="@color/char_900"
                         android:textSize="19sp" />
 
@@ -190,7 +190,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="sans-serif"
-                        android:text="Pedidos hoy"
+                        android:text="@string/label_pedidos_hoy"
                         android:textColor="@color/char_400"
                         android:textSize="11.5sp" />
                 </LinearLayout>
@@ -215,7 +215,7 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_gravity="center"
-                            android:contentDescription="Ticket"
+                            android:contentDescription="@string/desc_ticket"
                             android:src="@drawable/ic_method_cash"
                             app:tint="@color/ember_600" />
                     </FrameLayout>
@@ -225,7 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="Bs 0.00"
+                        tools:text="Bs 0.00"
                         android:textColor="@color/char_900"
                         android:textSize="19sp" />
 
@@ -234,7 +234,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="sans-serif"
-                        android:text="Ticket promedio"
+                        android:text="@string/label_ticket_promedio"
                         android:textColor="@color/char_400"
                         android:textSize="11.5sp" />
                 </LinearLayout>
@@ -259,7 +259,7 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_gravity="center"
-                            android:contentDescription="En el local"
+                            android:contentDescription="@string/desc_in_venue"
                             android:src="@drawable/ic_dining_local"
                             app:tint="@color/ember_600" />
                     </FrameLayout>
@@ -269,7 +269,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="0"
+                        tools:text="0"
                         android:textColor="@color/char_900"
                         android:textSize="19sp" />
 
@@ -278,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="sans-serif"
-                        android:text="En el local"
+                        android:text="@string/label_en_el_local"
                         android:textColor="@color/char_400"
                         android:textSize="11.5sp" />
                 </LinearLayout>
@@ -303,7 +303,7 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_gravity="center"
-                            android:contentDescription="Hora Pico"
+                            android:contentDescription="@string/desc_rush_hour"
                             android:src="@drawable/ic_clock"
                             app:tint="@color/ember_600" />
                     </FrameLayout>
@@ -313,7 +313,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="12-2pm"
+                        tools:text="12-2pm"
                         android:textColor="@color/char_900"
                         android:textSize="19sp" />
 
@@ -322,7 +322,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="sans-serif"
-                        android:text="Hora pico"
+                        android:text="@string/label_hora_pico"
                         android:textColor="@color/char_400"
                         android:textSize="11.5sp" />
                 </LinearLayout>
@@ -334,7 +334,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
                 android:fontFamily="sans-serif-black"
-                android:text="Ventas por hora de hoy"
+                android:text="@string/label_ventas_por_hora_hoy"
                 android:textColor="@color/char_900"
                 android:textSize="15sp" />
 
@@ -372,7 +372,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="11a"
+                            android:text="@string/hour_11a"
                             android:textColor="@color/char_400"
                             android:textSize="10.5sp" />
                     </LinearLayout>
@@ -396,7 +396,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="12p"
+                            android:text="@string/hour_12p"
                             android:textColor="@color/char_400"
                             android:textSize="10.5sp" />
                     </LinearLayout>
@@ -420,7 +420,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="1p"
+                            android:text="@string/hour_1p"
                             android:textColor="@color/char_400"
                             android:textSize="10.5sp" />
                     </LinearLayout>
@@ -444,7 +444,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="2p"
+                            android:text="@string/hour_2p"
                             android:textColor="@color/char_400"
                             android:textSize="10.5sp" />
                     </LinearLayout>
@@ -468,7 +468,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="3p"
+                            android:text="@string/hour_3p"
                             android:textColor="@color/char_400"
                             android:textSize="10.5sp" />
                     </LinearLayout>
@@ -492,7 +492,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="4p"
+                            android:text="@string/hour_4p"
                             android:textColor="@color/char_400"
                             android:textSize="10.5sp" />
                     </LinearLayout>
@@ -516,7 +516,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="5p"
+                            android:text="@string/hour_5p"
                             android:textColor="@color/char_400"
                             android:textSize="10.5sp" />
                     </LinearLayout>
@@ -529,7 +529,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
                 android:fontFamily="sans-serif-black"
-                android:text="Productos más vendidos"
+                android:text="@string/label_productos_mas_vendidos"
                 android:textColor="@color/char_900"
                 android:textSize="15sp" />
 
@@ -571,7 +571,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="1/4 pollo frito"
+                            tools:text="1/4 pollo frito"
                             android:textColor="@color/char_900"
                             android:textSize="13.5sp" />
 
@@ -580,7 +580,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif"
-                            android:text="32 vendidos hoy"
+                            tools:text="32 vendidos hoy"
                             android:textColor="@color/char_400"
                             android:textSize="11sp" />
                     </LinearLayout>
@@ -589,7 +589,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
-                        android:text="Bs 448.00"
+                        tools:text="Bs 448.00"
                         android:textColor="@color/char_900"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -626,7 +626,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="1/2 pollo a la brasa"
+                            tools:text="1/2 pollo a la brasa"
                             android:textColor="@color/char_900"
                             android:textSize="13.5sp" />
 
@@ -635,7 +635,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif"
-                            android:text="18 vendidos hoy"
+                            tools:text="18 vendidos hoy"
                             android:textColor="@color/char_400"
                             android:textSize="11sp" />
                     </LinearLayout>
@@ -644,7 +644,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
-                        android:text="Bs 432.00"
+                        tools:text="Bs 432.00"
                         android:textColor="@color/char_900"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -681,7 +681,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="Combo familiar"
+                            tools:text="Combo familiar"
                             android:textColor="@color/char_900"
                             android:textSize="13.5sp" />
 
@@ -690,7 +690,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif"
-                            android:text="7 vendidos hoy"
+                            tools:text="7 vendidos hoy"
                             android:textColor="@color/char_400"
                             android:textSize="11sp" />
                     </LinearLayout>
@@ -699,7 +699,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
-                        android:text="Bs 364.00"
+                        tools:text="Bs 364.00"
                         android:textColor="@color/char_900"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -712,7 +712,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="14dp"
                 android:fontFamily="sans-serif-black"
-                android:text="Caja"
+                android:text="@string/label_caja"
                 android:textColor="@color/char_900"
                 android:textSize="15sp" />
 
@@ -738,7 +738,7 @@
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         android:layout_gravity="center"
-                        android:contentDescription="Cerrar caja"
+                        android:contentDescription="@string/desc_cerrar_caja"
                         android:src="@drawable/ic_cash_register" />
                 </FrameLayout>
 
@@ -753,7 +753,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
-                        android:text="Cerrar caja del turno"
+                        android:text="@string/label_cerrar_caja_turno"
                         android:textColor="@color/char_900"
                         android:textSize="13.5sp" />
 
@@ -762,7 +762,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
                         android:fontFamily="sans-serif"
-                        android:text="Cuadre de efectivo pendiente"
+                        android:text="@string/label_cuadre_efectivo_pendiente"
                         android:textColor="@color/char_400"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -770,7 +770,7 @@
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:contentDescription="Detalle"
+                    android:contentDescription="@string/desc_detalle"
                     android:src="@drawable/ic_chevron_right"
                     app:tint="@color/char_400" />
             </LinearLayout>

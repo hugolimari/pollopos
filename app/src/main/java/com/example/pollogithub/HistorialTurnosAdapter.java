@@ -81,26 +81,26 @@ public class HistorialTurnosAdapter extends RecyclerView.Adapter<HistorialTurnos
         holder.tvTurnoNumero.setText(String.format(Locale.getDefault(), "Turno #%04d", t.getId()));
 
         String fechaApertura = dateFormat.format(new Date(t.getAbiertoEn()));
-        String fechaCierre = t.getCerradoEn() != null ? hourFormat.format(new Date(t.getCerradoEn())) : "En curso";
-        holder.tvTurnoFechas.setText(String.format("%s · Hasta %s", fechaApertura, fechaCierre));
+        String fechaCierre = t.getCerradoEn() != null ? hourFormat.format(new Date(t.getCerradoEn())) : context.getString(R.string.status_en_curso);
+        holder.tvTurnoFechas.setText(context.getString(R.string.turnos_fechas_format, fechaApertura, fechaCierre));
 
         holder.tvFondoInicialItem.setText(String.format(Locale.getDefault(), "Bs. %.2f", t.getFondoInicial()));
 
         boolean isAbierto = "abierto".equalsIgnoreCase(t.getEstado());
         if (isAbierto) {
             // Renderizado de estado de turno activo
-            holder.tvTurnoEstadoBadge.setText("En curso");
+            holder.tvTurnoEstadoBadge.setText(R.string.status_en_curso);
             holder.tvTurnoEstadoBadge.setTextColor(ContextCompat.getColor(context, R.color.ok_600));
             holder.tvTurnoEstadoBadge.setBackgroundResource(R.drawable.bg_badge_active_shift);
 
-            holder.tvEsperadoItem.setText("Calculando...");
-            holder.tvContadoItem.setText("Pendiente");
-            holder.tvDiferenciaLabel.setText("Estado del turno:");
-            holder.tvDiferenciaMonto.setText("Turno abierto actualmente");
+            holder.tvEsperadoItem.setText(R.string.calculating);
+            holder.tvContadoItem.setText(R.string.status_pendiente);
+            holder.tvDiferenciaLabel.setText(R.string.label_estado_del_turno);
+            holder.tvDiferenciaMonto.setText(R.string.turno_abierto_actualmente);
             holder.tvDiferenciaMonto.setTextColor(ContextCompat.getColor(context, R.color.ember_600));
         } else {
             // Renderizado de turno liquidado y arqueado
-            holder.tvTurnoEstadoBadge.setText("Cerrado");
+            holder.tvTurnoEstadoBadge.setText(R.string.status_cerrado);
             holder.tvTurnoEstadoBadge.setTextColor(ContextCompat.getColor(context, R.color.char_700));
             holder.tvTurnoEstadoBadge.setBackgroundResource(R.drawable.bg_badge_agotado);
 
@@ -111,19 +111,19 @@ public class HistorialTurnosAdapter extends RecyclerView.Adapter<HistorialTurnos
             holder.tvEsperadoItem.setText(String.format(Locale.getDefault(), "Bs. %.2f", esperado));
             holder.tvContadoItem.setText(String.format(Locale.getDefault(), "Bs. %.2f", contado));
 
-            holder.tvDiferenciaLabel.setText("Diferencia en caja:");
+            holder.tvDiferenciaLabel.setText(R.string.label_diferencia_en_caja);
             // Evaluación semántica del arqueo
             if (diff < -0.01) {
                 // Alerta de faltante (Déficit de efectivo)
-                holder.tvDiferenciaMonto.setText(String.format(Locale.getDefault(), "- Bs. %.2f (Faltante)", Math.abs(diff)));
+                holder.tvDiferenciaMonto.setText(context.getString(R.string.diferencia_faltante_format, Math.abs(diff)));
                 holder.tvDiferenciaMonto.setTextColor(Color.parseColor("#D32F2F"));
             } else if (diff > 0.01) {
                 // Superávit (Sobrante de efectivo)
-                holder.tvDiferenciaMonto.setText(String.format(Locale.getDefault(), "+ Bs. %.2f (Sobrante)", diff));
+                holder.tvDiferenciaMonto.setText(context.getString(R.string.diferencia_sobrante_format, diff));
                 holder.tvDiferenciaMonto.setTextColor(ContextCompat.getColor(context, R.color.ok_600));
             } else {
                 // Conciliación exacta
-                holder.tvDiferenciaMonto.setText("Bs. 0.00 (Cuadrado)");
+                holder.tvDiferenciaMonto.setText(R.string.diferencia_cuadrado);
                 holder.tvDiferenciaMonto.setTextColor(ContextCompat.getColor(context, R.color.ok_600));
             }
         }

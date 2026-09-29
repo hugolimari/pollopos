@@ -23,14 +23,14 @@
                 android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Movimiento de Caja Chica" />
+                android:text="@string/title_movimiento_caja_chica" />
 
             <TextView
                 android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
-                android:text="Registrar gastos menores o inyecciones de efectivo" />
+                android:text="@string/subtitle_movimiento_caja_chica" />
         </LinearLayout>
 
         <ImageView
@@ -39,6 +39,7 @@
             android:layout_height="32dp"
             android:layout_alignParentEnd="true"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_close"
             android:padding="6dp"
             android:src="@drawable/ic_back_arrow"
             app:tint="@color/char_400" />
@@ -55,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-bold"
-        android:text="Tipo de movimiento:"
+        android:text="@string/label_tipo_movimiento"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -75,7 +76,7 @@
             android:background="@drawable/bg_order_mode_active"
             android:fontFamily="sans-serif-bold"
             android:gravity="center"
-            android:text="Salida / Gasto (-)"
+            android:text="@string/tipo_movimiento_egreso"
             android:textColor="@color/ember_600"
             android:textSize="13sp" />
 
@@ -87,7 +88,7 @@
             android:background="@android:color/transparent"
             android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="Ingreso Extra (+)"
+            android:text="@string/tipo_movimiento_ingreso"
             android:textColor="@color/char_400"
             android:textSize="13sp" />
     </LinearLayout>
@@ -98,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-bold"
-        android:text="Monto en efectivo:"
+        android:text="@string/label_monto_efectivo"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -114,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-bold"
-            android:text="Bs."
+            android:text="@string/currency_bs"
             android:textColor="@color/char_400"
             android:textSize="16sp" />
 
@@ -124,7 +125,7 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:fontFamily="sans-serif-bold"
-            android:hint="0.00"
+            android:hint="@string/zero_decimal"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:paddingHorizontal="10dp"
@@ -138,7 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-bold"
-        android:text="Concepto común rápido:"
+        android:text="@string/label_concepto_comun_rapido"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -157,7 +158,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Carbón"
+            android:text="@string/chip_concepto_carbon"
             android:textColor="@color/char_700"
             android:textSize="11.5sp" />
 
@@ -170,7 +171,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Hielo"
+            android:text="@string/chip_concepto_hielo"
             android:textColor="@color/char_700"
             android:textSize="11.5sp" />
 
@@ -182,7 +183,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Verduras"
+            android:text="@string/chip_concepto_verduras"
             android:textColor="@color/char_700"
             android:textSize="11.5sp" />
     </LinearLayout>
@@ -192,7 +193,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:fontFamily="sans-serif-bold"
-        android:text="Justificación o detalle:"
+        android:text="@string/label_justificacion_detalle"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -203,7 +204,7 @@
         android:layout_marginTop="6dp"
         android:background="@drawable/bg_input_field"
         android:fontFamily="sans-serif"
-        android:hint="Ej. Compra de 2 bolsas de hielo para bebidas"
+        android:hint="@string/hint_justificacion_movimiento"
         android:importantForAutofill="no"
         android:inputType="textCapSentences"
         android:paddingHorizontal="14dp"
@@ -225,7 +226,7 @@
             android:layout_height="@dimen/btn_height_medium"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:text="Cancelar" />
+            android:text="@string/btn_cancel" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnGuardarMovimiento"
@@ -233,6 +234,6 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_medium"
             android:layout_weight="1.6"
-            android:text="Registrar en Caja" />
+            android:text="@string/btn_registrar_en_caja" />
     </LinearLayout>
 </LinearLayout>

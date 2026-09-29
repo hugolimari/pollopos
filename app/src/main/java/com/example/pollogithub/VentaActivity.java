@@ -113,7 +113,7 @@ public class VentaActivity extends AppCompatActivity {
         View.OnClickListener openPagoListener = v -> {
             double currentTotal = calculateCartTotal();
             if (currentTotal <= 0) {
-                Toast.makeText(VentaActivity.this, "El pedido está vacío", Toast.LENGTH_SHORT).show();
+                Toast.makeText(VentaActivity.this, R.string.toast_order_is_empty, Toast.LENGTH_SHORT).show();
                 return;
             }
             Intent intent = new Intent(VentaActivity.this, PagoActivity.class);
@@ -255,7 +255,7 @@ public class VentaActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.navItemReportes).setOnClickListener(v ->
-            Toast.makeText(this, "Sección Reportes", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_section_reports, Toast.LENGTH_SHORT).show()
         );
 
         findViewById(R.id.navItemPerfil).setOnClickListener(v -> {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/Widget.Pollo.Card.Order"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,14 +25,14 @@
                 android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Modalidad del pedido" />
+                android:text="@string/title_modalidad_pedido" />
 
             <TextView
                 android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
-                android:text="Selecciona cómo se entregará la orden" />
+                android:text="@string/subtitle_modalidad_pedido" />
         </LinearLayout>
 
         <ImageView
@@ -42,7 +43,7 @@
             android:layout_centerVertical="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:contentDescription="Cerrar"
+            android:contentDescription="@string/btn_close"
             android:focusable="true"
             android:padding="6dp"
             android:src="@drawable/ic_back_arrow"
@@ -73,7 +74,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_gravity="center"
-                android:contentDescription="En el local"
+                android:contentDescription="@string/order_mode_local"
                 android:src="@drawable/ic_dining_local"
                 app:tint="@color/white" />
         </FrameLayout>
@@ -89,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-bold"
-                android:text="Consumo en el local"
+                android:text="@string/modalidad_consumo_local"
                 android:textColor="@color/char_900"
                 android:textSize="15sp" />
 
@@ -98,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif"
-                android:text="Servir en bandeja o plato para el salón"
+                android:text="@string/desc_consumo_local"
                 android:textColor="@color/char_400"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -107,7 +108,7 @@
             android:id="@+id/radioLocalIndicator"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:contentDescription="Seleccionado"
+            android:contentDescription="@string/desc_selected"
             android:src="@drawable/ic_check_circle_ember" />
     </LinearLayout>
 
@@ -135,7 +136,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_gravity="center"
-                android:contentDescription="Para llevar"
+                android:contentDescription="@string/order_mode_llevar"
                 android:src="@drawable/ic_takeaway_bag"
                 app:tint="@color/char_700" />
         </FrameLayout>
@@ -151,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-bold"
-                android:text="Para llevar"
+                android:text="@string/order_mode_llevar"
                 android:textColor="@color/char_900"
                 android:textSize="15sp" />
 
@@ -160,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif"
-                android:text="Empacar en bolsa y recipientes térmicos"
+                android:text="@string/desc_para_llevar"
                 android:textColor="@color/char_400"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -169,7 +170,7 @@
             android:id="@+id/radioLlevarIndicator"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:contentDescription="No seleccionado"
+            android:contentDescription="@string/desc_not_selected"
             android:src="@drawable/ic_circle_outline" />
     </LinearLayout>
 
@@ -189,7 +190,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
-            android:text="0 productos seleccionados"
+            tools:text="@string/zero_products_selected"
             android:textColor="@color/char_700"
             android:textSize="13sp" />
 
@@ -198,7 +199,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="Bs. 0.00"
+            tools:text="@string/zero_currency"
             android:textColor="@color/ember_600"
             android:textSize="14.5sp" />
     </LinearLayout>
@@ -211,7 +212,7 @@
         android:background="@drawable/bg_button_primary"
         android:fontFamily="sans-serif-bold"
         android:stateListAnimator="@null"
-        android:text="Continuar a Cobrar →"
+        android:text="@string/btn_continue_to_pay"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp" />

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/Widget.Pollo.Card.White"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -61,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="1/4 de pollo frito" />
+                tools:text="1/4 de pollo frito" />
 
             <TextView
                 android:id="@+id/tvProductCategory"
@@ -69,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
-                android:text="Pollo frito · Con papas incluidas" />
+                tools:text="Pollo frito · Con papas incluidas" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -83,7 +84,7 @@
                     style="@style/TextAppearance.Pollo.Price.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bs. 14.00" />
+                    tools:text="Bs. 14.00" />
 
                 <TextView
                     android:id="@+id/tvProductStatusBadge"
@@ -94,7 +95,7 @@
                     android:background="@drawable/bg_badge_active_shift"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="2dp"
-                    android:text="Disponible"
+                    tools:text="@string/status_disponible"
                     android:textColor="@color/ok_600" />
             </LinearLayout>
         </LinearLayout>
@@ -116,7 +117,7 @@
             android:layout_height="@dimen/btn_height_small"
             android:layout_marginStart="6dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Editar producto"
+            android:contentDescription="@string/desc_edit_product"
             android:padding="@dimen/spacing_s"
             android:src="@drawable/ic_edit"
             app:tint="@color/char_700" />

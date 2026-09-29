@@ -10,14 +10,14 @@
         android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Foto del plato" />
+        android:text="@string/title_photo_product" />
 
     <TextView
         android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_2xs"
-        android:text="Selecciona el origen de la imagen para el menú" />
+        android:text="@string/subtitle_select_photo_source" />
 
     <View
         style="@style/Widget.Pollo.Divider"
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:text="Tomar foto con la cámara"
+                android:text="@string/option_take_photo_camera"
                 android:textColor="@color/char_900"
                 android:textSize="14sp" />
 
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="Captura directamente la foto del plato"
+                android:text="@string/desc_take_photo_camera"
                 android:textColor="@color/char_400"
                 android:textSize="11.5sp" />
         </LinearLayout>
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:text="Elegir de la galería"
+                android:text="@string/option_choose_from_gallery"
                 android:textColor="@color/char_900"
                 android:textSize="14sp" />
 
@@ -112,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="Selecciona una imagen guardada en el dispositivo"
+                android:text="@string/desc_choose_from_gallery"
                 android:textColor="@color/char_400"
                 android:textSize="11.5sp" />
         </LinearLayout>
@@ -132,6 +132,6 @@
         android:layout_height="@dimen/btn_height_medium"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="Cancelar" />
+        android:text="@string/btn_cancel" />
 
 </LinearLayout>

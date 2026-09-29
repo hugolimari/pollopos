@@ -24,7 +24,7 @@
                 android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1/4 de pollo frito" />
+                tools:text="1/4 de pollo frito" />
 
             <TextView
                 android:id="@+id/tvModalProdPrice"
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
-                android:text="Bs. 14.00" />
+                tools:text="Bs. 14.00" />
         </LinearLayout>
 
         <ImageView
@@ -41,6 +41,7 @@
             android:layout_height="32dp"
             android:layout_alignParentEnd="true"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_close"
             android:padding="6dp"
             android:src="@drawable/ic_back_arrow"
             app:tint="@color/char_400" />
@@ -56,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-bold"
-        android:text="Opciones rápidas de preparación:"
+        android:text="@string/label_opciones_rapidas_preparacion"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -76,7 +77,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Pierna"
+            android:text="@string/chip_modifier_pierna"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
 
@@ -89,7 +90,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Pechuga"
+            android:text="@string/chip_modifier_pechuga"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
 
@@ -101,7 +102,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Bien dorado"
+            android:text="@string/chip_modifier_bien_dorado"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
     </LinearLayout>
@@ -121,7 +122,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Sin ensalada"
+            android:text="@string/chip_modifier_sin_ensalada"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
 
@@ -134,7 +135,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Sin ají"
+            android:text="@string/chip_modifier_sin_aji"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
 
@@ -146,7 +147,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Salsa aparte"
+            android:text="@string/chip_modifier_salsa_aparte"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
     </LinearLayout>
@@ -156,7 +157,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-bold"
-        android:text="Nota especial o comanda:"
+        android:text="@string/label_nota_especial_comanda"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -167,7 +168,7 @@
         android:layout_marginTop="6dp"
         android:background="@drawable/bg_input_field"
         android:fontFamily="sans-serif"
-        android:hint="Ej. Papas bien cocidas, presa grande..."
+        android:hint="@string/hint_nota_especial"
         android:importantForAutofill="no"
         android:inputType="textCapSentences"
         android:paddingHorizontal="14dp"
@@ -189,7 +190,7 @@
             android:layout_height="@dimen/btn_height_medium"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:text="Cancelar" />
+            android:text="@string/btn_cancel" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnConfirmModifier"
@@ -197,6 +198,6 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_medium"
             android:layout_weight="1.6"
-            android:text="Agregar al Pedido" />
+            android:text="@string/btn_add_to_order" />
     </LinearLayout>
 </LinearLayout>

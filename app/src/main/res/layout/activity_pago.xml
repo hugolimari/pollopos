@@ -89,7 +89,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="4dp"
                         android:fontFamily="sans-serif-bold"
-                        android:text="Bs."
+                        android:text="@string/currency_bs"
                         android:textColor="@color/ember_600"
                         android:textSize="20sp" />
 
@@ -98,7 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="41.40"
+                        tools:text="41.40"
                         android:textColor="@color/char_900"
                         android:textSize="38sp" />
                 </LinearLayout>
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Subtotal: Bs. 41.40"
+                    tools:text="Subtotal: Bs. 41.40"
                     android:textColor="@color/char_400"
                     android:textSize="11.5sp"
                     android:visibility="gone" />
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-bold"
-                android:text="Descuento / Promoción:"
+                android:text="@string/label_descuento_promocion"
                 android:textColor="@color/char_700"
                 android:textSize="12.5sp" />
 
@@ -145,7 +145,7 @@
                         android:fontFamily="sans-serif-bold"
                         android:gravity="center"
                         android:paddingHorizontal="12dp"
-                        android:text="Sin desc."
+                        android:text="@string/chip_no_discount"
                         android:textColor="@color/white"
                         android:textSize="11.5sp" />
 
@@ -158,7 +158,7 @@
                         android:fontFamily="sans-serif-bold"
                         android:gravity="center"
                         android:paddingHorizontal="12dp"
-                        android:text="5%"
+                        android:text="@string/chip_discount_5"
                         android:textColor="@color/char_700"
                         android:textSize="11.5sp" />
 
@@ -171,7 +171,7 @@
                         android:fontFamily="sans-serif-bold"
                         android:gravity="center"
                         android:paddingHorizontal="12dp"
-                        android:text="10%"
+                        android:text="@string/chip_discount_10"
                         android:textColor="@color/char_700"
                         android:textSize="11.5sp" />
 
@@ -184,7 +184,7 @@
                         android:fontFamily="sans-serif-bold"
                         android:gravity="center"
                         android:paddingHorizontal="12dp"
-                        android:text="15%"
+                        android:text="@string/chip_discount_15"
                         android:textColor="@color/char_700"
                         android:textSize="11.5sp" />
 
@@ -197,7 +197,7 @@
                         android:fontFamily="sans-serif-bold"
                         android:gravity="center"
                         android:paddingHorizontal="12dp"
-                        android:text="20%"
+                        android:text="@string/chip_discount_20"
                         android:textColor="@color/char_700"
                         android:textSize="11.5sp" />
 
@@ -209,7 +209,7 @@
                         android:fontFamily="sans-serif-bold"
                         android:gravity="center"
                         android:paddingHorizontal="12dp"
-                        android:text="Cortesía"
+                        android:text="@string/chip_discount_cortesia"
                         android:textColor="@color/char_700"
                         android:textSize="11.5sp" />
                 </LinearLayout>
@@ -422,7 +422,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
-                        android:text="Bs."
+                        android:text="@string/currency_bs"
                         android:textColor="@color/char_400"
                         android:textSize="16sp" />
 
@@ -436,7 +436,7 @@
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
                         android:paddingHorizontal="8dp"
-                        android:text="50.00"
+                        tools:text="50.00"
                         android:textColor="@color/char_900"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -456,7 +456,7 @@
                         android:layout_weight="1.2"
                         android:background="@drawable/bg_quick_cash_btn"
                         android:fontFamily="sans-serif-bold"
-                        android:text="Exacto"
+                        android:text="@string/btn_quick_exact"
                         android:textAllCaps="false"
                         android:textColor="@color/char_700"
                         android:textSize="11.5sp" />
@@ -469,7 +469,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_quick_cash_btn"
                         android:fontFamily="sans-serif-bold"
-                        android:text="+20"
+                        android:text="@string/btn_quick_plus_20"
                         android:textAllCaps="false"
                         android:textColor="@color/char_700"
                         android:textSize="11.5sp" />
@@ -482,7 +482,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_quick_cash_btn"
                         android:fontFamily="sans-serif-bold"
-                        android:text="+50"
+                        android:text="@string/btn_quick_plus_50"
                         android:textAllCaps="false"
                         android:textColor="@color/char_700"
                         android:textSize="11.5sp" />
@@ -495,7 +495,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_quick_cash_btn"
                         android:fontFamily="sans-serif-bold"
-                        android:text="+100"
+                        android:text="@string/btn_quick_plus_100"
                         android:textAllCaps="false"
                         android:textColor="@color/char_700"
                         android:textSize="11.5sp" />
@@ -507,7 +507,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_quick_cash_btn"
                         android:fontFamily="sans-serif-bold"
-                        android:text="+200"
+                        android:text="@string/btn_quick_plus_200"
                         android:textAllCaps="false"
                         android:textColor="@color/char_700"
                         android:textSize="11.5sp" />
@@ -538,7 +538,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="Bs. 8.60"
+                        tools:text="Bs. 8.60"
                         android:textColor="@color/ok_600"
                         android:textSize="17sp" />
                 </LinearLayout>
@@ -559,7 +559,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
-                    android:text="Desglose de Cobro Mixto"
+                    android:text="@string/title_desglose_mixto"
                     android:textColor="@color/char_900"
                     android:textSize="13sp" />
 
@@ -569,7 +569,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Parte en Efectivo:"
+                    android:text="@string/label_parte_efectivo"
                     android:textColor="@color/char_700"
                     android:textSize="11.5sp" />
 
@@ -585,7 +585,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
-                        android:text="Bs."
+                        android:text="@string/currency_bs"
                         android:textColor="@color/char_400"
                         android:textSize="14sp" />
 
@@ -595,7 +595,7 @@
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:fontFamily="sans-serif-bold"
-                        android:hint="0.00"
+                        android:hint="@string/zero_decimal"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
                         android:paddingHorizontal="8dp"
@@ -609,7 +609,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Parte Electrónica (QR / Tarjeta):"
+                    android:text="@string/label_parte_electronica"
                     android:textColor="@color/char_700"
                     android:textSize="11.5sp" />
 
@@ -625,7 +625,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
-                        android:text="Bs."
+                        android:text="@string/currency_bs"
                         android:textColor="@color/char_400"
                         android:textSize="14sp" />
 
@@ -635,7 +635,7 @@
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:fontFamily="sans-serif-bold"
-                        android:hint="0.00"
+                        android:hint="@string/zero_decimal"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
                         android:paddingHorizontal="8dp"
@@ -651,7 +651,7 @@
                     android:layout_marginTop="12dp"
                     android:fontFamily="sans-serif-bold"
                     android:gravity="center"
-                    android:text="Ingresa los montos para cubrir el total"
+                    android:text="@string/desc_ingresa_montos_mixto"
                     android:textColor="@color/ember_600"
                     android:textSize="12sp" />
             </LinearLayout>

@@ -149,11 +149,11 @@ public class MainActivity extends AppCompatActivity {
             String pass = etPassword.getText().toString().trim();
 
             if (user.isEmpty()) {
-                etUser.setError("Usuario requerido");
+                etUser.setError(getString(R.string.error_user_required));
                 return;
             }
             if (pass.isEmpty()) {
-                etPassword.setError("Contraseña requerida");
+                etPassword.setError(getString(R.string.error_password_required));
                 return;
             }
 

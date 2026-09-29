@@ -122,11 +122,11 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
 
         // Actualización de insignia visual y estilos según disponibilidad
         if (p.isDisponible()) {
-            holder.tvProductStatusBadge.setText("Disponible");
+            holder.tvProductStatusBadge.setText(R.string.status_disponible);
             holder.tvProductStatusBadge.setTextColor(ContextCompat.getColor(context, R.color.ok_600));
             holder.tvProductStatusBadge.setBackgroundResource(R.drawable.bg_badge_active_shift);
         } else {
-            holder.tvProductStatusBadge.setText("Agotado");
+            holder.tvProductStatusBadge.setText(R.string.tag_agotado);
             holder.tvProductStatusBadge.setTextColor(ContextCompat.getColor(context, R.color.char_400));
             holder.tvProductStatusBadge.setBackgroundResource(R.drawable.bg_badge_agotado);
         }
@@ -157,12 +157,12 @@ public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProduct
     private String getCategoryDescription(ProductoEntity p) {
         String catName;
         switch (p.getCategoriaId()) {
-            case 1: catName = "Pollo frito"; break;
-            case 2: catName = "A la brasa"; break;
-            case 3: catName = "Combos"; break;
-            case 4: catName = "Bebidas"; break;
-            case 5: catName = "Acompañamientos"; break;
-            default: catName = "Especial"; break;
+            case 1: catName = context.getString(R.string.category_pollo_frito); break;
+            case 2: catName = context.getString(R.string.category_a_la_brasa); break;
+            case 3: catName = context.getString(R.string.category_combos); break;
+            case 4: catName = context.getString(R.string.category_bebidas); break;
+            case 5: catName = context.getString(R.string.category_acompanamientos); break;
+            default: catName = context.getString(R.string.category_todos); break;
         }
         if (p.getDescripcion() != null && !p.getDescripcion().trim().isEmpty()) {
             return catName + " · " + p.getDescripcion();

@@ -77,7 +77,7 @@
                     android:fontFamily="sans-serif-bold"
                     android:paddingHorizontal="6dp"
                     android:paddingVertical="2dp"
-                    android:text="4"
+                    tools:text="4"
                     android:textColor="@color/ember_700"
                     android:textSize="10.5sp" />
             </LinearLayout>
@@ -125,7 +125,7 @@
                     android:fontFamily="sans-serif-bold"
                     android:paddingHorizontal="6dp"
                     android:paddingVertical="2dp"
-                    android:text="2"
+                    tools:text="2"
                     android:textColor="@color/char_700"
                     android:textSize="10.5sp" />
             </LinearLayout>

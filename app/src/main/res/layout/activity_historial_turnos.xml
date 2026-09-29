@@ -34,7 +34,7 @@
                 android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Historial de Turnos" />
+                android:text="@string/title_historial_turnos" />
 
             <TextView
                 android:id="@+id/tvTurnosSubtitle"
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
-                android:text="Cierres de caja y arqueos registrados" />
+                android:text="@string/subtitle_historial_turnos" />
         </LinearLayout>
     </LinearLayout>
 
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-bold"
-            android:text="No hay turnos registrados"
+            android:text="@string/no_shifts_registered"
             android:textColor="@color/char_900"
             android:textSize="16sp" />
 
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="sans-serif"
-            android:text="Los turnos cerrados aparecerán aquí."
+            android:text="@string/desc_shifts_will_appear_here"
             android:textColor="@color/char_400"
             android:textSize="13sp" />
     </LinearLayout>

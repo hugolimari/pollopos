@@ -28,7 +28,7 @@
                     android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pedido #0231" />
+                    tools:text="Pedido #0231" />
 
                 <TextView
                     android:id="@+id/tvDetalleOrderMeta"
@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_2xs"
-                    android:text="Hace 5 min · En el local" />
+                    tools:text="Hace 5 min · En el local" />
             </LinearLayout>
 
             <TextView
@@ -47,7 +47,7 @@
                 android:background="@drawable/bg_status_cocina"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="4dp"
-                android:text="En cocina"
+                tools:text="En cocina"
                 android:textColor="@color/wait_600" />
         </LinearLayout>
 
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-bold"
-            android:text="Productos y notas de preparación"
+            android:text="@string/label_productos_notas_preparacion"
             android:textColor="@color/char_900"
             android:textSize="13sp" />
 
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-bold"
-                android:text="Total de la orden"
+                android:text="@string/label_total_de_la_orden"
                 android:textColor="@color/char_900"
                 android:textSize="14sp" />
 
@@ -100,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:text="Bs. 41.40"
+                tools:text="Bs. 41.40"
                 android:textColor="@color/ember_600"
                 android:textSize="17sp" />
         </LinearLayout>
@@ -119,7 +119,7 @@
                 android:layout_height="@dimen/btn_height_primary"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="Cancelar pedido" />
+                android:text="@string/btn_cancel_order" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCerrarDetalleDialog"
@@ -127,7 +127,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/btn_height_medium"
                 android:layout_weight="1"
-                android:text="Cerrar" />
+                android:text="@string/btn_close" />
         </LinearLayout>
 
     </LinearLayout>

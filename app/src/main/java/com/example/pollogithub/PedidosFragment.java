@@ -88,15 +88,15 @@ public class PedidosFragment extends Fragment {
                     @Override
                     public void onSuccess(Void result) {
                         if ("cocina".equalsIgnoreCase(order.getStatus())) {
-                            Toast.makeText(requireContext(), order.getId() + " marcado como listo", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), getString(R.string.order_marked_ready, order.getId()), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(requireContext(), order.getId() + " entregado al cliente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), getString(R.string.order_delivered_to_customer, order.getId()), Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onError(String error) {
-                        Toast.makeText(requireContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), getString(R.string.toast_error_with_msg, error), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -203,11 +203,11 @@ public class PedidosFragment extends Fragment {
         tvTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", order.getTotal()));
 
         if ("cocina".equalsIgnoreCase(order.getStatus())) {
-            tvStatusBadge.setText("En cocina");
+            tvStatusBadge.setText(R.string.status_cocina);
             tvStatusBadge.setTextColor(requireContext().getColor(R.color.wait_600));
             tvStatusBadge.setBackgroundResource(R.drawable.bg_status_cocina);
         } else {
-            tvStatusBadge.setText("Listo");
+            tvStatusBadge.setText(R.string.status_listo);
             tvStatusBadge.setTextColor(requireContext().getColor(R.color.ok_600));
             tvStatusBadge.setBackgroundResource(R.drawable.bg_status_listo);
         }
@@ -262,7 +262,7 @@ public class PedidosFragment extends Fragment {
                     }
                 } else {
                     TextView tvEmpty = new TextView(requireContext());
-                    tvEmpty.setText("No hay ítems registrados");
+                    tvEmpty.setText(R.string.no_items_registered);
                     tvEmpty.setTextColor(requireContext().getColor(R.color.char_400));
                     container.addView(tvEmpty);
                 }
@@ -288,32 +288,26 @@ public class PedidosFragment extends Fragment {
      * @param order Pedido a cancelar.
      */
     private void mostrarDialogoMotivoCancelacion(Order order) {
-        String[] motivos = {
-                "Cliente desistió de la compra",
-                "Error en la toma del pedido",
-                "Falta de insumos / producto agotado",
-                "Demora excesiva en preparación",
-                "Otro motivo"
-        };
+        String[] motivos = getResources().getStringArray(R.array.motivos_cancelacion);
 
         new androidx.appcompat.app.AlertDialog.Builder(requireContext())
-                .setTitle("Motivo de cancelación (" + order.getId() + ")")
+                .setTitle(getString(R.string.title_cancel_reason, order.getId()))
                 .setItems(motivos, (d, which) -> {
                     String motivoSeleccionado = motivos[which];
                     // Invocación al repositorio para ejecutar la cancelación con registro de auditoría
                     PosRepository.getInstance(requireContext()).cancelarPedido(order.getPedidoId(), motivoSeleccionado, new PosRepository.Callback<Void>() {
                         @Override
                         public void onSuccess(Void result) {
-                            Toast.makeText(requireContext(), order.getId() + " cancelado: " + motivoSeleccionado, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), getString(R.string.order_cancelled_format, order.getId(), motivoSeleccionado), Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onError(String error) {
-                            Toast.makeText(requireContext(), "Error al cancelar: " + error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), getString(R.string.toast_error_cancelling, error), Toast.LENGTH_SHORT).show();
                         }
                     });
                 })
-                .setNegativeButton("Regresar", null)
+                .setNegativeButton(R.string.btn_return, null)
                 .show();
     }
 }

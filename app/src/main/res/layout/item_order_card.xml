@@ -26,7 +26,7 @@
                 style="@style/TextAppearance.Pollo.Title.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pedido #0231" />
+                tools:text="Pedido #0231" />
 
             <TextView
                 android:id="@+id/tvOrderTime"
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
-                android:text="Hace 3 min · Mesa 4" />
+                tools:text="Hace 3 min · Mesa 4" />
         </LinearLayout>
 
         <TextView
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:lineSpacingExtra="2dp"
-        android:text="1/4 pollo frito, 1/2 pollo a la brasa, 2× gaseosa" />
+        tools:text="1/4 pollo frito, 1/2 pollo a la brasa, 2× gaseosa" />
 
     <!-- Type and Total Row -->
     <RelativeLayout
@@ -78,7 +78,7 @@
                 android:id="@+id/imgTypeIcon"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
-                android:contentDescription="Tipo"
+                android:contentDescription="@string/receipt_label_type"
                 android:src="@drawable/ic_type_table" />
 
             <TextView
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:fontFamily="sans-serif-bold"
-                android:text="Para mesa" />
+                tools:text="Para mesa" />
         </LinearLayout>
 
         <TextView
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:text="Bs. 41.40" />
+            tools:text="Bs. 41.40" />
     </RelativeLayout>
 
     <!-- Action Buttons Row -->

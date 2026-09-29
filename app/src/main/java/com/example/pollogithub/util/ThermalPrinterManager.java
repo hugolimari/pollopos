@@ -21,6 +21,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
+import com.example.pollogithub.R;
+
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -157,9 +159,9 @@ public class ThermalPrinterManager {
         List<BluetoothDevice> devices = getPairedDevices();
         if (devices.isEmpty()) {
             new AlertDialog.Builder(activity)
-                    .setTitle("Impresora Térmica")
-                    .setMessage("No se encontraron impresoras Bluetooth emparejadas en este dispositivo.\n\nPor favor empareja tu impresora térmica en los Ajustes de Bluetooth de Android.")
-                    .setPositiveButton("Entendido", null)
+                    .setTitle(R.string.title_thermal_printer)
+                    .setMessage(R.string.msg_no_paired_printers)
+                    .setPositiveButton(R.string.btn_understood, null)
                     .show();
             return;
         }
@@ -172,26 +174,26 @@ public class ThermalPrinterManager {
             @SuppressLint("MissingPermission")
             String name = devices.get(i).getName();
             String address = devices.get(i).getAddress();
-            names[i] = (name != null ? name : "Dispositivo") + "\n(" + address + ")";
+            names[i] = (name != null ? name : activity.getString(R.string.device_default_name)) + "\n(" + address + ")";
             if (address.equalsIgnoreCase(currentMac)) {
                 selectedIndex = i;
             }
         }
 
         new AlertDialog.Builder(activity)
-                .setTitle("Seleccionar Impresora Térmica")
+                .setTitle(R.string.title_select_printer)
                 .setSingleChoiceItems(names, selectedIndex, (dialog, which) -> {
                     BluetoothDevice chosen = devices.get(which);
                     savePrinterMac(chosen.getAddress());
-                    Toast.makeText(activity, "Impresora seleccionada: " + chosen.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, activity.getString(R.string.toast_printer_selected, chosen.getName()), Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     if (onPrinterConfigured != null) onPrinterConfigured.run();
                 })
-                .setNeutralButton("Tamaño: " + (is80mm() ? "80mm" : "58mm"), (dialog, which) -> {
+                .setNeutralButton(activity.getString(R.string.btn_paper_size_format, is80mm() ? "80mm" : "58mm"), (dialog, which) -> {
                     set80mm(!is80mm());
-                    Toast.makeText(activity, "Formato cambiado a " + (is80mm() ? "80mm" : "58mm"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, activity.getString(R.string.toast_paper_format_changed, is80mm() ? "80mm" : "58mm"), Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(R.string.btn_cancel, null)
                 .show();
     }
 

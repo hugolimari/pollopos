@@ -118,7 +118,7 @@ public class GestionProductosActivity extends AppCompatActivity {
             if (Boolean.TRUE.equals(isGranted)) {
                 startCameraCapture();
             } else {
-                Toast.makeText(GestionProductosActivity.this, "Permiso de cámara no concedido. No se puede capturar la foto.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GestionProductosActivity.this, R.string.toast_camera_permission_denied, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -158,13 +158,15 @@ public class GestionProductosActivity extends AppCompatActivity {
                 repository.setProductoDisponible(producto.getId(), disponible, new PosRepository.Callback<Void>() {
                     @Override
                     public void onSuccess(Void result) {
-                        String msg = disponible ? producto.getNombre() + " habilitado para la venta" : producto.getNombre() + " marcado como agotado";
+                        String msg = disponible
+                                ? getString(R.string.toast_product_enabled, producto.getNombre())
+                                : getString(R.string.toast_product_agotado, producto.getNombre());
                         Toast.makeText(GestionProductosActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(String error) {
-                        Toast.makeText(GestionProductosActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GestionProductosActivity.this, getString(R.string.toast_error_with_msg, error), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -265,7 +267,7 @@ public class GestionProductosActivity extends AppCompatActivity {
         }
 
         if (tvTotalCountSubtitle != null) {
-            tvTotalCountSubtitle.setText(String.format(Locale.getDefault(), "%d productos en menú (%d disponibles)", allProductos.size(), activeCount));
+            tvTotalCountSubtitle.setText(getString(R.string.format_menu_products_count, allProductos.size(), activeCount));
         }
 
         if (adapter != null) {
@@ -402,8 +404,8 @@ public class GestionProductosActivity extends AppCompatActivity {
 
         boolean isEditing = productoToEdit != null;
         if (isEditing) {
-            tvTitle.setText("Modificar comida");
-            tvSubtitle.setText("Actualiza los detalles del plato en el menú");
+            tvTitle.setText(R.string.title_edit_product);
+            tvSubtitle.setText(R.string.subtitle_edit_product);
             etNombre.setText(productoToEdit.getNombre());
             etPrecio.setText(String.format(Locale.US, "%.2f", productoToEdit.getPrecio()));
             if (productoToEdit.getDescripcion() != null) {
@@ -437,11 +439,11 @@ public class GestionProductosActivity extends AppCompatActivity {
             boolean disponible = switchDisponible.isChecked();
 
             if (nombre.isEmpty()) {
-                etNombre.setError("Ingresa el nombre del plato");
+                etNombre.setError(getString(R.string.error_enter_product_name));
                 return;
             }
             if (precioStr.isEmpty()) {
-                etPrecio.setError("Ingresa el precio");
+                etPrecio.setError(getString(R.string.error_enter_price));
                 return;
             }
 
@@ -449,11 +451,11 @@ public class GestionProductosActivity extends AppCompatActivity {
             try {
                 precio = Double.parseDouble(precioStr);
                 if (precio <= 0) {
-                    etPrecio.setError("El precio debe ser mayor a 0");
+                    etPrecio.setError(getString(R.string.error_price_greater_than_zero));
                     return;
                 }
             } catch (NumberFormatException e) {
-                etPrecio.setError("Precio inválido");
+                etPrecio.setError(getString(R.string.error_invalid_price));
                 return;
             }
 
@@ -473,13 +475,13 @@ public class GestionProductosActivity extends AppCompatActivity {
                 repository.updateProducto(productoToEdit, new PosRepository.Callback<Void>() {
                     @Override
                     public void onSuccess(Void result) {
-                        Toast.makeText(GestionProductosActivity.this, "Plato actualizado con éxito", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GestionProductosActivity.this, R.string.toast_product_updated, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
 
                     @Override
                     public void onError(String error) {
-                        Toast.makeText(GestionProductosActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GestionProductosActivity.this, getString(R.string.toast_error_with_msg, error), Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
@@ -491,13 +493,13 @@ public class GestionProductosActivity extends AppCompatActivity {
                 repository.insertProducto(nuevo, new PosRepository.Callback<Long>() {
                     @Override
                     public void onSuccess(Long id) {
-                        Toast.makeText(GestionProductosActivity.this, "Plato añadido al catálogo", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GestionProductosActivity.this, R.string.toast_product_added, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
 
                     @Override
                     public void onError(String error) {
-                        Toast.makeText(GestionProductosActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GestionProductosActivity.this, getString(R.string.toast_error_with_msg, error), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -539,7 +541,7 @@ public class GestionProductosActivity extends AppCompatActivity {
             takePictureLauncher.launch(cameraTempUri);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error al preparar la cámara: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_camera_prep_error, e.getMessage()), Toast.LENGTH_SHORT).show();
         }
     }
 

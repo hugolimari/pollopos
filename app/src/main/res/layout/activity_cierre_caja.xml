@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_l"
-            android:text="Cierre de caja"
+            android:text="@string/title_cierre_caja"
             app:layout_constraintStart_toEndOf="@id/btnBack"
             app:layout_constraintTop_toTopOf="@id/btnBack" />
 
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
-            android:text="Turno de Hugo Daza - 9:01am - 6:20pm"
+            tools:text="Turno de Hugo Daza - 9:01am - 6:20pm"
             app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_2xl"
             android:layout_marginTop="@dimen/spacing_2xl"
-            android:text="Resumen del turno"
+            android:text="@string/title_resumen_turno"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dividerTop" />
 
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Sucursal Centro"
+                    android:text="@string/label_sucursal_centro"
                     android:textColor="@color/char_700"
                     android:textSize="12sp" />
 
@@ -102,18 +102,18 @@
                     android:background="@color/paper_100" />
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Ventas en efectivo" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenEfectivo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/label_ventas_efectivo" android:textSize="12sp" android:textColor="@color/char_700" />
+                    <TextView android:id="@+id/tvResumenEfectivo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero_currency" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
                 </LinearLayout>
                 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Ventas con tarjeta" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenTarjeta" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/label_ventas_tarjeta" android:textSize="12sp" android:textColor="@color/char_700" />
+                    <TextView android:id="@+id/tvResumenTarjeta" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero_currency" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
                 </LinearLayout>
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Ventas QR" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenQr" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/label_ventas_qr" android:textSize="12sp" android:textColor="@color/char_700" />
+                    <TextView android:id="@+id/tvResumenQr" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero_currency" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
                 </LinearLayout>
 
                 <View
@@ -124,28 +124,28 @@
                     android:background="@color/paper_100" />
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Total vendido" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenTotalVendido" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/label_total_vendido" android:textSize="12sp" android:textColor="@color/char_700" />
+                    <TextView android:id="@+id/tvResumenTotalVendido" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero_currency" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
                 </LinearLayout>
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Fondo inicial de caja" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenFondoInicial" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/label_fondo_inicial_caja" android:textSize="12sp" android:textColor="@color/char_700" />
+                    <TextView android:id="@+id/tvResumenFondoInicial" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero_currency" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
                 </LinearLayout>
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="(+) Ingresos extra de caja" android:textSize="12sp" android:textColor="@color/ok_600" />
-                    <TextView android:id="@+id/tvResumenIngresosExtra" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/ok_600" />
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/label_ingresos_extra_caja" android:textSize="12sp" android:textColor="@color/ok_600" />
+                    <TextView android:id="@+id/tvResumenIngresosExtra" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero_currency" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/ok_600" />
                 </LinearLayout>
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="(-) Gastos / Salidas menores" android:textSize="12sp" android:textColor="@color/ember_600" />
-                    <TextView android:id="@+id/tvResumenEgresosGastos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/ember_600" />
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/label_gastos_salidas_menores" android:textSize="12sp" android:textColor="@color/ember_600" />
+                    <TextView android:id="@+id/tvResumenEgresosGastos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero_currency" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/ember_600" />
                 </LinearLayout>
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="(=) Efectivo esperado en caja" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/char_900" />
-                    <TextView android:id="@+id/tvResumenEsperado" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bs. 0.00" android:textStyle="bold" android:textSize="12.5sp" android:textColor="@color/ember_700" />
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/label_efectivo_esperado_caja" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/char_900" />
+                    <TextView android:id="@+id/tvResumenEsperado" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/zero_currency" android:textStyle="bold" android:textSize="12.5sp" android:textColor="@color/ember_700" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -159,7 +159,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-bold"
-            android:text="Conteo de efectivo"
+            android:text="@string/title_conteo_efectivo"
             android:textColor="@color/char_900"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -189,7 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
-                    android:text="¿Cuánto dinero en efectivo hay en caja?"
+                    android:text="@string/prompt_cuanto_efectivo_caja"
                     android:textColor="@color/char_900"
                     android:textSize="13sp" />
 
@@ -208,7 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="Bs."
+                        android:text="@string/currency_bs"
                         android:textColor="@color/char_900"
                         android:textSize="16sp" />
 
@@ -252,7 +252,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Caja cuadrada"
+                    android:text="@string/cierre_alert_exact_title"
                     android:textColor="@color/ok_600"
                     android:textSize="14sp" />
 
@@ -262,7 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="Bs. 0.00"
+                    android:text="@string/zero_currency"
                     android:textColor="@color/char_900"
                     android:textSize="16sp" />
 
@@ -272,7 +272,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif"
-                    android:text="El efectivo contado coincide con el esperado."
+                    android:text="@string/cierre_alert_exact_desc"
                     android:textColor="@color/char_900"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -286,7 +286,7 @@
             android:layout_height="@dimen/btn_height_hero"
             android:layout_marginTop="@dimen/spacing_3xl"
             android:layout_marginHorizontal="@dimen/spacing_xl"
-            android:text="Confirmar cierre de turno"
+            android:text="@string/btn_confirm_close_shift"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardAlert" />
@@ -295,7 +295,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:text="V1.2"
+            android:text="@string/app_version"
+            android:textColor="@color/char_900"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnConfirm" />
             android:textColor="@color/char_900"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"

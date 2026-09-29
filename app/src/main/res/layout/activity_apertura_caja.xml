@@ -46,7 +46,7 @@
                     android:layout_width="34dp"
                     android:layout_height="34dp"
                     android:layout_gravity="center"
-                    android:contentDescription="Apertura de turno"
+                    android:contentDescription="@string/desc_apertura_turno"
                     android:src="@drawable/ic_cash_register"
                     app:tint="@color/white" />
             </FrameLayout>
@@ -55,7 +55,7 @@
                 android:textAppearance="@style/TextAppearance.Pollo.Title.Hero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Apertura de Turno" />
+                android:text="@string/title_apertura_turno" />
 
             <TextView
                 android:id="@+id/tvAperturaWelcome"
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
-                android:text="Bienvenido, Cajero Principal" />
+                android:text="@string/subtitle_apertura_welcome_default" />
         </LinearLayout>
 
         <!-- Main Card -->
@@ -86,14 +86,14 @@
                     android:textAppearance="@style/TextAppearance.Pollo.Title.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fondo Inicial de Caja" />
+                    android:text="@string/title_fondo_inicial" />
 
                 <TextView
                     android:textAppearance="@style/TextAppearance.Pollo.Subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_xs"
-                    android:text="Ingresa el monto de efectivo con el que inicias operaciones en tu gaveta." />
+                    android:text="@string/desc_fondo_inicial" />
 
                 <!-- Amount Box -->
                 <LinearLayout
@@ -110,7 +110,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="Bs."
+                        android:text="@string/currency_bs"
                         android:textColor="@color/ember_600"
                         android:textSize="18sp" />
 
@@ -123,10 +123,10 @@
                         android:background="@null"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center_vertical"
-                        android:hint="100.00"
+                        android:hint="@string/default_initial_fund_hint"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
-                        android:text="100.00"
+                        android:text="@string/default_initial_fund_hint"
                         android:textColor="@color/char_900"
                         android:textColorHint="@color/placeholder_text"
                         android:textSize="20sp" />
@@ -147,7 +147,7 @@
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
                         android:layout_weight="1"
-                        android:text="Bs. 50" />
+                        android:text="@string/btn_quick_50" />
 
                     <TextView
                         android:id="@+id/btnQuickFondo100"
@@ -156,7 +156,7 @@
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
                         android:layout_weight="1"
-                        android:text="Bs. 100" />
+                        android:text="@string/btn_quick_100" />
 
                     <TextView
                         android:id="@+id/btnQuickFondo200"
@@ -165,7 +165,7 @@
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
                         android:layout_weight="1"
-                        android:text="Bs. 200" />
+                        android:text="@string/btn_quick_200" />
 
                     <TextView
                         android:id="@+id/btnQuickFondo300"
@@ -173,7 +173,7 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_weight="1"
-                        android:text="Bs. 300" />
+                        android:text="@string/btn_quick_300" />
                 </LinearLayout>
 
                 <!-- Help Notice -->
@@ -183,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Este fondo se sumará a tus ventas en efectivo para calcular el arqueo final al cierre de turno." />
+                    android:text="@string/note_fondo_inicial" />
 
                 <!-- Confirm Shift Button -->
                 <androidx.appcompat.widget.AppCompatButton
@@ -193,7 +193,7 @@
                     android:layout_height="@dimen/btn_height_primary"
                     android:layout_marginTop="22dp"
                     android:elevation="3dp"
-                    android:text="Abrir Turno y Comenzar" />
+                    android:text="@string/btn_open_shift_and_start" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -204,7 +204,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xl"
-            android:text="PolloPOS · Sucursal Centro"
+            android:text="@string/footer_apertura"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardApertura" />

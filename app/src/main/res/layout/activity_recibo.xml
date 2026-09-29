@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
                 android:layout_marginBottom="26dp"
-                android:text="Pedido cobrado con éxito" />
+                android:text="@string/subtitle_pedido_cobrado_exito" />
 
             <!-- Receipt Ticket Container -->
             <LinearLayout
@@ -91,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:fontFamily="sans-serif"
-                        android:text="Sucursal Centro · 14 sep 2026, 1:42pm"
+                        tools:text="Sucursal Centro · 14 sep 2026, 1:42pm"
                         android:textColor="@color/char_400"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -127,7 +127,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-bold"
-                            android:text="#0001"
+                            tools:text="#0001"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -174,7 +174,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-bold"
-                            android:text="Administrador"
+                            android:text="@string/role_admin"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -202,7 +202,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="1×  1/4 pollo frito"
+                            tools:text="1×  1/4 pollo frito"
                             android:textColor="@color/char_700"
                             android:textSize="12.5sp" />
 
@@ -211,7 +211,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-bold"
-                            android:text="Bs. 14.00"
+                            tools:text="Bs. 14.00"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -225,7 +225,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="1×  1/2 pollo a la brasa"
+                            tools:text="1×  1/2 pollo a la brasa"
                             android:textColor="@color/char_700"
                             android:textSize="12.5sp" />
 
@@ -234,7 +234,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-bold"
-                            android:text="Bs. 24.00"
+                            tools:text="Bs. 24.00"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -247,7 +247,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="2×  Gaseosa 500ml"
+                            tools:text="2×  Gaseosa 500ml"
                             android:textColor="@color/char_700"
                             android:textSize="12.5sp" />
 
@@ -256,7 +256,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-bold"
-                            android:text="Bs. 8.00"
+                            tools:text="Bs. 8.00"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -293,7 +293,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif"
-                            android:text="Bs. 46.00"
+                            tools:text="Bs. 46.00"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -317,7 +317,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif"
-                            android:text="− Bs. 4.60"
+                            tools:text="− Bs. 4.60"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -348,7 +348,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-black"
-                            android:text="Bs. 41.40"
+                            tools:text="Bs. 41.40"
                             android:textColor="@color/char_900"
                             android:textSize="17sp" />
                     </RelativeLayout>
@@ -372,7 +372,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif"
-                            android:text="Bs. 50.00"
+                            tools:text="Bs. 50.00"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -395,7 +395,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif"
-                            android:text="Bs. 8.60"
+                            tools:text="Bs. 8.60"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>

@@ -7,6 +7,7 @@ import android.os.Looper;
 import androidx.lifecycle.LiveData;
 
 import com.example.pollogithub.Product;
+import com.example.pollogithub.R;
 import com.example.pollogithub.data.SessionManager;
 import com.example.pollogithub.data.db.AppDatabase;
 import com.example.pollogithub.data.entity.CategoriaEntity;
@@ -68,6 +69,8 @@ public class PosRepository {
      */
     private final SessionManager sessionManager;
 
+    private final Context appContext;
+
     /**
      * Interfaz genérica de comunicación asíncrona (Observer / Callback Pattern).
      * 
@@ -95,6 +98,7 @@ public class PosRepository {
      * @param context Contexto de la aplicación para inicializar la base de datos y preferencias.
      */
     private PosRepository(Context context) {
+        this.appContext = context.getApplicationContext();
         db = AppDatabase.getInstance(context);
         executor = AppDatabase.getDatabaseWriteExecutor();
         sessionManager = new SessionManager(context);
@@ -156,7 +160,7 @@ public class PosRepository {
                 if (result != null) {
                     callback.onSuccess(result);
                 } else {
-                    callback.onError("Usuario o contraseña incorrectos");
+                    callback.onError(appContext.getString(R.string.error_invalid_credentials));
                 }
             });
         });
@@ -216,7 +220,7 @@ public class PosRepository {
         executor.execute(() -> {
             TurnoEntity turno = db.turnoDao().getById(turnoId);
             if (turno == null) {
-                mainHandler.post(() -> callback.onError("Turno no encontrado"));
+                mainHandler.post(() -> callback.onError(appContext.getString(R.string.error_shift_not_found)));
                 return;
             }
 
@@ -673,12 +677,12 @@ public class PosRepository {
                             String val = part.substring(3).trim();
                             int spaceIdx = val.indexOf(' ');
                             if (spaceIdx > 0) val = val.substring(0, spaceIdx);
-                            ef = Double.parseDouble(val);
+                            ef = Double.parseDouble(val.replace(',', '.'));
                         } else if (part.startsWith("DIG:")) {
                             String val = part.substring(4).trim();
                             int spaceIdx = val.indexOf(' ');
                             if (spaceIdx > 0) val = val.substring(0, spaceIdx);
-                            dig = Double.parseDouble(val);
+                            dig = Double.parseDouble(val.replace(',', '.'));
                         }
                     }
                 } else {
@@ -704,6 +708,15 @@ public class PosRepository {
         } else if (ef > 0 && dig <= 0) {
             dig = Math.max(0.0, montoTotal - ef);
         } else if (dig > 0 && ef <= 0) {
+            ef = Math.max(0.0, montoTotal - dig);
+        }
+
+        // Si la suma de las partes excede el monto total de la venta (ej. cliente entregó billete mayor):
+        // La cuota digital no puede exceder el total facturado, y el efectivo neto en caja es el saldo restante.
+        if (dig > montoTotal) {
+            dig = montoTotal;
+            ef = 0.0;
+        } else if (ef + dig > montoTotal) {
             ef = Math.max(0.0, montoTotal - dig);
         }
 

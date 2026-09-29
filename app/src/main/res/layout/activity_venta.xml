@@ -61,7 +61,7 @@
                         style="@style/TextAppearance.Pollo.Title.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Administrador" />
+                        android:text="@string/role_admin" />
 
                     <TextView
                         android:id="@+id/tvShiftInfo"
@@ -129,7 +129,7 @@
                 android:layout_marginEnd="@dimen/spacing_s"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Todos" />
+                android:text="@string/category_todos" />
 
             <TextView
                 android:id="@+id/chipPolloFrito"
@@ -139,7 +139,7 @@
                 android:layout_marginEnd="@dimen/spacing_s"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Pollo frito" />
+                android:text="@string/category_pollo_frito" />
 
             <TextView
                 android:id="@+id/chipBrasa"
@@ -149,7 +149,7 @@
                 android:layout_marginEnd="@dimen/spacing_s"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="A la brasa" />
+                android:text="@string/category_a_la_brasa" />
 
             <TextView
                 android:id="@+id/chipCombos"
@@ -159,7 +159,7 @@
                 android:layout_marginEnd="@dimen/spacing_s"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Combos" />
+                android:text="@string/category_combos" />
 
             <TextView
                 android:id="@+id/chipAcompanamientos"
@@ -169,7 +169,7 @@
                 android:layout_marginEnd="@dimen/spacing_s"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Acompañamientos" />
+                android:text="@string/category_acompanamientos" />
 
             <TextView
                 android:id="@+id/chipBebidas"
@@ -178,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Bebidas" />
+                android:text="@string/category_bebidas" />
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -246,7 +246,7 @@
                 android:background="@drawable/bg_cart_count"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="3"
+                tools:text="3"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
 
@@ -269,7 +269,7 @@
                     style="@style/TextAppearance.Pollo.Price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bs. 68.50"
+                    tools:text="Bs. 68.50"
                     android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
