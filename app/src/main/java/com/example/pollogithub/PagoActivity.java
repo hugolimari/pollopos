@@ -364,15 +364,15 @@ public class PagoActivity extends AppCompatActivity {
         double diff = suma - totalAmount;
 
         if (Math.abs(diff) < 0.01) {
-            tvMixtoStatus.setText(getString(R.string.status_mixto_covered_success, suma));
+            tvMixtoStatus.setText(getString(R.string.estado_mixto_cubierto_exito, suma));
             tvMixtoStatus.setTextColor(ContextCompat.getColor(this, R.color.ok_600));
             return true;
         } else if (diff < -0.01) {
-            tvMixtoStatus.setText(getString(R.string.status_mixto_missing, Math.abs(diff)));
+            tvMixtoStatus.setText(getString(R.string.estado_mixto_faltante, Math.abs(diff)));
             tvMixtoStatus.setTextColor(ContextCompat.getColor(this, R.color.ember_600));
             return false;
         } else {
-            tvMixtoStatus.setText(getString(R.string.status_mixto_change, diff));
+            tvMixtoStatus.setText(getString(R.string.estado_mixto_vuelto, diff));
             tvMixtoStatus.setTextColor(ContextCompat.getColor(this, R.color.ok_600));
             return true;
         }
@@ -395,25 +395,25 @@ public class PagoActivity extends AppCompatActivity {
         if (selectedMethodIndex == 0) { // Efectivo
             String inputStr = etAmountReceived.getText().toString().trim().replace(',', '.');
             if (inputStr.isEmpty()) {
-                etAmountReceived.setError(getString(R.string.error_enter_amount_received));
+                etAmountReceived.setError(getString(R.string.error_ingresar_monto_recibido));
                 return;
             }
             try {
                 received = Double.parseDouble(inputStr);
             } catch (NumberFormatException e) {
-                etAmountReceived.setError(getString(R.string.error_invalid_amount));
+                etAmountReceived.setError(getString(R.string.error_monto_invalido));
                 return;
             }
 
             if (received < totalAmount) {
-                etAmountReceived.setError(getString(R.string.error_amount_min_format, totalAmount));
+                etAmountReceived.setError(getString(R.string.error_monto_minimo_formato, totalAmount));
                 return;
             }
             change = Math.max(0.0, received - totalAmount);
 
         } else if (selectedMethodIndex == 3) { // Mixto
             if (!validarMixto()) {
-                Toast.makeText(this, R.string.toast_mixed_payment_insufficient, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_pago_mixto_insuficiente, Toast.LENGTH_SHORT).show();
                 return;
             }
             efMixto = parseDoubleSafe(etMixtoEfectivo.getText().toString());
@@ -463,7 +463,7 @@ public class PagoActivity extends AppCompatActivity {
 
             @Override
             public void onError(String error) {
-                Toast.makeText(PagoActivity.this, getString(R.string.toast_error_registering_payment, error), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PagoActivity.this, getString(R.string.toast_error_registrar_pago, error), Toast.LENGTH_SHORT).show();
             }
         });
     }

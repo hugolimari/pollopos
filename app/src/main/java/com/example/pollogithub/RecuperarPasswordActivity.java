@@ -55,7 +55,7 @@ public class RecuperarPasswordActivity extends AppCompatActivity {
                 startActivity(intent);
                 return;
             }
-            Toast.makeText(this, R.string.toast_code_sent_to_user, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_codigo_enviado_usuario, Toast.LENGTH_SHORT).show();
             finish();
         });
     }

@@ -29,12 +29,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_l"
             android:layout_weight="1"
-            android:text="@string/title_autoria" />
+            android:text="@string/titulo_autoria" />
 
         <ImageView
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:contentDescription="@string/desc_verified"
+            android:contentDescription="@string/desc_verificado"
             android:src="@drawable/ic_check_circle_ember" />
     </LinearLayout>
 
@@ -73,7 +73,7 @@
                     android:fontFamily="sans-serif-bold"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="4dp"
-                    android:text="@string/badge_propiedad_intelectual"
+                    android:text="@string/insignia_propiedad_intelectual"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="10.5sp" />
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="@string/label_autores"
+                    android:text="@string/etiqueta_autores"
                     android:textColor="@color/char_900"
                     android:textSize="22sp" />
 
@@ -100,7 +100,7 @@
                         android:layout_width="38dp"
                         android:layout_height="38dp"
                         android:background="@drawable/bg_avatar_circle"
-                        android:contentDescription="@string/desc_author"
+                        android:contentDescription="@string/desc_autor"
                         android:padding="8dp"
                         android:src="@drawable/ic_person"
                         app:tint="@color/white" />
@@ -116,7 +116,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/author_1_name"
+                            android:text="@string/autor_1_nombre"
                             android:textColor="@color/char_900"
                             android:textSize="16.5sp" />
 
@@ -124,7 +124,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="@string/author_career_role"
+                            android:text="@string/autor_carrera_rol"
                             android:textColor="@color/char_400"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -147,7 +147,7 @@
                         android:layout_width="38dp"
                         android:layout_height="38dp"
                         android:background="@drawable/bg_avatar_circle"
-                        android:contentDescription="@string/desc_author"
+                        android:contentDescription="@string/desc_autor"
                         android:padding="8dp"
                         android:src="@drawable/ic_person"
                         app:tint="@color/white" />
@@ -163,7 +163,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/author_2_name"
+                            android:text="@string/autor_2_nombre"
                             android:textColor="@color/char_900"
                             android:textSize="16.5sp" />
 
@@ -171,7 +171,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="@string/author_career_role"
+                            android:text="@string/autor_carrera_rol"
                             android:textColor="@color/char_400"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -196,7 +196,7 @@
                     android:fontFamily="sans-serif-bold"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="4dp"
-                    android:text="@string/badge_info_academica"
+                    android:text="@string/insignia_info_academica"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="10.5sp" />
@@ -207,7 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="@string/label_datos_academicos"
+                    android:text="@string/etiqueta_datos_academicos"
                     android:textColor="@color/char_900"
                     android:textSize="20sp" />
 
@@ -223,7 +223,7 @@
                         android:layout_width="38dp"
                         android:layout_height="38dp"
                         android:background="@drawable/bg_avatar_circle"
-                        android:contentDescription="@string/desc_university"
+                        android:contentDescription="@string/desc_universidad"
                         android:padding="9dp"
                         android:src="@drawable/ic_school"
                         app:tint="@color/white" />
@@ -239,7 +239,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/label_universidad"
+                            android:text="@string/etiqueta_universidad"
                             android:textColor="@color/char_400"
                             android:textSize="11.5sp" />
 
@@ -248,7 +248,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/value_universidad"
+                            android:text="@string/valor_universidad"
                             android:textColor="@color/char_900"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -271,7 +271,7 @@
                         android:layout_width="38dp"
                         android:layout_height="38dp"
                         android:background="@drawable/bg_avatar_circle"
-                        android:contentDescription="@string/desc_teacher"
+                        android:contentDescription="@string/desc_docente"
                         android:padding="8dp"
                         android:src="@drawable/ic_person"
                         app:tint="@color/white" />
@@ -287,7 +287,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/label_docente"
+                            android:text="@string/etiqueta_docente"
                             android:textColor="@color/char_400"
                             android:textSize="11.5sp" />
 
@@ -296,7 +296,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/value_docente"
+                            android:text="@string/valor_docente"
                             android:textColor="@color/char_900"
                             android:textSize="15.5sp" />
                     </LinearLayout>
@@ -319,7 +319,7 @@
                         android:layout_width="38dp"
                         android:layout_height="38dp"
                         android:background="@drawable/bg_avatar_circle"
-                        android:contentDescription="@string/desc_subject"
+                        android:contentDescription="@string/desc_materia"
                         android:padding="9dp"
                         android:src="@drawable/ic_menu_book"
                         app:tint="@color/white" />
@@ -335,7 +335,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/label_materia"
+                            android:text="@string/etiqueta_materia"
                             android:textColor="@color/char_400"
                             android:textSize="11.5sp" />
 
@@ -344,7 +344,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/value_materia"
+                            android:text="@string/valor_materia"
                             android:textColor="@color/char_900"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -367,7 +367,7 @@
                         android:layout_width="38dp"
                         android:layout_height="38dp"
                         android:background="@drawable/bg_avatar_circle"
-                        android:contentDescription="@string/desc_year"
+                        android:contentDescription="@string/desc_ano"
                         android:padding="9dp"
                         android:src="@drawable/ic_calendar"
                         app:tint="@color/white" />
@@ -383,7 +383,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/label_year"
+                            android:text="@string/etiqueta_ano"
                             android:textColor="@color/char_400"
                             android:textSize="11.5sp" />
 
@@ -392,7 +392,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/value_year"
+                            android:text="@string/valor_ano"
                             android:textColor="@color/char_900"
                             android:textSize="15.5sp" />
                     </LinearLayout>
@@ -408,7 +408,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_button_primary"
                 android:fontFamily="sans-serif-bold"
-                android:text="@string/btn_return_to_login"
+                android:text="@string/btn_volver_a_login"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="14sp" />

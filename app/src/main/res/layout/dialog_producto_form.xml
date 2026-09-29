@@ -16,7 +16,7 @@
             android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_add_food_menu" />
+            android:text="@string/titulo_anadir_comida_menu" />
 
         <TextView
             android:id="@+id/tvFormSubtitle"
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
-            android:text="@string/subtitle_add_food_menu" />
+            android:text="@string/subtitulo_anadir_comida_menu" />
 
         <View
             style="@style/Widget.Pollo.Divisor"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/label_product_name_required"
+            android:text="@string/etiqueta_nombre_producto_requerido"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -53,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:fontFamily="sans-serif"
-                android:hint="@string/hint_product_name"
+                android:hint="@string/pista_nombre_producto"
                 android:inputType="textCapSentences"
                 android:paddingHorizontal="14dp"
                 android:textColor="@color/char_900"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/label_category_required"
+            android:text="@string/etiqueta_categoria_requerida"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/label_price_required"
+            android:text="@string/etiqueta_precio_requerido"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -107,7 +107,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:fontFamily="sans-serif-bold"
-                android:hint="@string/zero_decimal"
+                android:hint="@string/cero_decimal"
                 android:inputType="numberDecimal"
                 android:paddingHorizontal="14dp"
                 android:textColor="@color/char_900"
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/label_product_desc"
+            android:text="@string/etiqueta_descripcion_producto"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -137,7 +137,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:fontFamily="sans-serif"
-                android:hint="@string/hint_product_desc"
+                android:hint="@string/pista_descripcion_producto"
                 android:inputType="textCapSentences"
                 android:paddingHorizontal="14dp"
                 android:textColor="@color/char_900"
@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/label_photo_product"
+            android:text="@string/etiqueta_foto_producto"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -209,7 +209,7 @@
                     android:background="@drawable/bg_chip_selected"
                     android:fontFamily="sans-serif-bold"
                     android:paddingHorizontal="14dp"
-                    android:text="@string/btn_upload_photo_camera"
+                    android:text="@string/btn_subir_foto_camara"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -221,7 +221,7 @@
                     android:layout_marginTop="4dp"
                     android:fontFamily="sans-serif"
                     android:padding="4dp"
-                    android:text="@string/btn_remove_selected_photo"
+                    android:text="@string/btn_quitar_foto_seleccionada"
                     android:textColor="@color/ember_600"
                     android:textSize="11.5sp"
                     android:visibility="gone" />
@@ -234,7 +234,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/label_emoji_fallback"
+            android:text="@string/etiqueta_icono_emoji"
             android:textColor="@color/char_700"
             android:textSize="12.5sp" />
 
@@ -259,7 +259,7 @@
                     android:background="@drawable/bg_chip_selected"
                     android:gravity="center"
                     android:paddingHorizontal="12dp"
-                    android:text="@string/opt_no_emoji"
+                    android:text="@string/opcion_sin_emoji"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -342,7 +342,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
-                    android:text="@string/label_enabled_for_sale"
+                    android:text="@string/etiqueta_habilitado_para_venta"
                     android:textColor="@color/char_900"
                     android:textSize="13sp" />
 
@@ -351,7 +351,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="sans-serif"
-                    android:text="@string/desc_enabled_for_sale"
+                    android:text="@string/desc_habilitado_para_venta"
                     android:textColor="@color/char_400"
                     android:textSize="11.5sp" />
             </LinearLayout>
@@ -373,7 +373,7 @@
             android:background="@drawable/bg_order_card"
             android:fontFamily="sans-serif"
             android:padding="10dp"
-            android:text="@string/notice_product_integrity"
+            android:text="@string/aviso_integridad_producto"
             android:textColor="@color/char_400"
             android:textSize="11sp" />
 
@@ -390,7 +390,7 @@
                 style="@style/Widget.Pollo.Boton.Contorno.Mediano"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btn_height_medium"
-                android:text="@string/btn_cancel" />
+                android:text="@string/btn_cancelar" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnGuardarForm"
@@ -399,7 +399,7 @@
                 android:layout_height="@dimen/btn_height_medium"
                 android:layout_marginStart="@dimen/spacing_m"
                 android:paddingHorizontal="@dimen/spacing_2xl"
-                android:text="@string/btn_save" />
+                android:text="@string/btn_guardar" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

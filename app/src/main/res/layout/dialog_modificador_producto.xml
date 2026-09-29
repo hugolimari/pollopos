@@ -41,7 +41,7 @@
             android:layout_height="32dp"
             android:layout_alignParentEnd="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/btn_close"
+            android:contentDescription="@string/btn_cerrar"
             android:padding="6dp"
             android:src="@drawable/ic_back_arrow"
             app:tint="@color/char_400" />
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-bold"
-        android:text="@string/label_opciones_rapidas_preparacion"
+        android:text="@string/etiqueta_opciones_rapidas_preparacion"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -77,7 +77,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="@string/chip_modifier_pierna"
+            android:text="@string/chip_modificador_pierna"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
 
@@ -90,7 +90,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="@string/chip_modifier_pechuga"
+            android:text="@string/chip_modificador_pechuga"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
 
@@ -102,7 +102,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="@string/chip_modifier_bien_dorado"
+            android:text="@string/chip_modificador_bien_dorado"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
     </LinearLayout>
@@ -122,7 +122,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="@string/chip_modifier_sin_ensalada"
+            android:text="@string/chip_modificador_sin_ensalada"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
 
@@ -135,7 +135,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="@string/chip_modifier_sin_aji"
+            android:text="@string/chip_modificador_sin_aji"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
 
@@ -147,7 +147,7 @@
             android:background="@drawable/bg_chip_unselected"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="@string/chip_modifier_salsa_aparte"
+            android:text="@string/chip_modificador_salsa_aparte"
             android:textColor="@color/char_700"
             android:textSize="12sp" />
     </LinearLayout>
@@ -157,7 +157,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-bold"
-        android:text="@string/label_nota_especial_comanda"
+        android:text="@string/etiqueta_nota_especial_comanda"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -168,7 +168,7 @@
         android:layout_marginTop="6dp"
         android:background="@drawable/bg_input_field"
         android:fontFamily="sans-serif"
-        android:hint="@string/hint_nota_especial"
+        android:hint="@string/pista_nota_especial"
         android:importantForAutofill="no"
         android:inputType="textCapSentences"
         android:paddingHorizontal="14dp"
@@ -190,7 +190,7 @@
             android:layout_height="@dimen/btn_height_medium"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:text="@string/btn_cancel" />
+            android:text="@string/btn_cancelar" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnConfirmModifier"
@@ -198,6 +198,6 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_medium"
             android:layout_weight="1.6"
-            android:text="@string/btn_add_to_order" />
+            android:text="@string/btn_agregar_al_pedido" />
     </LinearLayout>
 </LinearLayout>

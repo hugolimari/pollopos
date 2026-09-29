@@ -22,14 +22,14 @@
             android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_profile" />
+            android:text="@string/titulo_perfil" />
 
         <TextView
             android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
-            android:text="@string/subtitle_profile" />
+            android:text="@string/subtitulo_perfil" />
     </LinearLayout>
 
     <!-- Scrollable Content -->
@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="sans-serif-black"
-                        android:text="@string/user_initial_c"
+                        android:text="@string/inicial_usuario_c"
                         android:textColor="@color/white"
                         android:textSize="26sp" />
                 </FrameLayout>
@@ -92,7 +92,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/role_admin"
+                            android:text="@string/rol_admin"
                             android:textColor="@color/char_900"
                             android:textSize="17sp" />
 
@@ -102,7 +102,7 @@
                             android:layout_marginStart="8dp"
                             android:background="@drawable/bg_badge_active_shift"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/status_shift_active"
+                            android:text="@string/estado_turno_activo"
                             android:textColor="@color/ok_600"
                             android:textSize="10.5sp" />
                     </LinearLayout>
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:fontFamily="sans-serif"
-                        android:text="@string/profile_role_default"
+                        android:text="@string/perfil_rol_defecto"
                         android:textColor="@color/char_700"
                         android:textSize="13sp" />
 
@@ -123,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="sans-serif"
-                        android:text="@string/profile_branch_default"
+                        android:text="@string/perfil_sucursal_defecto"
                         android:textColor="@color/char_400"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -136,7 +136,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-bold"
-                android:text="@string/section_shift_stats"
+                android:text="@string/seccion_resumen_turno"
                 android:textColor="@color/char_700"
                 android:textSize="14sp" />
 
@@ -161,7 +161,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="@string/label_stat_sales"
+                        android:text="@string/etiqueta_estadistica_ventas"
                         android:textColor="@color/char_400"
                         android:textSize="11.5sp" />
 
@@ -170,7 +170,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:fontFamily="sans-serif-black"
-                        android:text="@string/value_stat_sales"
+                        android:text="@string/valor_estadistica_ventas"
                         android:textColor="@color/char_900"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -193,7 +193,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="@string/label_stat_total"
+                        android:text="@string/etiqueta_estadistica_total"
                         android:textColor="@color/char_400"
                         android:textSize="11.5sp" />
 
@@ -202,7 +202,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:fontFamily="sans-serif-black"
-                        android:text="@string/value_stat_total"
+                        android:text="@string/valor_estadistica_total"
                         android:textColor="@color/ember_600"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -225,7 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="@string/label_stat_start"
+                        android:text="@string/etiqueta_estadistica_apertura"
                         android:textColor="@color/char_400"
                         android:textSize="11.5sp" />
 
@@ -234,7 +234,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:fontFamily="sans-serif-black"
-                        android:text="@string/value_stat_start"
+                        android:text="@string/valor_estadistica_apertura"
                         android:textColor="@color/char_900"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -247,7 +247,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-bold"
-                android:text="@string/section_terminal_settings"
+                android:text="@string/seccion_ajustes_terminal"
                 android:textColor="@color/char_700"
                 android:textSize="14sp" />
 
@@ -274,7 +274,7 @@
                     <ImageView
                         android:layout_width="22dp"
                         android:layout_height="22dp"
-                        android:contentDescription="@string/item_printer_title"
+                        android:contentDescription="@string/item_impresora_titulo"
                         android:src="@drawable/ic_printer"
                         app:tint="@color/ember_600" />
 
@@ -289,7 +289,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
-                            android:text="@string/item_printer_title"
+                            android:text="@string/item_impresora_titulo"
                             android:textColor="@color/char_900"
                             android:textSize="14sp" />
 
@@ -298,7 +298,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:fontFamily="sans-serif"
-                            android:text="@string/item_printer_subtitle"
+                            android:text="@string/item_impresora_subtitulo"
                             android:textColor="@color/ok_600"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -332,7 +332,7 @@
                     <ImageView
                         android:layout_width="22dp"
                         android:layout_height="22dp"
-                        android:contentDescription="@string/item_cash_cut_title"
+                        android:contentDescription="@string/item_arqueo_caja_titulo"
                         android:src="@drawable/ic_cash_register"
                         app:tint="@color/ember_600" />
 
@@ -347,7 +347,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
-                            android:text="@string/item_cash_cut_title"
+                            android:text="@string/item_arqueo_caja_titulo"
                             android:textColor="@color/char_900"
                             android:textSize="14sp" />
 
@@ -356,7 +356,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:fontFamily="sans-serif"
-                            android:text="@string/item_cash_cut_subtitle"
+                            android:text="@string/item_arqueo_caja_subtitulo"
                             android:textColor="@color/char_400"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -390,7 +390,7 @@
                     <ImageView
                         android:layout_width="22dp"
                         android:layout_height="22dp"
-                        android:contentDescription="@string/item_sync_title"
+                        android:contentDescription="@string/item_sincronizacion_titulo"
                         android:src="@drawable/ic_sync"
                         app:tint="@color/ember_600" />
 
@@ -405,7 +405,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
-                            android:text="@string/item_sync_title"
+                            android:text="@string/item_sincronizacion_titulo"
                             android:textColor="@color/char_900"
                             android:textSize="14sp" />
 
@@ -414,7 +414,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:fontFamily="sans-serif"
-                            android:text="@string/item_sync_subtitle"
+                            android:text="@string/item_sincronizacion_subtitulo"
                             android:textColor="@color/char_400"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -448,7 +448,7 @@
                     <ImageView
                         android:layout_width="22dp"
                         android:layout_height="22dp"
-                        android:contentDescription="@string/item_lock_title"
+                        android:contentDescription="@string/item_bloqueo_titulo"
                         android:src="@drawable/ic_lock"
                         app:tint="@color/ember_600" />
 
@@ -463,7 +463,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
-                            android:text="@string/item_lock_title"
+                            android:text="@string/item_bloqueo_titulo"
                             android:textColor="@color/char_900"
                             android:textSize="14sp" />
 
@@ -472,7 +472,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:fontFamily="sans-serif"
-                            android:text="@string/item_lock_subtitle"
+                            android:text="@string/item_bloqueo_subtitulo"
                             android:textColor="@color/char_400"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -495,7 +495,7 @@
                 android:background="@drawable/bg_btn_outline"
                 android:fontFamily="sans-serif-bold"
                 android:stateListAnimator="@null"
-                android:text="@string/btn_end_shift"
+                android:text="@string/btn_finalizar_turno"
                 android:textColor="@color/ember_600"
                 android:textSize="14.5sp" />
 
@@ -526,7 +526,7 @@
             <ImageView
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:contentDescription="@string/nav_sale"
+                android:contentDescription="@string/nav_venta"
                 android:src="@drawable/ic_nav_sale" />
 
             <TextView
@@ -534,7 +534,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/nav_sale"
+                android:text="@string/nav_venta"
                 style="@style/TextAppearance.Pollo.Subtitulo.Acento"
                 />
         </LinearLayout>
@@ -553,7 +553,7 @@
             <ImageView
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:contentDescription="@string/nav_orders"
+                android:contentDescription="@string/nav_pedidos"
                 android:src="@drawable/ic_nav_orders" />
 
             <TextView
@@ -561,7 +561,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/nav_orders"
+                android:text="@string/nav_pedidos"
                 style="@style/TextAppearance.Pollo.Subtitulo.Acento"
                 />
         </LinearLayout>
@@ -580,7 +580,7 @@
             <ImageView
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:contentDescription="@string/nav_reports"
+                android:contentDescription="@string/nav_reportes"
                 android:src="@drawable/ic_nav_reports" />
 
             <TextView
@@ -588,7 +588,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/nav_reports"
+                android:text="@string/nav_reportes"
                 style="@style/TextAppearance.Pollo.Subtitulo.Acento"
                 />
         </LinearLayout>
@@ -607,7 +607,7 @@
             <ImageView
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:contentDescription="@string/nav_profile"
+                android:contentDescription="@string/nav_perfil"
                 android:src="@drawable/ic_nav_profile"
                 app:tint="@color/ember_600" />
 
@@ -616,7 +616,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-bold"
-                android:text="@string/nav_profile"
+                android:text="@string/nav_perfil"
                 android:textColor="@color/ember_600"
                 android:textSize="10.5sp" />
         </LinearLayout>

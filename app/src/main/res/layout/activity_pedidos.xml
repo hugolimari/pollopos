@@ -22,14 +22,14 @@
             android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_orders" />
+            android:text="@string/titulo_pedidos" />
 
         <TextView
             android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
-            android:text="@string/subtitle_orders" />
+            android:text="@string/subtitulo_pedidos" />
     </LinearLayout>
 
     <!-- Tabs Container -->
@@ -238,7 +238,7 @@
             <ImageView
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:contentDescription="@string/nav_sale"
+                android:contentDescription="@string/nav_venta"
                 android:src="@drawable/ic_nav_sale"
                 app:tint="@color/char_400" />
 
@@ -247,7 +247,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/nav_sale"
+                android:text="@string/nav_venta"
                 android:textColor="@color/char_400"
                 android:textSize="10.5sp" />
         </LinearLayout>
@@ -266,7 +266,7 @@
             <ImageView
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:contentDescription="@string/nav_orders"
+                android:contentDescription="@string/nav_pedidos"
                 android:src="@drawable/ic_nav_orders"
                 app:tint="@color/ember_600" />
 
@@ -275,7 +275,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-bold"
-                android:text="@string/nav_orders"
+                android:text="@string/nav_pedidos"
                 android:textColor="@color/ember_600"
                 android:textSize="10.5sp" />
         </LinearLayout>
@@ -294,7 +294,7 @@
             <ImageView
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:contentDescription="@string/nav_reports"
+                android:contentDescription="@string/nav_reportes"
                 android:src="@drawable/ic_nav_reports" />
 
             <TextView
@@ -302,7 +302,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/nav_reports"
+                android:text="@string/nav_reportes"
                 android:textColor="@color/char_400"
                 android:textSize="10.5sp" />
         </LinearLayout>
@@ -321,7 +321,7 @@
             <ImageView
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:contentDescription="@string/nav_profile"
+                android:contentDescription="@string/nav_perfil"
                 android:src="@drawable/ic_nav_profile" />
 
             <TextView
@@ -329,7 +329,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/nav_profile"
+                android:text="@string/nav_perfil"
                 android:textColor="@color/char_400"
                 android:textSize="10.5sp" />
         </LinearLayout>

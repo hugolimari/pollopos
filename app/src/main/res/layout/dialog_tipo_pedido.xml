@@ -25,14 +25,14 @@
                 android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_modalidad_pedido" />
+                android:text="@string/titulo_modalidad_pedido" />
 
             <TextView
                 android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
-                android:text="@string/subtitle_modalidad_pedido" />
+                android:text="@string/subtitulo_modalidad_pedido" />
         </LinearLayout>
 
         <ImageView
@@ -43,7 +43,7 @@
             android:layout_centerVertical="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:contentDescription="@string/btn_close"
+            android:contentDescription="@string/btn_cerrar"
             android:focusable="true"
             android:padding="6dp"
             android:src="@drawable/ic_back_arrow"
@@ -74,7 +74,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_gravity="center"
-                android:contentDescription="@string/order_mode_local"
+                android:contentDescription="@string/modo_pedido_local"
                 android:src="@drawable/ic_dining_local"
                 app:tint="@color/white" />
         </FrameLayout>
@@ -108,7 +108,7 @@
             android:id="@+id/radioLocalIndicator"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:contentDescription="@string/desc_selected"
+            android:contentDescription="@string/desc_seleccionado"
             android:src="@drawable/ic_check_circle_ember" />
     </LinearLayout>
 
@@ -136,7 +136,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_gravity="center"
-                android:contentDescription="@string/order_mode_llevar"
+                android:contentDescription="@string/modo_pedido_llevar"
                 android:src="@drawable/ic_takeaway_bag"
                 app:tint="@color/char_700" />
         </FrameLayout>
@@ -152,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-bold"
-                android:text="@string/order_mode_llevar"
+                android:text="@string/modo_pedido_llevar"
                 android:textColor="@color/char_900"
                 android:textSize="15sp" />
 
@@ -170,7 +170,7 @@
             android:id="@+id/radioLlevarIndicator"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:contentDescription="@string/desc_not_selected"
+            android:contentDescription="@string/desc_no_seleccionado"
             android:src="@drawable/ic_circle_outline" />
     </LinearLayout>
 
@@ -190,7 +190,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
-            tools:text="@string/zero_products_selected"
+            tools:text="@string/cero_productos_seleccionados"
             android:textColor="@color/char_700"
             android:textSize="13sp" />
 
@@ -199,7 +199,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            tools:text="@string/zero_currency"
+            tools:text="@string/cero_moneda"
             android:textColor="@color/ember_600"
             android:textSize="14.5sp" />
     </LinearLayout>
@@ -212,7 +212,7 @@
         android:background="@drawable/bg_button_primary"
         android:fontFamily="sans-serif-bold"
         android:stateListAnimator="@null"
-        android:text="@string/btn_continue_to_pay"
+        android:text="@string/btn_continuar_a_cobrar"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp" />

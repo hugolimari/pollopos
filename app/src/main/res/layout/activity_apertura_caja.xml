@@ -55,7 +55,7 @@
                 android:textAppearance="@style/TextAppearance.Pollo.Titulo.Principal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_apertura_turno" />
+                android:text="@string/titulo_apertura_turno" />
 
             <TextView
                 android:id="@+id/tvAperturaWelcome"
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
-                android:text="@string/subtitle_apertura_welcome_default" />
+                android:text="@string/subtitulo_apertura_bienvenida_defecto" />
         </LinearLayout>
 
         <!-- Main Card -->
@@ -86,7 +86,7 @@
                     android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_fondo_inicial" />
+                    android:text="@string/titulo_fondo_inicial" />
 
                 <TextView
                     android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
@@ -110,7 +110,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="@string/currency_bs"
+                        android:text="@string/moneda_bs"
                         android:textColor="@color/ember_600"
                         android:textSize="18sp" />
 
@@ -123,10 +123,10 @@
                         android:background="@null"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center_vertical"
-                        android:hint="@string/default_initial_fund_hint"
+                        android:hint="@string/pista_fondo_inicial_defecto"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
-                        android:text="@string/default_initial_fund_hint"
+                        android:text="@string/pista_fondo_inicial_defecto"
                         android:textColor="@color/char_900"
                         android:textColorHint="@color/placeholder_text"
                         android:textSize="20sp" />
@@ -147,7 +147,7 @@
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
                         android:layout_weight="1"
-                        android:text="@string/btn_quick_50" />
+                        android:text="@string/btn_rapido_50" />
 
                     <TextView
                         android:id="@+id/btnQuickFondo100"
@@ -156,7 +156,7 @@
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
                         android:layout_weight="1"
-                        android:text="@string/btn_quick_100" />
+                        android:text="@string/btn_rapido_100" />
 
                     <TextView
                         android:id="@+id/btnQuickFondo200"
@@ -165,7 +165,7 @@
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
                         android:layout_weight="1"
-                        android:text="@string/btn_quick_200" />
+                        android:text="@string/btn_rapido_200" />
 
                     <TextView
                         android:id="@+id/btnQuickFondo300"
@@ -173,7 +173,7 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_weight="1"
-                        android:text="@string/btn_quick_300" />
+                        android:text="@string/btn_rapido_300" />
                 </LinearLayout>
 
                 <!-- Help Notice -->
@@ -183,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/note_fondo_inicial" />
+                    android:text="@string/nota_fondo_inicial" />
 
                 <!-- Confirm Shift Button -->
                 <androidx.appcompat.widget.AppCompatButton
@@ -193,7 +193,7 @@
                     android:layout_height="@dimen/btn_height_primary"
                     android:layout_marginTop="22dp"
                     android:elevation="3dp"
-                    android:text="@string/btn_open_shift_and_start" />
+                    android:text="@string/btn_abrir_turno_y_comenzar" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -204,7 +204,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xl"
-            android:text="@string/footer_apertura"
+            android:text="@string/pie_apertura"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardApertura" />

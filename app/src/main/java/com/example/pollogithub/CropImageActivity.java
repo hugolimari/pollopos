@@ -66,7 +66,7 @@ public class CropImageActivity extends AppCompatActivity {
         }
 
         if (imageUri == null) {
-            Toast.makeText(this, R.string.toast_no_image_received, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_no_se_recibio_imagen, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -74,7 +74,7 @@ public class CropImageActivity extends AppCompatActivity {
         // Carga eficiente con decodificación de muestra y corrección EXIF
         Bitmap bitmap = ImageUtils.loadBitmapFromUriWithExif(this, imageUri, 1800);
         if (bitmap == null) {
-            Toast.makeText(this, R.string.toast_error_loading_image, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_error_cargar_imagen, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -90,7 +90,7 @@ public class CropImageActivity extends AppCompatActivity {
             chipRatio11.setBackgroundResource(R.drawable.bg_chip_unselected);
             chipRatio11.setTextColor(androidx.core.content.ContextCompat.getColor(this, R.color.char_700));
 
-            tvCropSubtitle.setText(R.string.crop_ratio_recommended_desc);
+            tvCropSubtitle.setText(R.string.recorte_proporcion_recomendada_desc);
         });
 
         // Control de proporción 1:1 (Cuadrada)
@@ -102,7 +102,7 @@ public class CropImageActivity extends AppCompatActivity {
             chipRatio43.setBackgroundResource(R.drawable.bg_chip_unselected);
             chipRatio43.setTextColor(androidx.core.content.ContextCompat.getColor(this, R.color.char_700));
 
-            tvCropSubtitle.setText(R.string.crop_ratio_square_desc);
+            tvCropSubtitle.setText(R.string.recorte_proporcion_cuadrada_desc);
         });
 
         // Rotación a 90 grados en el sentido del reloj
@@ -112,7 +112,7 @@ public class CropImageActivity extends AppCompatActivity {
         findViewById(R.id.btnDoneCrop).setOnClickListener(v -> {
             Bitmap cropped = customCropView.getCroppedBitmap();
             if (cropped == null) {
-                Toast.makeText(this, R.string.toast_cannot_crop, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_no_se_pudo_recortar, Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -126,7 +126,7 @@ public class CropImageActivity extends AppCompatActivity {
                 setResult(RESULT_OK, resultIntent);
                 finish();
             } else {
-                Toast.makeText(this, R.string.toast_error_saving_crop, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_error_guardar_recorte, Toast.LENGTH_SHORT).show();
             }
         });
     }

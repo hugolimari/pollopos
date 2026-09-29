@@ -41,7 +41,7 @@
                     android:background="@drawable/bg_avatar_circle"
                     android:fontFamily="sans-serif-black"
                     android:gravity="center"
-                    android:text="@string/user_initial_c"
+                    android:text="@string/inicial_usuario_c"
                     android:textColor="@color/white"
                     android:textSize="15sp" />
 
@@ -56,14 +56,14 @@
                         style="@style/TextAppearance.Pollo.Titulo.Pequeno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/role_admin" />
+                        android:text="@string/rol_admin" />
 
                     <TextView
                         android:id="@+id/tvShiftInfo"
                         style="@style/TextAppearance.Pollo.Subtitulo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/shift_info" />
+                        android:text="@string/info_turno" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -93,7 +93,7 @@
                     android:id="@+id/ivHeaderIconLocal"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:contentDescription="@string/order_mode_local"
+                    android:contentDescription="@string/modo_pedido_local"
                     android:src="@drawable/ic_dining_local"
                     app:tint="@color/ember_600" />
 
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:fontFamily="sans-serif-bold"
-                    android:text="@string/order_mode_local"
+                    android:text="@string/modo_pedido_local"
                     android:textColor="@color/ember_600"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -123,7 +123,7 @@
                     android:id="@+id/ivHeaderIconLlevar"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:contentDescription="@string/order_mode_llevar"
+                    android:contentDescription="@string/modo_pedido_llevar"
                     android:src="@drawable/ic_takeaway_bag"
                     app:tint="@color/char_400" />
 
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/order_mode_llevar"
+                    android:text="@string/modo_pedido_llevar"
                     android:textColor="@color/char_400"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -149,7 +149,7 @@
                 android:layout_height="18dp"
                 android:layout_gravity="center_vertical|start"
                 android:layout_marginStart="@dimen/input_padding_horizontal"
-                android:contentDescription="@string/search_hint"
+                android:contentDescription="@string/pista_buscar"
                 android:src="@drawable/ic_search" />
 
             <EditText
@@ -157,7 +157,7 @@
                 style="@style/Widget.Pollo.CampoTexto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/search_hint"
+                android:hint="@string/pista_buscar"
                 android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
                 android:inputType="text"
@@ -193,7 +193,7 @@
                 android:layout_marginEnd="@dimen/spacing_s"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/category_todos" />
+                android:text="@string/categoria_todos" />
 
             <TextView
                 android:id="@+id/chipPolloFrito"
@@ -203,7 +203,7 @@
                 android:layout_marginEnd="@dimen/spacing_s"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/category_pollo_frito" />
+                android:text="@string/categoria_pollo_frito" />
 
             <TextView
                 android:id="@+id/chipBrasa"
@@ -213,7 +213,7 @@
                 android:layout_marginEnd="@dimen/spacing_s"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/category_a_la_brasa" />
+                android:text="@string/categoria_a_la_brasa" />
 
             <TextView
                 android:id="@+id/chipCombos"
@@ -223,7 +223,7 @@
                 android:layout_marginEnd="@dimen/spacing_s"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/category_combos" />
+                android:text="@string/categoria_combos" />
 
             <TextView
                 android:id="@+id/chipAcompanamientos"
@@ -233,7 +233,7 @@
                 android:layout_marginEnd="@dimen/spacing_s"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/category_acompanamientos" />
+                android:text="@string/categoria_acompanamientos" />
 
             <TextView
                 android:id="@+id/chipBebidas"
@@ -242,7 +242,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/category_bebidas" />
+                android:text="@string/categoria_bebidas" />
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -268,7 +268,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/section_title_fried" />
+                android:text="@string/seccion_titulo_frito" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProducts"
@@ -322,7 +322,7 @@
                     style="@style/TextAppearance.Pollo.Leyenda"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cart_total_label"
+                    android:text="@string/etiqueta_total_carrito"
                     android:textColor="@color/cart_label" />
 
                 <TextView
@@ -353,7 +353,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-bold"
-                android:text="@string/cart_view_order"
+                android:text="@string/ver_pedido_carrito"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_body" />
 
@@ -361,7 +361,7 @@
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 android:layout_marginStart="6dp"
-                android:contentDescription="@string/cart_view_order"
+                android:contentDescription="@string/ver_pedido_carrito"
                 android:src="@drawable/ic_chevron_right" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

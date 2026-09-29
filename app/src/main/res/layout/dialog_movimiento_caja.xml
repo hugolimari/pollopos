@@ -23,14 +23,14 @@
                 android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_movimiento_caja_chica" />
+                android:text="@string/titulo_movimiento_caja_chica" />
 
             <TextView
                 android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
-                android:text="@string/subtitle_movimiento_caja_chica" />
+                android:text="@string/subtitulo_movimiento_caja_chica" />
         </LinearLayout>
 
         <ImageView
@@ -39,7 +39,7 @@
             android:layout_height="32dp"
             android:layout_alignParentEnd="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/btn_close"
+            android:contentDescription="@string/btn_cerrar"
             android:padding="6dp"
             android:src="@drawable/ic_back_arrow"
             app:tint="@color/char_400" />
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-bold"
-        android:text="@string/label_tipo_movimiento"
+        android:text="@string/etiqueta_tipo_movimiento"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-bold"
-        android:text="@string/label_monto_efectivo"
+        android:text="@string/etiqueta_monto_efectivo"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -115,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-bold"
-            android:text="@string/currency_bs"
+            android:text="@string/moneda_bs"
             android:textColor="@color/char_400"
             android:textSize="16sp" />
 
@@ -125,7 +125,7 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:fontFamily="sans-serif-bold"
-            android:hint="@string/zero_decimal"
+            android:hint="@string/cero_decimal"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:paddingHorizontal="10dp"
@@ -139,7 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-bold"
-        android:text="@string/label_concepto_comun_rapido"
+        android:text="@string/etiqueta_concepto_comun_rapido"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -193,7 +193,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:fontFamily="sans-serif-bold"
-        android:text="@string/label_justificacion_detalle"
+        android:text="@string/etiqueta_justificacion_detalle"
         android:textColor="@color/char_700"
         android:textSize="12.5sp" />
 
@@ -204,7 +204,7 @@
         android:layout_marginTop="6dp"
         android:background="@drawable/bg_input_field"
         android:fontFamily="sans-serif"
-        android:hint="@string/hint_justificacion_movimiento"
+        android:hint="@string/pista_justificacion_movimiento"
         android:importantForAutofill="no"
         android:inputType="textCapSentences"
         android:paddingHorizontal="14dp"
@@ -226,7 +226,7 @@
             android:layout_height="@dimen/btn_height_medium"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:text="@string/btn_cancel" />
+            android:text="@string/btn_cancelar" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnGuardarMovimiento"

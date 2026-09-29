@@ -120,7 +120,7 @@ public class PerfilFragment extends Fragment {
         if (btnPrinterStatus != null) {
             btnPrinterStatus.setOnClickListener(v -> {
                 printerManager.showPrinterSelectionDialog(requireActivity(), () -> {
-                    Toast.makeText(requireContext(), R.string.toast_printer_linked_success, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.toast_impresora_vinculada_exito, Toast.LENGTH_SHORT).show();
                 });
             });
         }
@@ -139,9 +139,9 @@ public class PerfilFragment extends Fragment {
         if (btnLogout != null) {
             btnLogout.setOnClickListener(v -> {
                 new AlertDialog.Builder(requireContext())
-                        .setTitle(R.string.title_logout)
-                        .setMessage(R.string.msg_confirm_logout)
-                        .setPositiveButton(R.string.btn_exit, (dialog, which) -> {
+                        .setTitle(R.string.titulo_cerrar_sesion)
+                        .setMessage(R.string.mensaje_confirmar_cierre_sesion)
+                        .setPositiveButton(R.string.btn_salir, (dialog, which) -> {
                             repository.getSessionManager().clear();
                             Intent intent = new Intent(requireContext(), MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -150,7 +150,7 @@ public class PerfilFragment extends Fragment {
                                 getActivity().finish();
                             }
                         })
-                        .setNegativeButton(R.string.btn_cancel, null)
+                        .setNegativeButton(R.string.btn_cancelar, null)
                         .show();
             });
         }
@@ -195,7 +195,7 @@ public class PerfilFragment extends Fragment {
             public void onSuccess(PosRepository.ResumenTurno resumen) {
                 if (!isAdded() || resumen == null) return;
 
-                String mensaje = getString(R.string.format_detalle_turno_activo,
+                String mensaje = getString(R.string.formato_detalle_turno_activo,
                         resumen.fondoInicial,
                         resumen.totalEfectivo,
                         resumen.totalIngresosExtra,
@@ -208,16 +208,16 @@ public class PerfilFragment extends Fragment {
                 );
 
                 new AlertDialog.Builder(requireContext())
-                        .setTitle(getString(R.string.title_active_shift_detail, turnoId))
+                        .setTitle(getString(R.string.titulo_detalle_turno_activo, turnoId))
                         .setMessage(mensaje)
-                        .setPositiveButton(R.string.btn_accept, null)
+                        .setPositiveButton(R.string.btn_aceptar, null)
                         .show();
             }
 
             @Override
             public void onError(String error) {
                 if (isAdded()) {
-                    Toast.makeText(requireContext(), R.string.toast_cannot_get_shift_detail, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.toast_no_se_pudo_obtener_detalle_turno, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -260,9 +260,9 @@ public class PerfilFragment extends Fragment {
         TextView chipHielo = dialogView.findViewById(R.id.chipMotivoHielo);
         TextView chipVerduras = dialogView.findViewById(R.id.chipMotivoVerduras);
 
-        chipCarbon.setOnClickListener(v -> etConcepto.setText(R.string.concept_carbon));
-        chipHielo.setOnClickListener(v -> etConcepto.setText(R.string.concept_ice));
-        chipVerduras.setOnClickListener(v -> etConcepto.setText(R.string.concept_vegetables));
+        chipCarbon.setOnClickListener(v -> etConcepto.setText(R.string.concepto_carbon));
+        chipHielo.setOnClickListener(v -> etConcepto.setText(R.string.concepto_hielo));
+        chipVerduras.setOnClickListener(v -> etConcepto.setText(R.string.concepto_verduras));
 
         AlertDialog dialog = new AlertDialog.Builder(requireContext())
                 .setView(dialogView)
@@ -279,26 +279,26 @@ public class PerfilFragment extends Fragment {
         btnGuardar.setOnClickListener(v -> {
             String montoStr = etMonto.getText().toString().trim();
             if (montoStr.isEmpty()) {
-                etMonto.setError(getString(R.string.error_enter_amount));
+                etMonto.setError(getString(R.string.error_ingresar_monto));
                 return;
             }
             double monto = 0.0;
             try {
                 monto = Double.parseDouble(montoStr);
             } catch (NumberFormatException e) {
-                etMonto.setError(getString(R.string.error_invalid_amount));
+                etMonto.setError(getString(R.string.error_monto_invalido));
                 return;
             }
             if (monto <= 0) {
-                etMonto.setError(getString(R.string.error_amount_greater_than_zero));
+                etMonto.setError(getString(R.string.error_monto_mayor_a_cero));
                 return;
             }
 
             String concepto = etConcepto.getText().toString().trim();
             if (concepto.isEmpty()) {
                 concepto = tipoSeleccionado[0].equals("EGRESO")
-                        ? getString(R.string.concept_default_egreso)
-                        : getString(R.string.concept_default_ingreso);
+                        ? getString(R.string.concepto_defecto_egreso)
+                        : getString(R.string.concepto_defecto_ingreso);
             }
 
             final double finalMonto = monto;
@@ -307,14 +307,14 @@ public class PerfilFragment extends Fragment {
             repository.registrarMovimientoCaja(tipoSeleccionado[0], finalMonto, finalConcepto, new PosRepository.Callback<MovimientoCajaEntity>() {
                 @Override
                 public void onSuccess(MovimientoCajaEntity result) {
-                    Toast.makeText(requireContext(), getString(R.string.toast_movement_registered_success, finalMonto), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), getString(R.string.toast_movimiento_registrado_exito, finalMonto), Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     loadProfileStats();
                 }
 
                 @Override
                 public void onError(String error) {
-                    Toast.makeText(requireContext(), getString(R.string.toast_error_movement, error), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), getString(R.string.toast_error_movimiento, error), Toast.LENGTH_SHORT).show();
                 }
             });
         });

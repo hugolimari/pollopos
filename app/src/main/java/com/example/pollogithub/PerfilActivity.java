@@ -72,37 +72,37 @@ public class PerfilActivity extends AppCompatActivity {
     private void setupSettingsActions() {
         // Diagnóstico de conectividad con impresora térmica
         findViewById(R.id.btnSettingPrinter).setOnClickListener(v ->
-            Toast.makeText(this, R.string.toast_printer_ready_ok, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_impresora_lista_ok, Toast.LENGTH_SHORT).show()
         );
 
         // Generación de arqueo parcial o preliminar (Corte X)
         findViewById(R.id.btnSettingCashCut).setOnClickListener(v ->
-            Toast.makeText(this, R.string.toast_generating_cash_cut_x, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_generando_arqueo_caja_x, Toast.LENGTH_SHORT).show()
         );
 
         // Disparo manual de sincronización con API / Backend en la nube
         findViewById(R.id.btnSettingSync).setOnClickListener(v ->
-            Toast.makeText(this, R.string.toast_syncing_cloud, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_sincronizando_nube, Toast.LENGTH_SHORT).show()
         );
 
         // Bloqueo temporal de pantalla del terminal para seguridad física
         findViewById(R.id.btnSettingLock).setOnClickListener(v ->
-            Toast.makeText(this, R.string.toast_terminal_lock_active, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_bloqueo_terminal_activo, Toast.LENGTH_SHORT).show()
         );
 
         // Diálogo de confirmación para cierre definitivo de sesión y turno
         findViewById(R.id.btnEndShift).setOnClickListener(v -> {
             new AlertDialog.Builder(this)
-                .setTitle(R.string.title_close_shift)
-                .setMessage(R.string.msg_confirm_close_shift)
-                .setPositiveButton(R.string.btn_close_shift, (dialog, which) -> {
-                    Toast.makeText(this, R.string.toast_shift_closed_success, Toast.LENGTH_SHORT).show();
+                .setTitle(R.string.titulo_cerrar_turno)
+                .setMessage(R.string.mensaje_confirmar_cerrar_turno)
+                .setPositiveButton(R.string.btn_cerrar_turno, (dialog, which) -> {
+                    Toast.makeText(this, R.string.toast_turno_cerrado_exito, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(PerfilActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
                 })
-                .setNegativeButton(R.string.btn_cancel, null)
+                .setNegativeButton(R.string.btn_cancelar, null)
                 .show();
         });
     }
@@ -125,7 +125,7 @@ public class PerfilActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.navItemReportes).setOnClickListener(v ->
-            Toast.makeText(this, R.string.toast_section_reports, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_seccion_reportes, Toast.LENGTH_SHORT).show()
         );
 
         findViewById(R.id.navItemPerfil).setOnClickListener(v -> {

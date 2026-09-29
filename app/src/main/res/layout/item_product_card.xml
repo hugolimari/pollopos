@@ -54,7 +54,7 @@
         android:background="@drawable/bg_badge_agotado"
         android:paddingHorizontal="8dp"
         android:paddingVertical="3dp"
-        android:text="@string/tag_agotado"
+        android:text="@string/etiqueta_agotado"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/cardThumb"
         app:layout_constraintTop_toTopOf="@id/cardThumb"
@@ -135,14 +135,14 @@
             android:layout_width="@dimen/btn_stepper_size"
             android:layout_height="@dimen/btn_stepper_size"
             android:layout_marginEnd="6dp"
-            android:text="@string/minus_sign" />
+            android:text="@string/signo_menos" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAdd"
             style="@style/Widget.Pollo.Boton.Contador.Mas"
             android:layout_width="@dimen/btn_stepper_size"
             android:layout_height="@dimen/btn_stepper_size"
-            android:text="@string/plus_sign" />
+            android:text="@string/signo_mas" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

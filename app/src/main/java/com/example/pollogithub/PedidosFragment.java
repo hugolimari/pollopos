@@ -88,15 +88,15 @@ public class PedidosFragment extends Fragment {
                     @Override
                     public void onSuccess(Void result) {
                         if ("cocina".equalsIgnoreCase(order.getStatus())) {
-                            Toast.makeText(requireContext(), getString(R.string.order_marked_ready, order.getId()), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), getString(R.string.pedido_marcado_listo, order.getId()), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(requireContext(), getString(R.string.order_delivered_to_customer, order.getId()), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), getString(R.string.pedido_entregado_cliente, order.getId()), Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onError(String error) {
-                        Toast.makeText(requireContext(), getString(R.string.toast_error_with_msg, error), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), getString(R.string.toast_error_con_mensaje, error), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -203,11 +203,11 @@ public class PedidosFragment extends Fragment {
         tvTotal.setText(String.format(Locale.getDefault(), "Bs. %.2f", order.getTotal()));
 
         if ("cocina".equalsIgnoreCase(order.getStatus())) {
-            tvStatusBadge.setText(R.string.status_cocina);
+            tvStatusBadge.setText(R.string.estado_cocina);
             tvStatusBadge.setTextColor(requireContext().getColor(R.color.wait_600));
             tvStatusBadge.setBackgroundResource(R.drawable.bg_status_cocina);
         } else {
-            tvStatusBadge.setText(R.string.status_listo);
+            tvStatusBadge.setText(R.string.estado_listo);
             tvStatusBadge.setTextColor(requireContext().getColor(R.color.ok_600));
             tvStatusBadge.setBackgroundResource(R.drawable.bg_status_listo);
         }
@@ -262,7 +262,7 @@ public class PedidosFragment extends Fragment {
                     }
                 } else {
                     TextView tvEmpty = new TextView(requireContext());
-                    tvEmpty.setText(R.string.no_items_registered);
+                    tvEmpty.setText(R.string.sin_items_registrados);
                     tvEmpty.setTextColor(requireContext().getColor(R.color.char_400));
                     container.addView(tvEmpty);
                 }
@@ -291,23 +291,23 @@ public class PedidosFragment extends Fragment {
         String[] motivos = getResources().getStringArray(R.array.motivos_cancelacion);
 
         new androidx.appcompat.app.AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.title_cancel_reason, order.getId()))
+                .setTitle(getString(R.string.titulo_motivo_cancelacion, order.getId()))
                 .setItems(motivos, (d, which) -> {
                     String motivoSeleccionado = motivos[which];
                     // Invocación al repositorio para ejecutar la cancelación con registro de auditoría
                     PosRepository.getInstance(requireContext()).cancelarPedido(order.getPedidoId(), motivoSeleccionado, new PosRepository.Callback<Void>() {
                         @Override
                         public void onSuccess(Void result) {
-                            Toast.makeText(requireContext(), getString(R.string.order_cancelled_format, order.getId(), motivoSeleccionado), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), getString(R.string.pedido_cancelado_formato, order.getId(), motivoSeleccionado), Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onError(String error) {
-                            Toast.makeText(requireContext(), getString(R.string.toast_error_cancelling, error), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), getString(R.string.toast_error_cancelar, error), Toast.LENGTH_SHORT).show();
                         }
                     });
                 })
-                .setNegativeButton(R.string.btn_return, null)
+                .setNegativeButton(R.string.btn_regresar, null)
                 .show();
     }
 }

@@ -47,7 +47,7 @@
             android:background="@drawable/bg_status_cocina"
             android:paddingHorizontal="10dp"
             android:paddingVertical="5dp"
-            android:text="@string/status_cocina"
+            android:text="@string/estado_cocina"
             android:textColor="@color/wait_600" />
     </RelativeLayout>
 
@@ -78,7 +78,7 @@
                 android:id="@+id/imgTypeIcon"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
-                android:contentDescription="@string/receipt_label_type"
+                android:contentDescription="@string/recibo_etiqueta_tipo"
                 android:src="@drawable/ic_type_table" />
 
             <TextView
@@ -115,7 +115,7 @@
             android:layout_height="@dimen/btn_height_small"
             android:layout_marginEnd="@dimen/spacing_s"
             android:layout_weight="1"
-            android:text="@string/btn_view_detail" />
+            android:text="@string/btn_ver_detalle" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPrimaryAction"
@@ -123,7 +123,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_small"
             android:layout_weight="1"
-            android:text="@string/btn_mark_ready" />
+            android:text="@string/btn_marcar_listo" />
     </LinearLayout>
 
 </LinearLayout>

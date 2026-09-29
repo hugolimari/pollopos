@@ -160,7 +160,7 @@ public class PosRepository {
                 if (result != null) {
                     callback.onSuccess(result);
                 } else {
-                    callback.onError(appContext.getString(R.string.error_invalid_credentials));
+                    callback.onError(appContext.getString(R.string.error_credenciales_invalidas));
                 }
             });
         });
@@ -220,7 +220,7 @@ public class PosRepository {
         executor.execute(() -> {
             TurnoEntity turno = db.turnoDao().getById(turnoId);
             if (turno == null) {
-                mainHandler.post(() -> callback.onError(appContext.getString(R.string.error_shift_not_found)));
+                mainHandler.post(() -> callback.onError(appContext.getString(R.string.error_turno_no_encontrado)));
                 return;
             }
 

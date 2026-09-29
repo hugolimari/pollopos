@@ -87,7 +87,7 @@ public class AperturaCajaActivity extends AppCompatActivity {
         findViewById(R.id.btnAbrirTurno).setOnClickListener(v -> {
             String montoStr = etFondoInicial.getText().toString().trim();
             if (montoStr.isEmpty()) {
-                etFondoInicial.setError(getString(R.string.error_enter_initial_fund));
+                etFondoInicial.setError(getString(R.string.error_ingresar_fondo_inicial));
                 return;
             }
 
@@ -95,11 +95,11 @@ public class AperturaCajaActivity extends AppCompatActivity {
             try {
                 fondo = Double.parseDouble(montoStr);
                 if (fondo < 0) {
-                    etFondoInicial.setError(getString(R.string.error_amount_negative));
+                    etFondoInicial.setError(getString(R.string.error_monto_negativo));
                     return;
                 }
             } catch (NumberFormatException e) {
-                etFondoInicial.setError(getString(R.string.error_invalid_amount));
+                etFondoInicial.setError(getString(R.string.error_monto_invalido));
                 return;
             }
 
@@ -110,7 +110,7 @@ public class AperturaCajaActivity extends AppCompatActivity {
                 public void onSuccess(TurnoEntity turno) {
                     // Actualización de la sesión compartida con el nuevo ID de turno activo
                     repository.getSessionManager().setTurnoId(turno.getId());
-                    Toast.makeText(AperturaCajaActivity.this, R.string.toast_shift_opened_success, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AperturaCajaActivity.this, R.string.toast_turno_abierto_exito, Toast.LENGTH_SHORT).show();
 
                     // Navegación hacia el dashboard principal
                     Intent intent = new Intent(AperturaCajaActivity.this, HomeActivity.class);
@@ -122,7 +122,7 @@ public class AperturaCajaActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(String error) {
-                    Toast.makeText(AperturaCajaActivity.this, getString(R.string.toast_error_opening_shift, error), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AperturaCajaActivity.this, getString(R.string.toast_error_abrir_turno, error), Toast.LENGTH_SHORT).show();
                 }
             });
         });

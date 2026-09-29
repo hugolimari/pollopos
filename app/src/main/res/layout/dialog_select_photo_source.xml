@@ -10,14 +10,14 @@
         android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_photo_product" />
+        android:text="@string/titulo_foto_producto" />
 
     <TextView
         android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_2xs"
-        android:text="@string/subtitle_select_photo_source" />
+        android:text="@string/subtitulo_seleccionar_origen_foto" />
 
     <View
         style="@style/Widget.Pollo.Divisor"
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:text="@string/option_take_photo_camera"
+                android:text="@string/opcion_tomar_foto_camara"
                 android:textColor="@color/char_900"
                 android:textSize="14sp" />
 
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="@string/desc_take_photo_camera"
+                android:text="@string/desc_tomar_foto_camara"
                 android:textColor="@color/char_400"
                 android:textSize="11.5sp" />
         </LinearLayout>
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:text="@string/option_choose_from_gallery"
+                android:text="@string/opcion_elegir_de_galeria"
                 android:textColor="@color/char_900"
                 android:textSize="14sp" />
 
@@ -112,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="@string/desc_choose_from_gallery"
+                android:text="@string/desc_elegir_de_galeria"
                 android:textColor="@color/char_400"
                 android:textSize="11.5sp" />
         </LinearLayout>
@@ -132,6 +132,6 @@
         android:layout_height="@dimen/btn_height_medium"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/btn_cancel" />
+        android:text="@string/btn_cancelar" />
 
 </LinearLayout>

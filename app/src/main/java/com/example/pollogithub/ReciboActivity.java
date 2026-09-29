@@ -176,7 +176,7 @@ public class ReciboActivity extends AppCompatActivity {
 
                 if (detallesList.isEmpty()) {
                     TextView tvVacio = new TextView(ReciboActivity.this);
-                    tvVacio.setText(R.string.no_items_registered);
+                    tvVacio.setText(R.string.sin_items_registrados);
                     tvVacio.setTextColor(ContextCompat.getColor(ReciboActivity.this, R.color.char_400));
                     layoutReceiptItems.addView(tvVacio);
                     return;
@@ -231,7 +231,7 @@ public class ReciboActivity extends AppCompatActivity {
 
             @Override
             public void onError(String error) {
-                Toast.makeText(ReciboActivity.this, getString(R.string.toast_error_loading_details, error), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReciboActivity.this, getString(R.string.toast_error_cargar_detalles, error), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -243,7 +243,7 @@ public class ReciboActivity extends AppCompatActivity {
         String[] opciones = getResources().getStringArray(R.array.opciones_impresion);
 
         new AlertDialog.Builder(this)
-                .setTitle(R.string.title_print_options)
+                .setTitle(R.string.titulo_opciones_impresion)
                 .setItems(opciones, (dialog, which) -> {
                     switch (which) {
                         case 0:
@@ -257,12 +257,12 @@ public class ReciboActivity extends AppCompatActivity {
                             break;
                         case 3:
                             printerManager.showPrinterSelectionDialog(this, () -> {
-                                Toast.makeText(this, R.string.toast_printer_configured, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, R.string.toast_impresora_configurada, Toast.LENGTH_SHORT).show();
                             });
                             break;
                     }
                 })
-                .setNegativeButton(R.string.btn_close, null)
+                .setNegativeButton(R.string.btn_cerrar, null)
                 .show();
     }
 
@@ -302,22 +302,22 @@ public class ReciboActivity extends AppCompatActivity {
             );
         }
 
-        Toast.makeText(this, R.string.toast_transmitting_thermal_printer, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.toast_transmitiendo_impresora_termica, Toast.LENGTH_SHORT).show();
 
         printerManager.printEscPosBytes(bytes, new ThermalPrinterManager.PrintCallback() {
             @Override
             public void onSuccess() {
-                Toast.makeText(ReciboActivity.this, R.string.toast_ticket_printed_success, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ReciboActivity.this, R.string.toast_ticket_impreso_exito, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(String error) {
                 new AlertDialog.Builder(ReciboActivity.this)
-                        .setTitle(R.string.title_print_error)
-                        .setMessage(getString(R.string.msg_print_error_options, error))
-                        .setPositiveButton(R.string.btn_print_with_system, (d, w) -> imprimirConSistemaAndroid())
-                        .setNeutralButton(R.string.btn_configure_printer, (d, w) -> printerManager.showPrinterSelectionDialog(ReciboActivity.this, null))
-                        .setNegativeButton(R.string.btn_cancel, null)
+                        .setTitle(R.string.titulo_error_impresion)
+                        .setMessage(getString(R.string.mensaje_error_impresion_opciones, error))
+                        .setPositiveButton(R.string.btn_imprimir_con_sistema, (d, w) -> imprimirConSistemaAndroid())
+                        .setNeutralButton(R.string.btn_configurar_impresora, (d, w) -> printerManager.showPrinterSelectionDialog(ReciboActivity.this, null))
+                        .setNegativeButton(R.string.btn_cancelar, null)
                         .show();
             }
         });

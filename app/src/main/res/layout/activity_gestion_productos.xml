@@ -39,7 +39,7 @@
                     android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_gestion_menu" />
+                    android:text="@string/titulo_gestion_menu" />
 
                 <TextView
                     android:id="@+id/tvTotalCountSubtitle"
@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_2xs"
-                    android:text="@string/subtitle_gestion_menu" />
+                    android:text="@string/subtitulo_gestion_menu" />
             </LinearLayout>
         </LinearLayout>
 
@@ -66,7 +66,7 @@
                 android:layout_height="18dp"
                 android:layout_gravity="center_vertical|start"
                 android:layout_marginStart="14dp"
-                android:contentDescription="@string/desc_search"
+                android:contentDescription="@string/desc_buscar"
                 android:src="@drawable/ic_search" />
 
             <EditText
@@ -75,7 +75,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:fontFamily="sans-serif"
-                android:hint="@string/hint_search_product"
+                android:hint="@string/pista_buscar_producto"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:paddingStart="44dp"
@@ -112,7 +112,7 @@
                     android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
-                    android:text="@string/category_todos"
+                    android:text="@string/categoria_todos"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -127,7 +127,7 @@
                     android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
-                    android:text="@string/category_pollo_frito"
+                    android:text="@string/categoria_pollo_frito"
                     android:textColor="@color/char_700"
                     android:textSize="12sp" />
 
@@ -142,7 +142,7 @@
                     android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
-                    android:text="@string/category_a_la_brasa"
+                    android:text="@string/categoria_a_la_brasa"
                     android:textColor="@color/char_700"
                     android:textSize="12sp" />
 
@@ -157,7 +157,7 @@
                     android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
-                    android:text="@string/category_combos"
+                    android:text="@string/categoria_combos"
                     android:textColor="@color/char_700"
                     android:textSize="12sp" />
 
@@ -172,7 +172,7 @@
                     android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
-                    android:text="@string/category_bebidas"
+                    android:text="@string/categoria_bebidas"
                     android:textColor="@color/char_700"
                     android:textSize="12sp" />
 
@@ -186,7 +186,7 @@
                     android:fontFamily="sans-serif-bold"
                     android:gravity="center"
                     android:paddingHorizontal="14dp"
-                    android:text="@string/category_acompanamientos"
+                    android:text="@string/categoria_acompanamientos"
                     android:textColor="@color/char_700"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -215,7 +215,7 @@
         android:backgroundTint="@color/ember_600"
         android:elevation="6dp"
         android:fontFamily="sans-serif-bold"
-        android:text="@string/btn_add_food"
+        android:text="@string/btn_anadir_comida"
         android:textColor="@color/white"
         app:icon="@drawable/ic_plus"
         app:iconTint="@color/white" />

@@ -95,7 +95,7 @@
                     android:background="@drawable/bg_badge_active_shift"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="2dp"
-                    tools:text="@string/status_disponible"
+                    tools:text="@string/estado_disponible"
                     android:textColor="@color/ok_600" />
             </LinearLayout>
         </LinearLayout>
@@ -117,7 +117,7 @@
             android:layout_height="@dimen/btn_height_small"
             android:layout_marginStart="6dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/desc_edit_product"
+            android:contentDescription="@string/desc_editar_producto"
             android:padding="@dimen/spacing_s"
             android:src="@drawable/ic_edit"
             app:tint="@color/char_700" />

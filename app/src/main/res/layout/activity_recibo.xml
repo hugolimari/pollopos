@@ -36,7 +36,7 @@
                     android:layout_width="38dp"
                     android:layout_height="38dp"
                     android:layout_gravity="center"
-                    android:contentDescription="@string/title_receipt_success"
+                    android:contentDescription="@string/titulo_venta_registrada"
                     android:src="@drawable/ic_check_green" />
             </FrameLayout>
 
@@ -46,7 +46,7 @@
                 android:textAppearance="@style/TextAppearance.Pollo.Titulo.Grande"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_receipt_success" />
+                android:text="@string/titulo_venta_registrada" />
 
             <!-- Subtitle -->
             <TextView
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
                 android:layout_marginBottom="26dp"
-                android:text="@string/subtitle_pedido_cobrado_exito" />
+                android:text="@string/subtitulo_pedido_cobrado_exito" />
 
             <!-- Receipt Ticket Container -->
             <LinearLayout
@@ -81,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="@string/receipt_biz_name"
+                        android:text="@string/recibo_nombre_negocio"
                         android:textColor="@color/char_900"
                         android:textSize="15sp" />
 
@@ -117,7 +117,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="@string/receipt_label_order"
+                            android:text="@string/recibo_etiqueta_pedido"
                             android:textColor="@color/char_700"
                             android:textSize="12.5sp" />
 
@@ -141,7 +141,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="@string/receipt_label_type"
+                            android:text="@string/recibo_etiqueta_tipo"
                             android:textColor="@color/char_700"
                             android:textSize="12.5sp" />
 
@@ -151,7 +151,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/receipt_type_takeaway"
+                            android:text="@string/recibo_tipo_para_llevar"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -164,7 +164,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="@string/receipt_label_cashier"
+                            android:text="@string/recibo_etiqueta_cajero"
                             android:textColor="@color/char_700"
                             android:textSize="12.5sp" />
 
@@ -174,7 +174,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:fontFamily="sans-serif-bold"
-                            android:text="@string/role_admin"
+                            android:text="@string/rol_admin"
                             android:textColor="@color/char_900"
                             android:textSize="12.5sp" />
                     </RelativeLayout>
@@ -283,7 +283,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="@string/receipt_label_subtotal"
+                            android:text="@string/recibo_etiqueta_subtotal"
                             android:textColor="@color/char_700"
                             android:textSize="12.5sp" />
 
@@ -307,7 +307,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="@string/receipt_label_discount"
+                            android:text="@string/recibo_etiqueta_descuento"
                             android:textColor="@color/char_700"
                             android:textSize="12.5sp" />
 
@@ -338,7 +338,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-black"
-                            android:text="@string/receipt_label_total"
+                            android:text="@string/recibo_etiqueta_total"
                             android:textColor="@color/char_900"
                             android:textSize="17sp" />
 
@@ -362,7 +362,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="@string/receipt_label_received"
+                            android:text="@string/recibo_etiqueta_recibido"
                             android:textColor="@color/char_700"
                             android:textSize="12.5sp" />
 
@@ -385,7 +385,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
-                            android:text="@string/receipt_label_change"
+                            android:text="@string/recibo_etiqueta_vuelto"
                             android:textColor="@color/char_700"
                             android:textSize="12.5sp" />
 
@@ -418,7 +418,7 @@
                     android:layout_weight="1"
                     android:drawableStart="@drawable/ic_printer"
                     android:drawablePadding="8dp"
-                    android:text="@string/btn_print" />
+                    android:text="@string/btn_imprimir" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnWhatsappReceipt"
@@ -453,7 +453,7 @@
             style="@style/Widget.Pollo.Boton.Primario.Principal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height_hero"
-            android:text="@string/btn_new_sale" />
+            android:text="@string/btn_nueva_venta" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

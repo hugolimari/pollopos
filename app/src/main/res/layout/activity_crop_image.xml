@@ -23,7 +23,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/btn_cancel"
+            android:contentDescription="@string/btn_cancelar"
             android:src="@drawable/ic_back_arrow"
             app:tint="@color/white" />
 
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:text="@string/title_crop_menu_photo"
+                android:text="@string/titulo_recortar_foto_menu"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="@string/crop_ratio_recommended_desc"
+                android:text="@string/recorte_proporcion_recomendada_desc"
                 android:textColor="@color/crop_text_secondary"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/btn_height_small"
             android:paddingHorizontal="18dp"
-            android:text="@string/btn_done" />
+            android:text="@string/btn_listo" />
     </LinearLayout>
 
     <!-- Área de Recorte Interactiva -->
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:fontFamily="sans-serif"
-            android:text="@string/crop_drag_pinch_instructions"
+            android:text="@string/recorte_instrucciones_arrastrar_pellizcar"
             android:textColor="@color/crop_text_muted"
             android:textSize="11.5sp" />
 
@@ -105,7 +105,7 @@
                 style="@style/Widget.Pollo.Chip.Seleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:text="@string/chip_ratio_4_3" />
+                android:text="@string/chip_proporcion_4_3" />
 
             <!-- Selector de Proporción 1:1 (Cuadrado) -->
             <TextView
@@ -114,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
-                android:text="@string/chip_ratio_1_1" />
+                android:text="@string/chip_proporcion_1_1" />
 
             <View
                 android:layout_width="1dp"
@@ -143,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/btn_rotate_90"
+                    android:text="@string/btn_girar_90"
                     android:textColor="@color/char_900"
                     android:textSize="12sp" />
             </LinearLayout>

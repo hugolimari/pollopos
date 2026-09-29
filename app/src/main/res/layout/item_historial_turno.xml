@@ -51,7 +51,7 @@
                 android:background="@drawable/bg_badge_active_shift"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="3dp"
-                tools:text="@string/status_cerrado"
+                tools:text="@string/estado_cerrado"
                 android:textColor="@color/ok_600" />
         </LinearLayout>
 
@@ -77,7 +77,7 @@
                     style="@style/TextAppearance.Pollo.Subtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_fondo_inicial" />
+                    android:text="@string/etiqueta_fondo_inicial" />
 
                 <TextView
                     android:id="@+id/tvFondoInicialItem"
@@ -99,7 +99,7 @@
                     style="@style/TextAppearance.Pollo.Subtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_esperado" />
+                    android:text="@string/etiqueta_esperado" />
 
                 <TextView
                     android:id="@+id/tvEsperadoItem"
@@ -121,7 +121,7 @@
                     style="@style/TextAppearance.Pollo.Subtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_contado_fisico" />
+                    android:text="@string/etiqueta_contado_fisico" />
 
                 <TextView
                     android:id="@+id/tvContadoItem"
@@ -152,7 +152,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/label_diferencia_en_caja" />
+                android:text="@string/etiqueta_diferencia_en_caja" />
 
             <TextView
                 android:id="@+id/tvDiferenciaMonto"

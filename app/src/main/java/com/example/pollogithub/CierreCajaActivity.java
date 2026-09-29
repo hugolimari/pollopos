@@ -188,7 +188,7 @@ public class CierreCajaActivity extends AppCompatActivity {
                 public void onSuccess(TurnoEntity result) {
                     // Reseteo del turno activo en almacenamiento local
                     repo.getSessionManager().setTurnoId(0);
-                    Toast.makeText(CierreCajaActivity.this, R.string.toast_shift_closed_success, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CierreCajaActivity.this, R.string.toast_turno_cerrado_exito, Toast.LENGTH_SHORT).show();
 
                     // Reenrutamiento a la pantalla inicial limpiando el historial de navegación
                     Intent intent = new Intent(CierreCajaActivity.this, MainActivity.class);
@@ -199,7 +199,7 @@ public class CierreCajaActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(String error) {
-                    Toast.makeText(CierreCajaActivity.this, getString(R.string.toast_error_closing_shift, error), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CierreCajaActivity.this, getString(R.string.toast_error_cerrar_turno, error), Toast.LENGTH_SHORT).show();
                 }
             });
         });
@@ -224,24 +224,24 @@ public class CierreCajaActivity extends AppCompatActivity {
         if (diff < -0.01) {
             // Caso: Faltante de dinero en gaveta (Alerta crítica - Rojo)
             cardAlert.setCardBackgroundColor(Color.parseColor("#FFCDD2"));
-            tvAlertTitulo.setText(R.string.cierre_alert_deficit_title);
+            tvAlertTitulo.setText(R.string.cierre_alerta_faltante_titulo);
             tvAlertTitulo.setTextColor(Color.parseColor("#D32F2F"));
             tvAlertMonto.setText(String.format(Locale.getDefault(), "- Bs. %.2f", Math.abs(diff)));
-            tvAlertDescripcion.setText(getString(R.string.cierre_alert_deficit_desc, Math.abs(diff)));
+            tvAlertDescripcion.setText(getString(R.string.cierre_alerta_faltante_desc, Math.abs(diff)));
         } else if (diff > 0.01) {
             // Caso: Sobrante de dinero en gaveta (Alerta informativa - Verde)
             cardAlert.setCardBackgroundColor(Color.parseColor("#E8F5E9"));
-            tvAlertTitulo.setText(R.string.cierre_alert_surplus_title);
+            tvAlertTitulo.setText(R.string.cierre_alerta_sobrante_titulo);
             tvAlertTitulo.setTextColor(ContextCompat.getColor(this, R.color.ok_600));
             tvAlertMonto.setText(String.format(Locale.getDefault(), "+ Bs. %.2f", diff));
-            tvAlertDescripcion.setText(getString(R.string.cierre_alert_surplus_desc, diff));
+            tvAlertDescripcion.setText(getString(R.string.cierre_alerta_sobrante_desc, diff));
         } else {
             // Caso: Conciliación perfecta (Caja Cuadrada)
             cardAlert.setCardBackgroundColor(Color.parseColor("#E8F5E9"));
-            tvAlertTitulo.setText(R.string.cierre_alert_exact_title);
+            tvAlertTitulo.setText(R.string.cierre_alerta_exacta_titulo);
             tvAlertTitulo.setTextColor(ContextCompat.getColor(this, R.color.ok_600));
-            tvAlertMonto.setText(R.string.zero_currency);
-            tvAlertDescripcion.setText(R.string.cierre_alert_exact_desc);
+            tvAlertMonto.setText(R.string.cero_moneda);
+            tvAlertDescripcion.setText(R.string.cierre_alerta_exacta_desc);
         }
     }
 }

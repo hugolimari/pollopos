@@ -159,9 +159,9 @@ public class ThermalPrinterManager {
         List<BluetoothDevice> devices = getPairedDevices();
         if (devices.isEmpty()) {
             new AlertDialog.Builder(activity)
-                    .setTitle(R.string.title_thermal_printer)
-                    .setMessage(R.string.msg_no_paired_printers)
-                    .setPositiveButton(R.string.btn_understood, null)
+                    .setTitle(R.string.titulo_impresora_termica)
+                    .setMessage(R.string.mensaje_sin_impresoras_vinculadas)
+                    .setPositiveButton(R.string.btn_entendido, null)
                     .show();
             return;
         }
@@ -174,26 +174,26 @@ public class ThermalPrinterManager {
             @SuppressLint("MissingPermission")
             String name = devices.get(i).getName();
             String address = devices.get(i).getAddress();
-            names[i] = (name != null ? name : activity.getString(R.string.device_default_name)) + "\n(" + address + ")";
+            names[i] = (name != null ? name : activity.getString(R.string.nombre_dispositivo_defecto)) + "\n(" + address + ")";
             if (address.equalsIgnoreCase(currentMac)) {
                 selectedIndex = i;
             }
         }
 
         new AlertDialog.Builder(activity)
-                .setTitle(R.string.title_select_printer)
+                .setTitle(R.string.titulo_seleccionar_impresora)
                 .setSingleChoiceItems(names, selectedIndex, (dialog, which) -> {
                     BluetoothDevice chosen = devices.get(which);
                     savePrinterMac(chosen.getAddress());
-                    Toast.makeText(activity, activity.getString(R.string.toast_printer_selected, chosen.getName()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, activity.getString(R.string.toast_impresora_seleccionada, chosen.getName()), Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     if (onPrinterConfigured != null) onPrinterConfigured.run();
                 })
-                .setNeutralButton(activity.getString(R.string.btn_paper_size_format, is80mm() ? "80mm" : "58mm"), (dialog, which) -> {
+                .setNeutralButton(activity.getString(R.string.formato_tamano_papel, is80mm() ? "80mm" : "58mm"), (dialog, which) -> {
                     set80mm(!is80mm());
-                    Toast.makeText(activity, activity.getString(R.string.toast_paper_format_changed, is80mm() ? "80mm" : "58mm"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, activity.getString(R.string.toast_formato_papel_cambiado, is80mm() ? "80mm" : "58mm"), Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton(R.string.btn_cancel, null)
+                .setNegativeButton(R.string.btn_cancelar, null)
                 .show();
     }
 

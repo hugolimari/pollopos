@@ -115,17 +115,17 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         // Estilización condicional de la insignia según la máquina de estados
         switch (order.getStatus()) {
             case "cocina":
-                holder.tvStatusBadge.setText(R.string.status_cocina);
+                holder.tvStatusBadge.setText(R.string.estado_cocina);
                 holder.tvStatusBadge.setBackgroundResource(R.drawable.bg_status_cocina);
                 holder.tvStatusBadge.setTextColor(ContextCompat.getColor(context, R.color.wait_600));
                 break;
             case "listo":
-                holder.tvStatusBadge.setText(R.string.status_listo);
+                holder.tvStatusBadge.setText(R.string.estado_listo);
                 holder.tvStatusBadge.setBackgroundResource(R.drawable.bg_status_listo);
                 holder.tvStatusBadge.setTextColor(ContextCompat.getColor(context, R.color.ok_600));
                 break;
             case "camino":
-                holder.tvStatusBadge.setText(R.string.status_camino);
+                holder.tvStatusBadge.setText(R.string.estado_camino);
                 holder.tvStatusBadge.setBackgroundResource(R.drawable.bg_status_camino);
                 holder.tvStatusBadge.setTextColor(ContextCompat.getColor(context, R.color.info_600));
                 break;
