@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,21 +13,19 @@
         android:layout_height="wrap_content"
         android:paddingBottom="48dp">
 
-        <!-- Back Button -->
+        <!-- Botón Volver -->
         <ImageButton
             android:id="@+id/btnBack"
-            style="@style/BotonVolver"
-            android:layout_width="@dimen/btn_icon_size"
-            android:layout_height="@dimen/btn_icon_size"
+            style="@style/BotonVolverGrande"
             android:layout_marginStart="@dimen/spacing_2xl"
             android:layout_marginTop="@dimen/spacing_3xl"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Header Titles -->
+        <!-- Títulos de Encabezado -->
         <TextView
             android:id="@+id/tvTitle"
-            android:textAppearance="@style/TituloMediano"
+            style="@style/TituloMediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_l"
@@ -37,7 +35,7 @@
 
         <TextView
             android:id="@+id/tvSubtitle"
-            android:textAppearance="@style/SubtituloOscuro"
+            style="@style/SubtituloOscuro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
@@ -48,15 +46,13 @@
         <View
             android:id="@+id/dividerTop"
             style="@style/Divisor"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
             android:layout_marginTop="@dimen/spacing_2xl"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
 
         <!-- Resumen del turno -->
         <TextView
             android:id="@+id/lblResumen"
-            android:textAppearance="@style/TituloPequeno"
+            style="@style/TituloPequeno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_2xl"
@@ -67,85 +63,112 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardResumen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/paper_50"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/line_color"
-            app:strokeWidth="1dp"
+            style="@style/TarjetaCierre"
             app:layout_constraintTop_toBottomOf="@id/lblResumen">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+            <LinearLayout style="@style/ContenedorTarjetaVertical">
 
                 <TextView
                     android:id="@+id/tvResumenSucursalFecha"
+                    style="@style/TextoFilaEtiqueta"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/etiqueta_sucursal_centro"
-                    android:textColor="@color/char_700"
-                    android:textSize="12sp" />
+                    android:text="@string/etiqueta_sucursal_centro" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/paper_100" />
+                <View style="@style/DivisorSuave" />
 
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/etiqueta_ventas_efectivo" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenEfectivo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cero_moneda" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                <LinearLayout style="@style/FilaResumen">
+                    <TextView
+                        style="@style/TextoFilaEtiqueta"
+                        android:text="@string/etiqueta_ventas_efectivo" />
+                    <TextView
+                        android:id="@+id/tvResumenEfectivo"
+                        style="@style/TextoFilaValor"
+                        android:text="@string/cero_moneda" />
                 </LinearLayout>
                 
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/etiqueta_ventas_tarjeta" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenTarjeta" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cero_moneda" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                <LinearLayout style="@style/FilaResumenEspaciada">
+                    <TextView
+                        style="@style/TextoFilaEtiqueta"
+                        android:text="@string/etiqueta_ventas_tarjeta" />
+                    <TextView
+                        android:id="@+id/tvResumenTarjeta"
+                        style="@style/TextoFilaValor"
+                        android:text="@string/cero_moneda" />
                 </LinearLayout>
 
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/etiqueta_ventas_qr" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenQr" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cero_moneda" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                <LinearLayout style="@style/FilaResumenEspaciada">
+                    <TextView
+                        style="@style/TextoFilaEtiqueta"
+                        android:text="@string/etiqueta_ventas_qr" />
+                    <TextView
+                        android:id="@+id/tvResumenQr"
+                        style="@style/TextoFilaValor"
+                        android:text="@string/cero_moneda" />
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    style="@style/DivisorSuave"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@color/paper_100" />
+                    android:layout_marginBottom="16dp" />
 
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/etiqueta_total_vendido" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenTotalVendido" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cero_moneda" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                <LinearLayout style="@style/FilaResumen">
+                    <TextView
+                        style="@style/TextoFilaEtiqueta"
+                        android:text="@string/etiqueta_total_vendido" />
+                    <TextView
+                        android:id="@+id/tvResumenTotalVendido"
+                        style="@style/TextoFilaValor"
+                        android:text="@string/cero_moneda" />
                 </LinearLayout>
 
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/etiqueta_fondo_inicial_caja" android:textSize="12sp" android:textColor="@color/char_700" />
-                    <TextView android:id="@+id/tvResumenFondoInicial" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cero_moneda" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/char_900" />
+                <LinearLayout style="@style/FilaResumenEspaciada">
+                    <TextView
+                        style="@style/TextoFilaEtiqueta"
+                        android:text="@string/etiqueta_fondo_inicial_caja" />
+                    <TextView
+                        android:id="@+id/tvResumenFondoInicial"
+                        style="@style/TextoFilaValor"
+                        android:text="@string/cero_moneda" />
                 </LinearLayout>
 
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/etiqueta_ingresos_extra_caja" android:textSize="12sp" android:textColor="@color/ok_600" />
-                    <TextView android:id="@+id/tvResumenIngresosExtra" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cero_moneda" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/ok_600" />
+                <LinearLayout style="@style/FilaResumenEspaciada">
+                    <TextView
+                        style="@style/TextoFilaEtiqueta"
+                        android:textColor="@color/ok_600"
+                        android:text="@string/etiqueta_ingresos_extra_caja" />
+                    <TextView
+                        android:id="@+id/tvResumenIngresosExtra"
+                        style="@style/TextoFilaValor"
+                        android:textColor="@color/ok_600"
+                        android:text="@string/cero_moneda" />
                 </LinearLayout>
 
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/etiqueta_gastos_salidas_menores" android:textSize="12sp" android:textColor="@color/ember_600" />
-                    <TextView android:id="@+id/tvResumenEgresosGastos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cero_moneda" android:textStyle="bold" android:textSize="12sp" android:textColor="@color/ember_600" />
+                <LinearLayout style="@style/FilaResumenEspaciada">
+                    <TextView
+                        style="@style/TextoFilaEtiqueta"
+                        android:textColor="@color/ember_600"
+                        android:text="@string/etiqueta_gastos_salidas_menores" />
+                    <TextView
+                        android:id="@+id/tvResumenEgresosGastos"
+                        style="@style/TextoFilaValor"
+                        android:textColor="@color/ember_600"
+                        android:text="@string/cero_moneda" />
                 </LinearLayout>
 
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/etiqueta_efectivo_esperado_caja" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/char_900" />
-                    <TextView android:id="@+id/tvResumenEsperado" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cero_moneda" android:textStyle="bold" android:textSize="12.5sp" android:textColor="@color/ember_700" />
+                <LinearLayout style="@style/FilaResumenEspaciada">
+                    <TextView
+                        style="@style/TextoFilaEtiqueta"
+                        android:textStyle="bold"
+                        android:textColor="@color/char_900"
+                        android:text="@string/etiqueta_efectivo_esperado_caja" />
+                    <TextView
+                        android:id="@+id/tvResumenEsperado"
+                        style="@style/TextoFilaValor"
+                        android:textSize="12.5sp"
+                        android:textColor="@color/ember_700"
+                        android:text="@string/cero_moneda" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -154,136 +177,95 @@
         <!-- Conteo de efectivo -->
         <TextView
             android:id="@+id/lblConteo"
+            style="@style/TituloPequeno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif-bold"
             android:text="@string/titulo_conteo_efectivo"
-            android:textColor="@color/char_900"
-            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardResumen" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardConteo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/paper_50"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/line_color"
-            app:strokeWidth="1dp"
+            style="@style/TarjetaCierre"
             app:layout_constraintTop_toBottomOf="@id/lblConteo">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp"
+                style="@style/ContenedorTarjetaVertical"
                 android:gravity="center_horizontal">
 
                 <TextView
+                    style="@style/TextoEtiqueta"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
-                    android:text="@string/pregunta_cuanto_efectivo_caja"
                     android:textColor="@color/char_900"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:text="@string/pregunta_cuanto_efectivo_caja" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginHorizontal="16dp"
-                    android:background="@drawable/bg_input_field"
-                    android:backgroundTint="@color/ember_100"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="16dp">
+                <LinearLayout style="@style/CampoEfectivoCierre">
 
                     <TextView
+                        style="@style/TextoMontoEfectivo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
-                        android:text="@string/moneda_bs"
-                        android:textColor="@color/char_900"
-                        android:textSize="16sp" />
+                        android:text="@string/moneda_bs" />
 
                     <EditText
                         android:id="@+id/etConteo"
+                        style="@style/TextoMontoEfectivo"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:fontFamily="sans-serif-black"
                         android:gravity="center_vertical|end"
                         android:inputType="numberDecimal"
-                        android:text=""
-                        android:textColor="@color/char_900"
-                        android:textSize="16sp" />
+                        android:text="" />
                 </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Alert Card -->
+        <!-- Tarjeta de Alerta -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardAlert"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="24dp"
-            app:cardBackgroundColor="@color/ok_100"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp"
+            style="@style/TarjetaAlerta"
             app:layout_constraintTop_toBottomOf="@id/cardConteo">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+            <LinearLayout style="@style/ContenedorTarjetaVertical">
 
                 <TextView
                     android:id="@+id/tvAlertTitulo"
+                    style="@style/TextoAlertaTitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/cierre_alerta_exacta_titulo"
-                    android:textColor="@color/ok_600"
-                    android:textSize="14sp" />
+                    android:text="@string/cierre_alerta_exacta_titulo" />
 
                 <TextView
                     android:id="@+id/tvAlertMonto"
+                    style="@style/TextoMontoEfectivo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:fontFamily="sans-serif-black"
-                    android:text="@string/cero_moneda"
-                    android:textColor="@color/char_900"
-                    android:textSize="16sp" />
+                    android:text="@string/cero_moneda" />
 
                 <TextView
                     android:id="@+id/tvAlertDescripcion"
+                    style="@style/TextoSubtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/cierre_alerta_exacta_desc"
                     android:textColor="@color/char_900"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:text="@string/cierre_alerta_exacta_desc" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Confirm Button -->
+        <!-- Botón de Confirmación -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnConfirm"
             style="@style/BotonPrimarioPrincipal"
             android:layout_width="0dp"
-            android:layout_height="@dimen/btn_height_hero"
             android:layout_marginTop="@dimen/spacing_3xl"
             android:layout_marginHorizontal="@dimen/spacing_xl"
             android:text="@string/btn_confirmar_cierre_turno"
@@ -292,16 +274,12 @@
             app:layout_constraintTop_toBottomOf="@id/cardAlert" />
             
         <TextView
+            style="@style/TextoLeyenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
+            android:textColor="@color/char_900"
             android:text="@string/app_version"
-            android:textColor="@color/char_900"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnConfirm" />
-            android:textColor="@color/char_900"
-            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnConfirm" />
 

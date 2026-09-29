@@ -409,4 +409,107 @@
         <item name="android:background">@drawable/bg_search</item>
     </style>
 
+
+    <!-- ======================================================== -->
+    <!--  5. COMPONENTES Y FILAS PARA CIERRE DE CAJA             -->
+    <!-- ======================================================== -->
+
+    <!-- Tarjeta de Contenedor de Cierre y Conteo -->
+    <style name="TarjetaCierre">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">24dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="cardBackgroundColor">@color/paper_50</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/line_color</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- Tarjeta de Alerta de Diferencia -->
+    <style name="TarjetaAlerta">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">24dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="cardBackgroundColor">@color/ok_100</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <!-- Contenedor Vertical de Tarjeta -->
+    <style name="ContenedorTarjetaVertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">20dp</item>
+    </style>
+
+    <!-- Fila de Resumen Contable -->
+    <style name="FilaResumen">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- Fila de Resumen con Espaciado Superior -->
+    <style name="FilaResumenEspaciada" parent="FilaResumen">
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <!-- Etiqueta de Fila de Resumen -->
+    <style name="TextoFilaEtiqueta" parent="TextoBase">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/char_700</item>
+    </style>
+
+    <!-- Valor Numérico de Fila de Resumen -->
+    <style name="TextoFilaValor" parent="TextoBase">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/char_900</item>
+    </style>
+
+    <!-- Divisor Suave Secundario -->
+    <style name="DivisorSuave">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="android:background">@color/paper_100</item>
+    </style>
+
+    <!-- Campo de Entrada de Efectivo en Cierre -->
+    <style name="CampoEfectivoCierre">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginHorizontal">16dp</item>
+        <item name="android:background">@drawable/bg_input_field</item>
+        <item name="android:backgroundTint">@color/ember_100</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingHorizontal">16dp</item>
+    </style>
+
+    <!-- Texto de Monto de Efectivo Grande -->
+    <style name="TextoMontoEfectivo" parent="TextoBase">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/char_900</item>
+    </style>
+
+    <!-- Título de Alerta -->
+    <style name="TextoAlertaTitulo" parent="TextoBase">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ok_600</item>
+    </style>
+
 </resources>
