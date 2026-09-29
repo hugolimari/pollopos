@@ -1,26 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Pollo.Dialogo.Contenedor"
+    style="@style/DialogoContenedor"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
-        android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
+        android:textAppearance="@style/TituloMediano"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/titulo_foto_producto" />
 
     <TextView
-        android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
+        android:textAppearance="@style/TextoSubtitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_2xs"
         android:text="@string/subtitulo_seleccionar_origen_foto" />
 
     <View
-        style="@style/Widget.Pollo.Divisor"
+        style="@style/Divisor"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginVertical="16dp" />
@@ -127,7 +127,7 @@
     <!-- Cancelar -->
     <TextView
         android:id="@+id/btnCancelSource"
-        style="@style/Widget.Pollo.Boton.Contorno.Mediano"
+        style="@style/BotonContornoMediano"
         android:layout_width="match_parent"
         android:layout_height="@dimen/btn_height_medium"
         android:layout_marginTop="16dp"

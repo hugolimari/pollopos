@@ -79,7 +79,7 @@
 
             <!-- Brand Subtitle -->
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo.Enfasis"
+                android:textAppearance="@style/SubtituloEnfasis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
@@ -104,7 +104,7 @@
             <!-- Card Header -->
             <TextView
                 android:id="@+id/tvWelcomeTitle"
-                android:textAppearance="@style/TextAppearance.Pollo.Titulo.Grande"
+                android:textAppearance="@style/TituloGrande"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/titulo_bienvenida"
@@ -114,7 +114,7 @@
 
             <TextView
                 android:id="@+id/tvWelcomeSubtitle"
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo.Enfasis"
+                android:textAppearance="@style/SubtituloEnfasis"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
@@ -126,7 +126,7 @@
             <!-- User Field Label -->
             <TextView
                 android:id="@+id/lblUser"
-                android:textAppearance="@style/TextAppearance.Pollo.Etiqueta"
+                android:textAppearance="@style/TextoEtiqueta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xl"
@@ -137,7 +137,7 @@
             <!-- User Field Input Box -->
             <FrameLayout
                 android:id="@+id/wrapUser"
-                style="@style/Widget.Pollo.ContenedorEntrada"
+                style="@style/ContenedorCampo"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/input_height"
                 android:layout_marginTop="@dimen/spacing_s"
@@ -155,7 +155,7 @@
 
                 <EditText
                     android:id="@+id/etUser"
-                    style="@style/Widget.Pollo.CampoTexto"
+                    style="@style/CampoTexto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/pista_usuario"
@@ -168,7 +168,7 @@
             <!-- Password Field Label -->
             <TextView
                 android:id="@+id/lblPassword"
-                android:textAppearance="@style/TextAppearance.Pollo.Etiqueta"
+                android:textAppearance="@style/TextoEtiqueta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
@@ -179,7 +179,7 @@
             <!-- Password Field Input Box -->
             <FrameLayout
                 android:id="@+id/wrapPassword"
-                style="@style/Widget.Pollo.ContenedorEntrada"
+                style="@style/ContenedorCampo"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/input_height"
                 android:layout_marginTop="@dimen/spacing_s"
@@ -197,7 +197,7 @@
 
                 <EditText
                     android:id="@+id/etPassword"
-                    style="@style/Widget.Pollo.CampoTexto"
+                    style="@style/CampoTexto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/pista_contrasena"
@@ -237,7 +237,7 @@
             <!-- Primary Button: Iniciar turno -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnStartShift"
-                style="@style/Widget.Pollo.Boton.Primario.Principal"
+                style="@style/BotonPrimarioPrincipal"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/btn_height_hero"
                 android:layout_marginTop="@dimen/spacing_2xl"
@@ -249,7 +249,7 @@
             <!-- Footer Note -->
             <TextView
                 android:id="@+id/tvFooterNote"
-                android:textAppearance="@style/TextAppearance.Pollo.Leyenda"
+                android:textAppearance="@style/TextoLeyenda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_4xl"

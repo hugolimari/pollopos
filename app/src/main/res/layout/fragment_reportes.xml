@@ -28,13 +28,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
+                android:textAppearance="@style/TituloMediano"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/titulo_reportes" />
 
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
+                android:textAppearance="@style/TextoSubtitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"

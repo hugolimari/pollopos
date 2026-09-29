@@ -9,7 +9,7 @@
     <!-- Header -->
     <LinearLayout
         android:id="@+id/headerPerfil"
-        style="@style/Widget.Pollo.Encabezado.Vertical"
+        style="@style/EncabezadoVertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,13 +17,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
+            android:textAppearance="@style/TituloMediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/titulo_perfil_usuario" />
 
         <TextView
-            android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
+            android:textAppearance="@style/TextoSubtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
@@ -291,7 +291,7 @@
             <!-- Close Shift Button -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCloseShift"
-                style="@style/Widget.Pollo.Boton.Primario"
+                style="@style/BotonPrimario"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height_primary"
                 android:layout_marginTop="@dimen/spacing_xl"
@@ -300,7 +300,7 @@
             <!-- Logout Button -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLogout"
-                style="@style/Widget.Pollo.Boton.Contorno"
+                style="@style/BotonContorno"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height_primary"
                 android:layout_marginTop="@dimen/spacing_s"

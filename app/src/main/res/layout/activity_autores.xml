@@ -10,7 +10,7 @@
     <!-- Barra Superior -->
     <LinearLayout
         android:id="@+id/layoutTopBar"
-        style="@style/Widget.Pollo.Encabezado.Horizontal"
+        style="@style/EncabezadoHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,12 +19,12 @@
 
         <ImageButton
             android:id="@+id/btnBack"
-            style="@style/Widget.Pollo.Boton.Volver.Grande"
+            style="@style/BotonVolverGrande"
             android:layout_width="@dimen/btn_icon_size"
             android:layout_height="@dimen/btn_icon_size" />
 
         <TextView
-            android:textAppearance="@style/TextAppearance.Pollo.Titulo.Grande"
+            android:textAppearance="@style/TituloGrande"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_l"

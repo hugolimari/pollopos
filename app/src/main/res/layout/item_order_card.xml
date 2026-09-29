@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.Pollo.Tarjeta.Pedido"
+    style="@style/TarjetaPedido"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/card_margin_horizontal"
@@ -23,14 +23,14 @@
 
             <TextView
                 android:id="@+id/tvOrderId"
-                style="@style/TextAppearance.Pollo.Titulo.Pequeno"
+                style="@style/TituloPequeno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Pedido #0231" />
 
             <TextView
                 android:id="@+id/tvOrderTime"
-                style="@style/TextAppearance.Pollo.Subtitulo.Atenuado"
+                style="@style/SubtituloAtenuado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
@@ -39,7 +39,7 @@
 
         <TextView
             android:id="@+id/tvStatusBadge"
-            style="@style/TextAppearance.Pollo.Insignia.Estado"
+            style="@style/InsigniaEstado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -54,7 +54,7 @@
     <!-- Items Summary -->
     <TextView
         android:id="@+id/tvOrderItems"
-        style="@style/TextAppearance.Pollo.Cuerpo"
+        style="@style/TextoCuerpo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -83,7 +83,7 @@
 
             <TextView
                 android:id="@+id/tvOrderType"
-                style="@style/TextAppearance.Pollo.Subtitulo"
+                style="@style/TextoSubtitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
@@ -93,7 +93,7 @@
 
         <TextView
             android:id="@+id/tvOrderTotal"
-            style="@style/TextAppearance.Pollo.Precio.Pequeno"
+            style="@style/PrecioPequeno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -110,7 +110,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnViewDetail"
-            style="@style/Widget.Pollo.Boton.Contorno.Pequeno"
+            style="@style/BotonContornoPequeno"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_small"
             android:layout_marginEnd="@dimen/spacing_s"
@@ -119,7 +119,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPrimaryAction"
-            style="@style/Widget.Pollo.Boton.Primario.Pequeno"
+            style="@style/BotonPrimarioPequeno"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_small"
             android:layout_weight="1"

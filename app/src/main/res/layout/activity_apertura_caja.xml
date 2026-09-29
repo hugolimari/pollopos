@@ -52,14 +52,14 @@
             </FrameLayout>
 
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Titulo.Principal"
+                android:textAppearance="@style/TituloPrincipal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/titulo_apertura_turno" />
 
             <TextView
                 android:id="@+id/tvAperturaWelcome"
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo.Acento"
+                android:textAppearance="@style/SubtituloAcento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
@@ -69,7 +69,7 @@
         <!-- Main Card -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardApertura"
-            style="@style/Widget.Pollo.Tarjeta.Blanca"
+            style="@style/TarjetaBlanca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_xl"
@@ -83,13 +83,13 @@
                 android:padding="@dimen/dialog_padding">
 
                 <TextView
-                    android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
+                    android:textAppearance="@style/TituloMediano"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/titulo_fondo_inicial" />
 
                 <TextView
-                    android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
+                    android:textAppearance="@style/TextoSubtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_xs"
@@ -142,7 +142,7 @@
 
                     <TextView
                         android:id="@+id/btnQuickFondo50"
-                        style="@style/Widget.Pollo.Boton.EfectivoRapido"
+                        style="@style/BotonEfectivoRapido"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
@@ -151,7 +151,7 @@
 
                     <TextView
                         android:id="@+id/btnQuickFondo100"
-                        style="@style/Widget.Pollo.Boton.EfectivoRapido"
+                        style="@style/BotonEfectivoRapido"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
@@ -160,7 +160,7 @@
 
                     <TextView
                         android:id="@+id/btnQuickFondo200"
-                        style="@style/Widget.Pollo.Boton.EfectivoRapido"
+                        style="@style/BotonEfectivoRapido"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_marginEnd="6dp"
@@ -169,7 +169,7 @@
 
                     <TextView
                         android:id="@+id/btnQuickFondo300"
-                        style="@style/Widget.Pollo.Boton.EfectivoRapido"
+                        style="@style/BotonEfectivoRapido"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/btn_height_small"
                         android:layout_weight="1"
@@ -178,8 +178,8 @@
 
                 <!-- Help Notice -->
                 <TextView
-                    style="@style/Widget.Pollo.Tarjeta.Pedido"
-                    android:textAppearance="@style/TextAppearance.Pollo.Subtitulo.Atenuado"
+                    style="@style/TarjetaPedido"
+                    android:textAppearance="@style/SubtituloAtenuado"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -188,7 +188,7 @@
                 <!-- Confirm Shift Button -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnAbrirTurno"
-                    style="@style/Widget.Pollo.Boton.Primario"
+                    style="@style/BotonPrimario"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btn_height_primary"
                     android:layout_marginTop="22dp"
@@ -200,7 +200,7 @@
 
         <!-- Footer -->
         <TextView
-            android:textAppearance="@style/TextAppearance.Pollo.Leyenda"
+            android:textAppearance="@style/TextoLeyenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xl"

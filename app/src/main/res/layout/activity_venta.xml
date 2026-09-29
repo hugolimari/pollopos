@@ -58,14 +58,14 @@
 
                     <TextView
                         android:id="@+id/tvCashierName"
-                        style="@style/TextAppearance.Pollo.Titulo.Pequeno"
+                        style="@style/TituloPequeno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/rol_admin" />
 
                     <TextView
                         android:id="@+id/tvShiftInfo"
-                        style="@style/TextAppearance.Pollo.Subtitulo"
+                        style="@style/TextoSubtitulo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/info_turno" />
@@ -75,7 +75,7 @@
 
         <!-- Search Input Bar -->
         <FrameLayout
-            style="@style/Widget.Pollo.ContenedorBusqueda"
+            style="@style/ContenedorBusqueda"
             android:layout_width="match_parent"
             android:layout_height="@dimen/input_height_compact">
 
@@ -89,7 +89,7 @@
 
             <EditText
                 android:id="@+id/etSearch"
-                style="@style/Widget.Pollo.CampoTexto"
+                style="@style/CampoTexto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/pista_buscar"
@@ -123,7 +123,7 @@
 
             <TextView
                 android:id="@+id/chipTodos"
-                style="@style/Widget.Pollo.Chip.Seleccionado"
+                style="@style/ChipSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_s"
@@ -133,7 +133,7 @@
 
             <TextView
                 android:id="@+id/chipPolloFrito"
-                style="@style/Widget.Pollo.Chip.NoSeleccionado"
+                style="@style/ChipNoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_s"
@@ -143,7 +143,7 @@
 
             <TextView
                 android:id="@+id/chipBrasa"
-                style="@style/Widget.Pollo.Chip.NoSeleccionado"
+                style="@style/ChipNoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_s"
@@ -153,7 +153,7 @@
 
             <TextView
                 android:id="@+id/chipCombos"
-                style="@style/Widget.Pollo.Chip.NoSeleccionado"
+                style="@style/ChipNoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_s"
@@ -163,7 +163,7 @@
 
             <TextView
                 android:id="@+id/chipAcompanamientos"
-                style="@style/Widget.Pollo.Chip.NoSeleccionado"
+                style="@style/ChipNoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_s"
@@ -173,7 +173,7 @@
 
             <TextView
                 android:id="@+id/chipBebidas"
-                style="@style/Widget.Pollo.Chip.NoSeleccionado"
+                style="@style/ChipNoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -200,7 +200,7 @@
 
             <TextView
                 android:id="@+id/tvSectionTitle"
-                style="@style/TextAppearance.Pollo.Titulo.Pequeno"
+                style="@style/TituloPequeno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
@@ -220,7 +220,7 @@
     <!-- Floating Cart Bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cartBar"
-        style="@style/Widget.Pollo.BarraCarrito"
+        style="@style/BarraCarrito"
         android:layout_width="0dp"
         android:layout_height="@dimen/bottom_nav_height"
         android:layout_marginHorizontal="@dimen/header_padding_horizontal"
@@ -258,7 +258,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/TextAppearance.Pollo.Leyenda"
+                    style="@style/TextoLeyenda"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/etiqueta_total_carrito"
@@ -266,7 +266,7 @@
 
                 <TextView
                     android:id="@+id/tvCartTotal"
-                    style="@style/TextAppearance.Pollo.Precio"
+                    style="@style/TextoPrecio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Bs. 68.50"
@@ -309,7 +309,7 @@
     <!-- Bottom Navigation Bar -->
     <LinearLayout
         android:id="@+id/bottomNav"
-        style="@style/Widget.Pollo.NavegacionInferior"
+        style="@style/BarraNavegacion"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_nav_height"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -335,7 +335,7 @@
                 app:tint="@color/ember_600" />
 
             <TextView
-                style="@style/TextAppearance.Pollo.Navegacion.Activo"
+                style="@style/NavegacionActiva"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
@@ -361,7 +361,7 @@
                 app:tint="@color/char_400" />
 
             <TextView
-                style="@style/TextAppearance.Pollo.Navegacion.Inactivo"
+                style="@style/NavegacionInactiva"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
@@ -387,7 +387,7 @@
                 app:tint="@color/char_400" />
 
             <TextView
-                style="@style/TextAppearance.Pollo.Navegacion.Inactivo"
+                style="@style/NavegacionInactiva"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
@@ -413,7 +413,7 @@
                 app:tint="@color/char_400" />
 
             <TextView
-                style="@style/TextAppearance.Pollo.Navegacion.Inactivo"
+                style="@style/NavegacionInactiva"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"

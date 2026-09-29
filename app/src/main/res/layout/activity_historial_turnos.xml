@@ -10,7 +10,7 @@
     <!-- Header -->
     <LinearLayout
         android:id="@+id/headerHistorial"
-        style="@style/Widget.Pollo.Encabezado.Horizontal"
+        style="@style/EncabezadoHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,7 @@
 
         <ImageButton
             android:id="@+id/btnBackHistorial"
-            style="@style/Widget.Pollo.Boton.Volver"
+            style="@style/BotonVolver"
             android:layout_width="@dimen/btn_icon_size"
             android:layout_height="@dimen/btn_icon_size" />
 
@@ -31,14 +31,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
+                android:textAppearance="@style/TituloMediano"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/titulo_historial_turnos" />
 
             <TextView
                 android:id="@+id/tvTurnosSubtitle"
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
+                android:textAppearance="@style/TextoSubtitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"

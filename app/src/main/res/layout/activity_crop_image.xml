@@ -54,7 +54,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDoneCrop"
-            style="@style/Widget.Pollo.Boton.Primario.Pequeno"
+            style="@style/BotonPrimarioPequeno"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/btn_height_small"
             android:paddingHorizontal="18dp"
@@ -102,7 +102,7 @@
             <!-- Selector de Proporción 4:3 (Menú) -->
             <TextView
                 android:id="@+id/chipRatio43"
-                style="@style/Widget.Pollo.Chip.Seleccionado"
+                style="@style/ChipSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="@string/chip_proporcion_4_3" />
@@ -110,7 +110,7 @@
             <!-- Selector de Proporción 1:1 (Cuadrado) -->
             <TextView
                 android:id="@+id/chipRatio11"
-                style="@style/Widget.Pollo.Chip.NoSeleccionado"
+                style="@style/ChipNoSeleccionado"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"

@@ -11,7 +11,7 @@
     <!-- Header -->
     <LinearLayout
         android:id="@+id/headerPago"
-        style="@style/Widget.Pollo.Encabezado.Horizontal"
+        style="@style/EncabezadoHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +20,7 @@
 
         <ImageButton
             android:id="@+id/btnBack"
-            style="@style/Widget.Pollo.Boton.Volver"
+            style="@style/BotonVolver"
             android:layout_width="@dimen/btn_icon_size"
             android:layout_height="@dimen/btn_icon_size" />
 
@@ -31,14 +31,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
+                android:textAppearance="@style/TituloMediano"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/titulo_cobrar" />
 
             <TextView
                 android:id="@+id/tvPaymentSubtitle"
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
+                android:textAppearance="@style/TextoSubtitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/subtitulo_cobrar" />
@@ -674,7 +674,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnConfirmPayment"
-            style="@style/Widget.Pollo.Boton.Primario.Principal"
+            style="@style/BotonPrimarioPrincipal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height_hero"
             android:text="@string/btn_confirmar_pago" />

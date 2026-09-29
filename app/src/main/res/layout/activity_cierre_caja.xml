@@ -16,7 +16,7 @@
         <!-- Back Button -->
         <ImageButton
             android:id="@+id/btnBack"
-            style="@style/Widget.Pollo.Boton.Volver"
+            style="@style/BotonVolver"
             android:layout_width="@dimen/btn_icon_size"
             android:layout_height="@dimen/btn_icon_size"
             android:layout_marginStart="@dimen/spacing_2xl"
@@ -27,7 +27,7 @@
         <!-- Header Titles -->
         <TextView
             android:id="@+id/tvTitle"
-            android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
+            android:textAppearance="@style/TituloMediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_l"
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/tvSubtitle"
-            android:textAppearance="@style/TextAppearance.Pollo.Subtitulo.Oscuro"
+            android:textAppearance="@style/SubtituloOscuro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
@@ -47,7 +47,7 @@
 
         <View
             android:id="@+id/dividerTop"
-            style="@style/Widget.Pollo.Divisor"
+            style="@style/Divisor"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="@dimen/spacing_2xl"
@@ -56,7 +56,7 @@
         <!-- Resumen del turno -->
         <TextView
             android:id="@+id/lblResumen"
-            android:textAppearance="@style/TextAppearance.Pollo.Titulo.Pequeno"
+            android:textAppearance="@style/TituloPequeno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_2xl"
@@ -281,7 +281,7 @@
         <!-- Confirm Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnConfirm"
-            style="@style/Widget.Pollo.Boton.Primario.Principal"
+            style="@style/BotonPrimarioPrincipal"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_hero"
             android:layout_marginTop="@dimen/spacing_3xl"

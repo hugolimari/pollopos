@@ -43,7 +43,7 @@
             <!-- Title -->
             <TextView
                 android:id="@+id/tvTitleReceipt"
-                android:textAppearance="@style/TextAppearance.Pollo.Titulo.Grande"
+                android:textAppearance="@style/TituloGrande"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/titulo_venta_registrada" />
@@ -51,7 +51,7 @@
             <!-- Subtitle -->
             <TextView
                 android:id="@+id/tvSubtitleReceipt"
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo.Enfasis"
+                android:textAppearance="@style/SubtituloEnfasis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
@@ -411,7 +411,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnPrintReceipt"
-                    style="@style/Widget.Pollo.Boton.Contorno"
+                    style="@style/BotonContorno"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/btn_height_primary"
                     android:layout_marginEnd="10dp"
@@ -422,7 +422,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnWhatsappReceipt"
-                    style="@style/Widget.Pollo.Boton.Contorno"
+                    style="@style/BotonContorno"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/btn_height_primary"
                     android:layout_weight="1"
@@ -450,7 +450,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNewSale"
-            style="@style/Widget.Pollo.Boton.Primario.Principal"
+            style="@style/BotonPrimarioPrincipal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height_hero"
             android:text="@string/btn_nueva_venta" />

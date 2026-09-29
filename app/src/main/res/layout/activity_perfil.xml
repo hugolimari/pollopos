@@ -11,7 +11,7 @@
     <!-- Header -->
     <LinearLayout
         android:id="@+id/headerPerfil"
-        style="@style/Widget.Pollo.Encabezado.Vertical"
+        style="@style/EncabezadoVertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,13 +19,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
+            android:textAppearance="@style/TituloMediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/titulo_perfil" />
 
         <TextView
-            android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
+            android:textAppearance="@style/TextoSubtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
@@ -535,7 +535,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/nav_venta"
-                style="@style/TextAppearance.Pollo.Subtitulo.Acento"
+                style="@style/SubtituloAcento"
                 />
         </LinearLayout>
 
@@ -562,7 +562,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/nav_pedidos"
-                style="@style/TextAppearance.Pollo.Subtitulo.Acento"
+                style="@style/SubtituloAcento"
                 />
         </LinearLayout>
 
@@ -589,7 +589,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/nav_reportes"
-                style="@style/TextAppearance.Pollo.Subtitulo.Acento"
+                style="@style/SubtituloAcento"
                 />
         </LinearLayout>
 

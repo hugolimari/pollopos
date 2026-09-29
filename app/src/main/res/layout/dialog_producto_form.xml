@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Pollo.Dialogo.Contenedor"
+    style="@style/DialogoContenedor"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -13,21 +13,21 @@
         <!-- Title & Subtitle -->
         <TextView
             android:id="@+id/tvFormTitle"
-            android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
+            android:textAppearance="@style/TituloMediano"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/titulo_anadir_comida_menu" />
 
         <TextView
             android:id="@+id/tvFormSubtitle"
-            android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
+            android:textAppearance="@style/TextoSubtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
             android:text="@string/subtitulo_anadir_comida_menu" />
 
         <View
-            style="@style/Widget.Pollo.Divisor"
+            style="@style/Divisor"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginVertical="14dp" />
@@ -387,14 +387,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancelarForm"
-                style="@style/Widget.Pollo.Boton.Contorno.Mediano"
+                style="@style/BotonContornoMediano"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btn_height_medium"
                 android:text="@string/btn_cancelar" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnGuardarForm"
-                style="@style/Widget.Pollo.Boton.Primario.Mediano"
+                style="@style/BotonPrimarioMediano"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/btn_height_medium"
                 android:layout_marginStart="@dimen/spacing_m"

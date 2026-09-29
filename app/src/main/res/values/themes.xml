@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Pollogithub" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Tema base de la aplicacion -->
+    <style name="BaseTemaPollogithub" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/paper_50</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/white</item>
@@ -20,5 +20,5 @@
         <item name="colorOnSurface">@color/char_900</item>
     </style>
 
-    <style name="Theme.Pollogithub" parent="Base.Theme.Pollogithub" />
+    <style name="TemaPollogithub" parent="BaseTemaPollogithub" />
 </resources>

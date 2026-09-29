@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Pollo.Tarjeta.Pedido"
+    style="@style/TarjetaPedido"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -20,13 +20,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Titulo.Mediano"
+                android:textAppearance="@style/TituloMediano"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/titulo_movimiento_caja_chica" />
 
             <TextView
-                android:textAppearance="@style/TextAppearance.Pollo.Subtitulo"
+                android:textAppearance="@style/TextoSubtitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
@@ -46,7 +46,7 @@
     </RelativeLayout>
 
     <View
-        style="@style/Widget.Pollo.Divisor"
+        style="@style/Divisor"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="16dp" />
@@ -221,7 +221,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCancelarMovimiento"
-            style="@style/Widget.Pollo.Boton.Contorno.Mediano"
+            style="@style/BotonContornoMediano"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_medium"
             android:layout_marginEnd="8dp"
@@ -230,7 +230,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnGuardarMovimiento"
-            style="@style/Widget.Pollo.Boton.Primario.Mediano"
+            style="@style/BotonPrimarioMediano"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_medium"
             android:layout_weight="1.6"
