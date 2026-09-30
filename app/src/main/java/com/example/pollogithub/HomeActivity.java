@@ -13,6 +13,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.pollogithub.data.repository.PosRepository;
+
 /**
  * Actividad principal que aloja la navegación inferior:
  * Venta, Pedidos, Reportes y Perfil.
@@ -37,6 +39,9 @@ public class HomeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Purgar posibles órdenes preliminares huérfanas de sesiones anteriores
+        PosRepository.getInstance(this).descartarPedidosPendientesHuerfanos();
 
         // Recuperación de la identidad del operador desde los extras del Intent
         userName = getIntent().getStringExtra("USER_NAME");

@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -36,6 +38,7 @@ public class VentaFragment extends Fragment {
 
     private static final String ARG_USER_NAME = "ARG_USER_NAME";
 
+    private ActivityResultLauncher<Intent> pagoLauncher;
     private final List<Product> allProducts = new ArrayList<>();
     private final List<Product> displayedProducts = new ArrayList<>();
     private ProductAdapter adapter;
@@ -70,6 +73,16 @@ public class VentaFragment extends Fragment {
         if (getArguments() != null) {
             userName = getArguments().getString(ARG_USER_NAME, "");
         }
+        pagoLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == android.app.Activity.RESULT_OK) {
+                        if (ventaViewModel != null) {
+                            ventaViewModel.clearCart();
+                        }
+                    }
+                }
+        );
     }
 
     @Nullable
@@ -272,7 +285,7 @@ public class VentaFragment extends Fragment {
                 intent.putExtra("ORDER_NUMBER", pedido.getNumeroOrden());
                 intent.putExtra("TOTAL_AMOUNT", pedido.getTotal());
                 intent.putExtra("TIPO_ENTREGA", tipoEntrega);
-                startActivity(intent);
+                pagoLauncher.launch(intent);
             }
 
             @Override
@@ -280,6 +293,14 @@ public class VentaFragment extends Fragment {
                 Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     /**

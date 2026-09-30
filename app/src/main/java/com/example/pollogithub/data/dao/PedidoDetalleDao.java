@@ -51,4 +51,10 @@ public interface PedidoDetalleDao {
      */
     @Query("SELECT * FROM pedido_detalles WHERE pedidoId = :pedidoId")
     LiveData<List<PedidoDetalleEntity>> getByPedidoIdLiveData(int pedidoId);
+
+    /**
+     * Elimina físicamente todas las líneas de detalle asociadas a un pedido.
+     */
+    @Query("DELETE FROM pedido_detalles WHERE pedidoId = :pedidoId")
+    void deleteByPedidoId(int pedidoId);
 }

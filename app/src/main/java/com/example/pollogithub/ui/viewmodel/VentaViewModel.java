@@ -223,7 +223,6 @@ public class VentaViewModel extends AndroidViewModel {
         repository.crearPedido(tipoEntrega, mesaId, cart, new PosRepository.Callback<PedidoEntity>() {
             @Override
             public void onSuccess(PedidoEntity result) {
-                clearCart();
                 callback.onSuccess(result);
             }
 

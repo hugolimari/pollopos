@@ -72,8 +72,13 @@ public class PedidosViewModel extends AndroidViewModel {
         SimpleDateFormat sdf = new SimpleDateFormat("h:mm a", Locale.getDefault());
 
         for (PedidoEntity e : entities) {
-            // Filtrado de estados terminales: la pantalla KDS solo visualiza pedidos pendientes
-            if ("entregado".equalsIgnoreCase(e.getEstado()) || "cancelado".equalsIgnoreCase(e.getEstado())) {
+            // Un pedido solo debe ser procesado en cocina si ha sido efectivamente pagado
+            if (!"pagado".equalsIgnoreCase(e.getEstadoPago())) {
+                continue;
+            }
+
+            // Filtrado de estados terminales o no confirmados: la pantalla KDS solo visualiza pedidos en cocina o listos
+            if ("entregado".equalsIgnoreCase(e.getEstado()) || "cancelado".equalsIgnoreCase(e.getEstado()) || "pendiente_pago".equalsIgnoreCase(e.getEstado())) {
                 continue;
             }
 

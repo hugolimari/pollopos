@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -57,6 +58,7 @@ public class PagoActivity extends AppCompatActivity {
     private int orderNumber;
     private String tipoEntrega;
     private long lastConfirmPaymentTime = 0;
+    private boolean isPaymentCompleted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +109,14 @@ public class PagoActivity extends AppCompatActivity {
             tvPaymentSubtitle.setText(String.format(Locale.getDefault(), "Pedido #%04d · %s", orderNumber, isLocal ? "En el local" : "Para llevar"));
         }
 
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+        findViewById(R.id.btnBack).setOnClickListener(v -> cancelarCobroYSalir());
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                cancelarCobroYSalir();
+            }
+        });
 
         // 3. Inicialización de componentes funcionales
         setupDiscountChips();
@@ -117,6 +126,14 @@ public class PagoActivity extends AppCompatActivity {
 
         // 4. Confirmación de Pago
         findViewById(R.id.btnConfirmPayment).setOnClickListener(v -> procesarCobro());
+    }
+
+    private void cancelarCobroYSalir() {
+        if (!isPaymentCompleted && pedidoId > 0) {
+            PosRepository.getInstance(this).descartarPedidoNoPagado(pedidoId);
+        }
+        setResult(RESULT_CANCELED);
+        finish();
     }
 
     /**
@@ -455,6 +472,8 @@ public class PagoActivity extends AppCompatActivity {
         repo.registrarPago(pedidoId, methodStr, totalAmount, finalReceived, finalChange, finalReferencia, new PosRepository.Callback<PagoEntity>() {
             @Override
             public void onSuccess(PagoEntity result) {
+                isPaymentCompleted = true;
+                setResult(RESULT_OK);
                 Intent intent = new Intent(PagoActivity.this, ReciboActivity.class);
                 intent.putExtra("PAYMENT_METHOD", methodStr);
                 intent.putExtra("TOTAL_AMOUNT", totalAmount);
@@ -476,5 +495,13 @@ public class PagoActivity extends AppCompatActivity {
                 Toast.makeText(PagoActivity.this, getString(R.string.toast_error_registrar_pago, error), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!isPaymentCompleted && !isChangingConfigurations() && pedidoId > 0) {
+            PosRepository.getInstance(this).descartarPedidoNoPagado(pedidoId);
+        }
     }
 }

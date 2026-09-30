@@ -128,6 +128,18 @@ public interface PedidoDao {
     void updateDescuento(int id, double montoDescuento);
 
     /**
+     * Elimina físicamente un pedido por su identificador primario.
+     */
+    @Query("DELETE FROM pedidos WHERE id = :id")
+    void deleteById(int id);
+
+    /**
+     * Consulta todas las órdenes preliminares que no hayan sido pagadas formalmente.
+     */
+    @Query("SELECT * FROM pedidos WHERE estadoPago != 'pagado'")
+    List<PedidoEntity> getPedidosNoPagados();
+
+    /**
      * Total absoluto de pedidos gestionados por el sistema desde su puesta en marcha.
      * 
      * @return Cantidad de registros en la tabla.

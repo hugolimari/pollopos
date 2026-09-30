@@ -385,7 +385,7 @@ public class PosRepository {
 
             PedidoEntity pedido = new PedidoEntity(
                     sucursalId, turnoId, usuarioId, mesaId, nextOrden,
-                    tipoEntrega, "cocina", "pendiente", subtotal,
+                    tipoEntrega, "pendiente_pago", "pendiente", subtotal,
                     null, 0.0, total, null, System.currentTimeMillis()
             );
 
@@ -507,8 +507,38 @@ public class PosRepository {
             pago.setId((int) pagoId);
 
             db.pedidoDao().updateEstadoPago(pedidoId, "pagado");
+            db.pedidoDao().updateEstado(pedidoId, "cocina");
 
             mainHandler.post(() -> callback.onSuccess(pago));
+        });
+    }
+
+    /**
+     * Elimina una orden preliminar no confirmada si el cajero abandona la pasarela de cobro.
+     */
+    public void descartarPedidoNoPagado(int pedidoId) {
+        if (pedidoId <= 0) return;
+        executor.execute(() -> {
+            PedidoEntity pe = db.pedidoDao().getById(pedidoId);
+            if (pe != null && !"pagado".equalsIgnoreCase(pe.getEstadoPago())) {
+                db.pedidoDetalleDao().deleteByPedidoId(pedidoId);
+                db.pedidoDao().deleteById(pedidoId);
+            }
+        });
+    }
+
+    /**
+     * Purga cualquier orden preliminar huérfana que haya quedado sin cobrar.
+     */
+    public void descartarPedidosPendientesHuerfanos() {
+        executor.execute(() -> {
+            List<PedidoEntity> pendientes = db.pedidoDao().getPedidosNoPagados();
+            if (pendientes != null) {
+                for (PedidoEntity pe : pendientes) {
+                    db.pedidoDetalleDao().deleteByPedidoId(pe.getId());
+                    db.pedidoDao().deleteById(pe.getId());
+                }
+            }
         });
     }
 
@@ -645,6 +675,7 @@ public class PosRepository {
 
             if (todosPedidos != null) {
                 for (PedidoEntity pe : todosPedidos) {
+                    if (!"pagado".equalsIgnoreCase(pe.getEstadoPago())) continue;
                     if ("cancelado".equalsIgnoreCase(pe.getEstado())) continue;
 
                     if ("mesa".equalsIgnoreCase(pe.getTipoEntrega()) || "local".equalsIgnoreCase(pe.getTipoEntrega())) mesa++;
