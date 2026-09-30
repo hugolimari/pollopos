@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -106,13 +106,11 @@
 
                 <!-- Card Total Ventas -->
                 <LinearLayout
+                    style="@style/TarjetaEstadistica"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_order_card"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_weight="1">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -124,23 +122,19 @@
 
                     <TextView
                         android:id="@+id/tvProfileVentasHoy"
+                        style="@style/TextoEstadisticaNumero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif-black"
-                        android:text="@string/cero_moneda"
-                        android:textColor="@color/char_900"
-                        android:textSize="17sp" />
+                        android:text="@string/cero_moneda" />
                 </LinearLayout>
 
                 <!-- Card Total Pedidos -->
                 <LinearLayout
+                    style="@style/TarjetaEstadistica"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_order_card"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_weight="1">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -152,13 +146,12 @@
 
                     <TextView
                         android:id="@+id/tvProfilePedidosCobrados"
+                        style="@style/TextoEstadisticaNumero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif-black"
                         android:text="@string/cero_pedidos"
-                        android:textColor="@color/ember_700"
-                        android:textSize="17sp" />
+                        android:textColor="@color/ember_700" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -174,34 +167,20 @@
                 <!-- 1. Gestión de Menú y Productos (Comida) -->
                 <TextView
                     android:id="@+id/btnGestionMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="?attr/selectableItemBackground"
+                    style="@style/FilaOpcionPerfil"
                     android:drawableStart="@drawable/ic_flame_chicken"
-                    android:drawablePadding="12dp"
                     android:drawableTint="@color/ember_700"
                     android:fontFamily="sans-serif-bold"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="12dp"
                     android:text="@string/item_gestion_menu"
-                    android:textColor="@color/ember_700"
-                    android:textSize="13.5sp" />
+                    android:textColor="@color/ember_700" />
 
                 <!-- 2. Movimientos de Caja Chica (Gastos / Ingresos) -->
                 <TextView
                     android:id="@+id/btnMovimientoCaja"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="?attr/selectableItemBackground"
+                    style="@style/FilaOpcionPerfil"
                     android:drawableStart="@drawable/ic_cash_register"
-                    android:drawablePadding="12dp"
                     android:drawableTint="@color/char_700"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="12dp"
-                    android:text="@string/item_movimientos_caja"
-                    android:textColor="@color/char_700"
-                    android:textSize="13sp" />
+                    android:text="@string/item_movimientos_caja" />
 
                 <View
                     android:layout_width="match_parent"
@@ -211,18 +190,10 @@
                 <!-- 4. Historial de Turnos y Cierres -->
                 <TextView
                     android:id="@+id/btnHistorialTurnos"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="?attr/selectableItemBackground"
+                    style="@style/FilaOpcionPerfil"
                     android:drawableStart="@drawable/ic_clock"
-                    android:drawablePadding="12dp"
                     android:drawableTint="@color/char_700"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="12dp"
-                    android:text="@string/item_historial_turnos"
-                    android:textColor="@color/char_700"
-                    android:textSize="13sp" />
+                    android:text="@string/item_historial_turnos" />
 
                 <View
                     android:layout_width="match_parent"
@@ -232,18 +203,10 @@
                 <!-- 5. Detalle del turno actual -->
                 <TextView
                     android:id="@+id/btnShiftDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="?attr/selectableItemBackground"
+                    style="@style/FilaOpcionPerfil"
                     android:drawableStart="@drawable/ic_cash_register"
-                    android:drawablePadding="12dp"
                     android:drawableTint="@color/char_700"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="12dp"
-                    android:text="@string/item_detalles_turno_activo"
-                    android:textColor="@color/char_700"
-                    android:textSize="13sp" />
+                    android:text="@string/item_detalles_turno_activo" />
 
                 <View
                     android:layout_width="match_parent"
@@ -253,18 +216,10 @@
                 <!-- 6. Impresora Térmica -->
                 <TextView
                     android:id="@+id/btnPrinterStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="?attr/selectableItemBackground"
+                    style="@style/FilaOpcionPerfil"
                     android:drawableStart="@drawable/ic_printer"
-                    android:drawablePadding="12dp"
                     android:drawableTint="@color/char_700"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="12dp"
-                    android:text="@string/item_configurar_impresora"
-                    android:textColor="@color/char_700"
-                    android:textSize="13sp" />
+                    android:text="@string/item_configurar_impresora" />
 
                 <View
                     android:layout_width="match_parent"
@@ -274,18 +229,10 @@
                 <!-- 7. App Version -->
                 <TextView
                     android:id="@+id/btnAppVersion"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="?attr/selectableItemBackground"
+                    style="@style/FilaOpcionPerfil"
                     android:drawableStart="@drawable/ic_check_green"
-                    android:drawablePadding="12dp"
                     android:drawableTint="@color/char_400"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="12dp"
-                    android:text="@string/item_app_version_offline"
-                    android:textColor="@color/char_700"
-                    android:textSize="13sp" />
+                    android:text="@string/item_app_version_offline" />
             </LinearLayout>
 
             <!-- Close Shift Button -->
@@ -305,6 +252,31 @@
                 android:layout_height="@dimen/btn_height_primary"
                 android:layout_marginTop="@dimen/spacing_s"
                 android:text="@string/btn_cerrar_sesion" />
+
+            <!-- Brand Signature Footer -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_brand_logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/app_name"
+                    android:textColor="@color/char_400"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -236,16 +236,8 @@
                 <!-- Method Efectivo -->
                 <LinearLayout
                     android:id="@+id/methodEfectivo"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bg_method_selected"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="16dp">
+                    style="@style/TarjetaMetodoPago"
+                    android:background="@drawable/bg_method_selected">
 
                     <FrameLayout
                         android:id="@+id/iconEfectivo"
@@ -275,16 +267,8 @@
                 <!-- Method Tarjeta -->
                 <LinearLayout
                     android:id="@+id/methodTarjeta"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bg_method_unselected"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="16dp">
+                    style="@style/TarjetaMetodoPago"
+                    android:background="@drawable/bg_method_unselected">
 
                     <FrameLayout
                         android:id="@+id/iconTarjeta"
@@ -314,16 +298,8 @@
                 <!-- Method QR -->
                 <LinearLayout
                     android:id="@+id/methodQR"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bg_method_unselected"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="16dp">
+                    style="@style/TarjetaMetodoPago"
+                    android:background="@drawable/bg_method_unselected">
 
                     <FrameLayout
                         android:id="@+id/iconQR"
@@ -353,16 +329,8 @@
                 <!-- Method Mixto -->
                 <LinearLayout
                     android:id="@+id/methodMixto"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bg_method_unselected"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="16dp">
+                    style="@style/TarjetaMetodoPago"
+                    android:background="@drawable/bg_method_unselected">
 
                     <FrameLayout
                         android:id="@+id/iconMixto"
@@ -450,67 +418,47 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnQuickExact"
+                        style="@style/BotonEfectivoRapido"
                         android:layout_width="0dp"
                         android:layout_height="38dp"
                         android:layout_marginEnd="4dp"
                         android:layout_weight="1.2"
-                        android:background="@drawable/bg_quick_cash_btn"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="@string/btn_rapido_exacto"
-                        android:textAllCaps="false"
-                        android:textColor="@color/char_700"
-                        android:textSize="11.5sp" />
+                        android:text="@string/btn_rapido_exacto" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnQuick20"
+                        style="@style/BotonEfectivoRapido"
                         android:layout_width="0dp"
                         android:layout_height="38dp"
                         android:layout_marginEnd="4dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_quick_cash_btn"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="@string/btn_rapido_mas_20"
-                        android:textAllCaps="false"
-                        android:textColor="@color/char_700"
-                        android:textSize="11.5sp" />
+                        android:text="@string/btn_rapido_mas_20" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnQuick50"
+                        style="@style/BotonEfectivoRapido"
                         android:layout_width="0dp"
                         android:layout_height="38dp"
                         android:layout_marginEnd="4dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_quick_cash_btn"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="@string/btn_rapido_mas_50"
-                        android:textAllCaps="false"
-                        android:textColor="@color/char_700"
-                        android:textSize="11.5sp" />
+                        android:text="@string/btn_rapido_mas_50" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnQuick100"
+                        style="@style/BotonEfectivoRapido"
                         android:layout_width="0dp"
                         android:layout_height="38dp"
                         android:layout_marginEnd="4dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_quick_cash_btn"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="@string/btn_rapido_mas_100"
-                        android:textAllCaps="false"
-                        android:textColor="@color/char_700"
-                        android:textSize="11.5sp" />
+                        android:text="@string/btn_rapido_mas_100" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnQuick200"
+                        style="@style/BotonEfectivoRapido"
                         android:layout_width="0dp"
                         android:layout_height="38dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_quick_cash_btn"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="@string/btn_rapido_mas_200"
-                        android:textAllCaps="false"
-                        android:textColor="@color/char_700"
-                        android:textSize="11.5sp" />
+                        android:text="@string/btn_rapido_mas_200" />
                 </LinearLayout>
 
                 <!-- Change Due Row -->

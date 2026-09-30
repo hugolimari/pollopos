@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -151,11 +151,13 @@
 
                 <!-- Stat 1: Ventas -->
                 <LinearLayout
+                    style="@style/TarjetaEstadistica"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@null"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:padding="0dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -166,13 +168,11 @@
                         android:textSize="11.5sp" />
 
                     <TextView
+                        style="@style/TextoEstadisticaNumero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif-black"
-                        android:text="@string/valor_estadistica_ventas"
-                        android:textColor="@color/char_900"
-                        android:textSize="15sp" />
+                        android:text="@string/valor_estadistica_ventas" />
                 </LinearLayout>
 
                 <View
@@ -183,11 +183,13 @@
 
                 <!-- Stat 2: Total Recaudado -->
                 <LinearLayout
+                    style="@style/TarjetaEstadistica"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.2"
+                    android:background="@null"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:padding="0dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -198,13 +200,12 @@
                         android:textSize="11.5sp" />
 
                     <TextView
+                        style="@style/TextoEstadisticaNumero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif-black"
                         android:text="@string/valor_estadistica_total"
-                        android:textColor="@color/ember_600"
-                        android:textSize="15sp" />
+                        android:textColor="@color/ember_600" />
                 </LinearLayout>
 
                 <View
@@ -215,11 +216,13 @@
 
                 <!-- Stat 3: Apertura -->
                 <LinearLayout
+                    style="@style/TarjetaEstadistica"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@null"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:padding="0dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -230,13 +233,11 @@
                         android:textSize="11.5sp" />
 
                     <TextView
+                        style="@style/TextoEstadisticaNumero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="sans-serif-black"
-                        android:text="@string/valor_estadistica_apertura"
-                        android:textColor="@color/char_900"
-                        android:textSize="15sp" />
+                        android:text="@string/valor_estadistica_apertura" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -261,12 +262,10 @@
                 <!-- Item 1: Impresora Térmica -->
                 <LinearLayout
                     android:id="@+id/btnSettingPrinter"
-                    android:layout_width="match_parent"
+                    style="@style/FilaOpcionPerfil"
                     android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="14dp">
@@ -319,12 +318,10 @@
                 <!-- Item 2: Arqueo / Cierre de Caja -->
                 <LinearLayout
                     android:id="@+id/btnSettingCashCut"
-                    android:layout_width="match_parent"
+                    style="@style/FilaOpcionPerfil"
                     android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="14dp">
@@ -377,12 +374,10 @@
                 <!-- Item 3: Sincronización en la Nube -->
                 <LinearLayout
                     android:id="@+id/btnSettingSync"
-                    android:layout_width="match_parent"
+                    style="@style/FilaOpcionPerfil"
                     android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="14dp">
@@ -435,12 +430,10 @@
                 <!-- Item 4: Bloquear Terminal / Cambiar PIN -->
                 <LinearLayout
                     android:id="@+id/btnSettingLock"
-                    android:layout_width="match_parent"
+                    style="@style/FilaOpcionPerfil"
                     android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="14dp">

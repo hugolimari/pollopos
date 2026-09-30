@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -53,15 +53,9 @@
     <!-- Card 1: Consumo en el Local -->
     <LinearLayout
         android:id="@+id/cardOptionLocal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TarjetaOpcionModal"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/bg_card_mode_selected"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:background="@drawable/bg_card_mode_selected">
 
         <FrameLayout
             android:id="@+id/iconContainerLocal"
@@ -115,15 +109,9 @@
     <!-- Card 2: Para Llevar -->
     <LinearLayout
         android:id="@+id/cardOptionLlevar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TarjetaOpcionModal"
         android:layout_marginBottom="18dp"
-        android:background="@drawable/bg_card_mode_unselected"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:background="@drawable/bg_card_mode_unselected">
 
         <FrameLayout
             android:id="@+id/iconContainerLlevar"
@@ -207,13 +195,8 @@
     <!-- Botón de Confirmación -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnConfirmOrderMode"
+        style="@style/BotonPrimario"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@drawable/bg_button_primary"
-        android:fontFamily="sans-serif-bold"
-        android:stateListAnimator="@null"
-        android:text="@string/btn_continuar_a_cobrar"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:text="@string/btn_continuar_a_cobrar" />
 </LinearLayout>

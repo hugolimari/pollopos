@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -38,21 +38,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Logo Mark -->
-            <FrameLayout
-                android:layout_width="76dp"
-                android:layout_height="76dp"
+            <!-- Logo Oficial de la Franquicia -->
+            <ImageView
+                android:id="@+id/imgBrandLogo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_brand_logo"
-                android:elevation="8dp">
-
-                <ImageView
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_flame_chicken" />
-            </FrameLayout>
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_brand_logo" />
 
             <!-- Brand Title -->
             <LinearLayout

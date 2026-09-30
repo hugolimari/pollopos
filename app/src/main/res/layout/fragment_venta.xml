@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -71,22 +71,17 @@
         <!-- Selector de Modalidad: En el local vs Para llevar -->
         <LinearLayout
             android:id="@+id/layoutOrderModeSelector"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="@dimen/spacing_m"
-            android:background="@drawable/bg_order_mode_container"
-            android:orientation="horizontal"
-            android:padding="3dp">
+            style="@style/ContenedorSegmentado"
+            android:layout_marginBottom="@dimen/spacing_m">
 
             <LinearLayout
                 android:id="@+id/btnHeaderModeLocal"
+                style="@style/SegmentoActivo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bg_order_mode_active"
                 android:clickable="true"
                 android:focusable="true"
-                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -99,24 +94,22 @@
 
                 <TextView
                     android:id="@+id/tvHeaderTextLocal"
+                    style="@style/SegmentoActivo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:fontFamily="sans-serif-bold"
-                    android:text="@string/modo_pedido_local"
-                    android:textColor="@color/ember_600"
-                    android:textSize="13sp" />
+                    android:background="@null"
+                    android:text="@string/modo_pedido_local" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/btnHeaderModeLlevar"
+                style="@style/SegmentoInactivo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
                 android:clickable="true"
                 android:focusable="true"
-                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -129,13 +122,12 @@
 
                 <TextView
                     android:id="@+id/tvHeaderTextLlevar"
+                    style="@style/SegmentoInactivo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/modo_pedido_llevar"
-                    android:textColor="@color/char_400"
-                    android:textSize="13sp" />
+                    android:background="@null"
+                    android:text="@string/modo_pedido_llevar" />
             </LinearLayout>
         </LinearLayout>
 

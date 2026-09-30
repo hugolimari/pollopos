@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -153,13 +153,11 @@
 
                 <!-- Stat 1: Pedidos Hoy -->
                 <LinearLayout
+                    style="@style/TarjetaEstadistica"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bg_order_card"
-                    android:orientation="vertical"
-                    android:padding="14dp">
+                    android:layout_margin="5dp">
 
                     <FrameLayout
                         android:layout_width="32dp"
@@ -178,12 +176,10 @@
 
                     <TextView
                         android:id="@+id/tvStatPedidosHoy"
+                        style="@style/TextoEstadisticaNumero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
-                        tools:text="0"
-                        android:textColor="@color/char_900"
-                        android:textSize="19sp" />
+                        tools:text="0" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -197,13 +193,11 @@
 
                 <!-- Stat 2: Ticket Promedio -->
                 <LinearLayout
+                    style="@style/TarjetaEstadistica"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bg_order_card"
-                    android:orientation="vertical"
-                    android:padding="14dp">
+                    android:layout_margin="5dp">
 
                     <FrameLayout
                         android:layout_width="32dp"
@@ -222,12 +216,10 @@
 
                     <TextView
                         android:id="@+id/tvStatTicketPromedio"
+                        style="@style/TextoEstadisticaNumero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
-                        tools:text="Bs 0.00"
-                        android:textColor="@color/char_900"
-                        android:textSize="19sp" />
+                        tools:text="Bs 0.00" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -241,13 +233,11 @@
 
                 <!-- Stat 3: Para Mesa -->
                 <LinearLayout
+                    style="@style/TarjetaEstadistica"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bg_order_card"
-                    android:orientation="vertical"
-                    android:padding="14dp">
+                    android:layout_margin="5dp">
 
                     <FrameLayout
                         android:layout_width="32dp"
@@ -266,12 +256,10 @@
 
                     <TextView
                         android:id="@+id/tvStatParaMesa"
+                        style="@style/TextoEstadisticaNumero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
-                        tools:text="0"
-                        android:textColor="@color/char_900"
-                        android:textSize="19sp" />
+                        tools:text="0" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -285,13 +273,11 @@
 
                 <!-- Stat 4: Hora Pico -->
                 <LinearLayout
+                    style="@style/TarjetaEstadistica"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/bg_order_card"
-                    android:orientation="vertical"
-                    android:padding="14dp">
+                    android:layout_margin="5dp">
 
                     <FrameLayout
                         android:layout_width="32dp"
@@ -310,12 +296,10 @@
 
                     <TextView
                         android:id="@+id/tvStatHoraPico"
+                        style="@style/TextoEstadisticaNumero"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
-                        tools:text="12-2pm"
-                        android:textColor="@color/char_900"
-                        android:textSize="19sp" />
+                        tools:text="12-2pm" />
 
                     <TextView
                         android:layout_width="wrap_content"
