@@ -24,24 +24,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 /**
- * Repositorio Central de Datos: PosRepository
- * 
- * Capa de Abstracción de Datos / Patrón Repository
- * 
- * Actúa como mediador y Fuente Única de Verdad (Single Source of Truth - SSOT)
- * entre las fuentes de persistencia subyacentes (Room Database / SQLite y SharedPreferences)
- * y la capa de presentación (ViewModels, Actividades y Fragmentos).
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Patrón Repository: Desacopla las operaciones CRUD y transacciones de base de datos
- *   de la lógica de interfaz de usuario, promoviendo la modularidad y testabilidad.
- * - Patrón Singleton: Instanciación única y segura para subprocesos concurrentes
- *   (Double-Checked Locking con visibilidad de memoria 'volatile').
- * - Concurrencia y Despacho de Hilos:
- *     * Operaciones de I/O y persistencia delegadas al pool 'ExecutorService' (Worker Threads).
- *     * Despacho y retorno de resultados al Hilo Principal (UI Thread) mediante 'Handler(Looper.getMainLooper())'
- *       para garantizar que las vistas reciban callbacks de forma segura sin provocar bloqueos ANR (Application Not Responding).
- * - Patrón Callback: Interfaz genérica asíncrona para propagar resultados exitosos o errores controlados.
+ * Repositorio central que coordina el acceso a Room Database y SessionManager.
  */
 public class PosRepository {
 

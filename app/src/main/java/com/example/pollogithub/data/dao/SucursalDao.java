@@ -8,18 +8,7 @@ import androidx.room.Query;
 import com.example.pollogithub.data.entity.SucursalEntity;
 
 /**
- * Objeto de Acceso a Datos: SucursalDao
- * 
- * Capa de Persistencia / Patrón DAO (Data Access Object)
- * Interfaz compilada por Room ORM para la tabla 'sucursales'.
- * 
- * Gestiona el acceso y almacenamiento de las entidades de sucursal.
- * Permite registrar la sede física operativa del establecimiento y obtener
- * la sucursal predeterminada para inicializar el contexto de la aplicación.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Aislamiento Contextual: Provisión de la sucursal activa para vincular ventas y arqueos.
- * - Inicialización del Sistema: Consulta 'getFirst' para configuración predeterminada en entornos de tienda única.
+ * DAO para gestionar operaciones sobre la tabla 'sucursales'.
  */
 @Dao
 public interface SucursalDao {

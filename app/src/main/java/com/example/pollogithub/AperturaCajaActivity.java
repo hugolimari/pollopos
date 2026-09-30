@@ -19,22 +19,7 @@ import com.example.pollogithub.data.repository.PosRepository;
 import java.util.Locale;
 
 /**
- * Controlador de Vista: AperturaCajaActivity
- * 
- * Capa de Presentación / Módulo de Arqueo y Control Operativo
- * Hereda de: AppCompatActivity
- * 
- * Implementa el protocolo de inicio de operaciones del cajero.
- * Exige el registro formal del fondo inicial o cambio base de caja antes de habilitar
- * el terminal de ventas, garantizando la trazabilidad contable para el posterior arqueo.
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Validación Defensiva de Entradas: Verificación de no nulidad, formato numérico de punto flotante
- *   y restricción de dominio para valores no negativos (fondo >= 0).
- * - Persistencia de Contexto Operativo: Actualización atómica del identificador de turno ('turnoId')
- *   en el SessionManager tras la respuesta asíncrona favorable del Repositorio.
- * - Limpieza de Pila de Actividades (Back Stack Management): Utilización de banderas 'FLAG_ACTIVITY_CLEAR_TOP'
- *   para evitar que el usuario regrese a la pantalla de apertura mediante el botón atrás del sistema operativo.
+ * Registro de fondo inicial para apertura de turno.
  */
 public class AperturaCajaActivity extends AppCompatActivity {
 
@@ -58,10 +43,8 @@ public class AperturaCajaActivity extends AppCompatActivity {
             return insets;
         });
 
-        // 1. Obtención de la instancia del Repositorio Central
         repository = PosRepository.getInstance(this);
 
-        // 2. Recuperación de parámetros de sesión pasados por Intent o persistidos en SessionManager
         userId = getIntent().getIntExtra("USER_ID", repository.getSessionManager().getUserId());
         sucursalId = getIntent().getIntExtra("SUCURSAL_ID", repository.getSessionManager().getSucursalId());
         userName = getIntent().getStringExtra("USER_NAME");
@@ -69,7 +52,6 @@ public class AperturaCajaActivity extends AppCompatActivity {
             userName = repository.getSessionManager().getUserName();
         }
 
-        // 3. Renderizado del saludo personalizado al cajero
         TextView tvWelcome = findViewById(R.id.tvAperturaWelcome);
         if (userName != null && !userName.isEmpty()) {
             tvWelcome.setText(String.format("Bienvenido, %s", userName));

@@ -17,21 +17,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Adaptador de Catálogo de Productos: ProductAdapter
- * 
- * Capa de Presentación / Patrón Adapter & ViewHolder
- * Hereda de: RecyclerView.Adapter<ProductAdapter.ProductViewHolder>
- * 
- * Vincula el conjunto de datos de productos comerciales con las vistas individuales
- * en la cuadrícula o lista del punto de venta (item_product_card.xml).
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Patrón ViewHolder: Reutiliza instancias de vistas evitando llamadas reiteradas
- *   y costosas a 'findViewById()', optimizando los ciclos de CPU y consumo de memoria (60 FPS scrolling).
- * - Patrón Observer / Listener: Desacopla las acciones de pulsación (añadir al carrito)
- *   hacia el componente contenedor (Fragment/Activity) mediante la interfaz 'OnProductClickListener'.
- * - Gestión de Estados de Renderizado: Alterna opacidad (alpha) y deshabilitación de componentes
- *   según el estado de disponibilidad/agotamiento del producto.
+ * Adaptador para mostrar las tarjetas de productos en el catálogo de ventas.
  */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 

@@ -4,19 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Gestor de Sesión y Preferencias: SessionManager
- * 
- * Capa de Datos / Infraestructura de Almacenamiento Ligero (SharedPreferences)
- * 
- * Encapsula la gestión de persistencia de estado de sesión de usuario y contexto operativo.
- * Administra tokens de identidad, identificador del cajero autenticado, rol RBAC,
- * turno de caja activo e identificador de sucursal asignada en almacenamiento local clave-valor.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Patrón Facade / Wrapper: Oculta la complejidad de la API de SharedPreferences proporcionando
- *   una interfaz fuertemente tipada a la capa de presentación y repositorio.
- * - Concurrencia y Persistencia Asíncrona: Utilización de 'apply()' en lugar de 'commit()'
- *   para garantizar escrituras no bloqueantes en memoria RAM y persistencia diferida a disco.
+ * Gestor de sesión y preferencias de usuario mediante SharedPreferences.
  */
 public class SessionManager {
 

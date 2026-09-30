@@ -1,19 +1,7 @@
 package com.example.pollogithub;
 
 /**
- * Modelo de Transferencia de Datos de Pedido: Order
- * 
- * Capa de Presentación / Data Transfer Object (DTO)
- * 
- * Representa una orden de comanda estructurada específicamente para su consumo
- * en la interfaz gráfica del módulo de cocina y pedidos (PedidosFragment / PedidosActivity).
- * Agrupa la información de cabecera con el detalle resumido de ítems y las etiquetas
- * de acción contextual requeridas por el adaptador.
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Patrón DTO (Data Transfer Object): Aísla los requerimientos de representación visual
- *   (fechas formateadas, textos de botones dinámicos) de la entidad de persistencia relacional 'PedidoEntity'.
- * - Abstracción de Interfaz de Usuario: Simplifica el enlace de datos (Data Binding) para la vista KDS.
+ * Modelo de comanda para la lista de cocina y despacho en PedidosFragment.
  */
 public class Order {
 

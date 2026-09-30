@@ -1,20 +1,7 @@
 package com.example.pollogithub;
 
 /**
- * Modelo de Dominio y Presentación: Product
- * 
- * Capa de Presentación / Objeto de Transferencia de Datos (DTO)
- * 
- * Representa un artículo comercial en la capa de vista del punto de venta (POS).
- * A diferencia de la entidad persistida (ProductoEntity), este modelo incorpora
- * el estado volátil del carrito de compras ('quantityInCart') y la bandera de
- * agotamiento ('isAgotado') para facilitar el enlace de datos (Data Binding) directo
- * con los componentes de la interfaz de usuario.
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Separación de Modelos (Domain/Presentation vs Entity): Desacopla las restricciones
- *   de base de datos del estado mutable de la interfaz gráfica.
- * - Inmutabilidad y Encapsulamiento: Atributos privados con métodos accesores y mutadores selectivos.
+ * Modelo de producto para visualización en el catálogo y carrito.
  */
 public class Product {
 

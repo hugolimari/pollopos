@@ -19,22 +19,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Modelo de Vista para Gestión de Pedidos y KDS: PedidosViewModel
- * 
- * Capa de Presentación / Arquitectura MVVM (Model-View-ViewModel)
- * Hereda de: AndroidViewModel
- * 
- * Coordina la visualización en tiempo real del flujo de comandas y pedidos en cocina/despacho.
- * Transforma y enriquece las entidades de base de datos (PedidoEntity y PedidoDetalleEntity)
- * en modelos de presentación listos para ser renderizados por el adaptador (Order).
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Patrón MediatorLiveData: Centraliza y combina fuentes de datos heterogéneas, reaccionando a mutaciones
- *   de las entidades de persistencia y disparando la transformación al modelo de vista (DTO).
- * - Separación de Modelos (Entity vs DTO / Presentation Model): Mapeo explícito que aísla la estructura
- *   de la base de datos de los requerimientos de formateo de texto, fechas y estados visuales.
- * - Máquina de Estados Operativa: Método 'avanzarEstadoPedido' que gestiona la transición progresiva
- *   ("cocina" -> "listo" -> "entregado") conforme a la dinámica culinaria y de despacho.
+ * ViewModel para monitoreo de cocina y actualización de estados de pedidos.
  */
 public class PedidosViewModel extends AndroidViewModel {
 

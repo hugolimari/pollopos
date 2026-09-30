@@ -4,19 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad de Persistencia: RolEntity
- * 
- * Capa de Datos / Control de Acceso y Seguridad (Room ORM)
- * Tabla: "roles"
- * 
- * Modela los roles y niveles de autorización dentro del sistema conforme al modelo
- * de Control de Acceso Basado en Roles (RBAC - Role-Based Access Control).
- * Permite segregar privilegios operativos entre perfiles administrativos, personal
- * de cobranza (cajeros) y personal de preparación (cocina).
- * 
- * Conceptos de Ingeniería aplicados:
- * - Seguridad y Autorización: Principio de Menor Privilegio (Principle of Least Privilege).
- * - Normalización de Base de Datos: Tercera Forma Normal (3FN), desacoplando los roles de la tabla 'usuarios'.
+ * Entidad Room para la tabla 'roles'.
  */
 @Entity(tableName = "roles")
 public class RolEntity {

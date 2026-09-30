@@ -12,20 +12,7 @@ import com.example.pollogithub.data.entity.PedidoEntity;
 import java.util.List;
 
 /**
- * Objeto de Acceso a Datos: PedidoDao
- * 
- * Capa de Persistencia / Patrón DAO (Data Access Object)
- * Interfaz compilada por Room ORM para la tabla 'pedidos'.
- * 
- * Gestiona el ciclo de vida CRUD y las transiciones de estado de las órdenes del restaurante.
- * Administra la numeración secuencial de comandas, consultas de visualización en cocina,
- * filtrado por estados logísticos y auditoría de cancelaciones.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Persistencia y Transición de Estados: Actualizaciones parametrizadas atómicas de 'estado' y 'estadoPago'.
- * - Generación de Secuencias Autoincrementales de Negocio: Obtención del valor máximo de 'numeroOrden'
- *   para garantizar correlativos únicos por jornada.
- * - Monitoreo Reactivo: Exposición de flujos LiveData para actualización inmediata en pantallas KDS (Kitchen Display System).
+ * DAO para gestionar operaciones sobre la tabla 'pedidos'.
  */
 @Dao
 public interface PedidoDao {

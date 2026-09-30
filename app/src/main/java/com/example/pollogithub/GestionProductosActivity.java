@@ -45,22 +45,7 @@ import com.example.pollogithub.util.ImageUtils;
 import java.io.File;
 
 /**
- * Controlador de Vista: GestionProductosActivity (Administración de Catálogo)
- * 
- * Capa de Presentación / Módulo Administrativo y de Inventario
- * Hereda de: AppCompatActivity
- * 
- * Permite a los administradores del restaurante realizar operaciones de mantenimiento
- * sobre el catálogo de artículos: alta de nuevos platos, edición de nombres, categorías,
- * precios e íconos, así como la activación o desactivación inmediata de disponibilidad (stock).
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Algoritmo de Búsqueda y Filtrado en Memoria: Evaluación combinatoria de predicados booleanos
- *   (categoría seleccionada AND coincidencia de subcadena insensible a mayúsculas/minúsculas).
- * - Componentes Modales (AlertDialog Personalizado): Formulario emergente para captura de datos
- *   con validación estricta de precondiciones numéricas (precio > 0).
- * - Arquitectura Reactiva: Suscripción a 'getProductosLiveData()' del Repositorio para reflejar
- *   instantáneamente las mutaciones en SQLite sin requerir recarga manual de la pantalla.
+ * Administración del catálogo de productos (creación, edición, fotos y disponibilidad).
  */
 public class GestionProductosActivity extends AppCompatActivity {
 

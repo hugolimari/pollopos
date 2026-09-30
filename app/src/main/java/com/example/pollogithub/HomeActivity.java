@@ -14,25 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 /**
- * Controlador de Vista Principal / Dashboard: HomeActivity
- * 
- * Capa de Presentación / Contenedor Central de Navegación (Single-Activity Architecture Parcial)
- * Hereda de: AppCompatActivity
- * 
- * Actúa como panel principal del sistema POS tras la autenticación del usuario.
- * Aloja y administra una barra de navegación inferior personalizada (Bottom Navigation Bar)
- * que conmuta dinámicamente entre los cuatro módulos neurálgicos del sistema mediante transacciones
- * de fragmentos:
- * 1. Terminal de Ventas (VentaFragment)
- * 2. Comandas y Cocina / KDS (PedidosFragment)
- * 3. Analítica y Reportes (ReportesFragment)
- * 4. Perfil y Cierre de Turno (PerfilFragment)
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Modularización con Fragmentos: Desacopla la lógica y UI de cada área funcional en fragmentos reutilizables.
- * - Transacciones Atómicas de Fragmentos: Uso de 'FragmentManager.beginTransaction().replace().commit()'
- *   para garantizar transiciones de vista limpias y sin fugas de memoria.
- * - Gestión de Estado Visual: Mutación programática de ColorStateList para destacar el elemento de navegación seleccionado.
+ * Actividad principal que aloja la navegación inferior:
+ * Venta, Pedidos, Reportes y Perfil.
  */
 public class HomeActivity extends AppCompatActivity {
 

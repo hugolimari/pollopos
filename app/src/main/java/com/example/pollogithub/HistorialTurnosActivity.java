@@ -20,21 +20,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Controlador de Vista: HistorialTurnosActivity
- * 
- * Capa de Presentación / Módulo de Auditoría Contable y Control de Caja
- * Hereda de: AppCompatActivity
- * 
- * Despliega el registro histórico de todas las sesiones de turno operadas en la sucursal.
- * Permite a la gerencia y supervisores fiscalizar los arqueos de caja, contrastando
- * los fondos iniciales, ventas en efectivo y eventuales faltantes o sobrantes resultantes
- * de cada jornada.
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Patrón Empty State (Estado Vacío): Manejo condicional de visibilidad entre la lista de turnos (RecyclerView)
- *   y un contenedor visual informativo ('layoutEmptyTurnos') cuando no existen registros.
- * - Enlace Reactivo con LiveData: Observación continua de 'getAllTurnosLiveData()' para asegurar que
- *   los cierres de caja recientes aparezcan automáticamente en la vista sin necesidad de recargar la actividad.
+ * Historial de turnos y arqueos de caja anteriores.
  */
 public class HistorialTurnosActivity extends AppCompatActivity {
 

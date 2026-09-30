@@ -4,23 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad de Persistencia: TurnoEntity
- * 
- * Capa de Datos / Control de Caja y Arqueos Operativos (Room ORM)
- * Tabla: "turnos"
- * 
- * Modela el ciclo de vida del turno de caja (apertura, operación continua y cierre contable).
- * Constituye el núcleo de la conciliación financiera diaria, registrando el fondo inicial
- * de cambio, las marcas de tiempo de operación, los cálculos teóricos del sistema frente
- * al arqueo físico ciego realizado por el cajero, y las eventuales discrepancias (faltantes o sobrantes).
- * 
- * Conceptos de Ingeniería aplicados:
- * - Ciclo de Vida de Transacción Contable: Transición de estado de "abierto" a "cerrado".
- * - Control de Integridad y Arqueo Ciego: Comparación entre efectivo esperado (fondo inicial + ventas en efectivo)
- *   y el conteo físico real (efectivo contado).
- * - Fórmulas Matemáticas de Conciliación: diferencia = efectivoContado - efectivoEsperado.
- *   (diferencia < 0: faltante de caja; diferencia > 0: sobrante de caja).
- * - Trazabilidad de Auditoría: Registro de operador (usuarioId) y sede (sucursalId).
+ * Entidad Room para la tabla 'turnos'.
  */
 @Entity(tableName = "turnos")
 public class TurnoEntity {

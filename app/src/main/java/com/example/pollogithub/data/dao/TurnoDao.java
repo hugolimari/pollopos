@@ -12,19 +12,7 @@ import com.example.pollogithub.data.entity.TurnoEntity;
 import java.util.List;
 
 /**
- * Objeto de Acceso a Datos: TurnoDao
- * 
- * Capa de Persistencia / Patrón DAO (Data Access Object)
- * Interfaz compilada por Room ORM para la tabla 'turnos'.
- * 
- * Controla la persistencia de las jornadas operativas de caja.
- * Permite identificar si existe una sesión de caja actualmente activa (estado = 'abierto'),
- * registrar aperturas, liquidar cierres de turno y consultar el historial cronológico
- * de arqueos para auditorías contables.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Control de Concurrencia de Negocio: Invariante de negocio donde solo un turno puede estar en estado 'abierto' por terminal.
- * - Reactive State Streams: LiveData de turno activo para reaccionar ante bloqueos o cierres de sesión desde cualquier pantalla.
+ * DAO para gestionar operaciones sobre la tabla 'turnos'.
  */
 @Dao
 public interface TurnoDao {

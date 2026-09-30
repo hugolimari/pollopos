@@ -12,20 +12,7 @@ import com.example.pollogithub.data.entity.UsuarioEntity;
 import java.util.List;
 
 /**
- * Objeto de Acceso a Datos: UsuarioDao
- * 
- * Capa de Persistencia / Patrón DAO (Data Access Object)
- * Interfaz compilada por Room ORM para la tabla 'usuarios'.
- * 
- * Gestiona las operaciones de autenticación, validación de credenciales
- * y administración del personal operativo. Implementa métodos de búsqueda dual
- * (por nombre de usuario o código PIN rápido) garantizando que solo los usuarios
- * con estado activo (activo = 1) puedan autenticarse satisfactoriamente.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Seguridad y Control de Acceso: Cláusulas SQL que validan la combinación de credenciales y vigencia del usuario.
- * - Prevención de Inyección SQL: Consultas precompiladas y parametrizadas generadas por el compilador de Room.
- * - Manejo de Identidad: Búsqueda indexada por credenciales primarias y secundarias (PIN).
+ * DAO para gestionar operaciones sobre la tabla 'usuarios'.
  */
 @Dao
 public interface UsuarioDao {

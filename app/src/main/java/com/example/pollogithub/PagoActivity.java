@@ -23,16 +23,7 @@ import com.example.pollogithub.data.repository.PosRepository;
 import java.util.Locale;
 
 /**
- * Controlador de Vista: PagoActivity (Módulo de Cobranza y Liquidación)
- * 
- * Capa de Presentación / Pasarela de Pago Interna del POS
- * Hereda de: AppCompatActivity
- * 
- * Orquesta el proceso de liquidación y cobranza de una orden de venta con:
- * - Motor de descuentos y promociones en vivo (0%, 5%, 10%, 15%, 20%, Cortesía).
- * - Pago en efectivo con calculadora inteligente de cambio y botones de billetes.
- * - Pago mixto real con desglose editable de parte en efectivo y parte digital (QR/Tarjeta).
- * - Pago con Tarjeta y QR bancario.
+ * Pasarela de pago y cobranza (efectivo con cálculo de vuelto, tarjeta, QR y mixto).
  */
 public class PagoActivity extends AppCompatActivity {
 

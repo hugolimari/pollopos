@@ -30,14 +30,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Controlador de Vista: ReciboActivity (Comprobante Fiscal / Recibo Digital)
- * 
- * Capa de Presentación / Módulo de Facturación e Impresión Térmica
- * Hereda de: AppCompatActivity
- * 
- * Despliega la confirmación visual de la venta concretada y cobrada con renderizado dinámico
- * de ítems reales, notas de preparación, desglose de descuentos y soporte para
- * impresión térmica ESC/POS por Bluetooth y contingencia a PrintManager del sistema.
+ * Pantalla de comprobante de venta, impresión térmica Bluetooth y compartir digital.
  */
 public class ReciboActivity extends AppCompatActivity {
 

@@ -4,21 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad de Persistencia: ProductoEntity
- * 
- * Capa de Datos / Catálogo de Productos e Inventario (Room ORM)
- * Tabla: "productos"
- * 
- * Modela un producto vendible dentro del catálogo comercial del restaurante.
- * Define la estructura de precios, asignación de categoría, disponibilidad operativa
- * y recursos multimedia (íconos y drawables) utilizados por la interfaz de usuario.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Integridad Referencial: Claves foráneas hacia 'sucursales' y 'categorias'.
- * - Soft Delete / Flag de Disponibilidad: El campo 'disponible' implementa una técnica de borrado lógico
- *   o deshabilitación temporal, preservando la integridad referencial en transacciones pasadas.
- * - Desacoplamiento de Recursos Visuales: Mapea identificadores de recursos Android (@DrawableRes) y caracteres Unicode (emojis)
- *   para optimizar la renderización sin requerir sobrecarga de descarga en red.
+ * Entidad Room para la tabla 'productos'.
  */
 @Entity(tableName = "productos")
 public class ProductoEntity {

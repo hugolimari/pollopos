@@ -30,22 +30,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Controlador de Vista (Fragmento): VentaFragment (Terminal de Punto de Venta)
- * 
- * Capa de Presentación / Módulo de Facturación y Mostrador
- * Hereda de: Fragment
- * 
- * Administra la experiencia de venta táctil en el mostrador del restaurante:
- * - Renderizado en cuadrícula de productos disponibles clasificados por categorías.
- * - Barra flotante de carrito de compras reactiva (Cart Bar) que emerge al seleccionar ítems.
- * - Modal para selección de modalidad de consumo (Consumo en Mesa o Para Llevar).
- * - Enlace reactivo mediante 'VentaViewModel' según la arquitectura MVVM.
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Arquitectura MVVM con LiveData: Desacoplamiento total de la lógica de precios y estado del carrito.
- * - Flujo Unidireccional de Datos (UDF): Las interacciones de usuario disparan mutaciones en el ViewModel,
- *   y la UI se reconstruye automáticamente como observadora pasiva de LiveData.
- * - Control Reactivo de Visibilidad: La barra de checkout se visibiliza exclusivamente cuando cartCount > 0.
+ * Terminal de Punto de Venta (catálogo de productos, carrito y modalidad de entrega).
  */
 public class VentaFragment extends Fragment {
 
