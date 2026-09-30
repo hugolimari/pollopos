@@ -18,6 +18,8 @@
         <ImageButton
             android:id="@+id/btnBack"
             style="@style/BotonVolverGrande"
+            android:layout_width="@dimen/btn_icon_size"
+            android:layout_height="@dimen/btn_icon_size"
             android:layout_marginStart="@dimen/spacing_2xl"
             android:layout_marginTop="@dimen/spacing_3xl"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +49,11 @@
         <View
             android:id="@+id/dividerTop"
             style="@style/Divisor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginTop="@dimen/spacing_2xl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
 
         <!-- Resumen del turno -->
@@ -65,108 +71,187 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardResumen"
             style="@style/TarjetaCierre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lblResumen">
 
-            <LinearLayout style="@style/ContenedorTarjetaVertical">
+            <LinearLayout
+                style="@style/ContenedorTarjetaVertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tvResumenSucursalFecha"
                     style="@style/TextoFilaEtiqueta"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="sans-serif-medium"
                     android:text="@string/etiqueta_sucursal_centro" />
 
-                <View style="@style/DivisorSuave" />
+                <View
+                    style="@style/DivisorSuave"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
 
-                <LinearLayout style="@style/FilaResumen">
+                <LinearLayout
+                    style="@style/FilaResumen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
                         style="@style/TextoFilaEtiqueta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="@string/etiqueta_ventas_efectivo" />
                     <TextView
                         android:id="@+id/tvResumenEfectivo"
                         style="@style/TextoFilaValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/cero_moneda" />
                 </LinearLayout>
                 
-                <LinearLayout style="@style/FilaResumenEspaciada">
+                <LinearLayout
+                    style="@style/FilaResumenEspaciada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
                         style="@style/TextoFilaEtiqueta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="@string/etiqueta_ventas_tarjeta" />
                     <TextView
                         android:id="@+id/tvResumenTarjeta"
                         style="@style/TextoFilaValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/cero_moneda" />
                 </LinearLayout>
 
-                <LinearLayout style="@style/FilaResumenEspaciada">
+                <LinearLayout
+                    style="@style/FilaResumenEspaciada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
                         style="@style/TextoFilaEtiqueta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="@string/etiqueta_ventas_qr" />
                     <TextView
                         android:id="@+id/tvResumenQr"
                         style="@style/TextoFilaValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/cero_moneda" />
                 </LinearLayout>
 
                 <View
                     style="@style/DivisorSuave"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp" />
 
-                <LinearLayout style="@style/FilaResumen">
+                <LinearLayout
+                    style="@style/FilaResumen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
                         style="@style/TextoFilaEtiqueta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="@string/etiqueta_total_vendido" />
                     <TextView
                         android:id="@+id/tvResumenTotalVendido"
                         style="@style/TextoFilaValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/cero_moneda" />
                 </LinearLayout>
 
-                <LinearLayout style="@style/FilaResumenEspaciada">
+                <LinearLayout
+                    style="@style/FilaResumenEspaciada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
                         style="@style/TextoFilaEtiqueta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="@string/etiqueta_fondo_inicial_caja" />
                     <TextView
                         android:id="@+id/tvResumenFondoInicial"
                         style="@style/TextoFilaValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/cero_moneda" />
                 </LinearLayout>
 
-                <LinearLayout style="@style/FilaResumenEspaciada">
+                <LinearLayout
+                    style="@style/FilaResumenEspaciada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
                         style="@style/TextoFilaEtiqueta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:textColor="@color/ok_600"
                         android:text="@string/etiqueta_ingresos_extra_caja" />
                     <TextView
                         android:id="@+id/tvResumenIngresosExtra"
                         style="@style/TextoFilaValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/ok_600"
                         android:text="@string/cero_moneda" />
                 </LinearLayout>
 
-                <LinearLayout style="@style/FilaResumenEspaciada">
+                <LinearLayout
+                    style="@style/FilaResumenEspaciada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
                         style="@style/TextoFilaEtiqueta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:textColor="@color/ember_600"
                         android:text="@string/etiqueta_gastos_salidas_menores" />
                     <TextView
                         android:id="@+id/tvResumenEgresosGastos"
                         style="@style/TextoFilaValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/ember_600"
                         android:text="@string/cero_moneda" />
                 </LinearLayout>
 
-                <LinearLayout style="@style/FilaResumenEspaciada">
+                <LinearLayout
+                    style="@style/FilaResumenEspaciada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
                         style="@style/TextoFilaEtiqueta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:textStyle="bold"
                         android:textColor="@color/char_900"
                         android:text="@string/etiqueta_efectivo_esperado_caja" />
                     <TextView
                         android:id="@+id/tvResumenEsperado"
                         style="@style/TextoFilaValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textSize="12.5sp"
                         android:textColor="@color/ember_700"
                         android:text="@string/cero_moneda" />
@@ -190,21 +275,33 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardConteo"
             style="@style/TarjetaCierre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lblConteo">
 
             <LinearLayout
                 style="@style/ContenedorTarjetaVertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center_horizontal">
 
                 <TextView
                     style="@style/TextoEtiqueta"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
                     android:textColor="@color/char_900"
                     android:textSize="13sp"
                     android:text="@string/pregunta_cuanto_efectivo_caja" />
 
-                <LinearLayout style="@style/CampoEfectivoCierre">
+                <LinearLayout
+                    style="@style/CampoEfectivoCierre"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp">
 
                     <TextView
                         style="@style/TextoMontoEfectivo"
@@ -231,9 +328,18 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardAlert"
             style="@style/TarjetaAlerta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardConteo">
 
-            <LinearLayout style="@style/ContenedorTarjetaVertical">
+            <LinearLayout
+                style="@style/ContenedorTarjetaVertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tvAlertTitulo"
@@ -267,6 +373,7 @@
             android:id="@+id/btnConfirm"
             style="@style/BotonPrimarioPrincipal"
             android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height_primary"
             android:layout_marginTop="@dimen/spacing_3xl"
             android:layout_marginHorizontal="@dimen/spacing_xl"
             android:text="@string/btn_confirmar_cierre_turno"

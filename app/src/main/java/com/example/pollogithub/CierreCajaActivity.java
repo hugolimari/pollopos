@@ -194,6 +194,10 @@ public class CierreCajaActivity extends AppCompatActivity {
 
         // 5. Confirmación formal y persistencia del cierre de turno
         findViewById(R.id.btnConfirm).setOnClickListener(v -> {
+            if (turnoId <= 0) {
+                Toast.makeText(CierreCajaActivity.this, R.string.error_turno_no_encontrado, Toast.LENGTH_SHORT).show();
+                return;
+            }
             String conteoStr = etConteo.getText().toString().trim().replace(',', '.');
             double contado = 0.0;
             try {

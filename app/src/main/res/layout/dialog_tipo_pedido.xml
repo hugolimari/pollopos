@@ -54,6 +54,8 @@
     <LinearLayout
         android:id="@+id/cardOptionLocal"
         style="@style/TarjetaOpcionModal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:background="@drawable/bg_card_mode_selected">
 
@@ -110,6 +112,8 @@
     <LinearLayout
         android:id="@+id/cardOptionLlevar"
         style="@style/TarjetaOpcionModal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="18dp"
         android:background="@drawable/bg_card_mode_unselected">
 

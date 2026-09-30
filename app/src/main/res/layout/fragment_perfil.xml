@@ -168,16 +168,23 @@
                 <TextView
                     android:id="@+id/btnGestionMenu"
                     style="@style/FilaOpcionPerfil"
-                    android:drawableStart="@drawable/ic_flame_chicken"
-                    android:drawableTint="@color/ember_700"
-                    android:fontFamily="sans-serif-bold"
-                    android:text="@string/item_gestion_menu"
-                    android:textColor="@color/ember_700" />
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:drawableStart="@drawable/ic_menu_book"
+                    android:drawableTint="@color/char_700"
+                    android:text="@string/item_gestion_menu" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/line_color" />
 
                 <!-- 2. Movimientos de Caja Chica (Gastos / Ingresos) -->
                 <TextView
                     android:id="@+id/btnMovimientoCaja"
                     style="@style/FilaOpcionPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
                     android:drawableStart="@drawable/ic_cash_register"
                     android:drawableTint="@color/char_700"
                     android:text="@string/item_movimientos_caja" />
@@ -191,6 +198,8 @@
                 <TextView
                     android:id="@+id/btnHistorialTurnos"
                     style="@style/FilaOpcionPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
                     android:drawableStart="@drawable/ic_clock"
                     android:drawableTint="@color/char_700"
                     android:text="@string/item_historial_turnos" />
@@ -204,6 +213,8 @@
                 <TextView
                     android:id="@+id/btnShiftDetails"
                     style="@style/FilaOpcionPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
                     android:drawableStart="@drawable/ic_cash_register"
                     android:drawableTint="@color/char_700"
                     android:text="@string/item_detalles_turno_activo" />
@@ -217,6 +228,8 @@
                 <TextView
                     android:id="@+id/btnPrinterStatus"
                     style="@style/FilaOpcionPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
                     android:drawableStart="@drawable/ic_printer"
                     android:drawableTint="@color/char_700"
                     android:text="@string/item_configurar_impresora" />
@@ -230,6 +243,8 @@
                 <TextView
                     android:id="@+id/btnAppVersion"
                     style="@style/FilaOpcionPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
                     android:drawableStart="@drawable/ic_check_green"
                     android:drawableTint="@color/char_400"
                     android:text="@string/item_app_version_offline" />

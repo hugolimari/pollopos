@@ -237,6 +237,8 @@
                 <LinearLayout
                     android:id="@+id/methodEfectivo"
                     style="@style/TarjetaMetodoPago"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/bg_method_selected">
 
                     <FrameLayout
@@ -268,6 +270,8 @@
                 <LinearLayout
                     android:id="@+id/methodTarjeta"
                     style="@style/TarjetaMetodoPago"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/bg_method_unselected">
 
                     <FrameLayout
@@ -299,6 +303,8 @@
                 <LinearLayout
                     android:id="@+id/methodQR"
                     style="@style/TarjetaMetodoPago"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/bg_method_unselected">
 
                     <FrameLayout
@@ -330,6 +336,8 @@
                 <LinearLayout
                     android:id="@+id/methodMixto"
                     style="@style/TarjetaMetodoPago"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/bg_method_unselected">
 
                     <FrameLayout
