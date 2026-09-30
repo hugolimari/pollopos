@@ -30,4 +30,7 @@ public interface SucursalDao {
      */
     @Query("SELECT * FROM sucursales LIMIT 1")
     SucursalEntity getFirst();
+
+    @Query("SELECT * FROM sucursales WHERE id = :id LIMIT 1")
+    SucursalEntity getById(int id);
 }
