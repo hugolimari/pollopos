@@ -819,7 +819,7 @@ public class PosRepository {
                     boolean isPico = (maxCount > 0 && h == maxHour);
 
                     int h12 = (h % 12 == 0) ? 12 : (h % 12);
-                    String ampm = (h < 12) ? "a" : "p";
+                    String ampm = (h < 12) ? "am" : "pm";
                     String label = h12 + ampm;
 
                     stats.ventasPorHoraDetalle.add(new HoraVentaItem(h, label, count, amt, isPico));
@@ -831,7 +831,7 @@ public class PosRepository {
                 // Sin ventas hoy: 7 columnas por defecto 11am-5pm con 0
                 for (int h = 11; h <= 17; h++) {
                     int h12 = (h % 12 == 0) ? 12 : (h % 12);
-                    String ampm = (h < 12) ? "a" : "p";
+                    String ampm = (h < 12) ? "am" : "pm";
                     stats.ventasPorHoraDetalle.add(new HoraVentaItem(h, h12 + ampm, 0, 0.0, false));
                 }
             }
