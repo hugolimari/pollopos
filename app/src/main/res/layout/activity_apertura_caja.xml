@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -126,54 +126,10 @@
                         android:hint="@string/pista_fondo_inicial_defecto"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
-                        android:text="@string/pista_fondo_inicial_defecto"
+                        android:text="0.00"
                         android:textColor="@color/char_900"
                         android:textColorHint="@color/placeholder_text"
                         android:textSize="20sp" />
-                </LinearLayout>
-
-                <!-- Quick Buttons Row -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/btnQuickFondo50"
-                        style="@style/BotonEfectivoRapido"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/btn_height_small"
-                        android:layout_marginEnd="6dp"
-                        android:layout_weight="1"
-                        android:text="@string/btn_rapido_50" />
-
-                    <TextView
-                        android:id="@+id/btnQuickFondo100"
-                        style="@style/BotonEfectivoRapido"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/btn_height_small"
-                        android:layout_marginEnd="6dp"
-                        android:layout_weight="1"
-                        android:text="@string/btn_rapido_100" />
-
-                    <TextView
-                        android:id="@+id/btnQuickFondo200"
-                        style="@style/BotonEfectivoRapido"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/btn_height_small"
-                        android:layout_marginEnd="6dp"
-                        android:layout_weight="1"
-                        android:text="@string/btn_rapido_200" />
-
-                    <TextView
-                        android:id="@+id/btnQuickFondo300"
-                        style="@style/BotonEfectivoRapido"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/btn_height_small"
-                        android:layout_weight="1"
-                        android:text="@string/btn_rapido_300" />
                 </LinearLayout>
 
                 <!-- Help Notice -->

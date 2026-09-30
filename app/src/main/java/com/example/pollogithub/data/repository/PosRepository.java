@@ -19,6 +19,7 @@ import com.example.pollogithub.data.entity.TurnoEntity;
 import com.example.pollogithub.data.entity.UsuarioEntity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
@@ -218,19 +219,23 @@ public class PosRepository {
      */
     public void cerrarTurno(int turnoId, double efectivoContado, Callback<TurnoEntity> callback) {
         executor.execute(() -> {
-            TurnoEntity turno = db.turnoDao().getById(turnoId);
+            TurnoEntity turno = turnoId > 0 ? db.turnoDao().getById(turnoId) : null;
+            if (turno == null) {
+                turno = db.turnoDao().getTurnoActivo();
+            }
             if (turno == null) {
                 mainHandler.post(() -> callback.onError(appContext.getString(R.string.error_turno_no_encontrado)));
                 return;
             }
 
-            List<PagoEntity> pagos = db.pagoDao().getByTurnoId(turnoId);
+            int actualTurnoId = turno.getId();
+            List<PagoEntity> pagos = db.pagoDao().getByTurnoId(actualTurnoId);
             DesglosePagos desglose = calcularDesglosePagos(pagos);
 
-            Double totalEgresos = db.movimientoCajaDao().getTotalEgresosByTurno(turnoId);
+            Double totalEgresos = db.movimientoCajaDao().getTotalEgresosByTurno(actualTurnoId);
             if (totalEgresos == null) totalEgresos = 0.0;
 
-            Double totalIngresos = db.movimientoCajaDao().getTotalIngresosExtraByTurno(turnoId);
+            Double totalIngresos = db.movimientoCajaDao().getTotalIngresosExtraByTurno(actualTurnoId);
             if (totalIngresos == null) totalIngresos = 0.0;
 
             double esperado = turno.getFondoInicial() + desglose.totalEfectivo + totalIngresos - totalEgresos;
@@ -243,7 +248,9 @@ public class PosRepository {
             turno.setEstado("cerrado");
 
             db.turnoDao().update(turno);
-            mainHandler.post(() -> callback.onSuccess(turno));
+            sessionManager.setTurnoId(0);
+            TurnoEntity finalTurno = turno;
+            mainHandler.post(() -> callback.onSuccess(finalTurno));
         });
     }
 
@@ -561,6 +568,21 @@ public class PosRepository {
     }
 
     /**
+     * DTO para ítems de ranking de productos más vendidos.
+     */
+    public static class ProductoRanking {
+        public String nombre;
+        public int cantidad;
+        public double total;
+
+        public ProductoRanking(String nombre, int cantidad, double total) {
+            this.nombre = nombre;
+            this.cantidad = cantidad;
+            this.total = total;
+        }
+    }
+
+    /**
      * DTO para estadísticas globales de Business Intelligence y métricas operativas del POS.
      */
     public static class EstadisticasReporte {
@@ -569,12 +591,15 @@ public class PosRepository {
         public double ticketPromedio;
         public int pedidosMesa;
         public int pedidosLlevar;
-        public String horaPico = "12:00 PM - 2:00 PM";
+        public String horaPico = "Sin ventas";
         public double totalEfectivo;
         public double totalTarjeta;
         public double totalQr;
-        public String productoMasVendido = "1/4 de pollo frito";
-        public int productoMasVendidoCantidad = 0;
+        public double ventasAyer = 0.0;
+        public double porcentajeCrecimiento = 0.0;
+        public boolean tieneDatosAyer = false;
+        public int[] ventasPorHora = new int[7]; // 11, 12, 13, 14, 15, 16, 17+
+        public List<ProductoRanking> topProductosSemana = new ArrayList<>();
     }
 
     /**
@@ -583,6 +608,10 @@ public class PosRepository {
      * - Distribución por medio de pago (incluyendo desglose mixto).
      * - Ticket promedio (totalVentas / totalPedidos).
      * - Proporción de servicio en sala vs. pedidos para llevar.
+     * - Hora pico real basada en ventas del día (o "Sin ventas" si no hay).
+     * - Ventas por hora de hoy para el gráfico de barras.
+     * - Productos más vendidos en los últimos 7 días.
+     * - Comparativa de crecimiento contra el día anterior.
      * 
      * @param callback Callback que retorna el DTO EstadisticasReporte calculado.
      */
@@ -599,16 +628,112 @@ public class PosRepository {
             stats.totalQr = desglose.totalQr;
             stats.ticketPromedio = stats.totalPedidos > 0 ? (stats.totalVentas / stats.totalPedidos) : 0.0;
 
+            java.util.Calendar calHoy = java.util.Calendar.getInstance();
+            calHoy.set(java.util.Calendar.HOUR_OF_DAY, 0);
+            calHoy.set(java.util.Calendar.MINUTE, 0);
+            calHoy.set(java.util.Calendar.SECOND, 0);
+            calHoy.set(java.util.Calendar.MILLISECOND, 0);
+            long inicioHoy = calHoy.getTimeInMillis();
+            long inicioAyer = inicioHoy - 24L * 60L * 60L * 1000L;
+            long inicioSemana = inicioHoy - 6L * 24L * 60L * 60L * 1000L;
+
             List<PedidoEntity> todosPedidos = db.pedidoDao().getAll();
             int mesa = 0, llevar = 0;
+            int[] hourlyCount = new int[24];
+            java.util.Map<String, int[]> rankingMap = new java.util.HashMap<>(); // nombre -> [cantidad, totalCents]
+
             if (todosPedidos != null) {
                 for (PedidoEntity pe : todosPedidos) {
+                    if ("cancelado".equalsIgnoreCase(pe.getEstado())) continue;
+
                     if ("mesa".equalsIgnoreCase(pe.getTipoEntrega()) || "local".equalsIgnoreCase(pe.getTipoEntrega())) mesa++;
                     else llevar++;
+
+                    long creado = pe.getCreadoEn();
+
+                    // Ventas de hoy y distribución horaria
+                    if (creado >= inicioHoy) {
+                        java.util.Calendar calP = java.util.Calendar.getInstance();
+                        calP.setTimeInMillis(creado);
+                        int h = calP.get(java.util.Calendar.HOUR_OF_DAY);
+                        if (h >= 0 && h < 24) {
+                            hourlyCount[h]++;
+                        }
+
+                        // Mapeo a las 7 columnas del gráfico (11am a 5pm)
+                        if (h == 11) stats.ventasPorHora[0]++;
+                        else if (h == 12) stats.ventasPorHora[1]++;
+                        else if (h == 13) stats.ventasPorHora[2]++;
+                        else if (h == 14) stats.ventasPorHora[3]++;
+                        else if (h == 15) stats.ventasPorHora[4]++;
+                        else if (h == 16) stats.ventasPorHora[5]++;
+                        else if (h >= 17) stats.ventasPorHora[6]++;
+                    } else if (creado >= inicioAyer && creado < inicioHoy) {
+                        stats.ventasAyer += pe.getTotal();
+                    }
+
+                    // Productos más vendidos de la semana (últimos 7 días)
+                    if (creado >= inicioSemana) {
+                        List<PedidoDetalleEntity> detalles = db.pedidoDetalleDao().getByPedidoId(pe.getId());
+                        if (detalles != null) {
+                            for (PedidoDetalleEntity det : detalles) {
+                                String nom = det.getNombreProducto();
+                                if (nom == null || nom.trim().isEmpty()) continue;
+                                int[] agg = rankingMap.get(nom);
+                                if (agg == null) {
+                                    agg = new int[]{0, 0};
+                                    rankingMap.put(nom, agg);
+                                }
+                                agg[0] += det.getCantidad();
+                                agg[1] += (int) Math.round(det.getSubtotal() * 100.0);
+                            }
+                        }
+                    }
                 }
             }
             stats.pedidosMesa = mesa;
             stats.pedidosLlevar = llevar;
+
+            // Determinar hora pico de hoy
+            int maxHour = -1;
+            int maxCount = 0;
+            for (int h = 0; h < 24; h++) {
+                if (hourlyCount[h] > maxCount) {
+                    maxCount = hourlyCount[h];
+                    maxHour = h;
+                }
+            }
+            if (maxCount > 0 && maxHour >= 0) {
+                int startHour12 = maxHour % 12 == 0 ? 12 : maxHour % 12;
+                String startAmPm = maxHour < 12 ? "am" : "pm";
+                int endHour24 = (maxHour + 1) % 24;
+                int endHour12 = endHour24 % 12 == 0 ? 12 : endHour24 % 12;
+                String endAmPm = endHour24 < 12 ? "am" : "pm";
+                stats.horaPico = String.format(java.util.Locale.getDefault(), "%d%s - %d%s", startHour12, startAmPm, endHour12, endAmPm);
+            } else {
+                stats.horaPico = "Sin ventas";
+            }
+
+            // Comparativa vs ayer
+            if (stats.ventasAyer > 0) {
+                stats.tieneDatosAyer = true;
+                stats.porcentajeCrecimiento = ((stats.totalVentas - stats.ventasAyer) / stats.ventasAyer) * 100.0;
+            } else {
+                stats.tieneDatosAyer = false;
+                stats.porcentajeCrecimiento = 0.0;
+            }
+
+            // Ordenar productos top de la semana
+            List<ProductoRanking> rankingList = new ArrayList<>();
+            for (java.util.Map.Entry<String, int[]> entry : rankingMap.entrySet()) {
+                rankingList.add(new ProductoRanking(entry.getKey(), entry.getValue()[0], entry.getValue()[1] / 100.0));
+            }
+            Collections.sort(rankingList, (a, b) -> Integer.compare(b.cantidad, a.cantidad));
+            if (rankingList.size() > 3) {
+                stats.topProductosSemana = rankingList.subList(0, 3);
+            } else {
+                stats.topProductosSemana = rankingList;
+            }
 
             mainHandler.post(() -> callback.onSuccess(stats));
         });

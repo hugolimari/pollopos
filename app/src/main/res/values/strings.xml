@@ -92,7 +92,7 @@
     <string name="apertura_bienvenido_usuario">Bienvenido, %1$s</string>
     <string name="titulo_fondo_inicial">Fondo Inicial de Caja</string>
     <string name="desc_fondo_inicial">Ingresa el monto de efectivo con el que inicias operaciones en tu gaveta.</string>
-    <string name="pista_fondo_inicial_defecto">100.00</string>
+    <string name="pista_fondo_inicial_defecto">0.00</string>
     <string name="btn_rapido_50">Bs. 50</string>
     <string name="btn_rapido_100">Bs. 100</string>
     <string name="btn_rapido_200">Bs. 200</string>
@@ -121,9 +121,9 @@
     <string name="titulo_conteo_efectivo">Conteo de efectivo</string>
     <string name="pregunta_cuanto_efectivo_caja">¿Cuánto dinero en efectivo hay en caja?</string>
     <string name="cierre_alerta_faltante_titulo">Faltante en caja</string>
-    <string name="cierre_alerta_faltante_desc">Hay Bs. %1$.2f menos de lo esperado. Revisa si hubo algún vuelto mal entregado antes de cerrar.</string>
+    <string name="cierre_alerta_faltante_desc">Hay Bs. %1$s menos de lo esperado. Revisa si hubo algún vuelto mal entregado antes de cerrar.</string>
     <string name="cierre_alerta_sobrante_titulo">Sobrante en caja</string>
-    <string name="cierre_alerta_sobrante_desc">Hay Bs. %1$.2f más de lo esperado en la gaveta.</string>
+    <string name="cierre_alerta_sobrante_desc">Hay Bs. %1$s más de lo esperado en la gaveta.</string>
     <string name="cierre_alerta_exacta_titulo">Caja cuadrada</string>
     <string name="cierre_alerta_exacta_desc">El efectivo contado coincide con el esperado.</string>
     <string name="btn_confirmar_cierre_turno">Confirmar cierre de turno</string>
@@ -211,7 +211,12 @@
     <!-- Recibo y Ticket (ReciboActivity) -->
     <string name="titulo_venta_registrada">Venta registrada</string>
     <string name="subtitulo_pedido_cobrado_exito">Pedido cobrado con éxito</string>
-    <string name="recibo_nombre_negocio">Pollos El Fogón</string>
+    <string name="recibo_nombre_negocio">PolloPOS</string>
+    <string name="toast_doble_toque_confirmar">Presiona nuevamente para confirmar el cobro</string>
+    <string name="btn_confirmar_pago_toque_dos">Toca otra vez para confirmar</string>
+    <string name="reportes_sin_ventas_hoy">Sin ventas registradas hoy</string>
+    <string name="reportes_sin_ventas_semana">Sin ventas registradas en la semana</string>
+    <string name="etiqueta_vendidos_semana">%1$d vendidos en la semana</string>
     <string name="recibo_etiqueta_pedido">Pedido</string>
     <string name="recibo_etiqueta_tipo">Tipo</string>
     <string name="recibo_etiqueta_cajero">Cajero</string>

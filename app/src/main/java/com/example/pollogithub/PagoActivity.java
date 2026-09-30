@@ -65,6 +65,7 @@ public class PagoActivity extends AppCompatActivity {
     private int pedidoId;
     private int orderNumber;
     private String tipoEntrega;
+    private long lastConfirmPaymentTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -427,6 +428,24 @@ public class PagoActivity extends AppCompatActivity {
             received = totalAmount;
             change = 0.0;
         }
+
+        // Doble toque obligatorio para prevenir cobros accidentales
+        long now = System.currentTimeMillis();
+        if (now - lastConfirmPaymentTime > 2500) {
+            lastConfirmPaymentTime = now;
+            Toast.makeText(this, R.string.toast_doble_toque_confirmar, Toast.LENGTH_SHORT).show();
+            TextView btnConfirm = findViewById(R.id.btnConfirmPayment);
+            if (btnConfirm != null) {
+                btnConfirm.setText(R.string.btn_confirmar_pago_toque_dos);
+                btnConfirm.postDelayed(() -> {
+                    if (System.currentTimeMillis() - lastConfirmPaymentTime >= 2500) {
+                        btnConfirm.setText(R.string.btn_confirmar_pago);
+                    }
+                }, 2500);
+            }
+            return;
+        }
+        lastConfirmPaymentTime = 0;
 
         final double finalReceived = received;
         final double finalChange = change;

@@ -77,12 +77,6 @@ public class AperturaCajaActivity extends AppCompatActivity {
 
         etFondoInicial = findViewById(R.id.etFondoInicial);
 
-        // 4. Atajos de Montos Rápidos (Facilidad de uso y UX en pantallas táctiles POS)
-        findViewById(R.id.btnQuickFondo50).setOnClickListener(v -> etFondoInicial.setText("50.00"));
-        findViewById(R.id.btnQuickFondo100).setOnClickListener(v -> etFondoInicial.setText("100.00"));
-        findViewById(R.id.btnQuickFondo200).setOnClickListener(v -> etFondoInicial.setText("200.00"));
-        findViewById(R.id.btnQuickFondo300).setOnClickListener(v -> etFondoInicial.setText("300.00"));
-
         // 5. Botón de Confirmación y Validación de Apertura
         findViewById(R.id.btnAbrirTurno).setOnClickListener(v -> {
             String montoStr = etFondoInicial.getText().toString().trim();

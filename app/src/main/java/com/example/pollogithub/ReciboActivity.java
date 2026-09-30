@@ -286,8 +286,9 @@ public class ReciboActivity extends AppCompatActivity {
             if ("mixto".equalsIgnoreCase(paymentMethod) && (mixtoEf > 0 || mixtoDig > 0)) {
                 methodTicket = String.format(Locale.getDefault(), "Mixto (Ef:%.2f Dig:%.2f)", mixtoEf, mixtoDig);
             }
+            String bizName = getString(R.string.recibo_nombre_negocio);
             bytes = builder.buildTicketCliente(
-                    "POLLO QUE HACE POLLO",
+                    bizName,
                     "Sucursal Centro",
                     orderNumber,
                     tipoEntrega,
@@ -327,10 +328,11 @@ public class ReciboActivity extends AppCompatActivity {
      * Contingencia nativa Android: renderiza un comprobante HTML para cualquier impresora WiFi/USB o exportación PDF.
      */
     private void imprimirConSistemaAndroid() {
+        String bizName = getString(R.string.recibo_nombre_negocio);
         StringBuilder sbHtml = new StringBuilder();
         sbHtml.append("<html><body style='font-family:sans-serif; padding:12px;'>");
         sbHtml.append("<div style='text-align:center;'>");
-        sbHtml.append("<h2>POLLO QUE HACE POLLO</h2>");
+        sbHtml.append("<h2>").append(bizName).append("</h2>");
         sbHtml.append("<p>Sucursal Centro</p>");
         sbHtml.append("<h3>ORDEN #").append(String.format(Locale.getDefault(), "%04d", orderNumber)).append("</h3>");
         String mod = "mesa".equalsIgnoreCase(tipoEntrega) || "local".equalsIgnoreCase(tipoEntrega) ? "En el local" : "Para llevar";
@@ -378,8 +380,9 @@ public class ReciboActivity extends AppCompatActivity {
         if ("mixto".equalsIgnoreCase(paymentMethod) && (mixtoEf > 0 || mixtoDig > 0)) {
             methodDisplay = String.format(Locale.getDefault(), "Mixto (Efectivo: Bs. %.2f, Digital: Bs. %.2f)", mixtoEf, mixtoDig);
         }
+        String bizName = getString(R.string.recibo_nombre_negocio);
         String textTicket = EscPosTicketBuilder.buildPlainTextTicket(
-                "POLLO QUE HACE POLLO",
+                bizName,
                 orderNumber,
                 tipoEntrega,
                 detallesList,

@@ -64,9 +64,6 @@ public class VentaFragment extends Fragment {
     private String userName = "";
 
     private String currentTipoEntrega = "mesa"; // "mesa" representa "En el local" en la base de datos
-    private View btnHeaderModeLocal, btnHeaderModeLlevar;
-    private ImageView ivHeaderIconLocal, ivHeaderIconLlevar;
-    private TextView tvHeaderTextLocal, tvHeaderTextLlevar;
 
     /**
      * Patrón Factory para instanciación estandarizada con paso seguro de argumentos.
@@ -103,17 +100,6 @@ public class VentaFragment extends Fragment {
 
         // Ocultamiento preventivo de la barra de checkout hasta que existan artículos seleccionados
         cartBar.setVisibility(View.GONE);
-
-        // Control segmentado de modalidad de entrega
-        btnHeaderModeLocal = view.findViewById(R.id.btnHeaderModeLocal);
-        btnHeaderModeLlevar = view.findViewById(R.id.btnHeaderModeLlevar);
-        ivHeaderIconLocal = view.findViewById(R.id.ivHeaderIconLocal);
-        ivHeaderIconLlevar = view.findViewById(R.id.ivHeaderIconLlevar);
-        tvHeaderTextLocal = view.findViewById(R.id.tvHeaderTextLocal);
-        tvHeaderTextLlevar = view.findViewById(R.id.tvHeaderTextLlevar);
-
-        btnHeaderModeLocal.setOnClickListener(v -> setOrderDeliveryMode("mesa"));
-        btnHeaderModeLlevar.setOnClickListener(v -> setOrderDeliveryMode("para_llevar"));
 
         if (userName != null && !userName.isEmpty()) {
             tvCashierName.setText(userName);
@@ -189,35 +175,10 @@ public class VentaFragment extends Fragment {
     }
 
     /**
-     * Conmuta la modalidad de despacho activa y actualiza el control segmentado de la cabecera.
-     * 
-     * @param mode "mesa" (Consumo en el local) o "para_llevar".
+     * Fija la modalidad de despacho ("mesa" o "para_llevar").
      */
     private void setOrderDeliveryMode(String mode) {
         currentTipoEntrega = mode;
-        boolean isLocal = "mesa".equalsIgnoreCase(mode);
-
-        if (isLocal) {
-            btnHeaderModeLocal.setBackgroundResource(R.drawable.bg_order_mode_active);
-            ivHeaderIconLocal.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.ember_600)));
-            tvHeaderTextLocal.setTextColor(requireContext().getColor(R.color.ember_600));
-            tvHeaderTextLocal.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);
-
-            btnHeaderModeLlevar.setBackgroundResource(android.R.color.transparent);
-            ivHeaderIconLlevar.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.char_400)));
-            tvHeaderTextLlevar.setTextColor(requireContext().getColor(R.color.char_400));
-            tvHeaderTextLlevar.setTypeface(android.graphics.Typeface.DEFAULT);
-        } else {
-            btnHeaderModeLlevar.setBackgroundResource(R.drawable.bg_order_mode_active);
-            ivHeaderIconLlevar.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.ember_600)));
-            tvHeaderTextLlevar.setTextColor(requireContext().getColor(R.color.ember_600));
-            tvHeaderTextLlevar.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);
-
-            btnHeaderModeLocal.setBackgroundResource(android.R.color.transparent);
-            ivHeaderIconLocal.setImageTintList(ColorStateList.valueOf(requireContext().getColor(R.color.char_400)));
-            tvHeaderTextLocal.setTextColor(requireContext().getColor(R.color.char_400));
-            tvHeaderTextLocal.setTypeface(android.graphics.Typeface.DEFAULT);
-        }
     }
 
     /**

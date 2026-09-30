@@ -54,8 +54,10 @@ public class CierreCajaActivity extends AppCompatActivity {
 
     private PosRepository repo;
     private double efectivoEsperado = 0.0;
+    private int turnoId = 0;
 
     // Componentes para desglose de métricas contables
+    private TextView tvSubtitle;
     private TextView tvResumenSucursalFecha;
     private TextView tvResumenEfectivo;
     private TextView tvResumenTarjeta;
@@ -79,12 +81,15 @@ public class CierreCajaActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cierre_caja);
 
-        // Ajuste de insets de ventana para barras del sistema
-        ViewCompat.setOnApplyWindowInsetsListener((View) findViewById(R.id.tvTitle).getParent(), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Ajuste de insets de ventana para barras del sistema usando el id del contenedor raíz
+        View mainView = findViewById(R.id.mainCierre);
+        if (mainView != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
+        }
 
         repo = PosRepository.getInstance(this);
 
@@ -92,6 +97,7 @@ public class CierreCajaActivity extends AppCompatActivity {
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
         // Enlace de vistas de métricas contables
+        tvSubtitle = findViewById(R.id.tvSubtitle);
         tvResumenSucursalFecha = findViewById(R.id.tvResumenSucursalFecha);
         tvResumenEfectivo = findViewById(R.id.tvResumenEfectivo);
         tvResumenTarjeta = findViewById(R.id.tvResumenTarjeta);
@@ -128,35 +134,35 @@ public class CierreCajaActivity extends AppCompatActivity {
         String fecha = sdf.format(new Date());
         tvResumenSucursalFecha.setText(String.format("Sucursal Centro · %s", fecha));
 
-        int turnoId = repo.getSessionManager().getTurnoId();
+        String userName = repo.getSessionManager().getUserName();
+        if (tvSubtitle != null) {
+            tvSubtitle.setText(String.format(Locale.getDefault(), "Turno de %s · %s", userName, fecha));
+        }
 
-        // 1. Carga asíncrona del resumen contable del turno desde el Repositorio
-        repo.getResumenTurno(turnoId, new PosRepository.Callback<PosRepository.ResumenTurno>() {
-            @Override
-            public void onSuccess(PosRepository.ResumenTurno r) {
-                efectivoEsperado = r.esperado;
+        turnoId = repo.getSessionManager().getTurnoId();
 
-                // Despliegue de importes en moneda nacional (Bolivianos - Bs.)
-                tvResumenEfectivo.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalEfectivo));
-                tvResumenTarjeta.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalTarjeta));
-                tvResumenQr.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalQr));
-                tvResumenTotalVendido.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalVentas));
-                tvResumenFondoInicial.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.fondoInicial));
-                if (tvResumenIngresosExtra != null) {
-                    tvResumenIngresosExtra.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalIngresosExtra));
+        if (turnoId <= 0) {
+            // Si el turnoId no está en SessionManager, recuperar el turno activo directamente de la BD
+            repo.getTurnoActivo(new PosRepository.Callback<TurnoEntity>() {
+                @Override
+                public void onSuccess(TurnoEntity activo) {
+                    if (activo != null) {
+                        turnoId = activo.getId();
+                        repo.getSessionManager().setTurnoId(turnoId);
+                        cargarResumen(turnoId);
+                    } else {
+                        Toast.makeText(CierreCajaActivity.this, R.string.error_turno_no_encontrado, Toast.LENGTH_SHORT).show();
+                    }
                 }
-                if (tvResumenEgresosGastos != null) {
-                    tvResumenEgresosGastos.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalEgresosGastos));
+
+                @Override
+                public void onError(String error) {
+                    Toast.makeText(CierreCajaActivity.this, error, Toast.LENGTH_SHORT).show();
                 }
-                tvResumenEsperado.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.esperado));
-
-                // Cálculo inicial de diferencia
-                actualizarDiferencia();
-            }
-
-            @Override
-            public void onError(String error) {}
-        });
+            });
+        } else {
+            cargarResumen(turnoId);
+        }
 
         // 2. Observador en tiempo real de digitación para el arqueo físico
         etConteo.addTextChangedListener(new TextWatcher() {
@@ -199,9 +205,38 @@ public class CierreCajaActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(String error) {
-                    Toast.makeText(CierreCajaActivity.this, getString(R.string.toast_error_cerrar_turno, error), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CierreCajaActivity.this, getString(R.string.toast_error_cerrar_turno, error != null ? error : ""), Toast.LENGTH_SHORT).show();
                 }
             });
+        });
+    }
+
+    private void cargarResumen(int id) {
+        repo.getResumenTurno(id, new PosRepository.Callback<PosRepository.ResumenTurno>() {
+            @Override
+            public void onSuccess(PosRepository.ResumenTurno r) {
+                if (r == null) return;
+                efectivoEsperado = r.esperado;
+
+                // Despliegue de importes en moneda nacional (Bolivianos - Bs.)
+                tvResumenEfectivo.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalEfectivo));
+                tvResumenTarjeta.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalTarjeta));
+                tvResumenQr.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalQr));
+                tvResumenTotalVendido.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalVentas));
+                tvResumenFondoInicial.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.fondoInicial));
+                if (tvResumenIngresosExtra != null) {
+                    tvResumenIngresosExtra.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalIngresosExtra));
+                }
+                if (tvResumenEgresosGastos != null) {
+                    tvResumenEgresosGastos.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.totalEgresosGastos));
+                }
+                tvResumenEsperado.setText(String.format(Locale.getDefault(), "Bs. %.2f", r.esperado));
+
+                actualizarDiferencia();
+            }
+
+            @Override
+            public void onError(String error) {}
         });
     }
 
@@ -226,15 +261,17 @@ public class CierreCajaActivity extends AppCompatActivity {
             cardAlert.setCardBackgroundColor(Color.parseColor("#FFCDD2"));
             tvAlertTitulo.setText(R.string.cierre_alerta_faltante_titulo);
             tvAlertTitulo.setTextColor(Color.parseColor("#D32F2F"));
-            tvAlertMonto.setText(String.format(Locale.getDefault(), "- Bs. %.2f", Math.abs(diff)));
-            tvAlertDescripcion.setText(getString(R.string.cierre_alerta_faltante_desc, Math.abs(diff)));
+            String montoStr = String.format(Locale.getDefault(), "%.2f", Math.abs(diff));
+            tvAlertMonto.setText(String.format(Locale.getDefault(), "- Bs. %s", montoStr));
+            tvAlertDescripcion.setText(getString(R.string.cierre_alerta_faltante_desc, montoStr));
         } else if (diff > 0.01) {
             // Caso: Sobrante de dinero en gaveta (Alerta informativa - Verde)
             cardAlert.setCardBackgroundColor(Color.parseColor("#E8F5E9"));
             tvAlertTitulo.setText(R.string.cierre_alerta_sobrante_titulo);
             tvAlertTitulo.setTextColor(ContextCompat.getColor(this, R.color.ok_600));
-            tvAlertMonto.setText(String.format(Locale.getDefault(), "+ Bs. %.2f", diff));
-            tvAlertDescripcion.setText(getString(R.string.cierre_alerta_sobrante_desc, diff));
+            String montoStr = String.format(Locale.getDefault(), "%.2f", diff);
+            tvAlertMonto.setText(String.format(Locale.getDefault(), "+ Bs. %s", montoStr));
+            tvAlertDescripcion.setText(getString(R.string.cierre_alerta_sobrante_desc, montoStr));
         } else {
             // Caso: Conciliación perfecta (Caja Cuadrada)
             cardAlert.setCardBackgroundColor(Color.parseColor("#E8F5E9"));

@@ -116,6 +116,7 @@
                     android:textSize="32sp" />
 
                 <LinearLayout
+                    android:id="@+id/containerGrowthTag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -123,15 +124,18 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingHorizontal="10dp"
-                    android:paddingVertical="4dp">
+                    android:paddingVertical="4dp"
+                    android:visibility="gone">
 
                     <ImageView
+                        android:id="@+id/ivTrendIcon"
                         android:layout_width="12dp"
                         android:layout_height="12dp"
                         android:contentDescription="@string/desc_crecimiento"
                         android:src="@drawable/ic_trend_up" />
 
                     <TextView
+                        android:id="@+id/tvGrowthRate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
@@ -346,8 +350,9 @@
                         android:orientation="vertical">
 
                         <View
+                            android:id="@+id/barCol11a"
                             android:layout_width="18dp"
-                            android:layout_height="24dp"
+                            android:layout_height="6dp"
                             android:background="@drawable/bg_chip_selected"
                             android:backgroundTint="@color/ember_100" />
 
@@ -370,8 +375,9 @@
                         android:orientation="vertical">
 
                         <View
+                            android:id="@+id/barCol12p"
                             android:layout_width="18dp"
-                            android:layout_height="45dp"
+                            android:layout_height="6dp"
                             android:background="@drawable/bg_chip_selected"
                             android:backgroundTint="@color/ember_100" />
 
@@ -385,7 +391,7 @@
                             android:textSize="10.5sp" />
                     </LinearLayout>
 
-                    <!-- Col 1p (Tallest) -->
+                    <!-- Col 1p -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -394,10 +400,11 @@
                         android:orientation="vertical">
 
                         <View
+                            android:id="@+id/barCol1p"
                             android:layout_width="18dp"
-                            android:layout_height="90dp"
+                            android:layout_height="6dp"
                             android:background="@drawable/bg_chip_selected"
-                            android:backgroundTint="@color/ember_600" />
+                            android:backgroundTint="@color/ember_100" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -418,8 +425,9 @@
                         android:orientation="vertical">
 
                         <View
+                            android:id="@+id/barCol2p"
                             android:layout_width="18dp"
-                            android:layout_height="72dp"
+                            android:layout_height="6dp"
                             android:background="@drawable/bg_chip_selected"
                             android:backgroundTint="@color/ember_100" />
 
@@ -442,8 +450,9 @@
                         android:orientation="vertical">
 
                         <View
+                            android:id="@+id/barCol3p"
                             android:layout_width="18dp"
-                            android:layout_height="52dp"
+                            android:layout_height="6dp"
                             android:background="@drawable/bg_chip_selected"
                             android:backgroundTint="@color/ember_100" />
 
@@ -466,8 +475,9 @@
                         android:orientation="vertical">
 
                         <View
+                            android:id="@+id/barCol4p"
                             android:layout_width="18dp"
-                            android:layout_height="35dp"
+                            android:layout_height="6dp"
                             android:background="@drawable/bg_chip_selected"
                             android:backgroundTint="@color/ember_100" />
 
@@ -490,8 +500,9 @@
                         android:orientation="vertical">
 
                         <View
+                            android:id="@+id/barCol5p"
                             android:layout_width="18dp"
-                            android:layout_height="18dp"
+                            android:layout_height="6dp"
                             android:background="@drawable/bg_chip_selected"
                             android:backgroundTint="@color/ember_100" />
 
@@ -523,8 +534,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/tvNoTopProducts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_order_card"
+                    android:gravity="center"
+                    android:paddingVertical="20dp"
+                    android:text="@string/reportes_sin_ventas_semana"
+                    android:textColor="@color/char_400"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
                 <!-- Rank Item 1 (Top) -->
                 <LinearLayout
+                    android:id="@+id/rankItem1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -552,6 +576,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvRank1Name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
@@ -560,16 +585,18 @@
                             android:textSize="13.5sp" />
 
                         <TextView
+                            android:id="@+id/tvRank1Sold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif"
-                            tools:text="32 vendidos hoy"
+                            tools:text="32 vendidos en la semana"
                             android:textColor="@color/char_400"
                             android:textSize="11sp" />
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvRank1Amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
@@ -580,6 +607,7 @@
 
                 <!-- Rank Item 2 -->
                 <LinearLayout
+                    android:id="@+id/rankItem2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -607,6 +635,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvRank2Name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
@@ -615,16 +644,18 @@
                             android:textSize="13.5sp" />
 
                         <TextView
+                            android:id="@+id/tvRank2Sold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif"
-                            tools:text="18 vendidos hoy"
+                            tools:text="18 vendidos en la semana"
                             android:textColor="@color/char_400"
                             android:textSize="11sp" />
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvRank2Amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
@@ -635,6 +666,7 @@
 
                 <!-- Rank Item 3 -->
                 <LinearLayout
+                    android:id="@+id/rankItem3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -662,6 +694,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvRank3Name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-bold"
@@ -670,16 +703,18 @@
                             android:textSize="13.5sp" />
 
                         <TextView
+                            android:id="@+id/tvRank3Sold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"
                             android:fontFamily="sans-serif"
-                            tools:text="7 vendidos hoy"
+                            tools:text="7 vendidos en la semana"
                             android:textColor="@color/char_400"
                             android:textSize="11sp" />
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvRank3Amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-bold"
