@@ -25,6 +25,7 @@
     <string name="btn_regresar">Regresar</string>
     <string name="btn_entendido">Entendido</string>
     <string name="desc_volver">Volver</string>
+    <string name="content_desc_back">Volver</string>
     <string name="desc_buscar">Buscar</string>
     <string name="desc_detalle">Detalle</string>
     <string name="desc_seleccionado">Seleccionado</string>

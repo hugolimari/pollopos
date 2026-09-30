@@ -15,6 +15,7 @@ import com.example.pollogithub.data.entity.PagoEntity;
 import com.example.pollogithub.data.entity.PedidoDetalleEntity;
 import com.example.pollogithub.data.entity.PedidoEntity;
 import com.example.pollogithub.data.entity.ProductoEntity;
+import com.example.pollogithub.data.entity.SucursalEntity;
 import com.example.pollogithub.data.entity.TurnoEntity;
 import com.example.pollogithub.data.entity.UsuarioEntity;
 
@@ -163,6 +164,23 @@ public class PosRepository {
         executor.execute(() -> {
             TurnoEntity turno = db.turnoDao().getTurnoActivo();
             mainHandler.post(() -> callback.onSuccess(turno));
+        });
+    }
+
+    /**
+     * Consulta asíncrona de la sucursal activa vinculada a la sesión o primera registrada.
+     */
+    public void getSucursalActiva(Callback<SucursalEntity> callback) {
+        executor.execute(() -> {
+            int sucursalId = sessionManager.getSucursalId();
+            SucursalEntity s = sucursalId > 0 ? db.sucursalDao().getById(sucursalId) : null;
+            if (s == null) {
+                s = db.sucursalDao().getFirst();
+            }
+            final SucursalEntity result = s;
+            mainHandler.post(() -> {
+                if (callback != null) callback.onSuccess(result);
+            });
         });
     }
 
