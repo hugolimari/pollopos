@@ -16,21 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Adaptador de Comandas y Pedidos: OrderAdapter
- * 
- * Capa de Presentación / Patrón Adapter & ViewHolder
- * Hereda de: RecyclerView.Adapter<OrderAdapter.OrderViewHolder>
- * 
- * Gestiona el enlace y renderizado de la lista de pedidos activos en la interfaz KDS.
- * Adapta dinámicamente los estilos visuales, colores de insignias de estado (badges)
- * y botones de acción conforme a la máquina de estados del pedido ("cocina", "listo", "camino").
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Patrón ViewHolder: Reutilización de nodos visuales en memoria para listas de alto rendimiento.
- * - Desacoplamiento de Eventos con Interfaces Funcionales: 'OnOrderActionListener' maneja las pulsaciones
- *   de detalle y avance de estado de forma segregada.
- * - Enrutamiento Polimórfico de Recursos Gráficos: Selección contextual de íconos según modalidad
- *   (mesa vs llevar vs delivery) y paleta de colores semántica (amarillo espera, verde éxito, azul info).
+ * Adaptador para la lista de pedidos en el monitor de cocina (KDS).
  */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
 

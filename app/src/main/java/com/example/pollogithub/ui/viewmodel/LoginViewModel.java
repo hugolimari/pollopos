@@ -12,21 +12,7 @@ import com.example.pollogithub.data.entity.UsuarioEntity;
 import com.example.pollogithub.data.repository.PosRepository;
 
 /**
- * Modelo de Vista para Autenticación: LoginViewModel
- * 
- * Capa de Presentación / Arquitectura MVVM (Model-View-ViewModel)
- * Hereda de: AndroidViewModel (Lifecycle-Aware Component)
- * 
- * Gestiona el estado de la interfaz de login, encapsulando la lógica de autenticación
- * y la verificación de precondiciones de negocio (e.g. estado del turno de caja del cajero).
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Arquitectura MVVM: Desacopla la lógica de presentación del ciclo de vida de la Activity (MainActivity),
- *   sobreviviendo a destrucciones por recreación de configuración (giros de pantalla).
- * - Encapsulamiento de Estado Observable: Variables MutableLiveData privadas con getters de LiveData inmutables,
- *   garantizando un flujo unidireccional de datos (Unidirectional Data Flow - UDF).
- * - Lógica de Negocio y Enrutamiento Condicional: Si el usuario se autentica pero no existe un turno abierto,
- *   notifica a la vista mediante 'needsTurnoApertura' para redirigir a la pantalla de arqueo inicial.
+ * ViewModel para gestionar el login y validación de estado de turno.
  */
 public class LoginViewModel extends AndroidViewModel {
 

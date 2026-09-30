@@ -12,19 +12,7 @@ import com.example.pollogithub.data.entity.ProductoEntity;
 import java.util.List;
 
 /**
- * Objeto de Acceso a Datos: ProductoDao
- * 
- * Capa de Persistencia / Patrón DAO (Data Access Object)
- * Interfaz compilada por Room ORM para la tabla 'productos'.
- * 
- * Provee la interfaz programática para la administración del inventario y catálogo.
- * Soporta operaciones de alta, actualización de precios/descripciones, alternancia
- * del estado de disponibilidad operativa (in stock / agotado) y flujos reactivos
- * para la visualización del menú en tiempo real.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Mutación Atómica de Flags: 'setDisponible' actualiza exclusivamente la columna de estado sin sobrecargar el registro.
- * - Reactive Data Streams: Emisión mediante LiveData para refresco instantáneo del catálogo en el punto de venta.
+ * DAO para gestionar operaciones sobre la tabla 'productos'.
  */
 @Dao
 public interface ProductoDao {

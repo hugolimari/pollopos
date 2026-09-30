@@ -11,18 +11,7 @@ import com.example.pollogithub.data.entity.PedidoDetalleEntity;
 import java.util.List;
 
 /**
- * Objeto de Acceso a Datos: PedidoDetalleDao
- * 
- * Capa de Persistencia / Patrón DAO (Data Access Object)
- * Interfaz compilada por Room ORM para la tabla 'pedido_detalles'.
- * 
- * Gestiona la persistencia de las líneas de detalle asociadas a cada pedido.
- * Facilita operaciones de inserción masiva (Batch Insert) cuando se confirma una orden
- * completa desde el carrito de compras, y consultas filtradas por la clave foránea 'pedidoId'.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Operaciones en Lote (Batch Processing): Inserción atómica de múltiples detalles en un único ciclo I/O.
- * - Patrón Maestro-Detalle: Consultas dependientes de la clave foránea 'pedidoId'.
+ * DAO para gestionar operaciones sobre la tabla 'pedido_detalles'.
  */
 @Dao
 public interface PedidoDetalleDao {

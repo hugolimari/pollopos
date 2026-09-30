@@ -4,20 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad de Persistencia: PedidoDetalleEntity
- * 
- * Capa de Datos / Modelo de Detalle de Transacción (Room ORM)
- * Tabla: "pedido_detalles"
- * 
- * Modela las líneas individuales de ítems que componen una orden o pedido (patrón Maestro-Detalle).
- * Cada tupla almacena la cantidad adquirida, el precio unitario histórico congelado al momento
- * de la venta y las especificaciones personalizadas para cocina.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Desnormalización Controlada: Se almacena 'nombreProducto' y 'precioUnitario' de forma redundante
- *   para garantizar la inmutabilidad histórica del comprobante frente a futuras modificaciones en el catálogo.
- * - Integridad Referencial: Claves foráneas hacia 'pedidos' y 'productos'.
- * - Cálculo de Subtotal: Validación de la regla de negocio subtotal = cantidad * precioUnitario.
+ * Entidad Room para la tabla 'pedido_detalles'.
  */
 @Entity(tableName = "pedido_detalles")
 public class PedidoDetalleEntity {

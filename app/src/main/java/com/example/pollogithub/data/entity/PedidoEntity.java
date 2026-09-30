@@ -4,23 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad de Persistencia: PedidoEntity
- * 
- * Capa de Datos / Modelo de Cabecera Transaccional (Room ORM)
- * Tabla: "pedidos"
- * 
- * Entidad central del subsistema transaccional del POS. Representa la orden de venta
- * o comanda, administrando su ciclo de vida integral mediante máquinas de estado finito
- * tanto para la logística de preparación culinaria como para el estado de cobro financiero.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Patrón Maestro-Detalle: Actúa como nodo raíz de los renglones persistidos en 'pedido_detalles'.
- * - Máquina de Estados (State Pattern / FSM):
- *     * Flujo Operativo: "cocina" -> "listo" -> "entregado" (o bifurcación a "cancelado").
- *     * Flujo Financiero: "pendiente" -> "pagado" (o "cancelado").
- * - Integridad y Auditoría: Traza el cajero emisor (usuarioId), el turno de caja (turnoId)
- *   y la sucursal física (sucursalId).
- * - Algoritmo Contable: total = subtotal - montoDescuento.
+ * Entidad Room para la tabla 'pedidos'.
  */
 @Entity(tableName = "pedidos")
 public class PedidoEntity {

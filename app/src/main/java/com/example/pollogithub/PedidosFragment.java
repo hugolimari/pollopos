@@ -23,22 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Controlador de Vista (Fragmento): PedidosFragment (Monitor de Cocina y Despacho)
- * 
- * Capa de Presentación / Módulo KDS (Kitchen Display System)
- * Hereda de: Fragment
- * 
- * Visualiza y orquesta el flujo de preparación y entrega de pedidos en tiempo real.
- * Se integra con 'PedidosViewModel' mediante la arquitectura MVVM, observando
- * los cambios en la base de datos local y proveyendo modales de auditoría para
- * ver el desglose detallado de comandas o cancelar pedidos con registro de causa justificada.
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Ciclo de Vida del Fragmento (Fragment Lifecycle): Uso de 'getViewLifecycleOwner()'
- *   para suscribirse a LiveData, evitando fugas de memoria al destruir la vista del fragmento.
- * - Patrón Factory / Inyección Compartida de ViewModel: Uso de 'requireActivity()' en ViewModelProvider
- *   para compartir el estado del ViewModel a nivel de actividad anfitriona.
- * - Inyección Dinámica de Componentes de UI: Generación programática de filas y notas de cocina en el diálogo modal.
+ * Monitor de cocina y despacho de pedidos (KDS).
  */
 public class PedidosFragment extends Fragment {
 

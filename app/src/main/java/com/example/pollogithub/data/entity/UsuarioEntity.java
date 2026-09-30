@@ -4,22 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad de Persistencia: UsuarioEntity
- * 
- * Capa de Datos / Módulo de Autenticación, Seguridad y Operadores (Room ORM)
- * Tabla: "usuarios"
- * 
- * Representa las credenciales y el perfil del personal autorizado para interactuar
- * con la aplicación móvil del POS. Soporta esquemas duales de autenticación:
- * mediante nombre de usuario y contraseña alfanumérica tradicional, o acceso rápido
- * mediante código PIN numérico para agilizar la rotación de cajeros en turnos de alta demanda.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Autenticación y Autorización (AuthN / AuthZ): Vinculación de credenciales a un rol ('rolId')
- *   para aplicar control de acceso granular a las vistas y acciones del sistema.
- * - Desactivación Lógica: El flag 'activo' permite revocar accesos sin quebrar la integridad referencial
- *   de las órdenes y arqueos previamente asociados a la clave primaria del usuario.
- * - Aislamiento Organizacional: Clave foránea 'sucursalId' para delimitar el contexto operativo del operador.
+ * Entidad Room para la tabla 'usuarios'.
  */
 @Entity(tableName = "usuarios")
 public class UsuarioEntity {

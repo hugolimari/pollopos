@@ -20,23 +20,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Adaptador del Historial de Turnos y Auditoría de Arqueos: HistorialTurnosAdapter
- * 
- * Capa de Presentación / Patrón Adapter & ViewHolder
- * Hereda de: RecyclerView.Adapter<HistorialTurnosAdapter.TurnoViewHolder>
- * 
- * Modela el enlace de la colección de entidades TurnoEntity con la vista de auditoría
- * (item_historial_turno.xml). Proporciona visualización diferenciada para turnos
- * en curso (abiertos) versus turnos cerrados, destacando los resultados contables
- * del arqueo (Faltante en rojo, Sobrante en verde o Cuadre exacto).
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Algoritmo Visual de Conciliación Contable:
- *     * diferencia < -0.01: Desviación negativa (Faltante de caja).
- *     * diferencia > 0.01: Desviación positiva (Sobrante de caja).
- *     * abs(diferencia) <= 0.01: Conciliación perfecta (Caja cuadrada).
- * - Formateo Temporal de Auditoría: Normalización de marcas de tiempo Unix a formatos legibles
- *   mediante SimpleDateFormat.
+ * Adaptador para mostrar el historial de turnos y arqueos de caja.
  */
 public class HistorialTurnosAdapter extends RecyclerView.Adapter<HistorialTurnosAdapter.TurnoViewHolder> {
 

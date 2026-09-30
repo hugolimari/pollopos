@@ -28,27 +28,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Controlador de Vista: CierreCajaActivity (Arqueo y Cierre de Turno)
- * 
- * Capa de Presentación / Módulo de Conciliación Contable y Cierre de Turno
- * Hereda de: AppCompatActivity
- * 
- * Implementa el protocolo de cierre de turno operativo y arqueo ciego de gaveta.
- * Consolida los pagos recaudados clasificados por medio monetario (Efectivo, Tarjeta, QR),
- * computa el saldo en efectivo esperado y evalúa dinámicamente mediante un 'TextWatcher'
- * la diferencia contable frente al dinero físico contado por el cajero.
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Algoritmo de Conciliación y Arqueo de Caja:
- *     * Saldo Teórico: efectivoEsperado = fondoInicial + totalEfectivo
- *     * Discrepancia: diff = efectivoContado - efectivoEsperado
- *     * Tolerancia de Redondeo: Epsilon (|diff| <= 0.01) para determinar "Caja Cuadrada".
- * - Retroalimentación Visual Reactiva: TextWatcher que actualiza en tiempo real
- *   la tarjeta de alerta (CardView), alternando paletas de color y textos semánticos
- *   (Rojo para Faltante, Verde para Sobrante o Cuadre exacto).
- * - Restablecimiento de Sesión y Navegación Segura: Al asentar el cierre del turno,
- *   se limpia el identificador de turno en SessionManager y se purga el stack de navegación
- *   mediante 'FLAG_ACTIVITY_CLEAR_TASK' para forzar una nueva autenticación o reapertura.
+ * Pantalla de cierre de turno y arqueo de caja.
  */
 public class CierreCajaActivity extends AppCompatActivity {
 

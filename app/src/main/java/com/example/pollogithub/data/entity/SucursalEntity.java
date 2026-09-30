@@ -4,18 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad de Persistencia: SucursalEntity
- * 
- * Capa de Datos / Modelo Organizacional y Multi-Sucursal (Room ORM)
- * Tabla: "sucursales"
- * 
- * Modela las unidades de negocio físicas o puntos de venta de la franquicia.
- * Centraliza la información de localización geográfica, contacto operativo
- * y estado administrativo de cada establecimiento para aislar turnos, ventas y usuarios.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Soporte Multi-Tenant / Multi-Sucursal: Permite segmentar las operaciones de caja y catálogo por nodo geográfico.
- * - Desactivación Lógica: El atributo 'activa' habilita o inhabilita la operativa de una sucursal sin comprometer registros históricos.
+ * Entidad Room para la tabla 'sucursales'.
  */
 @Entity(tableName = "sucursales")
 public class SucursalEntity {

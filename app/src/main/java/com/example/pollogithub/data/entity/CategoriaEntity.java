@@ -4,19 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad de Persistencia: CategoriaEntity
- * 
- * Capa de Datos / Modelo Relacional (Room ORM)
- * Tabla: "categorias"
- * 
- * Representa la taxonomía jerárquica para la clasificación de productos dentro
- * del sistema POS (Punto de Venta). Permite segmentar el catálogo de artículos
- * (combos, bebidas, porciones) optimizando las consultas y la presentación visual
- * en el módulo de ventas.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Mapeo Objeto-Relacional (ORM) mediante Room.
- * - Atributo 'orden' para garantizar consistencia en la ordenación determinista en UI.
+ * Entidad Room para la tabla 'categorias'.
  */
 @Entity(tableName = "categorias")
 public class CategoriaEntity {

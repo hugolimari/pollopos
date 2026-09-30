@@ -11,20 +11,7 @@ import com.example.pollogithub.data.entity.PagoEntity;
 import java.util.List;
 
 /**
- * Objeto de Acceso a Datos: PagoDao
- * 
- * Capa de Persistencia / Patrón DAO (Data Access Object)
- * Interfaz compilada por Room ORM para la tabla 'pagos'.
- * 
- * Encapsula la lógica de consulta y persistencia de las transacciones monetarias.
- * Implementa funciones de agregación SQL (SUM) indispensables para el arqueo de caja
- * y la consolidación de ingresos según el instrumento de pago utilizado (efectivo, tarjeta, QR).
- * 
- * Conceptos de Ingeniería aplicados:
- * - Agregación Contable SQL: Operaciones vectoriales SUM() filtradas por identificador de turno.
- * - Manejo Seguro de Nulos: Retorno de tipo envoltorio 'Double' para mitigar excepciones de NullPointerException
- *   cuando un turno no registra pagos en determinada modalidad.
- * - Integridad de Auditoría: Registro de id de inserción autogenerado para vinculación de comprobantes.
+ * DAO para gestionar operaciones sobre la tabla 'pagos'.
  */
 @Dao
 public interface PagoDao {

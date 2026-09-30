@@ -17,22 +17,7 @@ import com.example.pollogithub.data.repository.PosRepository;
 import java.util.Locale;
 
 /**
- * Controlador de Vista (Fragmento): ReportesFragment (Métricas de Negocio y BI)
- * 
- * Capa de Presentación / Módulo de Inteligencia de Negocios (Business Intelligence) y Analítica
- * Hereda de: Fragment
- * 
- * Centraliza los Indicadores Clave de Desempeño (KPIs) del restaurante:
- * - Volumen bruto facturado.
- * - Conteo total de transacciones completadas.
- * - Ticket promedio por comensal (ticketPromedio = totalVentas / totalPedidos).
- * - Segmentación operativa (órdenes en mesa vs órdenes para llevar).
- * - Detección de intervalos de alta afluencia (hora pico).
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Computación Asíncrona de Métricas: Consulta vectorizada de pagos y pedidos en Worker Thread.
- * - Sincronización en el Ciclo de Vida: Invocación en 'onResume' para reflejar nuevas ventas
- *   inmediatamente después de cerrar una transacción en la pestaña de ventas.
+ * Métricas de ventas, ticket promedio, horas pico y acceso a historial de turnos.
  */
 public class ReportesFragment extends Fragment {
 

@@ -13,18 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 /**
- * Controlador de Vista: RecuperarPasswordActivity
- * 
- * Capa de Presentación / Módulo de Seguridad y Restablecimiento de Credenciales
- * Hereda de: AppCompatActivity
- * 
- * Proporciona el flujo de recuperación de credenciales y reseteo de PIN para los cajeros
- * y personal operativo que hayan olvidado sus claves de acceso al terminal POS.
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Seguridad y Recuperación de Cuentas: Interfaz para emisión de códigos de verificación temporal (OTP / Token).
- * - Control de Navegación Simple: Cierre controlado de actividad ('finish()') para retornar a la pantalla de login principal.
- * - Mecanismo de Autenticación de Autoría: Detección del identificador seguro ('autores.69') para desplegar los créditos del software.
+ * Pantalla de recuperación de contraseña para cajeros.
  */
 public class RecuperarPasswordActivity extends AppCompatActivity {
 

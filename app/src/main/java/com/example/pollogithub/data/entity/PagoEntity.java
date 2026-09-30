@@ -4,20 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * Entidad de Persistencia: PagoEntity
- * 
- * Capa de Datos / Modelo Financiero y Transaccional (Room ORM)
- * Tabla: "pagos"
- * 
- * Modela el registro de transacciones monetarias efectuadas para liquidar pedidos.
- * Constituye una pieza angular en el subsistema de auditoría financiera y cuadre de caja,
- * vinculando los ingresos monetarios con un pedido específico y un turno de cajero activo.
- * 
- * Conceptos de Ingeniería aplicados:
- * - Integridad Transaccional: Registro inmutable de montos liquidados y cambio devuelto.
- * - Trazabilidad y Auditoría: Atributos temporales en milisegundos Epoch ('creadoEn')
- *   y código/referencia para conciliación de medios electrónicos (tarjeta/QR).
- * - Soporte Multimoneda y Multimodal: Canalización de flujos de efectivo, pasarelas bancarias y billeteras digitales.
+ * Entidad Room para la tabla 'pagos'.
  */
 @Entity(tableName = "pagos")
 public class PagoEntity {

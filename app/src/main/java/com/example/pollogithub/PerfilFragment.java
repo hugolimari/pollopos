@@ -27,14 +27,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Controlador de Vista (Fragmento): PerfilFragment (Perfil de Operador y Configuración)
- * 
- * Capa de Presentación / Módulo de Perfil, Auditoría y Mantenimiento
- * Hereda de: Fragment
- * 
- * Gestiona la visualización del estado del cajero activo, métricas del turno,
- * accesos a inventario de insumos crudos, movimientos de caja chica, configuración
- * de impresora térmica ESC/POS, historial de turnos y cierre formal de caja.
+ * Perfil del cajero, control de turnos, caja chica e impresora.
  */
 public class PerfilFragment extends Fragment {
 

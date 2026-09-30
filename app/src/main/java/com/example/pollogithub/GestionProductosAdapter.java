@@ -22,21 +22,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Adaptador de Administración de Catálogo: GestionProductosAdapter
- * 
- * Capa de Presentación / Patrón Adapter & ViewHolder
- * Hereda de: RecyclerView.Adapter<GestionProductosAdapter.ProductoViewHolder>
- * 
- * Vincula la lista de entidades ProductoEntity con la vista de gestión administrativa
- * (item_gestion_producto.xml). Permite a los administradores activar o desactivar
- * la disponibilidad comercial de los platos en tiempo real y acceder a la edición de datos.
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Patrón ViewHolder: Minimiza sobrecarga de inflado y búsqueda de IDs en listas densas.
- * - Desacoplamiento de Eventos: Interfaz 'OnProductoActionListener' para aislar la manipulación
- *   del interruptor (Switch) y botones de acción de la lógica de persistencia.
- * - Prevención de Efectos Secundarios en Vistas Recicladas: Limpieza del listener del Switch
- *   (setOnCheckedChangeListener(null)) antes de asignar su estado para evitar disparos accidentales.
+ * Adaptador para la gestión administrativa del catálogo de productos.
  */
 public class GestionProductosAdapter extends RecyclerView.Adapter<GestionProductosAdapter.ProductoViewHolder> {
 

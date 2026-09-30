@@ -20,22 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Modelo de Vista para el Terminal de Venta (POS): VentaViewModel
- * 
- * Capa de Presentación / Arquitectura MVVM (Model-View-ViewModel)
- * Hereda de: AndroidViewModel
- * 
- * Centraliza la máquina de estados del carrito de compras y la interacción con el catálogo.
- * Sincroniza en tiempo real las cantidades seleccionadas en memoria con las entidades persistidas,
- * recalculando reactivamente los totales contables y gestionando la creación de pedidos.
- * 
- * Conceptos de Ingeniería de Software aplicados:
- * - Gestión de Estado en Memoria (State Management): Empleo de un mapa hash 'cartQuantities'
- *   como estructura de acceso O(1) para mantener el recuento de artículos agregados.
- * - Programación Reactiva con LiveData: Exposición de flujos diferenciados para el conteo de ítems,
- *   precio acumulado y visibilidad condicional de la barra de resumen de pedido.
- * - Desacoplamiento de Negocio: La lógica de acumulación, totales y armado del pedido reside en el ViewModel,
- *   manteniendo los Fragmentos y Actividades como simples renderizadores pasivos (Dumb Views).
+ * ViewModel del terminal de venta: gestión del carrito, cantidades y cálculo de totales.
  */
 public class VentaViewModel extends AndroidViewModel {
 
