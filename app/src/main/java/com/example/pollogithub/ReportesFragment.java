@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,8 +48,13 @@ public class ReportesFragment extends Fragment {
     private TextView tvStatParaMesa;
     private TextView tvStatHoraPico;
 
-    // Barras de distribución horaria (11am a 5pm+)
+    // Barras de distribución horaria de hoy
+    private View containerHourlyBars;
+    private TextView tvNoHourlySales;
     private final View[] barCols = new View[7];
+    private final TextView[] tvCountCols = new TextView[7];
+    private final TextView[] tvHoraCols = new TextView[7];
+    private final View[] colHourlyContainers = new View[7];
 
     // Ranking de productos más vendidos de la semana
     private TextView tvNoTopProducts;
@@ -75,7 +81,10 @@ public class ReportesFragment extends Fragment {
         tvStatParaMesa = view.findViewById(R.id.tvStatParaMesa);
         tvStatHoraPico = view.findViewById(R.id.tvStatHoraPico);
 
-        // 2. Enlace de barras de ventas por hora
+        // 2. Enlace de barras y etiquetas de ventas por hora
+        containerHourlyBars = view.findViewById(R.id.containerHourlyBars);
+        tvNoHourlySales = view.findViewById(R.id.tvNoHourlySales);
+
         barCols[0] = view.findViewById(R.id.barCol11a);
         barCols[1] = view.findViewById(R.id.barCol12p);
         barCols[2] = view.findViewById(R.id.barCol1p);
@@ -83,6 +92,30 @@ public class ReportesFragment extends Fragment {
         barCols[4] = view.findViewById(R.id.barCol3p);
         barCols[5] = view.findViewById(R.id.barCol4p);
         barCols[6] = view.findViewById(R.id.barCol5p);
+
+        tvCountCols[0] = view.findViewById(R.id.tvCountCol0);
+        tvCountCols[1] = view.findViewById(R.id.tvCountCol1);
+        tvCountCols[2] = view.findViewById(R.id.tvCountCol2);
+        tvCountCols[3] = view.findViewById(R.id.tvCountCol3);
+        tvCountCols[4] = view.findViewById(R.id.tvCountCol4);
+        tvCountCols[5] = view.findViewById(R.id.tvCountCol5);
+        tvCountCols[6] = view.findViewById(R.id.tvCountCol6);
+
+        tvHoraCols[0] = view.findViewById(R.id.tvHoraCol0);
+        tvHoraCols[1] = view.findViewById(R.id.tvHoraCol1);
+        tvHoraCols[2] = view.findViewById(R.id.tvHoraCol2);
+        tvHoraCols[3] = view.findViewById(R.id.tvHoraCol3);
+        tvHoraCols[4] = view.findViewById(R.id.tvHoraCol4);
+        tvHoraCols[5] = view.findViewById(R.id.tvHoraCol5);
+        tvHoraCols[6] = view.findViewById(R.id.tvHoraCol6);
+
+        colHourlyContainers[0] = view.findViewById(R.id.colHourly0);
+        colHourlyContainers[1] = view.findViewById(R.id.colHourly1);
+        colHourlyContainers[2] = view.findViewById(R.id.colHourly2);
+        colHourlyContainers[3] = view.findViewById(R.id.colHourly3);
+        colHourlyContainers[4] = view.findViewById(R.id.colHourly4);
+        colHourlyContainers[5] = view.findViewById(R.id.colHourly5);
+        colHourlyContainers[6] = view.findViewById(R.id.colHourly6);
 
         // 3. Enlace de ranking semanal de productos
         tvNoTopProducts = view.findViewById(R.id.tvNoTopProducts);
@@ -177,7 +210,7 @@ public class ReportesFragment extends Fragment {
                 }
 
                 // Distribución horaria de hoy
-                actualizarGraficoHoras(stats.ventasPorHora);
+                actualizarGraficoHoras(stats);
 
                 // Ranking de productos más vendidos de la semana
                 actualizarTopProductos(stats.topProductosSemana);
@@ -188,41 +221,95 @@ public class ReportesFragment extends Fragment {
         });
     }
 
-    private void actualizarGraficoHoras(int[] ventasPorHora) {
-        if (getContext() == null || ventasPorHora == null) return;
+    private void actualizarGraficoHoras(PosRepository.EstadisticasReporte stats) {
+        if (getContext() == null || stats == null) return;
+
+        List<PosRepository.HoraVentaItem> detalle = stats.ventasPorHoraDetalle;
+        boolean hayVentas = stats.totalPedidosHoy > 0 && detalle != null && !detalle.isEmpty();
+
+        if (!hayVentas) {
+            if (tvNoHourlySales != null) tvNoHourlySales.setVisibility(View.VISIBLE);
+            if (containerHourlyBars != null) containerHourlyBars.setVisibility(View.GONE);
+            return;
+        }
+
+        if (tvNoHourlySales != null) tvNoHourlySales.setVisibility(View.GONE);
+        if (containerHourlyBars != null) containerHourlyBars.setVisibility(View.VISIBLE);
 
         int max = 0;
-        for (int v : ventasPorHora) {
-            if (v > max) max = v;
+        for (PosRepository.HoraVentaItem item : detalle) {
+            if (item.cantidad > max) max = item.cantidad;
         }
 
         float density = getResources().getDisplayMetrics().density;
         int minHeightPx = (int) (6 * density);
-        int maxHeightPx = (int) (85 * density);
+        int maxHeightPx = (int) (75 * density);
 
         int colorPrimary = ContextCompat.getColor(requireContext(), R.color.ember_600);
+        int colorNormalBar = ContextCompat.getColor(requireContext(), R.color.ember_500);
         int colorMuted = ContextCompat.getColor(requireContext(), R.color.ember_100);
+        int colorChar400 = ContextCompat.getColor(requireContext(), R.color.char_400);
+        int colorChar700 = ContextCompat.getColor(requireContext(), R.color.char_700);
 
         for (int i = 0; i < 7; i++) {
             View bar = barCols[i];
             if (bar == null) continue;
 
-            int count = (i < ventasPorHora.length) ? ventasPorHora[i] : 0;
-            int heightPx = minHeightPx;
-            if (max > 0 && count > 0) {
-                heightPx = minHeightPx + (int) ((float) count / max * (maxHeightPx - minHeightPx));
-            }
+            if (i < detalle.size()) {
+                PosRepository.HoraVentaItem item = detalle.get(i);
 
-            ViewGroup.LayoutParams lp = bar.getLayoutParams();
-            if (lp != null) {
-                lp.height = heightPx;
-                bar.setLayoutParams(lp);
-            }
+                // Etiqueta de la hora dinámica (ej: 1a, 11a, 12p, 8p)
+                if (tvHoraCols[i] != null) {
+                    tvHoraCols[i].setText(item.label);
+                }
 
-            if (max > 0 && count == max) {
-                bar.setBackgroundTintList(ColorStateList.valueOf(colorPrimary));
-            } else {
-                bar.setBackgroundTintList(ColorStateList.valueOf(colorMuted));
+                // Cantidad visible sobre la barra
+                if (tvCountCols[i] != null) {
+                    if (item.cantidad > 0) {
+                        tvCountCols[i].setText(String.valueOf(item.cantidad));
+                        tvCountCols[i].setVisibility(View.VISIBLE);
+                        tvCountCols[i].setTextColor(item.isPico ? colorPrimary : colorChar700);
+                    } else {
+                        tvCountCols[i].setVisibility(View.INVISIBLE);
+                    }
+                }
+
+                // Altura proporcional
+                int heightPx = minHeightPx;
+                if (max > 0 && item.cantidad > 0) {
+                    heightPx = minHeightPx + (int) ((float) item.cantidad / max * (maxHeightPx - minHeightPx));
+                }
+
+                ViewGroup.LayoutParams lp = bar.getLayoutParams();
+                if (lp != null) {
+                    lp.height = heightPx;
+                    bar.setLayoutParams(lp);
+                }
+
+                // Coloreado reactivo
+                if (item.isPico) {
+                    bar.setBackgroundTintList(ColorStateList.valueOf(colorPrimary));
+                    if (tvHoraCols[i] != null) tvHoraCols[i].setTextColor(colorPrimary);
+                } else if (item.cantidad > 0) {
+                    bar.setBackgroundTintList(ColorStateList.valueOf(colorNormalBar));
+                    if (tvHoraCols[i] != null) tvHoraCols[i].setTextColor(colorChar700);
+                } else {
+                    bar.setBackgroundTintList(ColorStateList.valueOf(colorMuted));
+                    if (tvHoraCols[i] != null) tvHoraCols[i].setTextColor(colorChar400);
+                }
+
+                // Interacción táctil informativa al tocar la columna
+                View colContainer = colHourlyContainers[i];
+                if (colContainer != null) {
+                    final PosRepository.HoraVentaItem finalItem = item;
+                    colContainer.setOnClickListener(v -> {
+                        String msg = (finalItem.cantidad > 0)
+                                ? String.format(Locale.getDefault(), "%s: %d venta%s · Bs. %.2f",
+                                        finalItem.label, finalItem.cantidad, finalItem.cantidad == 1 ? "" : "s", finalItem.total)
+                                : String.format(Locale.getDefault(), "%s: Sin ventas", finalItem.label);
+                        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
+                    });
+                }
             }
         }
     }

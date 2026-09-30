@@ -613,6 +613,22 @@ public class PosRepository {
         }
     }
 
+    public static class HoraVentaItem {
+        public int hora24;
+        public String label;
+        public int cantidad;
+        public double total;
+        public boolean isPico;
+
+        public HoraVentaItem(int hora24, String label, int cantidad, double total, boolean isPico) {
+            this.hora24 = hora24;
+            this.label = label;
+            this.cantidad = cantidad;
+            this.total = total;
+            this.isPico = isPico;
+        }
+    }
+
     /**
      * DTO para estadísticas globales de Business Intelligence y métricas operativas del POS.
      */
@@ -629,7 +645,9 @@ public class PosRepository {
         public double ventasAyer = 0.0;
         public double porcentajeCrecimiento = 0.0;
         public boolean tieneDatosAyer = false;
-        public int[] ventasPorHora = new int[7]; // 11, 12, 13, 14, 15, 16, 17+
+        public int totalPedidosHoy = 0;
+        public int[] ventasPorHora = new int[7];
+        public List<HoraVentaItem> ventasPorHoraDetalle = new ArrayList<>();
         public List<ProductoRanking> topProductosSemana = new ArrayList<>();
     }
 
@@ -671,6 +689,8 @@ public class PosRepository {
             List<PedidoEntity> todosPedidos = db.pedidoDao().getAll();
             int mesa = 0, llevar = 0;
             int[] hourlyCount = new int[24];
+            double[] hourlyAmount = new double[24];
+            int pedidosHoyCount = 0;
             java.util.Map<String, int[]> rankingMap = new java.util.HashMap<>(); // nombre -> [cantidad, totalCents]
 
             if (todosPedidos != null) {
@@ -685,21 +705,14 @@ public class PosRepository {
 
                     // Ventas de hoy y distribución horaria
                     if (creado >= inicioHoy) {
+                        pedidosHoyCount++;
                         java.util.Calendar calP = java.util.Calendar.getInstance();
                         calP.setTimeInMillis(creado);
                         int h = calP.get(java.util.Calendar.HOUR_OF_DAY);
                         if (h >= 0 && h < 24) {
                             hourlyCount[h]++;
+                            hourlyAmount[h] += pe.getTotal();
                         }
-
-                        // Mapeo a las 7 columnas del gráfico (11am a 5pm)
-                        if (h == 11) stats.ventasPorHora[0]++;
-                        else if (h == 12) stats.ventasPorHora[1]++;
-                        else if (h == 13) stats.ventasPorHora[2]++;
-                        else if (h == 14) stats.ventasPorHora[3]++;
-                        else if (h == 15) stats.ventasPorHora[4]++;
-                        else if (h == 16) stats.ventasPorHora[5]++;
-                        else if (h >= 17) stats.ventasPorHora[6]++;
                     } else if (creado >= inicioAyer && creado < inicioHoy) {
                         stats.ventasAyer += pe.getTotal();
                     }
@@ -725,6 +738,7 @@ public class PosRepository {
             }
             stats.pedidosMesa = mesa;
             stats.pedidosLlevar = llevar;
+            stats.totalPedidosHoy = pedidosHoyCount;
 
             // Determinar hora pico de hoy
             int maxHour = -1;
@@ -744,6 +758,82 @@ public class PosRepository {
                 stats.horaPico = String.format(java.util.Locale.getDefault(), "%d%s - %d%s", startHour12, startAmPm, endHour12, endAmPm);
             } else {
                 stats.horaPico = "Sin ventas";
+            }
+
+            // Construcción dinámica de las 7 columnas de ventas por hora
+            if (pedidosHoyCount > 0) {
+                List<Integer> activeHours = new ArrayList<>();
+                for (int h = 0; h < 24; h++) {
+                    if (hourlyCount[h] > 0) {
+                        activeHours.add(h);
+                    }
+                }
+
+                List<Integer> selectedHours = new ArrayList<>();
+                int minH = activeHours.get(0);
+                int maxH = activeHours.get(activeHours.size() - 1);
+
+                if (maxH - minH < 7) {
+                    // Todas las ventas caben en un bloque continuo de 7 horas
+                    int startH = Math.max(0, minH - 1);
+                    if (startH + 6 > 23) {
+                        startH = Math.max(0, 24 - 7);
+                    }
+                    for (int i = 0; i < 7; i++) {
+                        int h = startH + i;
+                        if (h <= 23) selectedHours.add(h);
+                    }
+                } else {
+                    // Ventas dispersas (ej: almuerzo y cena)
+                    // Priorizamos las horas con ventas ordenadas por mayor cantidad
+                    List<Integer> sortedByCount = new ArrayList<>(activeHours);
+                    Collections.sort(sortedByCount, (a, b) -> Integer.compare(hourlyCount[b], hourlyCount[a]));
+
+                    java.util.Set<Integer> hourSet = new java.util.LinkedHashSet<>();
+                    for (int i = 0; i < Math.min(7, sortedByCount.size()); i++) {
+                        hourSet.add(sortedByCount.get(i));
+                    }
+                    // Rellenar con horas adyacentes si son menos de 7
+                    for (int h : new ArrayList<>(hourSet)) {
+                        if (hourSet.size() >= 7) break;
+                        if (h > 0) hourSet.add(h - 1);
+                        if (hourSet.size() >= 7) break;
+                        if (h < 23) hourSet.add(h + 1);
+                    }
+                    // Si aún faltan para 7, agregar horas comerciales estándar
+                    for (int h = 11; h <= 23 && hourSet.size() < 7; h++) {
+                        hourSet.add(h);
+                    }
+                    for (int h = 0; h < 24 && hourSet.size() < 7; h++) {
+                        hourSet.add(h);
+                    }
+                    selectedHours.addAll(hourSet);
+                    Collections.sort(selectedHours);
+                }
+
+                // Generar exactamente 7 items para el gráfico
+                for (int i = 0; i < Math.min(7, selectedHours.size()); i++) {
+                    int h = selectedHours.get(i);
+                    int count = hourlyCount[h];
+                    double amt = hourlyAmount[h];
+                    boolean isPico = (maxCount > 0 && h == maxHour);
+
+                    int h12 = (h % 12 == 0) ? 12 : (h % 12);
+                    String ampm = (h < 12) ? "a" : "p";
+                    String label = h12 + ampm;
+
+                    stats.ventasPorHoraDetalle.add(new HoraVentaItem(h, label, count, amt, isPico));
+                    if (i < 7) {
+                        stats.ventasPorHora[i] = count;
+                    }
+                }
+            } else {
+                // Sin ventas hoy: 7 columnas por defecto 11am-5pm con 0
+                for (int h = 11; h <= 17; h++) {
+                    int h12 = (h % 12 == 0) ? 12 : (h % 12);
+                    String ampm = (h < 12) ? "a" : "p";
+                    stats.ventasPorHoraDetalle.add(new HoraVentaItem(h, h12 + ampm, 0, 0.0, false));
+                }
             }
 
             // Comparativa vs ayer

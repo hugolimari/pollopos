@@ -320,11 +320,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="14dp"
+                android:layout_marginBottom="4dp"
                 android:fontFamily="sans-serif-black"
                 android:text="@string/etiqueta_ventas_por_hora_hoy"
                 android:textColor="@color/char_900"
                 android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvHourlyChartSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/subtitulo_ventas_por_hora"
+                android:textColor="@color/char_400"
+                android:textSize="12sp" />
 
             <!-- Hourly Sales Bar Chart Container -->
             <LinearLayout
@@ -335,19 +345,48 @@
                 android:orientation="vertical"
                 android:padding="18dp">
 
-                <LinearLayout
+                <!-- Estado vacío cuando no hay ventas hoy -->
+                <TextView
+                    android:id="@+id/tvNoHourlySales"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="32dp"
+                    android:text="@string/reportes_sin_ventas_hoy"
+                    android:textColor="@color/char_400"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+                <!-- Gráfico de barras de 7 columnas -->
+                <LinearLayout
+                    android:id="@+id/containerHourlyBars"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
                     android:gravity="bottom"
                     android:orientation="horizontal">
 
-                    <!-- Col 11a -->
+                    <!-- Col 0 -->
                     <LinearLayout
+                        android:id="@+id/colHourly0"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="bottom|center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless">
+
+                        <TextView
+                            android:id="@+id/tvCountCol0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:textColor="@color/char_700"
+                            android:textSize="10.5sp"
+                            android:visibility="invisible"
+                            tools:text="3" />
 
                         <View
                             android:id="@+id/barCol11a"
@@ -357,6 +396,7 @@
                             android:backgroundTint="@color/ember_100" />
 
                         <TextView
+                            android:id="@+id/tvHoraCol0"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -366,13 +406,28 @@
                             android:textSize="10.5sp" />
                     </LinearLayout>
 
-                    <!-- Col 12p -->
+                    <!-- Col 1 -->
                     <LinearLayout
+                        android:id="@+id/colHourly1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="bottom|center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless">
+
+                        <TextView
+                            android:id="@+id/tvCountCol1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:textColor="@color/char_700"
+                            android:textSize="10.5sp"
+                            android:visibility="invisible"
+                            tools:text="3" />
 
                         <View
                             android:id="@+id/barCol12p"
@@ -382,6 +437,7 @@
                             android:backgroundTint="@color/ember_100" />
 
                         <TextView
+                            android:id="@+id/tvHoraCol1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -391,13 +447,28 @@
                             android:textSize="10.5sp" />
                     </LinearLayout>
 
-                    <!-- Col 1p -->
+                    <!-- Col 2 -->
                     <LinearLayout
+                        android:id="@+id/colHourly2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="bottom|center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless">
+
+                        <TextView
+                            android:id="@+id/tvCountCol2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:textColor="@color/char_700"
+                            android:textSize="10.5sp"
+                            android:visibility="invisible"
+                            tools:text="3" />
 
                         <View
                             android:id="@+id/barCol1p"
@@ -407,6 +478,7 @@
                             android:backgroundTint="@color/ember_100" />
 
                         <TextView
+                            android:id="@+id/tvHoraCol2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -416,13 +488,28 @@
                             android:textSize="10.5sp" />
                     </LinearLayout>
 
-                    <!-- Col 2p -->
+                    <!-- Col 3 -->
                     <LinearLayout
+                        android:id="@+id/colHourly3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="bottom|center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless">
+
+                        <TextView
+                            android:id="@+id/tvCountCol3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:textColor="@color/char_700"
+                            android:textSize="10.5sp"
+                            android:visibility="invisible"
+                            tools:text="3" />
 
                         <View
                             android:id="@+id/barCol2p"
@@ -432,6 +519,7 @@
                             android:backgroundTint="@color/ember_100" />
 
                         <TextView
+                            android:id="@+id/tvHoraCol3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -441,13 +529,28 @@
                             android:textSize="10.5sp" />
                     </LinearLayout>
 
-                    <!-- Col 3p -->
+                    <!-- Col 4 -->
                     <LinearLayout
+                        android:id="@+id/colHourly4"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="bottom|center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless">
+
+                        <TextView
+                            android:id="@+id/tvCountCol4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:textColor="@color/char_700"
+                            android:textSize="10.5sp"
+                            android:visibility="invisible"
+                            tools:text="3" />
 
                         <View
                             android:id="@+id/barCol3p"
@@ -457,6 +560,7 @@
                             android:backgroundTint="@color/ember_100" />
 
                         <TextView
+                            android:id="@+id/tvHoraCol4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -466,13 +570,28 @@
                             android:textSize="10.5sp" />
                     </LinearLayout>
 
-                    <!-- Col 4p -->
+                    <!-- Col 5 -->
                     <LinearLayout
+                        android:id="@+id/colHourly5"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="bottom|center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless">
+
+                        <TextView
+                            android:id="@+id/tvCountCol5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:textColor="@color/char_700"
+                            android:textSize="10.5sp"
+                            android:visibility="invisible"
+                            tools:text="3" />
 
                         <View
                             android:id="@+id/barCol4p"
@@ -482,6 +601,7 @@
                             android:backgroundTint="@color/ember_100" />
 
                         <TextView
+                            android:id="@+id/tvHoraCol5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -491,13 +611,28 @@
                             android:textSize="10.5sp" />
                     </LinearLayout>
 
-                    <!-- Col 5p -->
+                    <!-- Col 6 -->
                     <LinearLayout
+                        android:id="@+id/colHourly6"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="bottom|center_horizontal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless">
+
+                        <TextView
+                            android:id="@+id/tvCountCol6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="sans-serif-bold"
+                            android:textColor="@color/char_700"
+                            android:textSize="10.5sp"
+                            android:visibility="invisible"
+                            tools:text="3" />
 
                         <View
                             android:id="@+id/barCol5p"
@@ -507,6 +642,7 @@
                             android:backgroundTint="@color/ember_100" />
 
                         <TextView
+                            android:id="@+id/tvHoraCol6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"

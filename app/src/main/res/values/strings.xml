@@ -441,6 +441,7 @@
     <string name="desc_hora_pico">Hora Pico</string>
     <string name="etiqueta_hora_pico">Hora pico</string>
     <string name="etiqueta_ventas_por_hora_hoy">Ventas por hora de hoy</string>
+    <string name="subtitulo_ventas_por_hora">Distribución de pedidos según la hora del día</string>
     <string name="hora_11a">11a</string>
     <string name="hora_12p">12p</string>
     <string name="hora_1p">1p</string>
